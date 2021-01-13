@@ -3,36 +3,31 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { TreoAnimations } from '@treo/animations';
 import { AuthService } from 'app/core/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SignInPageModel } from 'app/modules/auth/models/sign-in.model';
+import { SignInPageMapper } from '../mappers/sign-in.mapper';
+import { PageMapper } from '../../../core/interfaces/page-mapper';
 
 @Component({
-    selector     : 'auth-sign-in',
-    templateUrl  : './sign-in.component.html',
-    styleUrls    : ['./sign-in.component.scss'],
+    selector: 'auth-sign-in',
+    templateUrl: './sign-in.component.html',
+    styleUrls: ['./sign-in.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    animations   : TreoAnimations
+    animations: TreoAnimations
 })
-export class AuthSignInComponent implements OnInit
-{
+export class AuthSignInComponent implements OnInit {
     signInForm: FormGroup;
     message: any;
+    public model: SignInPageModel;
+    private mapper: PageMapper<SignInPageModel>;
 
-    /**
-     * Constructor
-     *
-     * @param {ActivatedRoute} _activatedRoute
-     * @param {AuthService} _authService
-     * @param {FormBuilder} _formBuilder
-     * @param {Router} _router
-     */
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _authService: AuthService,
         private _formBuilder: FormBuilder,
         private _router: Router
-    )
-    {
-        // Set the defaults
+    ) {
         this.message = null;
+        this.setModel();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -42,12 +37,10 @@ export class AuthSignInComponent implements OnInit
     /**
      * On init
      */
-    ngOnInit(): void
-    {
-        // Create the form
+    ngOnInit(): void {
         this.signInForm = this._formBuilder.group({
-            email     : ['watkins.andrew@company.com'],
-            password  : ['admin'],
+            email: ['watkins.andrew@company.com'],
+            password: ['admin'],
             rememberMe: ['']
         });
     }
@@ -59,8 +52,7 @@ export class AuthSignInComponent implements OnInit
     /**
      * Sign in
      */
-    signIn(): void
-    {
+    signIn(): void {
         // Disable the form
         this.signInForm.disable();
 
@@ -91,11 +83,25 @@ export class AuthSignInComponent implements OnInit
                 // Show the error message
                 this.message = {
                     appearance: 'outline',
-                    content   : response.error,
-                    shake     : true,
-                    showIcon  : false,
-                    type      : 'error'
+                    content: response.error,
+                    shake: true,
+                    showIcon: false,
+                    type: 'error'
                 };
             });
     }
+
+    private setModel(): void {
+        const json = this._activatedRoute.snapshot.data;
+        if (json) {
+            this.mapper = new SignInPageMapper();
+            this.model = this.mapper.getUiElementa(json);
+            console.log(this.model);
+        }
+    }
+
+    public goToseeMorePage(link: string): void {
+        window.open(link, '_blank');
+    }
+
 }

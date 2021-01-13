@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import  moment from 'moment';
 import { Notification } from 'app/layout/common/notifications/notifications.types';
 
 /* tslint:disable:max-line-length */
