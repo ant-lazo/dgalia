@@ -144,3 +144,16 @@ treo-drawer {
         }
     }
 }
+
+.drawer-custom-content {
+    overflow-y: scroll;
+    padding: 15px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        margin-bottom: 10px;
+    }
+}

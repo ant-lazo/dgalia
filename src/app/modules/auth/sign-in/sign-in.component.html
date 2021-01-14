@@ -15,6 +15,11 @@
                 <!-- Title -->
                 <div class="title">{{ model.title }} </div>
 
+                <!-- Message -->
+                <treo-message *ngIf="message" [appearance]="message.appearance" [showIcon]="message.showIcon"
+                    [type]="message.type" [@shake]="message.shake">
+                    {{message.content}}
+                </treo-message>
 
                 <!-- Sign in form -->
                 <form [formGroup]="signInForm">

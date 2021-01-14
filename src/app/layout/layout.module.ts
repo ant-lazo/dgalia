@@ -32,21 +32,21 @@ const modules = [
     CompactLayoutModule,
     DenseLayoutModule,
     FuturisticLayoutModule,
-    ThinLayoutModule
+    ThinLayoutModule,
+    TreoDrawerModule,
 ];
 
 @NgModule({
     declarations: [
         LayoutComponent
     ],
-    imports     : [
+    imports: [
         SharedModule,
         ...modules
     ],
-    exports     : [
+    exports: [
         ...modules
     ]
 })
-export class LayoutModule
-{
+export class LayoutModule {
 }

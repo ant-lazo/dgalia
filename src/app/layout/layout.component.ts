@@ -8,18 +8,20 @@ import { TreoMediaWatcherService } from '@treo/services/media-watcher';
 import { Layout } from 'app/layout/layout.types';
 import { AppConfig } from 'app/core/config/app.config';
 import { MatRadioChange } from '@angular/material/radio';
+import { OpenDrawerService } from 'app/core/services/open-drawer.service';
+
 
 @Component({
-    selector     : 'layout',
-    templateUrl  : './layout.component.html',
-    styleUrls    : ['./layout.component.scss'],
+    selector: 'layout',
+    templateUrl: './layout.component.html',
+    styleUrls: ['./layout.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class LayoutComponent implements OnInit, OnDestroy
-{
+export class LayoutComponent implements OnInit, OnDestroy {
     config: AppConfig;
     layout: Layout;
     theme: 'dark' | 'light';
+    public showDrawer: boolean;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -38,9 +40,10 @@ export class LayoutComponent implements OnInit, OnDestroy
         @Inject(DOCUMENT) private _document: any,
         private _router: Router,
         private _treoConfigService: TreoConfigService,
-        private _treoMediaWatcherService: TreoMediaWatcherService
-    )
-    {
+        private _treoMediaWatcherService: TreoMediaWatcherService,
+        private _drawerService: OpenDrawerService
+
+    ) {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
     }
@@ -52,8 +55,8 @@ export class LayoutComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
+        this.listenOpenDrawerEvent();
         // Set the theme based on the configuration
         combineLatest([
             this._treoConfigService.config$,
@@ -63,14 +66,12 @@ export class LayoutComponent implements OnInit, OnDestroy
             map(([config, mql]) => {
 
                 // If the config is set to 'dark' or 'light'...
-                if ( config.theme !== 'auto' )
-                {
+                if (config.theme !== 'auto') {
                     return config.theme;
                 }
 
                 // If the config is set to 'auto'...
-                if ( mql.breakpoints['(prefers-color-scheme: dark)'] === true )
-                {
+                if (mql.breakpoints['(prefers-color-scheme: dark)'] === true) {
                     return 'dark';
                 }
 
@@ -111,8 +112,7 @@ export class LayoutComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
@@ -125,12 +125,10 @@ export class LayoutComponent implements OnInit, OnDestroy
     /**
      * Update the selected layout
      */
-    private _updateLayout(): void
-    {
+    private _updateLayout(): void {
         // Get the current activated route
         let route = this._activatedRoute;
-        while ( route.firstChild )
-        {
+        while (route.firstChild) {
             route = route.firstChild;
         }
 
@@ -140,8 +138,7 @@ export class LayoutComponent implements OnInit, OnDestroy
         // 2. Get the query parameter from the current route and
         // set the layout and save the layout to the config
         const layoutFromQueryParam = (route.snapshot.queryParamMap.get('layout') as Layout);
-        if ( layoutFromQueryParam )
-        {
+        if (layoutFromQueryParam) {
             this.config.layout = this.layout = layoutFromQueryParam;
         }
 
@@ -165,8 +162,7 @@ export class LayoutComponent implements OnInit, OnDestroy
         paths.forEach((path) => {
 
             // Check if there is a 'layout' data
-            if ( path.routeConfig && path.routeConfig.data && path.routeConfig.data.layout )
-            {
+            if (path.routeConfig && path.routeConfig.data && path.routeConfig.data.layout) {
                 // Set the layout
                 this.layout = path.routeConfig.data.layout;
             }
@@ -178,12 +174,10 @@ export class LayoutComponent implements OnInit, OnDestroy
      *
      * @private
      */
-    private _updateTheme(): void
-    {
+    private _updateTheme(): void {
         // Find the class name for the previously selected theme and remove it
         this._document.body.classList.forEach((className) => {
-            if ( className.startsWith('treo-theme-') )
-            {
+            if (className.startsWith('treo-theme-')) {
                 this._document.body.classList.remove(className);
                 return;
             }
@@ -202,18 +196,17 @@ export class LayoutComponent implements OnInit, OnDestroy
      *
      * @param layout
      */
-    setLayout(layout: string): void
-    {
+    setLayout(layout: string): void {
         // Clear the 'layout' query param to allow layout changes
         this._router.navigate([], {
-            queryParams        : {
+            queryParams: {
                 layout: null
             },
             queryParamsHandling: 'merge'
         }).then(() => {
 
             // Set the config
-            this._treoConfigService.config = {layout};
+            this._treoConfigService.config = { layout };
         });
     }
 
@@ -222,8 +215,19 @@ export class LayoutComponent implements OnInit, OnDestroy
      *
      * @param change
      */
-    setTheme(change: MatRadioChange): void
-    {
-        this._treoConfigService.config = {theme: change.value};
+    setTheme(change: MatRadioChange): void {
+        this._treoConfigService.config = { theme: change.value };
+    }
+
+    private listenOpenDrawerEvent(): void {
+        this._drawerService.openDrawer.subscribe(value => {
+            this.showDrawer = value;
+        });
+    }
+
+    public openedEvent(event: boolean): void {
+        if (event === false) {
+            this._drawerService.close();
+        }
     }
 }

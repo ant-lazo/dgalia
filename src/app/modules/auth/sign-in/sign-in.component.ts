@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TreoAnimations } from '@treo/animations';
 import { AuthService } from 'app/core/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -39,51 +39,35 @@ export class AuthSignInComponent implements OnInit {
      */
     ngOnInit(): void {
         this.signInForm = this._formBuilder.group({
-            email: ['watkins.andrew@company.com'],
-            password: ['admin'],
+            email: [null, [Validators.required, Validators.email]],
+            password: [null, Validators.required],
             rememberMe: ['']
         });
+        this.verifyRemember();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * Sign in
-     */
     signIn(): void {
-        // Disable the form
         this.signInForm.disable();
-
-        // Hide the message
         this.message = null;
-
-        // Get the credentials
         const credentials = this.signInForm.value;
+        if (credentials.rememberMe) this._authService.setRemember(credentials.email);
 
         // Sign in
         this._authService.signIn(credentials)
             .subscribe(() => {
 
-                // Set the redirect url.
-                // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
-                // to the correct page after a successful sign in. This way, that url can be set via
-                // routing file and we don't have to touch here.
                 const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
-
-                // Navigate to the redirect url
                 this._router.navigateByUrl(redirectURL);
 
             }, (response) => {
 
-                // Re-enable the form
-                this.signInForm.enable();
+                console.log(response.error.error);
 
-                // Show the error message
+                this.signInForm.enable();
                 this.message = {
                     appearance: 'outline',
-                    content: response.error,
+                    content: response.error.error.description,
                     shake: true,
                     showIcon: false,
                     type: 'error'
@@ -102,6 +86,10 @@ export class AuthSignInComponent implements OnInit {
 
     public goToseeMorePage(link: string): void {
         window.open(link, '_blank');
+    }
+
+    private verifyRemember() {
+        if (this._authService.getRemember()) this.signInForm.controls.email.setValue(this._authService.getRemember());
     }
 
 }

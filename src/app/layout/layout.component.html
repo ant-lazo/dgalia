@@ -43,3 +43,8 @@
 
 <!-- Thin -->
 <thin-layout *ngIf="layout === 'thin'"></thin-layout>
+
+
+<treo-drawer (openedChanged)="openedEvent($event)" [fixed]="true" [mode]="'over'" [name]="'rightDrawer'"
+    [position]="'right'" [transparentOverlay]="false" [opened]="showDrawer">
+</treo-drawer>

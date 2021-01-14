@@ -15,14 +15,15 @@ import { appRoutes } from 'app/app.routing';
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
-    preloadingStrategy       : PreloadAllModules
+    preloadingStrategy: PreloadAllModules,
+    useHash: true
 };
 
 @NgModule({
     declarations: [
         AppComponent
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
@@ -41,10 +42,9 @@ const routerConfig: ExtraOptions = {
         // 3rd party modules
         MarkdownModule.forRoot({})
     ],
-    bootstrap   : [
+    bootstrap: [
         AppComponent
     ]
 })
-export class AppModule
-{
+export class AppModule {
 }

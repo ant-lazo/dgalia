@@ -2,19 +2,19 @@ import { Route } from '@angular/router';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
-import { InitialDataResolver } from 'app/app.resolvers';
-import { SignInPageModel } from 'app/modules/auth/models/sign-in.model';
 import * as json from 'assets/language/es/auth.json';
+import { InitialDataResolver } from 'app/app.resolvers';
+
 
 // @formatter:off
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/example'
-    { path: '', pathMatch: 'full', redirectTo: 'example' },
+    { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
 
     // Redirect signed in user to the '/example'
-    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'example' },
+    { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'dashboard' },
 
     // Auth routes (guest)
     {
@@ -48,20 +48,6 @@ export const appRoutes: Route[] = [
             { path: 'unlock-session', loadChildren: () => import('app/modules/auth/unlock-session/unlock-session.module').then(m => m.AuthUnlockSessionModule) }
         ]
     },
-
-    // Landing routes
-    {
-        path: '',
-        component: LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children: [
-            { path: 'home', loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule) },
-        ]
-    },
-
-    // Admin routes
     {
         path: '',
         canActivate: [AuthGuard],
@@ -71,13 +57,9 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         children: [
-
-            // Example
-            { path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule) }
-
-            // 404 & Catch all
-            // {path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)},
-            // {path: '**', redirectTo: '404-not-found'}
+            { path: 'dashboard', loadChildren: () => import('app/modules/dashboard/dashboard.module').then(d => d.DashboardModule) }
         ]
     }
+
+
 ];
