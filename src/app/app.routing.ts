@@ -2,8 +2,8 @@ import { Route } from '@angular/router';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
-import * as json from 'assets/language/es/auth.json';
 import { InitialDataResolver } from 'app/app.resolvers';
+import { routesConfig } from './routes.config';
 
 
 // @formatter:off
@@ -29,7 +29,7 @@ export const appRoutes: Route[] = [
             { path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule) },
             { path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.module').then(m => m.AuthForgotPasswordModule) },
             { path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule) },
-            { data: json.sigIng, path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule) },
+            { data: routesConfig.auth, path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule) },
             { path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule) }
         ]
     },
@@ -54,10 +54,12 @@ export const appRoutes: Route[] = [
         canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
+
             initialData: InitialDataResolver,
         },
         children: [
-            { path: 'dashboard', loadChildren: () => import('app/modules/dashboard/dashboard.module').then(d => d.DashboardModule) }
+            { path: 'dashboard', loadChildren: () => import('app/modules/dashboard/dashboard.module').then(d => d.DashboardModule) },
+            { path: 'unidades-de-medida', loadChildren: () => import('app/modules/measured-units/measured-units.module').then(m => m.MeasuredUnitsModule) }
         ]
     }
 

@@ -10,8 +10,8 @@
                     "icon": "store",
                     "children": [
                         {
-                            "id": "pages.sales.generate",
-                            "title": "Ordenes de compra",
+                            "id": "pages.cocina.generate",
+                            "title": "Insumos",
                             "link": "/",
                             "type": "basic"
                         },
@@ -23,13 +23,13 @@
                         },
                         {
                             "id": "pages.sales.reports",
-                            "title": "Reportes",
-                            "link": "/",
+                            "title": "Unidades de medida ",
+                            "link": "/unidades-de-medida",
                             "type": "basic"
                         },
                         {
                             "id": "pages.sales.caja",
-                            "title": "Caja",
+                            "title": "Programación",
                             "link": "/",
                             "type": "basic"
                         }

@@ -62,8 +62,6 @@ export class AuthSignInComponent implements OnInit {
 
             }, (response) => {
 
-                console.log(response.error.error);
-
                 this.signInForm.enable();
                 this.message = {
                     appearance: 'outline',
@@ -77,6 +75,8 @@ export class AuthSignInComponent implements OnInit {
 
     private setModel(): void {
         const json = this._activatedRoute.snapshot.data;
+        console.log(json);
+
         if (json) {
             this.mapper = new SignInPageMapper();
             this.model = this.mapper.getUiElementa(json);

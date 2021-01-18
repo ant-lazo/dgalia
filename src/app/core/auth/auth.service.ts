@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import * as apiRoutes from 'assets/config/api-routes.json';
 import { environment } from '../../../environments/environment';
+import { AuthenticatedUser } from 'app/core/models/authenticated-user.model';
 
 @Injectable()
 export class AuthService {
     // Private
     private _authenticated: boolean;
+    public authenticatedUser: BehaviorSubject<AuthenticatedUser> = new BehaviorSubject(null);
 
     /**
      * Constructor
@@ -21,6 +23,7 @@ export class AuthService {
     ) {
         // Set the defaults
         this._authenticated = false;
+        this.validateAuthUser();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -57,10 +60,12 @@ export class AuthService {
             switchMap((response: any) => {
 
                 // Store the access token in the local storage
-                this.accessToken = response.data.token;
+                this.accessToken = response.data
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
+
+                this.validateAuthUser();
 
                 // Return a new observable with the response
                 return of(response);
@@ -89,6 +94,7 @@ export class AuthService {
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
+
                 // Return true
                 return of(true);
             })
@@ -100,7 +106,7 @@ export class AuthService {
      */
     signOut(): Observable<any> {
         // Remove the access token from the local storage
-        localStorage.removeItem('access_token');
+        sessionStorage.removeItem('access_token');
 
         // Set the authenticated flag to false
         this._authenticated = false;
@@ -132,5 +138,12 @@ export class AuthService {
 
     public getRemember(): string {
         return localStorage.getItem('remember-email');
+    }
+
+    private validateAuthUser() {
+        if (this.accessToken) {
+            const data = AuthUtils._decodeToken(this.accessToken);
+            this.authenticatedUser.next(AuthenticatedUser.fromJson(data.payload))
+        }
     }
 }

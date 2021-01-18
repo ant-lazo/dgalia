@@ -1,10 +1,6 @@
 <!-- Navigation -->
-<treo-vertical-navigation class="theme-dark"
-                          [appearance]="'compact'"
-                          [mode]="isScreenSmall ? 'over' : 'side'"
-                          [name]="'mainNavigation'"
-                          [navigation]="data.navigation.compact"
-                          [opened]="!isScreenSmall">
+<treo-vertical-navigation class="theme-dark" [appearance]="'compact'" [mode]="isScreenSmall ? 'over' : 'side'"
+    [name]="'mainNavigation'" [navigation]="data.navigation.compact" [opened]="!isScreenSmall">
 
     <div treoVerticalNavigationContentHeader>
         <div class="logo">
@@ -21,9 +17,7 @@
     <div class="header">
 
         <!-- Navigation toggle button -->
-        <button class="navigation-toggle-button"
-                mat-icon-button
-                (click)="toggleNavigation('mainNavigation')">
+        <button class="navigation-toggle-button" mat-icon-button (click)="toggleNavigation('mainNavigation')">
             <mat-icon [svgIcon]="'menu'"></mat-icon>
         </button>
 
@@ -43,7 +37,7 @@
         <notifications [notifications]="data.notifications"></notifications>
 
         <!-- User -->
-        <user [user]="data.user"></user>
+        <user></user>
 
     </div>
 

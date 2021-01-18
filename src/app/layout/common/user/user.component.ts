@@ -5,6 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 import { User } from 'app/layout/common/user/user.types';
 import { UserService } from 'app/layout/common/user/user.service';
 import { OpenDrawerService } from 'app/core/services/open-drawer.service';
+import { AuthService } from 'app/core/auth/auth.service';
+import { AuthenticatedUser } from 'app/core/models/authenticated-user.model';
 
 @Component({
     selector: 'user',
@@ -33,7 +35,8 @@ export class UserComponent implements OnInit, OnDestroy {
         private _changeDetectorRef: ChangeDetectorRef,
         private _router: Router,
         private _userService: UserService,
-        public _openDrawerService: OpenDrawerService
+        public _openDrawerService: OpenDrawerService,
+        private _authentication: AuthService
     ) {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
@@ -42,26 +45,8 @@ export class UserComponent implements OnInit, OnDestroy {
         this.showAvatar = true;
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Setter & getter for user
-     *
-     * @param value
-     */
-    @Input()
-    set user(value: User) {
-        // Save the user
-        this._user = value;
-
-        // Store the user in the service
-        this._userService.user = value;
-    }
-
-    get user(): User {
-        return this._user;
+    get user(): AuthenticatedUser {
+        return this._authentication.authenticatedUser.getValue();
     }
 
     public openDrawer(): void {
@@ -92,22 +77,7 @@ export class UserComponent implements OnInit, OnDestroy {
         this._unsubscribeAll.complete();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * Update the user status
-     *
-     * @param status
-     */
-    updateUserStatus(status): void {
-        // Update the user data
-        this.user.status = status;
-
-        // Update the user on the server
-        this._userService.update(this.user);
-    }
 
     /**
      * Sign out

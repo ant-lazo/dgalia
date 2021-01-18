@@ -4,15 +4,16 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { TreoMediaWatcherService } from '@treo/services/media-watcher';
 import { TreoNavigationService } from '@treo/components/navigation';
+import { AuthService } from 'app/core/auth/auth.service';
+import { AuthenticatedUser } from 'app/core/models/authenticated-user.model';
 
 @Component({
-    selector     : 'classy-layout',
-    templateUrl  : './classy.component.html',
-    styleUrls    : ['./classy.component.scss'],
+    selector: 'classy-layout',
+    templateUrl: './classy.component.html',
+    styleUrls: ['./classy.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ClassyLayoutComponent implements OnInit, OnDestroy
-{
+export class ClassyLayoutComponent implements OnInit, OnDestroy {
     data: any;
     isScreenSmall: boolean;
 
@@ -29,11 +30,10 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
      */
     constructor(
         private _activatedRoute: ActivatedRoute,
-        private _router: Router,
         private _treoMediaWatcherService: TreoMediaWatcherService,
-        private _treoNavigationService: TreoNavigationService
-    )
-    {
+        private _treoNavigationService: TreoNavigationService,
+        private _authentication: AuthService
+    ) {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
     }
@@ -45,8 +45,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Subscribe to the resolved route data
         this._activatedRoute.data.subscribe((data: Data) => {
             this.data = data.initialData;
@@ -55,7 +54,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
         // Subscribe to media changes
         this._treoMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
+            .subscribe(({ matchingAliases }) => {
 
                 // Check if the breakpoint is 'lt-md'
                 this.isScreenSmall = matchingAliases.includes('lt-md');
@@ -65,31 +64,29 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Toggle navigation
-     *
-     * @param key
-     */
-    toggleNavigation(key): void
-    {
+    toggleNavigation(key: any): void {
         // Get the navigation
         const navigation = this._treoNavigationService.getComponent(key);
 
-        if ( navigation )
-        {
+        if (navigation) {
             // Toggle the opened status
             navigation.toggle();
         }
     }
+
+
+    /**
+     * get authenticathe user
+     */
+
+    public get user(): AuthenticatedUser {
+        return this._authentication.authenticatedUser.getValue();
+    }
+
 }

@@ -6,7 +6,7 @@ classy-layout {
     flex: 1 1 auto;
     width: 100%;
 
-    > treo-vertical-navigation {
+    >treo-vertical-navigation {
 
         .treo-vertical-navigation-content-header {
 
@@ -17,12 +17,13 @@ classy-layout {
                 padding: 16px 16px 16px 24px;
 
                 .logo {
+                    width: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
 
                     img {
-                        max-width: 32px;
+                        max-width: 30px;
                     }
                 }
 
@@ -113,13 +114,13 @@ classy-layout {
         }
     }
 
-    > .wrapper {
+    >.wrapper {
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
         min-width: 0;
 
-        > .header {
+        >.header {
             position: relative;
             display: flex;
             flex: 1 1 auto;
@@ -189,12 +190,12 @@ classy-layout {
             }
         }
 
-        > .content {
+        >.content {
             display: flex;
             flex-direction: column;
             flex: 1 1 auto;
 
-            > *:not(router-outlet) {
+            >*:not(router-outlet) {
                 position: relative;
                 display: flex;
                 flex: 1 1 auto;
@@ -215,12 +216,14 @@ classy-layout {
 
     classy-layout {
 
-        > .wrapper {
+        >.wrapper {
 
-            > .header {
+            >.header {
                 @if ($is-dark) {
                     box-shadow: 0 1px 0 0 map-get($foreground, divider);
-                } @else {
+                }
+
+                @else {
                     background: map-get($background, card);
                     @include treo-elevation();
                 }
