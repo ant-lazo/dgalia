@@ -59,7 +59,10 @@ export const appRoutes: Route[] = [
         },
         children: [
             { path: 'dashboard', loadChildren: () => import('app/modules/dashboard/dashboard.module').then(d => d.DashboardModule) },
-            { path: 'unidades-de-medida', loadChildren: () => import('app/modules/measured-units/measured-units.module').then(m => m.MeasuredUnitsModule) }
+            { path: 'unidades-de-medida', loadChildren: () => import('app/modules/measured-units/measured-units.module').then(m => m.MeasuredUnitsModule) },
+            { path: 'insumos', loadChildren: () => import('app/modules/soupply/soupply-routing.module').then(s => s.SoupplyRoutingModule) },
+            { path: 'recetas', loadChildren: () => import('app/modules/recipes/recipes.module').then(r => r.RecipesModule) },
+            { path: 'programacion', loadChildren: () => import('app/modules/programation/programation.module').then(p => p.ProgramationModule) }
         ]
     }
 
