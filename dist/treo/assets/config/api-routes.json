@@ -1,5 +1,14 @@
 {
     "authentication": {
         "sigin": "auth/sign-in"
+    },
+    "measured_unit": {
+        "default": "measured-unit"
+    },
+    "supply": {
+        "default": "supply"
+    },
+    "product_category": {
+        "default": "product-category"
     }
 }
