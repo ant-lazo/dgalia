@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from 'app/shared/shared.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MeasuredUnitsRoutingModule,
     HeaderModule,
     MatIconModule,

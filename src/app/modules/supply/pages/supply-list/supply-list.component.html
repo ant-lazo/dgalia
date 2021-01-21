@@ -1,0 +1,14 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header [module]="'Cocina'" [title]="'Insumos'"></app-header>
+
+    <div class="main">
+        <div class="content">
+            <app-row-buttons *ngIf="registerButton" [buttons]="registerButton" [justify]="'justify-end'"
+                (onClick)="register($event)">
+            </app-row-buttons>
+
+            <app-supply-list-table *ngIf="supplyList" [list]="supplyList"></app-supply-list-table>
+        </div>
+    </div>
+</div>

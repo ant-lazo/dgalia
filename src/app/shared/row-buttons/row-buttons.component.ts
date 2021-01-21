@@ -8,10 +8,7 @@ import { RowAppButtonModel } from './models/row-nutton.model';
   ]
 })
 export class RowButtonsComponent {
-
   @Input() buttons: RowAppButtonModel[];
   @Input() justify: string;
   @Output() onClick: EventEmitter<string> = new EventEmitter();
-
-
 }

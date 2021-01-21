@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RecipesRoutingModule } from './recipes-routing.module';
+import { RecipesComponent } from './recipes.component';
+import { SharedModule } from 'app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [RecipesComponent],
   imports: [
     CommonModule,
-    RecipesRoutingModule
+    RecipesRoutingModule,
+
+    SharedModule
   ]
 })
 export class RecipesModule { }

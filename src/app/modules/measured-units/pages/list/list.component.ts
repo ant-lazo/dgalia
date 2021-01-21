@@ -42,6 +42,6 @@ export class ListComponent implements OnInit {
   private getList(): void {
     this._measuredUnit.getGetList().subscribe(list => {
       this.measuredUnitList = list;
-    })
+    });
   }
 }
