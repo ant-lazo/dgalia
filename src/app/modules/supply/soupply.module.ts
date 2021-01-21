@@ -12,6 +12,7 @@ import { MaterialBasicUitModule } from 'app/shared/modules/ui-modules.module';
 import { SupplyRegisterComponent } from './components/supply-register/supply-register.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
+import { SearchBoxModule } from '../../shared/search-box/search-box.module';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,12 @@ import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
     SharedModule,
     MaterialTableModule,
     SoupplyRoutingModule,
-    // --
     HeaderModule,
-    // --
     RowButtonsModule,
     MaterialBasicUitModule,
     MatDialogModule,
-    FormsMaterialModule
+    FormsMaterialModule,
+    SearchBoxModule
   ]
 })
 export class SoupplyModule { }

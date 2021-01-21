@@ -14,6 +14,7 @@ export class SupplyListComponent implements OnInit {
 
   public registerButton: RowAppButtonModel[];
   public supplyList: Supply[];
+  public supplyFilteredList: Supply[];
 
   constructor(
     private matDialog: MatDialog,
@@ -29,6 +30,7 @@ export class SupplyListComponent implements OnInit {
   public setList(): void {
     this._supply.getList().subscribe(list => {
       this.supplyList = list;
+      this.supplyFilteredList = list;
     });
   }
 
@@ -58,12 +60,20 @@ export class SupplyListComponent implements OnInit {
   private buildRegisterModel(): void {
     const dialogRef = this.matDialog.open(SupplyRegisterComponent, {
       width: '750px',
-      height: '500px',
+      height: '550px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) this.setList();
     });
+  }
+
+  public filterByName(name: string): void {
+    if (name.length > 0) {
+      this.supplyFilteredList = this.supplyList.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
+    } else {
+      this.supplyFilteredList = this.supplyList;
+    }
   }
 
 }

@@ -15,6 +15,7 @@ import { appRoutes } from 'app/app.routing';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
+import { ToastrModule } from 'ngx-toastr';
 
 
 const routerConfig: ExtraOptions = {
@@ -48,6 +49,9 @@ const routerConfig: ExtraOptions = {
         // 3rd party modules
         MarkdownModule.forRoot({}),
         LoadingBarModule,
+
+        ToastrModule.forRoot(),
+
     ],
     bootstrap: [
         AppComponent

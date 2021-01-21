@@ -19,7 +19,7 @@ export class ProductCategoriesService {
   /**
    * this thos return a observable with list of produtc categories, you have to make a suscribe
    */
-  public getList(): Observable<ProductCategory> {
+  public getList(): Observable<ProductCategory[]> {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.product_category.default).pipe(map(result => result.data));
   }
 }

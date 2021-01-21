@@ -4,19 +4,21 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'app/core/auth/auth.service';
 import { AuthUtils } from 'app/core/auth/auth.utils';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor
-{
+export class AuthInterceptor implements HttpInterceptor {
     /**
      * Constructor
      *
      * @param {AuthService} _authService
      */
     constructor(
-        private _authService: AuthService
-    )
-    {
+        private _authService: AuthService,
+        private toast: ToastrService,
+
+    ) {
     }
 
     /**
@@ -25,8 +27,7 @@ export class AuthInterceptor implements HttpInterceptor
      * @param req
      * @param next
      */
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
-    {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // Clone the request object
         let newReq = req.clone();
 
@@ -38,8 +39,7 @@ export class AuthInterceptor implements HttpInterceptor
         // for the protected API routes which our response interceptor will
         // catch and delete the access token from the local storage while logging
         // the user out from the app.
-        if ( this._authService.accessToken && !AuthUtils.isTokenExpired(this._authService.accessToken) )
-        {
+        if (this._authService.accessToken && !AuthUtils.isTokenExpired(this._authService.accessToken)) {
             newReq = req.clone({
                 headers: req.headers.set('Authorization', 'Bearer ' + this._authService.accessToken)
             });
@@ -48,10 +48,10 @@ export class AuthInterceptor implements HttpInterceptor
         // Response
         return next.handle(newReq).pipe(
             catchError((error) => {
+                this.toast.error(error?.error?.error?.name || 'Error inesperado al hacer solicitud', error?.error?.message || 'Error')
 
                 // Catch "401 Unauthorized" responses
-                if ( error instanceof HttpErrorResponse && error.status === 401 )
-                {
+                if (error instanceof HttpErrorResponse && error.status === 401) {
                     // Sign out
                     this._authService.signOut();
 

@@ -8,7 +8,9 @@
                 (onClick)="register($event)">
             </app-row-buttons>
 
-            <app-supply-list-table *ngIf="supplyList" [list]="supplyList"></app-supply-list-table>
+            <app-search-box [placeHolder]="'Ingrese nombre de insumo'" (param)="filterByName($event)"></app-search-box>
+
+            <app-supply-list-table *ngIf="supplyList" [list]="supplyFilteredList"></app-supply-list-table>
         </div>
     </div>
 </div>

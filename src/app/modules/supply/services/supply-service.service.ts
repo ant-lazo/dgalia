@@ -19,11 +19,18 @@ export class SupplyServiceService {
 
 
   /**
-   * this methos returns a complete list of supplies registered
+   * this method returns a complete list of supplies registered
    */
   public getList(): Observable<Supply[]> {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.supply.default).pipe(map(result => {
       return result.data;
     }));
+  }
+
+  /**
+   * this method save new supply in db
+   */
+  public registerNewSupply(data: any): Observable<JsonResp> {
+    return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.supply.default, data);
   }
 }
