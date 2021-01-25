@@ -10,5 +10,8 @@
     },
     "product_category": {
         "default": "product-category"
+    },
+    "recipe": {
+        "default": "recipe"
     }
 }

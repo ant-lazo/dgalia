@@ -4,8 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-recipes',
   template: `
   <div class="w-full">
-<router-outlet></router-outlet>
-</div>
+    <router-outlet></router-outlet>
+  </div>
   `,
   styles: [
   ]
