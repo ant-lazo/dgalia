@@ -11,7 +11,7 @@ import { Supply } from '../models/supply';
 @Injectable({
   providedIn: 'root'
 })
-export class SupplyServiceService {
+export class SupplyService {
 
   constructor(
     private _http: HttpClient
@@ -32,5 +32,14 @@ export class SupplyServiceService {
    */
   public registerNewSupply(data: any): Observable<JsonResp> {
     return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.supply.default, data);
+  }
+
+  /**
+   * findByName returns a observable with list of supplies 
+   * @param name -> is a string with name tha should be match
+   */
+  public findByName(name: string): Observable<Supply[]> {
+    return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.supply.default, { params: { name } })
+      .pipe(map(resp => resp.data));
   }
 }

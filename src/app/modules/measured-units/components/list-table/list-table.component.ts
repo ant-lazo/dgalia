@@ -18,7 +18,6 @@ export class ListTableComponent implements OnChanges {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
   public dataSource: MatTableDataSource<MeasuredUnit> = new MatTableDataSource([]);
 
   constructor() { }

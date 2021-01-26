@@ -16,10 +16,19 @@ import { RecipeListTableComponent } from './components/recipe-list-table/recipe-
 import { RegisterRecipeComponent } from './pages/register-recipe/register-recipe.component';
 import { RecipeFormComponent } from './components/register-form/register-form.component';
 import { RecipeSupplyListComponent } from './components/recipe-supply-list/recipe-supply-list.component';
+import { RecipeSupplyModalComponent } from './components/recipe-supply-modal/recipe-supply-modal.component';
 
 
 @NgModule({
-  declarations: [RecipesComponent, RecipeListComponent, RecipeListTableComponent, RegisterRecipeComponent, RecipeFormComponent, RecipeSupplyListComponent],
+  declarations: [
+    RecipesComponent,
+    RecipeListComponent,
+    RecipeListTableComponent,
+    RegisterRecipeComponent,
+    RecipeFormComponent,
+    RecipeSupplyListComponent,
+    RecipeSupplyModalComponent,
+  ],
   imports: [
     RecipesRoutingModule,
     SharedModule,

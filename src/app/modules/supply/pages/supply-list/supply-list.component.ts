@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RowAppButtonModel, RowButtonType } from '../../../../shared/row-buttons/models/row-nutton.model';
 import { Supply } from '../../models/supply';
-import { SupplyServiceService } from '../../services/supply-service.service';
+import { SupplyService } from '../../services/supply-service.service';
 import { SupplyRegisterComponent } from '../../components/supply-register/supply-register.component';
 
 @Component({
@@ -18,7 +18,7 @@ export class SupplyListComponent implements OnInit {
 
   constructor(
     private matDialog: MatDialog,
-    private _supply: SupplyServiceService,
+    private _supply: SupplyService,
   ) {
     this.buildRegisterButton();
   }

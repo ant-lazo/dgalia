@@ -26,6 +26,9 @@ export class RegisterRecipeComponent implements OnInit {
   ) {
   }
 
+  // logica del mapper
+  // logica de envio a servidor
+
   ngOnInit(): void {
     this.courseList = this._course.getCourseList();
     this.headquarterList = this._headquarter.getCompleteList();

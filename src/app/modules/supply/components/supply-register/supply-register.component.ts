@@ -6,7 +6,7 @@ import { MeasuredUnitService } from "app/modules/measured-units/services/measure
 import { ProductCategory } from "app/modules/product-category/models/product-category.interface";
 import { ProductCategoriesService } from "app/modules/product-category/services/product-categories.service";
 import { Observable } from 'rxjs';
-import { SupplyServiceService } from "../../services/supply-service.service";
+import { SupplyService } from "../../services/supply-service.service";
 
 @Component({
   selector: 'app-supply-register',
@@ -24,7 +24,7 @@ export class SupplyRegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     public _productCategory: ProductCategoriesService,
     public _measuredUnit: MeasuredUnitService,
-    private _supply: SupplyServiceService
+    private _supply: SupplyService
   ) {
     this.setForm();
   }
