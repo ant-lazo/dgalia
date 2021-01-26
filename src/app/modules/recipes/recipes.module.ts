@@ -14,10 +14,12 @@ import { SearchBoxModule } from 'app/shared/search-box/search-box.module';
 import { SoupplyRoutingModule } from '../supply/soupply-routing.module';
 import { RecipeListTableComponent } from './components/recipe-list-table/recipe-list-table.component';
 import { RegisterRecipeComponent } from './pages/register-recipe/register-recipe.component';
+import { RecipeFormComponent } from './components/register-form/register-form.component';
+import { RecipeSupplyListComponent } from './components/recipe-supply-list/recipe-supply-list.component';
 
 
 @NgModule({
-  declarations: [RecipesComponent, RecipeListComponent, RecipeListTableComponent, RegisterRecipeComponent],
+  declarations: [RecipesComponent, RecipeListComponent, RecipeListTableComponent, RegisterRecipeComponent, RecipeFormComponent, RecipeSupplyListComponent],
   imports: [
     RecipesRoutingModule,
     SharedModule,

@@ -13,5 +13,14 @@
     },
     "recipe": {
         "default": "recipe"
+    },
+    "course": {
+        "default": "course"
+    },
+    "headquarter": {
+        "default": "headquarter"
+    },
+    "term": {
+        "default": "term"
     }
 }

@@ -1,1 +1,16 @@
-<p>register-recipe works!</p>
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header [module]="'Cocina'" [title]="'Registrar una'" [highlightext]="'receta'" [urlRoute]="'/recetas/listado'">
+    </app-header>
+
+    <div class="main">
+        <div class="content">
+            <recipe-form [termList]="termList | async" [headquarterList]="headquarterList | async"
+                [courseList]="courseList | async">
+            </recipe-form>
+
+            <recipe-supply-list></recipe-supply-list>
+        </div>
+
+    </div>
+</div>

@@ -5,7 +5,7 @@
     <div class="main">
         <div class="content">
             <app-row-buttons *ngIf="registerButton" [buttons]="registerButton" [justify]="'justify-end'"
-                (onClick)="redirectToRegisterPage($event)">
+                (onClick)="redirectToRegisterPage()">
             </app-row-buttons>
 
             <app-search-box [placeHolder]="'Ingrese nombre de insumo'" (param)="filterByName($event)"></app-search-box>

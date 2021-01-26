@@ -13,7 +13,7 @@ import { Component, Input, } from '@angular/core';
         <mat-icon>arrow_back</mat-icon>
       </button>
         {{ title || 'Titulo' }}
-        <span *ngIf="highlightext" class="text-indigo-500">
+        <span *ngIf="highlightext" class="text-primary">
               {{ highlightext || 'texto resaltado' }}
           </span>
       </h1>
