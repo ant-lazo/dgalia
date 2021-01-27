@@ -17,10 +17,6 @@
         </td>
     </ng-container>
 
-
-
-    <!-- public displayedColumns: string[] = ['image', 'code', 'name', 'price', 'cost', 'headquarter', 'course', 'options']; -->
-
     <ng-container [matColumnDef]="displayedColumns[2]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
