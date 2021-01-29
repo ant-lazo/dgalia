@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { assign, cloneDeep, omit } from 'lodash-es';
-import * as moment from 'moment';
+import  moment from 'moment';
 import RRule, { RRuleSet, rrulestr } from 'rrule';
 import { TreoMockApi } from '@treo/lib/mock-api/mock-api.interfaces';
 import { TreoMockApiService } from '@treo/lib/mock-api/mock-api.service';

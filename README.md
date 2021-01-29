@@ -1,4 +1,4 @@
-# Treo - Admin template and Starter project for Angular
+# Dgallia - web app
 
 ## Development server
 

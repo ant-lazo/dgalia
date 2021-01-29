@@ -1,0 +1,22 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header [module]="'Cocina'" [title]="'Insumos'"></app-header>
+
+    <div class="main">
+        <div class="content">
+            <app-row-buttons *ngIf="registerButton" [buttons]="registerButton" [justify]="'justify-end'"
+                (onClick)="register($event)">
+            </app-row-buttons>
+
+            <app-search-box [placeHolder]="'Ingrese nombre de insumo'" (param)="filterByName($event)"></app-search-box>
+
+            <app-supply-list-table 
+                *ngIf="supplyList" 
+                (selectedToDelete)="validationToDeleteSupply($event)" 
+                (selectedToEdit)="editar($event)" 
+                [list]="supplyFilteredList"
+            >
+            </app-supply-list-table>
+        </div>
+    </div>
+</div>
