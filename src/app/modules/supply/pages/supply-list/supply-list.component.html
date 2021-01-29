@@ -10,7 +10,13 @@
 
             <app-search-box [placeHolder]="'Ingrese nombre de insumo'" (param)="filterByName($event)"></app-search-box>
 
-            <app-supply-list-table *ngIf="supplyList" [list]="supplyFilteredList"></app-supply-list-table>
+            <app-supply-list-table 
+                *ngIf="supplyList" 
+                (selectedToDelete)="validationToDeleteSupply($event)" 
+                (selectedToEdit)="editar($event)" 
+                [list]="supplyFilteredList"
+            >
+            </app-supply-list-table>
         </div>
     </div>
 </div>

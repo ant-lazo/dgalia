@@ -3,12 +3,13 @@ import { SupplyService } from '../../../supply/services/supply-service.service';
 import { Observable } from 'rxjs';
 import { Supply } from '../../../supply/models/supply';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-recipe-supply-modal',
@@ -20,14 +21,14 @@ export class RecipeSupplyModalComponent implements OnInit {
   public filteredOptions: Observable<Supply[]>;
   public supplyList: Supply[] = [];
   public searchParam = new FormControl();
-  public selectedList: Supply[] = [];
+  public selectedList = [];
 
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'actions'];
+  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'cantidad', 'actions'];
   public dataSource: MatTableDataSource<Supply> = new MatTableDataSource([]);
-
+  cantidad = new FormControl(1, Validators.min(1));
 
   constructor(
     private _dialogRef: MatDialogRef<RecipeSupplyModalComponent>,
@@ -64,8 +65,19 @@ export class RecipeSupplyModalComponent implements OnInit {
 
   public setSupply(event: MatAutocompleteSelectedEvent): void {
     const founded = this.supplyList.find(e => e.name === event.option.value);
-    if (founded) {
-      this.selectedList.push(founded);
+    const exist = this.selectedList.find(element => {
+      if(element.id == founded.id){
+        element.editar = true;
+        return true;
+      };
+      return false;
+    });
+    if (founded && !exist) {
+      var data:any = founded;
+      data.cantidad = 1;
+      this.cantidad = new FormControl(1, Validators.min(1));
+      data.editar = true;
+      this.selectedList.push(data);
       this.setDataSourceList(this.selectedList);
     }
     this.searchParam.setValue('');
@@ -78,8 +90,26 @@ export class RecipeSupplyModalComponent implements OnInit {
 
   print() {
     console.log(this.selectedList);
-
   }
 
+  onNoClick(): void {
+    this._dialogRef.close();
+  }
 
+  guardar(element:any) {
+    element.cantidad = this.cantidad.value;
+    element.editar = false;
+  }
+
+  editar(element:any){
+    this.cantidad = new FormControl(element.cantidad, Validators.min(1));
+    element.editar = true;
+  }
+
+  eliminar(element:any){
+    this.selectedList = _.reject(this.selectedList, supply => {
+      return supply.id === element.id;
+    });
+    this.setDataSourceList(this.selectedList);
+  }
 }

@@ -42,4 +42,13 @@ export class SupplyService {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.supply.default, { params: { name } })
       .pipe(map(resp => resp.data));
   }
+
+
+  public delete(id:number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.supply.default + "?id="+id.toString());
+  }
+
+  public editSupply(data:Supply): Observable<JsonResp> {
+    return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.supply.default, data);
+  }
 }

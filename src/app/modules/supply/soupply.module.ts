@@ -13,13 +13,16 @@ import { SupplyRegisterComponent } from './components/supply-register/supply-reg
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
 import { SearchBoxModule } from '../../shared/search-box/search-box.module';
+import { SupplyEditComponent } from './components/supply-edit/supply-edit.component';
 
 @NgModule({
   declarations: [
     SupplyListComponent,
     SupplyComponent,
     SupplyListTableComponent,
-    SupplyRegisterComponent
+    SupplyRegisterComponent,
+    SupplyEditComponent
+
   ],
   imports: [
     SharedModule,

@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, OnChanges } from '@angular/core';
+import { Component, Input, ViewChild, EventEmitter, OnChanges, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,7 +15,9 @@ export class SupplyListTableComponent implements OnChanges {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+  @Output() selectedToDelete: EventEmitter<any> = new EventEmitter();
+  @Output() selectedToEdit: EventEmitter<any> = new EventEmitter();
+  
   public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'actions'];
   public dataSource: MatTableDataSource<Supply> = new MatTableDataSource([]);
 

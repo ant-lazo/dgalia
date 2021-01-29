@@ -5,6 +5,9 @@ import { RowAppButtonModel } from '../../../../shared/row-buttons/models/row-nut
 import { MeasuredUnitListTableModel } from '../../view-models/list-table.model';
 import { MeasuredUnit } from '../../models/measured-unit.model';
 import { MeasuredUnitService } from '../../services/measured-unit.service';
+import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
 
 @Component({
   selector: 'app-list',
@@ -20,6 +23,8 @@ export class ListComponent implements OnInit {
   registerButton: RowAppButtonModel[] = [];
 
   constructor(
+    private dialog: MatDialog,
+    private _appNotifications: AppNotificationsService,
     private _measuredUnit: MeasuredUnitService
   ) {
     this.setPageModels();
@@ -42,6 +47,36 @@ export class ListComponent implements OnInit {
   private getList(): void {
     this._measuredUnit.getGetList().subscribe(list => {
       this.measuredUnitList = list;
+    });
+  }
+
+  editar(event:any){
+    // const dialogRef = this.dialog.open(MeasuredunitEditComponent, {
+    //   width: '750px',
+    //   height: '550px',
+    //   data: event
+    // });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) this.getList();
+    // });
+
+  }
+
+  public validationToDeleteMeasuredunit(measuredunit: MeasuredUnit): void {
+    const dialogRef = this.dialog.open(DeleteAlertComponent, {
+      width: '600px',
+      height: '400px',
+      data: { title: `el suministro ${measuredunit.name}` }
+    });
+
+    dialogRef.afterClosed().subscribe(result => result ? this.deleteMeasuredunit(measuredunit.id) : null);
+  }
+
+  private deleteMeasuredunit(id: number): void {
+    this._measuredUnit.delete(id).subscribe(resp => {
+      this._appNotifications.deleteSuccess(null, resp.message);
+      this.getList();
     });
   }
 }

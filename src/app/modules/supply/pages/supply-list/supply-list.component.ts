@@ -4,6 +4,9 @@ import { RowAppButtonModel, RowButtonType } from '../../../../shared/row-buttons
 import { Supply } from '../../models/supply';
 import { SupplyService } from '../../services/supply-service.service';
 import { SupplyRegisterComponent } from '../../components/supply-register/supply-register.component';
+import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
+import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
+import { SupplyEditComponent } from '../../components/supply-edit/supply-edit.component';
 
 @Component({
   selector: 'app-supply-list',
@@ -17,9 +20,10 @@ export class SupplyListComponent implements OnInit {
   public supplyFilteredList: Supply[];
 
   constructor(
-    private matDialog: MatDialog,
     private _supply: SupplyService,
-  ) {
+    private dialog: MatDialog,
+    private _appNotifications: AppNotificationsService
+    ) {
     this.buildRegisterButton();
   }
 
@@ -45,6 +49,19 @@ export class SupplyListComponent implements OnInit {
     }
   }
 
+  editar(event:any){
+    const dialogRef = this.dialog.open(SupplyEditComponent, {
+      width: '750px',
+      height: '550px',
+      data: event
+  });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.setList();
+    });
+
+  }
+
   buildRegisterButton(): void {
     this.registerButton = [
       new RowAppButtonModel({
@@ -58,7 +75,7 @@ export class SupplyListComponent implements OnInit {
   }
 
   private buildRegisterModel(): void {
-    const dialogRef = this.matDialog.open(SupplyRegisterComponent, {
+    const dialogRef = this.dialog.open(SupplyRegisterComponent, {
       width: '750px',
       height: '550px',
     });
@@ -76,4 +93,20 @@ export class SupplyListComponent implements OnInit {
     }
   }
 
+  public validationToDeleteSupply(supply: Supply): void {
+    const dialogRef = this.dialog.open(DeleteAlertComponent, {
+      width: '600px',
+      height: '400px',
+      data: { title: `el suministro ${supply.name}` }
+    });
+
+    dialogRef.afterClosed().subscribe(result => result ? this.deleteSupply(supply.id) : null);
+  }
+
+  private deleteSupply(id: number): void {
+    this._supply.delete(id).subscribe(resp => {
+      this._appNotifications.deleteSuccess(null, resp.message);
+      this.setList();
+    });
+  }
 }

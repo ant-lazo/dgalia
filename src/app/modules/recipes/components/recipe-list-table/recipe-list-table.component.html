@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8  w-full">
+<table mat-table [dataSource]="dataSource" matSort class="w-full">
 
     <ng-container [matColumnDef]="displayedColumns[0]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
@@ -46,15 +46,15 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
         <td class="th-max" mat-cell *matCellDef="let element">
 
-            <button title="Actualizar" type="button" color="green" mat-icon-button class="mr-10">
-                <mat-icon [color]="'green'">border_color</mat-icon>
+            <button title="Editar {{ element.name }}" type="button" color="green" mat-icon-button>
+                <mat-icon [color]="'green'">create</mat-icon>
             </button>
 
-            <button title="Actualizar" type="button" color="green" mat-icon-button class="mr-10">
+            <button title="Detalle de {{ element.name }}" type="button" color="green" mat-icon-button>
                 <mat-icon [color]="'green'">subject</mat-icon>
             </button>
 
-            <button title="Eliminar" type="button" color="warn" mat-icon-button>
+            <button title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
                 <mat-icon>delete</mat-icon>
             </button>
         </td>

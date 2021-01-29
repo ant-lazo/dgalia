@@ -19,4 +19,12 @@ export class MeasuredUnitService {
   public getGetList(): Observable<MeasuredUnit[]> {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default).pipe(map(resp => MeasuredUnit.fromListFromJson(resp.data)));
   }
+
+  public delete(id:number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default + "?id="+id.toString());
+  }
+
+  public editSupply(data:MeasuredUnit): Observable<JsonResp> {
+    return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default, data);
+  }
 }

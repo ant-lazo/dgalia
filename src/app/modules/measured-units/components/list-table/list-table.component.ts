@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,7 +15,9 @@ export class ListTableComponent implements OnChanges {
   @Input() list: MeasuredUnit[];
   @Input() model: MeasuredUnitListTableModel;
   @Output() onSelected: 'update' | 'delete';
-
+  @Output() selectedToDelete: EventEmitter<any> = new EventEmitter();
+  @Output() selectedToEdit: EventEmitter<any> = new EventEmitter();
+  
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   public dataSource: MatTableDataSource<MeasuredUnit> = new MatTableDataSource([]);
