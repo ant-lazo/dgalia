@@ -134,7 +134,7 @@ export const settings = {
 export const weekdays = [
     {
         abbr: 'M',
-        label: 'Monday',
+        label: 'Lunes',
         value: 'MO'
     },
     {
