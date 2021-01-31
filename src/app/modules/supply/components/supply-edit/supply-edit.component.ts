@@ -17,6 +17,7 @@ import { SupplyService } from "../../services/supply-service.service";
 export class SupplyEditComponent implements OnInit {
 
   public editForm: FormGroup;
+  private id:Number;
   public measuddredUnitList: Observable<MeasuredUnit[]>;
   public productCategoryList: Observable<ProductCategory[]>;
 
@@ -48,20 +49,20 @@ export class SupplyEditComponent implements OnInit {
   }
 
   private editSupply(data: any): void {
-    console.log("🚀 ~ file: supply-edit.component.ts ~ line 51 ~ SupplyEditComponent ~ editSupply ~ data", data)
+    data.id = this.id;
     this._supply.editSupply(data).subscribe(() => {
       this.matDialogRef.close(true);
     });
   }
 
   private setForm(data:Supply) {
-    console.log("🚀 ~ file: supply-edit.component.ts ~ line 57 ~ SupplyEditComponent ~ setForm ~ data", data)
     this.editForm = this.formBuilder.group({
       code: [data.code, Validators.required],
       name: [data.name, Validators.required],
       category_id: [data.category.id, Validators.required],
       measured_unit_id: [data.measuredUnit.id, Validators.required]
     });
+    this.id = data.id;
   }
 
 }

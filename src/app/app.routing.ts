@@ -63,6 +63,7 @@ export const appRoutes: Route[] = [
             { path: 'insumos', loadChildren: () => import('app/modules/supply/soupply.module').then(s => s.SoupplyModule) },
             { path: 'recetas', loadChildren: () => import('app/modules/recipes/recipes.module').then(r => r.RecipesModule) },
             { path: 'programacion', loadChildren: () => import('app/modules/programation/programation.module').then(p => p.ProgramationModule) },
+            { path: 'admin', loadChildren: () => import('app/modules/admin/admin.module').then(m => m.AdminModule) },
             // { path: 'recetas', loadChildren: () => import('app/modules/recipes/recipes.module').then(r => r.RecipesModule) }
         ]
     }

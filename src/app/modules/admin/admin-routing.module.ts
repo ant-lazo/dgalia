@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from './pages/list/list.component';
-import { CourseComponent } from './course.component';
+import { CourseComponent } from '../course/course.component';
+import { ListComponent } from '../course/pages/list/list.component';
 
 const routes: Routes = [
   {
@@ -9,7 +9,6 @@ const routes: Routes = [
     component: CourseComponent,
     children: [
       { path: 'listado', component: ListComponent },
-      { path: '', pathMatch: 'full', redirectTo: 'listado' },
     ]
   }
 ];
@@ -18,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CourseRoutingModule { }
+export class AdminRoutingModule { }

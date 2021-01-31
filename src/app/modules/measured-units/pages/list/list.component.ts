@@ -8,6 +8,8 @@ import { MeasuredUnitService } from '../../services/measured-unit.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
+import { MeasuredUnitEditComponent } from '../../components/measured-unit-edit/measured-units-edit.component';
+import { MeasuredUnitRegisterComponent } from '../../components/measured-units-register/measured-units-register.component';
 
 @Component({
   selector: 'app-list',
@@ -35,7 +37,14 @@ export class ListComponent implements OnInit {
   }
 
   public register() {
-    console.log('implements');
+    const dialogRef = this.dialog.open(MeasuredUnitRegisterComponent, {
+      width: '650px',
+      height: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.getList();
+    });
   }
 
   private setPageModels() {
@@ -51,16 +60,15 @@ export class ListComponent implements OnInit {
   }
 
   editar(event:any){
-    // const dialogRef = this.dialog.open(MeasuredunitEditComponent, {
-    //   width: '750px',
-    //   height: '550px',
-    //   data: event
-    // });
+    const dialogRef = this.dialog.open(MeasuredUnitEditComponent, {
+      width: '650px',
+      height: '450px',
+      data: event
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) this.getList();
-    // });
-
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.getList();
+    });
   }
 
   public validationToDeleteMeasuredunit(measuredunit: MeasuredUnit): void {

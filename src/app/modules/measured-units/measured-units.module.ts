@@ -14,6 +14,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from 'app/shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MeasuredUnitEditComponent } from './components/measured-unit-edit/measured-units-edit.component';
+import { MeasuredUnitRegisterComponent } from './components/measured-units-register/measured-units-register.component';
+import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
+import { MaterialBasicUitModule } from 'app/shared/modules/ui-modules.module';
 
 
 @NgModule({
@@ -21,6 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MeasuredUnitsComponent,
     ListComponent,
     ListTableComponent,
+    MeasuredUnitEditComponent,
+    MeasuredUnitRegisterComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSortModule,
     MatButtonModule,
     MatDialogModule,
+    MaterialBasicUitModule,
+    FormsMaterialModule,
   ]
 })
 export class MeasuredUnitsModule { }
