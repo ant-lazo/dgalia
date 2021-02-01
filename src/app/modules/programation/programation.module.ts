@@ -34,8 +34,8 @@ import { MaterialBasicUitModule } from 'app/shared/modules/ui-modules.module';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { SelectRecipesComponent } from './components/select-recipes/select-recipes.component';
 import { MaterialTableModule } from 'app/shared/modules/table-modules.module';
-
-
+import { SelectedRecipesTableComponent } from './components/selected-recipes-table/selected-recipes-table.component';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 
 
 @NgModule({
@@ -48,7 +48,8 @@ import { MaterialTableModule } from 'app/shared/modules/table-modules.module';
     InitialPageComponent,
     RegisterPageComponent,
     ProgramationDetailComponent,
-    SelectRecipesComponent
+    SelectRecipesComponent,
+    SelectedRecipesTableComponent
   ],
   imports: [
     ProgramationRoutingModule,
@@ -56,6 +57,7 @@ import { MaterialTableModule } from 'app/shared/modules/table-modules.module';
     MatButtonToggleModule,
     MatDialogModule,
     MatMenuModule,
+    NgxMatNativeDateModule,
     MatMomentDateModule,
     MatSidenavModule,
     MatTooltipModule,
@@ -67,6 +69,10 @@ import { MaterialTableModule } from 'app/shared/modules/table-modules.module';
     MaterialBasicUitModule,
     RowButtonsModule,
     MaterialTableModule,
+
+    // ----------------
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
   ],
   entryComponents: [
     CalendarRecurrenceComponent

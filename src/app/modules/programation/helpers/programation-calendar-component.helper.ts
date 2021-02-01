@@ -35,6 +35,7 @@ export default class ProgramationCalendarComponentHelper {
                 isFirstInstance: false
             })
         }
+        console.log(newList);
         return newList;
     }
 }

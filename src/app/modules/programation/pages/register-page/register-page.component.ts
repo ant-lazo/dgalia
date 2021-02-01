@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CoursesService } from '../../../course/services/courses.service';
 import { TermsService } from '../../../term/services/terms.service';
@@ -11,6 +11,10 @@ import { RowAppButtonModel } from '../../../../shared/row-buttons/models/row-nut
 import { RegisterPageComponentHelper } from '../../helpers/register-page.helper';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectRecipesComponent } from '../../components/select-recipes/select-recipes.component';
+import { CookingScheduleRecipe } from '../../models/cooking-schedule-recipe..model';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CookingScheduleService } from '../../services/cooking-schedule.service';
 
 @Component({
   selector: 'app-register-page',
@@ -28,13 +32,17 @@ export class RegisterPageComponent implements OnInit {
   public classesSelected: Class[] = [];
   public coursesSelected: Course[] = [];
   public buttonsList: RowAppButtonModel[] = [];
+  public recipesSelected: CookingScheduleRecipe[] = [];
 
   constructor(
     private _builder: FormBuilder,
     private _courses: CoursesService,
     private _terms: TermsService,
     private _classes: ClassesService,
-    private _matDialog: MatDialog
+    private _matDialog: MatDialog,
+    private _router: Router,
+    private _toast: ToastrService,
+    private _cookingSchedule: CookingScheduleService
   ) {
     this.setForm();
   }
@@ -74,6 +82,12 @@ export class RegisterPageComponent implements OnInit {
       case 'add-recipes':
         this.openSelectRecipesModal();
         break;
+      case 'cancel':
+        this.goBack();
+        break;
+      case 'register':
+        this.validateDataToRegister();
+        break;
       default:
         break;
     }
@@ -86,7 +100,9 @@ export class RegisterPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result) {
+        this.recipesSelected = result;
+      }
     });
   }
 
@@ -101,6 +117,40 @@ export class RegisterPageComponent implements OnInit {
       this.classList = result[1];
       this.termList = result[2];
     });
+  }
+
+  public validateDataToRegister(): void {
+
+    if (this.cookingScheduleForm.invalid) {
+      this._toast.error('Debe completar el formulario', 'formulario no válido');
+      return
+    }
+
+    if (!RegisterPageComponentHelper.validations({
+      classes: this.classesSelected,
+      courses: this.coursesSelected,
+      recipes: this.recipesSelected,
+      toast: this._toast
+    })) return;
+
+
+    const form = RegisterPageComponentHelper.getCookingScheduleRegisterForm({
+      classes: this.classesSelected,
+      courses: this.coursesSelected,
+      form: this.cookingScheduleForm.value,
+      recipes: this.recipesSelected,
+    });
+
+    this._cookingSchedule.register(form).subscribe(resp => {
+      this._toast.success(resp.message, 'Registro exitoso');
+      this.goBack();
+    });
+
+  }
+
+
+  private goBack() {
+    this._router.navigate(['programacion/pagina-inicial']);
   }
 
 

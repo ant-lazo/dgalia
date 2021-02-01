@@ -21,10 +21,10 @@ const routes: Routes = [
           weekdays: CalendarWeekdaysResolver
         }
       },
-      { path: 'programacion', component: InitialPageComponent },
+      { path: 'pagina-inicial', component: InitialPageComponent },
       { path: 'registro', component: RegisterPageComponent },
       { path: 'detalle/:id', component: ProgramationDetailComponent },
-      { path: '', pathMatch: 'full', redirectTo: 'programacion' },
+      { path: '', pathMatch: 'full', redirectTo: 'pagina-inicial' },
     ]
   }
 ];

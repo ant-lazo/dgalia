@@ -18,6 +18,9 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
 import { ToastrModule } from 'ngx-toastr';
 import { registerLocaleData } from '@angular/common';
+import { ScrollDirective } from './shared/directives/scroll.directive';
+import { NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+
 registerLocaleData(es);
 
 
@@ -30,6 +33,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
+        ScrollDirective
     ],
     imports: [
         BrowserModule,
@@ -54,6 +58,8 @@ const routerConfig: ExtraOptions = {
         LoadingBarModule,
 
         ToastrModule.forRoot(),
+
+        NgxMatNativeDateModule
 
     ],
     bootstrap: [

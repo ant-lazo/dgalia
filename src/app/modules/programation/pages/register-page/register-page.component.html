@@ -1,6 +1,7 @@
-<div class="content-layout fullwidth-standard-normal-scroll">
+<div class="content-layout fullwidth-standard-normal-scroll scrollingContainer">
 
-    <app-header [module]="'Programación'" [title]="'Registrar programación'"></app-header>
+    <app-header [urlRoute]="'../pagina-inicial'" [module]="'Programación'" [title]="'Registrar programación'">
+    </app-header>
 
     <div class="main">
         <div class="content">
@@ -22,11 +23,18 @@
                     </div>
 
                     <div class="col-span-2">
-                        <mat-form-field class="w-full" appearance="fill">
-                            <input formControlName="date" placeholder="Selecciona una fecha" matInput
-                                [matDatepicker]="picker">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
+                        <mat-form-field class="w-full">
+                            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+                                formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker">
+                            </mat-datepicker-toggle>
+                            <!-- <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="1"
+                                [stepMinute]="10" [touchUi]="true" [color]="'primary'">
+                            </ngx-mat-datetime-picker> -->
+
+                            <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="1"
+                                [stepMinute]="10" [touchUi]="true">
+                            </ngx-mat-datetime-picker>
                         </mat-form-field>
                     </div>
 
@@ -57,7 +65,7 @@
                 <div class="grid">
                     <mat-form-field class="w-full">
                         <mat-select (valueChange)="setClass($event)" placeholder="Seleccione las clases pertinentes"
-                            formControlName="classes" required>
+                            formControlName="classes">
                             <mat-option *ngFor="let c of classList" [value]="c">
                                 {{c.name}}
                             </mat-option>
@@ -77,7 +85,7 @@
                 <div class="grid ">
                     <mat-form-field class="w-full">
                         <mat-select (valueChange)="setCourses($event)"
-                            placeholder="Selecciones los cursos a los que pertenece" formControlName="courses" required>
+                            placeholder="Selecciones los cursos a los que pertenece" formControlName="courses">
                             <mat-option *ngFor="let c of courseList" [value]="c">
                                 {{c.name}}
                             </mat-option>
@@ -101,6 +109,10 @@
                 </app-row-buttons>
             </div>
 
+
+            <div class="flex flex-col mt-5">
+                <app-selected-recipes-table [list]="recipesSelected"></app-selected-recipes-table>
+            </div>
 
         </div>
     </div>

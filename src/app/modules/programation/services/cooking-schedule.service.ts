@@ -6,6 +6,7 @@ import { CookingSchedule } from '../models/cooking-schedule.model';
 import { JsonResp } from '../../../core/interfaces/json-resp.interface';
 import { environment } from 'environments/environment';
 import { map } from 'rxjs/operators';
+import { CookingScheduleRegisterForm } from '../models/cooking-schedule-register-form.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,14 @@ export class CookingScheduleService {
       environment.apiUrl + apiRoutes.cookin_schedule.default,
       { params: { month, year } }
     ).pipe(map(result => result.data));
+  }
+
+
+  /**
+   * register
+   * @param body -> CookingScheduleForm
+   */
+  public register(body: CookingScheduleRegisterForm): Observable<JsonResp> {
+    return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.cookin_schedule.default, body);
   }
 }
