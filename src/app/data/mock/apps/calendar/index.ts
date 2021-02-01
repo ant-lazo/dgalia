@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { assign, cloneDeep, omit } from 'lodash-es';
-import  moment from 'moment';
+import moment from 'moment';
 import RRule, { RRuleSet, rrulestr } from 'rrule';
 import { TreoMockApi } from '@treo/lib/mock-api/mock-api.interfaces';
 import { TreoMockApiService } from '@treo/lib/mock-api/mock-api.service';
 import { TreoMockApiUtils } from '@treo/lib/mock-api/mock-api.utils';
-import { calendars as calendarsData, events as eventsData, exceptions as exceptionsData, settings as settingsData, weekdays as weekdaysData } from 'app/data/mock/apps/calendar/data';
+import { calendars as calendarsData, exceptions as exceptionsData, settings as settingsData, weekdays as weekdaysData } from 'app/data/mock/apps/calendar/data';
 
 @Injectable({
     providedIn: 'root'
 })
-export class CalendarMockApi implements TreoMockApi
-{
+export class CalendarMockApi implements TreoMockApi {
     // Private
     private _calendars: any[];
     private _events: any[];
@@ -26,11 +25,9 @@ export class CalendarMockApi implements TreoMockApi
      */
     constructor(
         private _treoMockApiService: TreoMockApiService
-    )
-    {
+    ) {
         // Set the data
         this._calendars = calendarsData;
-        this._events = eventsData;
         this._exceptions = exceptionsData;
         this._settings = settingsData;
         this._weekdays = weekdaysData;
@@ -51,8 +48,7 @@ export class CalendarMockApi implements TreoMockApi
      * @param until
      * @private
      */
-    private _generateRuleset(event, dtStart, until): RRuleSet | RRule
-    {
+    private _generateRuleset(event, dtStart, until): RRuleSet | RRule {
         // Parse the recurrence rules
         const parsedRules = {};
         event.recurrence.split(';').forEach((rule) => {
@@ -63,8 +59,7 @@ export class CalendarMockApi implements TreoMockApi
             // Omit UNTIL or COUNT from the parsed rules since we only
             // need them for calculating the event's end date. We will
             // add an UNTIL later based on the above calculations.
-            if ( parsedRule[0] === 'UNTIL' || parsedRule[0] === 'COUNT' )
-            {
+            if (parsedRule[0] === 'UNTIL' || parsedRule[0] === 'COUNT') {
                 return;
             }
 
@@ -91,15 +86,14 @@ export class CalendarMockApi implements TreoMockApi
         this._exceptions.forEach((item) => {
 
             // If the item is an exception to this event...
-            if ( item.eventId === event.id )
-            {
+            if (item.eventId === event.id) {
                 // Add it as an EXDATE to the rrule
                 ruleSet.push('EXDATE:' + moment(item.exdate).format('YYYYMMDD[T]HHmmss[Z]'));
             }
         });
 
         // Create an RRuleSet from the ruleSet array
-        return rrulestr(ruleSet.join('\n'), {forceset: true});
+        return rrulestr(ruleSet.join('\n'), { forceset: true });
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -109,8 +103,7 @@ export class CalendarMockApi implements TreoMockApi
     /**
      * Register
      */
-    register(): void
-    {
+    register(): void {
         // -----------------------------------------------------------------------------------------------------
         // @ Calendars - GET
         // -----------------------------------------------------------------------------------------------------
@@ -166,8 +159,7 @@ export class CalendarMockApi implements TreoMockApi
                 // Find the calendar and update it
                 this._calendars.forEach((item, index, calendars) => {
 
-                    if ( item.id === id )
-                    {
+                    if (item.id === id) {
                         // Update the calendar
                         calendars[index] = assign({}, calendars[index], calendar);
 
@@ -208,109 +200,104 @@ export class CalendarMockApi implements TreoMockApi
         // -----------------------------------------------------------------------------------------------------
         // @ Events - GET
         // -----------------------------------------------------------------------------------------------------
-        this._treoMockApiService
-            .onGet('api/apps/calendar/events')
-            .reply((request) => {
+        // this._treoMockApiService
+        //     .onGet('api/apps/calendar/events')
+        //     .reply((request) => {
 
-                // Get the start and end dates as moment
-                const viewStart = moment(request.params.get('start')).startOf('day');
-                const viewEnd = moment(request.params.get('end')).endOf('day');
+        //         // Get the start and end dates as moment
+        //         const viewStart = moment(request.params.get('start')).startOf('day');
+        //         const viewEnd = moment(request.params.get('end')).endOf('day');
 
-                // Clone the events
-                const events = cloneDeep(this._events);
+        //         // Clone the events
+        //         const events = cloneDeep(this._events);
 
-                // Prepare the results
-                const results = [];
+        //         // Prepare the results
+        //         const results = [];
 
-                // Go through the events...
-                events.forEach((event) => {
+        //         // Go through the events...
+        //         events.forEach((event) => {
 
-                    // Get the event's start and end dates as moment
-                    const eventStart = moment(event.start);
-                    const eventEnd = moment(event.end);
+        //             // Get the event's start and end dates as moment
+        //             const eventStart = moment(event.start);
+        //             const eventEnd = moment(event.end);
 
-                    // If it's a normal event...
-                    if ( !event.recurrence )
-                    {
-                        // Only grab the event if it's within the range
-                        if ( eventStart.isSameOrAfter(viewStart, 'day') && eventEnd.isSameOrBefore(viewEnd, 'day') )
-                        {
-                            // Push the event into the results array
-                            results.push(event);
-                        }
-                    }
-                    // If it's a recurring event...
-                    else
-                    {
-                        // Skip if the event does not recur within the view range
-                        if ( eventStart.isAfter(viewEnd, 'day') || eventEnd.isBefore(viewStart, 'day') )
-                        {
-                            return;
-                        }
+        //             // If it's a normal event...
+        //             if (!event.recurrence) {
+        //                 // Only grab the event if it's within the range
+        //                 if (eventStart.isSameOrAfter(viewStart, 'day') && eventEnd.isSameOrBefore(viewEnd, 'day')) {
+        //                     // Push the event into the results array
+        //                     results.push(event);
+        //                 }
+        //             }
+        //             // If it's a recurring event...
+        //             else {
+        //                 // Skip if the event does not recur within the view range
+        //                 if (eventStart.isAfter(viewEnd, 'day') || eventEnd.isBefore(viewStart, 'day')) {
+        //                     return;
+        //                 }
 
-                        // Set the DTSTART and UNTIL for RRule
-                        const dtStart = eventStart.clone();
-                        const until = viewEnd.isBefore(eventEnd) ? viewEnd.clone().utc() : eventEnd.clone().utc();
+        //                 // Set the DTSTART and UNTIL for RRule
+        //                 const dtStart = eventStart.clone();
+        //                 const until = viewEnd.isBefore(eventEnd) ? viewEnd.clone().utc() : eventEnd.clone().utc();
 
-                        // Create an RRuleSet
-                        const rruleset = this._generateRuleset(event, dtStart, until);
+        //                 // Create an RRuleSet
+        //                 const rruleset = this._generateRuleset(event, dtStart, until);
 
-                        // Generate the recurring dates and loop through them
-                        rruleset.all().forEach((date) => {
+        //                 // Generate the recurring dates and loop through them
+        //                 rruleset.all().forEach((date) => {
 
-                            // Get the rule date as a moment
-                            const ruleDate = moment(date);
+        //                     // Get the rule date as a moment
+        //                     const ruleDate = moment(date);
 
-                            // Subtract the UTC Offset from the rule date as we use local time for DTSTART.
-                            // The reason for this is simple; if we use UTC dates for DTSTART, RRule generated
-                            // dates can shift. Since we have to store the dates as UTC, we can figure out the
-                            // UTC value by simply subtracting the UTC Offset (minutes) from the rule date rather
-                            // than using UTC dates in the first place. This will ensure there will be no time/day
-                            // shift on generated rules since they will be generated based on the local time.
-                            ruleDate.subtract(ruleDate.utcOffset(), 'minutes');
+        //                     // Subtract the UTC Offset from the rule date as we use local time for DTSTART.
+        //                     // The reason for this is simple; if we use UTC dates for DTSTART, RRule generated
+        //                     // dates can shift. Since we have to store the dates as UTC, we can figure out the
+        //                     // UTC value by simply subtracting the UTC Offset (minutes) from the rule date rather
+        //                     // than using UTC dates in the first place. This will ensure there will be no time/day
+        //                     // shift on generated rules since they will be generated based on the local time.
+        //                     ruleDate.subtract(ruleDate.utcOffset(), 'minutes');
 
-                            // Skip the date if it's not in between the view start and view end
-                            // to prevent generating unnecessary amount of instances and to
-                            // prevent instance duplication
-                            if ( !ruleDate.isBetween(viewStart, viewEnd, 'day', '[]') )
-                            {
-                                return;
-                            }
+        //                     // Skip the date if it's not in between the view start and view end
+        //                     // to prevent generating unnecessary amount of instances and to
+        //                     // prevent instance duplication
+        //                     if (!ruleDate.isBetween(viewStart, viewEnd, 'day', '[]')) {
+        //                         return;
+        //                     }
 
-                            // Prepare the event instance
-                            const eventInstance = {
+        //                     // Prepare the event instance
+        //                     const eventInstance = {
 
-                                // Generate an instance id using the event id and rule date
-                                id: event.id + '_' + ruleDate.clone().utc().format('YYYYMMDD[T]HHmmss[Z]'),
+        //                         // Generate an instance id using the event id and rule date
+        //                         id: event.id + '_' + ruleDate.clone().utc().format('YYYYMMDD[T]HHmmss[Z]'),
 
-                                // Set the recurringEventId on the event so we don't lose the event's origin
-                                recurringEventId: event.id,
+        //                         // Set the recurringEventId on the event so we don't lose the event's origin
+        //                         recurringEventId: event.id,
 
-                                // Whether this is the first instance of the recurring event or not
-                                isFirstInstance: event.start === ruleDate.clone().toISOString(),
+        //                         // Whether this is the first instance of the recurring event or not
+        //                         isFirstInstance: event.start === ruleDate.clone().toISOString(),
 
-                                // Get the rest of the data
-                                calendarId : event.calendarId,
-                                title      : event.title,
-                                description: event.description,
-                                start      : ruleDate.toISOString(),
-                                end        : ruleDate.add(event.duration, 'minutes').toISOString(),
-                                duration   : event.duration,
-                                allDay     : event.allDay,
-                                recurrence : event.recurrence
-                            };
+        //                         // Get the rest of the data
+        //                         calendarId: event.calendarId,
+        //                         title: event.title,
+        //                         description: event.description,
+        //                         start: ruleDate.toISOString(),
+        //                         end: ruleDate.add(event.duration, 'minutes').toISOString(),
+        //                         duration: event.duration,
+        //                         allDay: event.allDay,
+        //                         recurrence: event.recurrence
+        //                     };
 
-                            // Push the event instance to the results array
-                            results.push(eventInstance);
-                        });
-                    }
-                });
+        //                     // Push the event instance to the results array
+        //                     results.push(eventInstance);
+        //                 });
+        //             }
+        //         });
 
-                return [
-                    200,
-                    results
-                ];
-            });
+        //         return [
+        //             200,
+        //             results
+        //         ];
+        //     });
 
         // -----------------------------------------------------------------------------------------------------
         // @ Event - PUT
@@ -351,8 +338,7 @@ export class CalendarMockApi implements TreoMockApi
                 // Find the event and update it
                 this._events.forEach((item, index, events) => {
 
-                    if ( item.id === id )
-                    {
+                    if (item.id === id) {
                         // Update the event
                         events[index] = assign({}, events[index], event);
 
@@ -403,10 +389,9 @@ export class CalendarMockApi implements TreoMockApi
                 const recurringEvent = this._events.find((item) => item.id === event.recurringEventId);
 
                 // Single
-                if ( mode === 'single' )
-                {
+                if (mode === 'single') {
                     // Create a new event from the event while ignoring the range and recurringEventId
-                    const {range, recurringEventId, ...newEvent} = event;
+                    const { range, recurringEventId, ...newEvent } = event;
 
                     // Generate a unique id for the event
                     newEvent.id = TreoMockApiUtils.guid();
@@ -422,8 +407,7 @@ export class CalendarMockApi implements TreoMockApi
                     this._events.push(newEvent);
 
                     // If this is the first instance of the recurring event...
-                    if ( originalEvent.start === recurringEvent.start )
-                    {
+                    if (originalEvent.start === recurringEvent.start) {
                         // Generate the rruleset
                         const rruleset = this._generateRuleset(recurringEvent, moment(recurringEvent.start), moment(recurringEvent.end).utc());
 
@@ -442,20 +426,18 @@ export class CalendarMockApi implements TreoMockApi
                         recurringEvent.start = ruleDate.toISOString();
                     }
                     // Otherwise...
-                    else
-                    {
+                    else {
                         // Add a new exception for the recurring event that ignores this single event's start date
                         this._exceptions.push({
-                            id     : TreoMockApiUtils.guid(),
+                            id: TreoMockApiUtils.guid(),
                             eventId: originalEvent.recurringEventId,
-                            exdate : moment(originalEvent.start).toISOString()
+                            exdate: moment(originalEvent.start).toISOString()
                         });
                     }
                 }
 
                 // Future
-                if ( mode === 'future' )
-                {
+                if (mode === 'future') {
                     // Update the end date
                     recurringEvent.end = moment(originalEvent.start).subtract(1, 'day').endOf('day').toISOString();
 
@@ -480,7 +462,7 @@ export class CalendarMockApi implements TreoMockApi
                     recurringEvent.recurrence = rrule;
 
                     // Create a new event from the event while ignoring the recurringEventId
-                    const {recurringEventId, ...newEvent} = event;
+                    const { recurringEventId, ...newEvent } = event;
 
                     // Generate a unique id for the event
                     newEvent.id = TreoMockApiUtils.guid();
@@ -490,8 +472,7 @@ export class CalendarMockApi implements TreoMockApi
                 }
 
                 // All
-                if ( mode === 'all' )
-                {
+                if (mode === 'all') {
                     // Find the event index
                     const eventIndex = this._events.findIndex((item) => item.id === event.recurringEventId);
 
@@ -520,11 +501,9 @@ export class CalendarMockApi implements TreoMockApi
                 const recurringEvent = this._events.find((item) => item.id === event.recurringEventId);
 
                 // Single
-                if ( mode === 'single' )
-                {
+                if (mode === 'single') {
                     // If this is the first instance of the recurring event...
-                    if ( event.start === recurringEvent.start )
-                    {
+                    if (event.start === recurringEvent.start) {
                         // Generate the rruleset
                         const rruleset = this._generateRuleset(recurringEvent, moment(recurringEvent.start), moment(recurringEvent.end).utc());
 
@@ -543,20 +522,18 @@ export class CalendarMockApi implements TreoMockApi
                         recurringEvent.start = ruleDate.toISOString();
                     }
                     // Otherwise...
-                    else
-                    {
+                    else {
                         // Add a new exception for the recurring event that ignores this single event's start date
                         this._exceptions.push({
-                            id     : TreoMockApiUtils.guid(),
+                            id: TreoMockApiUtils.guid(),
                             eventId: event.recurringEventId,
-                            exdate : moment(event.start).toISOString()
+                            exdate: moment(event.start).toISOString()
                         });
                     }
                 }
 
                 // Future
-                if ( mode === 'future' )
-                {
+                if (mode === 'future') {
                     // Update the end date of the event
                     recurringEvent.end = moment(event.start).subtract(1, 'day').endOf('day').toISOString();
 
@@ -582,8 +559,7 @@ export class CalendarMockApi implements TreoMockApi
                 }
 
                 // All
-                if ( mode === 'all' )
-                {
+                if (mode === 'all') {
                     // Find the event and delete it
                     const index = this._events.findIndex((item) => item.id === event.recurringEventId);
                     this._events.splice(index, 1);
@@ -641,15 +617,13 @@ export class CalendarMockApi implements TreoMockApi
                 const weekdays = cloneDeep(this._weekdays);
 
                 // If the startWeekOn setting is set to Sunday...
-                if ( this._settings.startWeekOn === 0 )
-                {
+                if (this._settings.startWeekOn === 0) {
                     // Move the Sunday to the beginning
                     weekdays.unshift(weekdays.pop());
                 }
 
                 // If the startWeekOn is set to Saturday...
-                if ( this._settings.startWeekOn === 6 )
-                {
+                if (this._settings.startWeekOn === 6) {
                     // Move the Sunday to the beginning
                     weekdays.unshift(weekdays.pop());
 

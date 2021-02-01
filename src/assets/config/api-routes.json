@@ -22,5 +22,8 @@
     },
     "term": {
         "default": "term"
+    },
+    "cookin_schedule": {
+        "default": "cooking-schedule"
     }
 }

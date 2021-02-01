@@ -25,6 +25,9 @@ import { TreoDateRangeModule } from '@treo/components/date-range';
 import { CalendarRecurrenceComponent } from './components/recurrence/recurrence.component';
 import { CalendarSettingsComponent } from './components/settings/settings.component';
 import { CalendarSidebarComponent } from './components/sidebar/sidebar.component';
+import { InitialPageComponent } from './pages/initial-page/initial-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { ProgramationDetailComponent } from './pages/programation-detail/programation-detail.component';
 
 
 
@@ -34,7 +37,10 @@ import { CalendarSidebarComponent } from './components/sidebar/sidebar.component
     ProgramationCalendarComponent,
     CalendarRecurrenceComponent,
     CalendarSettingsComponent,
-    CalendarSidebarComponent
+    CalendarSidebarComponent,
+    InitialPageComponent,
+    RegisterPageComponent,
+    ProgramationDetailComponent
   ],
   imports: [
     ProgramationRoutingModule,

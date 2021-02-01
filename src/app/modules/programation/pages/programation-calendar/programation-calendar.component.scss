@@ -1,170 +1,177 @@
 @import 'treo';
 
 
-.mat-drawer-container {
+app-programation-calendar {
 
-    .mat-drawer {
 
-        .calendars {
-            display: flex;
-            flex-direction: column;
-        }
-    }
+    .mat-drawer-container {
 
-    .mat-drawer-content {
-        display: flex;
-        overflow: hidden auto;
 
-        .main {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 auto;
-            padding: 0 !important;
-            width: 100%;
 
-            .header {
+        .mat-drawer {
+
+            .calendars {
                 display: flex;
-                flex-wrap: wrap;
-                flex: 0 0 auto;
-                align-items: center;
-                padding: 8px 32px;
-                border-bottom-width: 1px;
-
-                @include treo-breakpoint('lt-md') {
-                    padding: 8px 16px;
-                }
-
-                >* {
-                    margin: 8px 0;
-                }
-
-                .drawer-toggle {
-                    display: none !important;
-                    margin-right: 16px;
-
-                    @include treo-breakpoint('lt-md') {
-                        display: flex !important;
-                    }
-                }
-
-                .title {
-                    margin-right: 20px;
-                    white-space: nowrap;
-                }
-
-                .today {
-                    margin: 0 auto 0 8px;
-                }
-
-                .view-changer {
-                    width: 120px;
-                    margin-left: 8px;
-
-                    .mat-form-field-flex {
-                        min-height: 40px;
-                        padding: 0 0.75em;
-                    }
-                }
-
-                .actions-menu {
-                    margin-left: auto;
-                }
+                flex-direction: column;
             }
+        }
 
-            .calendar {
+        .mat-drawer-content {
+            // background-color: white;
+            display: flex;
+            overflow: hidden auto;
+
+            .main {
                 display: flex;
                 flex-direction: column;
                 flex: 1 1 auto;
+                padding: 0 !important;
+                width: 100%;
 
-                // Tweak: FullCalendar CSS only height to improve resize performance
-                // With this tweak, we can disable "handleWindowResize" option of FullCalendar
-                // which disables the height calculations on window resize and increases the
-                // overall performance.
-                // This tweak only affects the Calendar app's FullCalendar.
-                full-calendar {
+                .header {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex: 0 0 auto;
+                    align-items: center;
+                    padding: 8px 32px;
+                    border-bottom-width: 1px;
+
+                    @include treo-breakpoint('lt-md') {
+                        padding: 8px 16px;
+                    }
+
+                    >* {
+                        margin: 8px 0;
+                    }
+
+                    .drawer-toggle {
+                        display: none !important;
+                        margin-right: 16px;
+
+                        @include treo-breakpoint('lt-md') {
+                            display: flex !important;
+                        }
+                    }
+
+                    .title {
+                        margin-right: 20px;
+                        white-space: nowrap;
+                    }
+
+                    .today {
+                        margin: 0 auto 0 8px;
+                    }
+
+                    .view-changer {
+                        width: 120px;
+                        margin-left: 8px;
+
+                        .mat-form-field-flex {
+                            min-height: 40px;
+                            padding: 0 0.75em;
+                        }
+                    }
+
+                    .actions-menu {
+                        margin-left: auto;
+                    }
+                }
+
+                .calendar {
                     display: flex;
                     flex-direction: column;
-                    flex: 1 0 auto;
-                    width: 100%;
-                    height: 100%;
+                    flex: 1 1 auto;
 
-                    .fc-view-container {
+                    // Tweak: FullCalendar CSS only height to improve resize performance
+                    // With this tweak, we can disable "handleWindowResize" option of FullCalendar
+                    // which disables the height calculations on window resize and increases the
+                    // overall performance.
+                    // This tweak only affects the Calendar app's FullCalendar.
+                    full-calendar {
                         display: flex;
                         flex-direction: column;
                         flex: 1 0 auto;
                         width: 100%;
                         height: 100%;
 
-                        .fc-view {
+                        .fc-view-container {
+                            display: flex;
+                            flex-direction: column;
+                            flex: 1 0 auto;
+                            width: 100%;
+                            height: 100%;
 
-                            // Day grid - Month view
-                            // Time grid - Week view
-                            // Time grid - Day view
-                            &.fc-dayGridMonth-view,
-                            &.fc-timeGridWeek-view,
-                            &.fc-timeGridDay-view {
-                                display: flex;
-                                flex-direction: column;
-                                flex: 1 0 auto;
-                                width: 100%;
-                                height: 100%;
+                            .fc-view {
 
-                                >table {
+                                // Day grid - Month view
+                                // Time grid - Week view
+                                // Time grid - Day view
+                                &.fc-dayGridMonth-view,
+                                &.fc-timeGridWeek-view,
+                                &.fc-timeGridDay-view {
                                     display: flex;
                                     flex-direction: column;
                                     flex: 1 0 auto;
+                                    width: 100%;
                                     height: 100%;
 
-                                    >thead {
+                                    >table {
                                         display: flex;
-                                    }
+                                        flex-direction: column;
+                                        flex: 1 0 auto;
+                                        height: 100%;
 
-                                    >tbody {
-                                        display: flex;
-                                        flex: 1 1 auto;
-                                        overflow: hidden;
-
-                                        >tr {
+                                        >thead {
                                             display: flex;
+                                        }
 
-                                            >td {
+                                        >tbody {
+                                            display: flex;
+                                            flex: 1 1 auto;
+                                            overflow: hidden;
+
+                                            >tr {
                                                 display: flex;
-                                                flex-direction: column;
 
-                                                .fc-scroller {
-                                                    flex: 1 1 auto;
-                                                    overflow: hidden scroll !important;
-                                                    height: auto !important;
+                                                >td {
+                                                    display: flex;
+                                                    flex-direction: column;
 
+                                                    .fc-scroller {
+                                                        flex: 1 1 auto;
+                                                        overflow: hidden scroll !important;
+                                                        height: auto !important;
+
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
-                            }
 
-                            // Day grid - Month view
-                            &.fc-dayGridMonth-view {
+                                // Day grid - Month view
+                                &.fc-dayGridMonth-view {
 
-                                >table {
+                                    >table {
 
-                                    >tbody {
+                                        >tbody {
 
-                                        >tr {
+                                            >tr {
 
-                                            >td {
+                                                >td {
 
-                                                .fc-scroller {
-                                                    display: flex;
-
-                                                    >.fc-day-grid {
+                                                    .fc-scroller {
                                                         display: flex;
-                                                        flex-direction: column;
-                                                        min-height: 580px;
 
-                                                        >.fc-row {
-                                                            flex: 1 0 0;
-                                                            height: auto !important;
+                                                        >.fc-day-grid {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                            min-height: 580px;
+
+                                                            >.fc-row {
+                                                                flex: 1 0 0;
+                                                                height: auto !important;
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -172,17 +179,17 @@
                                         }
                                     }
                                 }
-                            }
 
-                            // List - Year view
-                            &.fc-listYear-view {
-                                width: 100%;
-                                height: 100%;
-
-                                .fc-scroller {
+                                // List - Year view
+                                &.fc-listYear-view {
                                     width: 100%;
-                                    height: 100% !important;
-                                    overflow: hidden !important;
+                                    height: 100%;
+
+                                    .fc-scroller {
+                                        width: 100%;
+                                        height: 100% !important;
+                                        overflow: hidden !important;
+                                    }
                                 }
                             }
                         }
@@ -191,6 +198,7 @@
             }
         }
     }
+
 }
 
 // Event panel
@@ -406,23 +414,37 @@
     $foreground: map-get($theme, foreground);
     $is-dark: map-get($theme, is-dark);
 
-    @if ($is-dark) {
-        background: treo-color('cool-gray', 900);
-    }
+    app-programation-calendar {
+        @if ($is-dark) {
+            background: treo-color('cool-gray', 900);
+        }
 
-    @else {
-        background: map-get($background, card);
-    }
+        @else {
+            background: map-get($background, card);
+        }
 
-    .mat-drawer-container {
-        background: transparent;
+        .mat-drawer-container {
+            background: white;
 
-        .mat-drawer {
             @if ($is-dark) {
-                background: treo-color('cool-gray', 900);
+                background: transparent;
+            }
+
+            @else {
+                background: white;
+            }
+
+            .mat-drawer {
+                @if ($is-dark) {
+                    background: treo-color('cool-gray', 900);
+                }
             }
         }
+
     }
+
+
+
 
     // Event panel
     .calendar-event-panel {

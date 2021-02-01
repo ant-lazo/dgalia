@@ -22,6 +22,9 @@ import { TreoMediaWatcherService } from '@treo/services/media-watcher';
 import { Calendar, CalendarDrawerMode, CalendarEvent, CalendarEventEditMode, CalendarEventPanelMode, CalendarSettings } from '../../models/calendar.types';
 import { CalendarService } from '../../services/calendar.service';
 import { CalendarRecurrenceComponent } from '../../components/recurrence/recurrence.component';
+import esLocale from '@fullcalendar/core/locales/es';
+import { CookingScheduleService } from '../../services/cooking-schedule.service';
+import ProgramationCalendarComponentHelper from '../../helpers/programation-calendar-component.helper';
 
 @Component({
   selector: 'app-programation-calendar',
@@ -32,20 +35,22 @@ import { CalendarRecurrenceComponent } from '../../components/recurrence/recurre
 })
 export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  calendars: Calendar[];
-  calendarPlugins: any;
-  drawerMode: CalendarDrawerMode;
-  drawerOpened: boolean;
-  event: CalendarEvent;
-  eventEditMode: CalendarEventEditMode;
-  eventForm: FormGroup;
-  eventTimeFormat: any;
-  events: CalendarEvent[];
-  panelMode: CalendarEventPanelMode;
-  settings: CalendarSettings;
-  view: 'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listYear';
-  views: any;
-  viewTitle: string;
+  public calendars: Calendar[] = [];
+  public calendarPlugins: any;
+  public drawerMode: CalendarDrawerMode;
+  public drawerOpened: boolean;
+  public event: CalendarEvent;
+  public eventEditMode: CalendarEventEditMode;
+  public eventForm: FormGroup;
+  public eventTimeFormat: any;
+  public events: CalendarEvent[];
+  public panelMode: CalendarEventPanelMode;
+  public settings: CalendarSettings;
+  public view: 'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listYear';
+  public views: any;
+  public viewTitle: string;
+  public spanishLocale: any;
+  private helper: ProgramationCalendarComponentHelper;
 
   // Private
   private _eventPanelOverlayRef: OverlayRef;
@@ -62,18 +67,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
   @ViewChild('drawer')
   private _drawer: MatDrawer;
 
-  /**
-   * Constructor
-   *
-   * @param {CalendarService} _calendarService
-   * @param {ChangeDetectorRef} _changeDetectorRef
-   * @param {Document} _document
-   * @param {FormBuilder} _formBuilder
-   * @param {MatDialog} _matDialog
-   * @param {Overlay} _overlay
-   * @param {TreoMediaWatcherService} _treoMediaWatcherService
-   * @param {ViewContainerRef} _viewContainerRef
-   */
+
   constructor(
     private _calendarService: CalendarService,
     private _changeDetectorRef: ChangeDetectorRef,
@@ -82,12 +76,10 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     private _matDialog: MatDialog,
     private _overlay: Overlay,
     private _treoMediaWatcherService: TreoMediaWatcherService,
-    private _viewContainerRef: ViewContainerRef
+    private _viewContainerRef: ViewContainerRef,
+    private _cookingSchedule: CookingScheduleService
   ) {
-    // Set the private defaults
     this._unsubscribeAll = new Subject();
-
-    // Set the defaults
     this.calendarPlugins = [dayGridPlugin, interactionPlugin, listPlugin, momentPlugin, rrulePlugin, timeGridPlugin];
     this.drawerMode = 'side';
     this.drawerOpened = true;
@@ -95,6 +87,8 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     this.events = [];
     this.panelMode = 'view';
     this.view = 'dayGridMonth';
+    this.spanishLocale = esLocale;
+    this.helper = new ProgramationCalendarComponentHelper();
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -183,39 +177,17 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
       }
     });
 
-    // Get calendars
-    this._calendarService.calendars$
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((calendars) => {
-        console.log(JSON.stringify(calendars));
-        // Store the calendars
-        this.calendars = calendars;
-
-        // Mark for check
-        this._changeDetectorRef.markForCheck();
-      });
-
     // Get events
-    this._calendarService.events$
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((events) => {
+    this.setCalendarEvents();
 
+    //get calendars
+    this.setCalendars();
 
-
-        // Clone the events to change the object reference so
-        // that the FullCalendar can trigger a re-render.
-        this.events = cloneDeep(events);
-
-        // Mark for check
-        this._changeDetectorRef.markForCheck();
-      });
 
     // Get settings
     this._calendarService.settings$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((settings) => {
-
-
 
 
         // Store the settings
@@ -299,8 +271,6 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     const viewStart = moment(this._fullCalendarApi.view.currentStart).subtract(60, 'days');
     const viewEnd = moment(this._fullCalendarApi.view.currentEnd).add(60, 'days');
 
-    // Get events
-    this._calendarService.getEvents(viewStart, viewEnd, true).subscribe();
   }
 
   /**
@@ -583,48 +553,13 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     });
   }
 
-  /**
-   * Change the event panel mode between view and edit
-   * mode while setting the event edit mode
-   *
-   * @param panelMode
-   * @param eventEditMode
-   */
-  changeEventPanelMode(panelMode: CalendarEventPanelMode, eventEditMode: CalendarEventEditMode = 'single'): void {
-    // Set the panel mode
-    this.panelMode = panelMode;
-
-    // Set the event edit mode
-    this.eventEditMode = eventEditMode;
-
-    // Update the panel class
-    if (panelMode === 'view') {
-      this._eventPanelOverlayRef.removePanelClass(['panel-mode-add', 'panel-mode-edit']);
-      this._eventPanelOverlayRef.addPanelClass('panel-mode-view');
-    }
-
-    if (panelMode === 'add') {
-      this._eventPanelOverlayRef.removePanelClass(['panel-mode-edit', 'panel-mode-view']);
-      this._eventPanelOverlayRef.addPanelClass('panel-mode-add');
-    }
-
-    if (panelMode === 'edit') {
-      this._eventPanelOverlayRef.removePanelClass(['panel-mode-add', 'panel-mode-view']);
-      this._eventPanelOverlayRef.addPanelClass('panel-mode-edit');
-    }
-
-    // Update the panel position
-    setTimeout(() => {
-      this._eventPanelOverlayRef.updatePosition();
-    });
-  }
 
   /**
    * Get calendar by id
    *
    * @param id
    */
-  getCalendar(id): Calendar {
+  getCalendar(id: any): Calendar {
     if (!id) {
       return;
     }
@@ -665,7 +600,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     const start = moment(this._fullCalendarApi.view.currentStart);
 
     // Prefetch past events
-    this._calendarService.prefetchPastEvents(start).subscribe();
+    // this._calendarService.prefetchPastEvents(start).subscribe();
   }
 
   /**
@@ -693,50 +628,9 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     const end = moment(this._fullCalendarApi.view.currentEnd);
 
     // Prefetch future events
-    this._calendarService.prefetchFutureEvents(end).subscribe();
+    // this._calendarService.prefetchFutureEvents(end).subscribe();
   }
 
-  /**
-   * On date click
-   *
-   * @param calendarEvent
-   */
-  onDateClick(calendarEvent): void {
-    // Prepare the event
-    const event = {
-      id: null,
-      calendarId: this.calendars[0].id,
-      recurringEventId: null,
-      isFirstInstance: false,
-      title: '',
-      description: '',
-      start: moment(calendarEvent.date).startOf('day').toISOString(),
-      end: moment(calendarEvent.date).endOf('day').toISOString(),
-      duration: null,
-      allDay: true,
-      recurrence: null,
-      range: {
-        start: moment(calendarEvent.date).startOf('day').toISOString(),
-        end: moment(calendarEvent.date).endOf('day').toISOString()
-      }
-    };
-
-    // Set the event
-    this.event = event;
-
-    // Set the el on calendarEvent for consistency
-    calendarEvent.el = calendarEvent.dayEl;
-
-    // Reset the form and fill the event
-    this.eventForm.reset();
-    this.eventForm.patchValue(event);
-
-    // Open the event panel
-    this._openEventPanel(calendarEvent);
-
-    // Change the event panel mode
-    this.changeEventPanelMode('add');
-  }
 
   /**
    * On event click
@@ -828,162 +722,34 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     calendarEvent.el.style.display = calendar.visible ? 'flex' : 'none';
   }
 
-  /**
-   * On calendar updated
-   *
-   * @param calendar
-   */
-  onCalendarUpdated(calendar): void {
-    // Re-render the events
-    this._fullCalendarApi.rerenderEvents();
+
+  private setCalendarEvents() {
+    const params = this.helper.getCurrentMonth();
+
+    this._cookingSchedule.getByMonth(params.month, params.year)
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(list => {
+        const events = this.helper.getEnventsFromCookingSchedule(list);
+        this.events = cloneDeep(events);
+        this._changeDetectorRef.markForCheck();
+        console.log(list);
+      });
   }
 
-  /**
-   * Add event
-   */
-  addEvent(): void {
-    // Get the clone of the event form value
-    let newEvent = clone(this.eventForm.value);
 
-    // If the event is a recurring event...
-    if (newEvent.recurrence) {
-      // Set the event duration
-      newEvent.duration = moment(newEvent.range.end).diff(moment(newEvent.range.start), 'minutes');
-    }
+  private setCalendars() {
+    // Get calendars
+    this._calendarService.calendars$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((calendars) => {
+        console.log(JSON.stringify(calendars));
+        // Store the calendars
+        this.calendars = calendars;
 
-    // Modify the event before sending it to the server
-    newEvent = omit(newEvent, ['range', 'recurringEventId']);
-
-    // Add the event
-    this._calendarService.addEvent(newEvent).subscribe(() => {
-
-      // Reload events
-      this._calendarService.reloadEvents().subscribe();
-
-      // Close the event panel
-      this._closeEventPanel();
-    });
-  }
-
-  /**
-   * Update the event
-   */
-  updateEvent(): void {
-    // Get the clone of the event form value
-    let event = clone(this.eventForm.value);
-    const { range, ...eventWithoutRange } = event;
-
-    // Get the original event
-    const originalEvent = this.events.find(item => item.id === event.id);
-
-    // Return, if there are no changes made to the event
-    if (isEqual(eventWithoutRange, originalEvent)) {
-      // Close the event panel
-      this._closeEventPanel();
-
-      // Return
-      return;
-    }
-
-    // If the event is a recurring event...
-    if (event.recurrence && event.recurringEventId) {
-      // Update the recurring event on the server
-      this._calendarService.updateRecurringEvent(event, originalEvent, this.eventEditMode).subscribe(() => {
-
-        // Reload events
-        this._calendarService.reloadEvents().subscribe();
-
-        // Close the event panel
-        this._closeEventPanel();
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
       });
 
-      // Return
-      return;
-    }
-
-    // If the event is a non-recurring event...
-    if (!event.recurrence && !event.recurringEventId) {
-      // Update the event on the server
-      this._calendarService.updateEvent(event.id, event).subscribe(() => {
-
-        // Close the event panel
-        this._closeEventPanel();
-      });
-
-      // Return
-      return;
-    }
-
-    // If the event was a non-recurring event but now it will be a recurring event...
-    if (event.recurrence && !event.recurringEventId) {
-      // Set the event duration
-      event.duration = moment(event.range.end).diff(moment(event.range.start), 'minutes');
-
-      // Omit unnecessary fields
-      event = omit(event, ['range', 'recurringEventId']);
-
-      // Update the event on the server
-      this._calendarService.updateEvent(event.id, event).subscribe(() => {
-
-        // Reload events
-        this._calendarService.reloadEvents().subscribe();
-
-        // Close the event panel
-        this._closeEventPanel();
-      });
-
-      // Return
-      return;
-    }
-
-    // If the event was a recurring event but now it will be a non-recurring event...
-    if (!event.recurrence && event.recurringEventId) {
-      // Set the end date
-      event.end = moment(event.start).add(event.duration, 'minutes').toISOString();
-
-      // Set the duration as null
-      event.duration = null;
-
-      // Update the recurring event on the server
-      this._calendarService.updateRecurringEvent(event, originalEvent, this.eventEditMode).subscribe(() => {
-
-        // Reload events
-        this._calendarService.reloadEvents().subscribe();
-
-        // Close the event panel
-        this._closeEventPanel();
-      });
-    }
-  }
-
-  /**
-   * Delete the given event
-   *
-   * @param event
-   * @param mode
-   */
-  deleteEvent(event, mode: CalendarEventEditMode = 'single'): void {
-    // If the event is a recurring event...
-    if (event.recurrence) {
-      // Delete the recurring event on the server
-      this._calendarService.deleteRecurringEvent(event, mode).subscribe(() => {
-
-        // Reload events
-        this._calendarService.reloadEvents().subscribe();
-
-        // Close the event panel
-        this._closeEventPanel();
-      });
-    }
-    // If the event is a non-recurring, normal event...
-    else {
-      // Update the event on the server
-      this._calendarService.deleteEvent(event.id).subscribe(() => {
-
-        // Close the event panel
-        this._closeEventPanel();
-      });
-    }
   }
 
 }
