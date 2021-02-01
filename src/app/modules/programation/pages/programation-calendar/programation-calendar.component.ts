@@ -355,7 +355,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
    *
    * @private
    */
-  private _closeEventPanel(): void {
+  public _closeEventPanel(): void {
     // If template portal exists and attached...
     if (this._eventPanelTemplatePortal && this._eventPanelTemplatePortal.isAttached) {
       // Detach it
@@ -732,24 +732,17 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
         const events = this.helper.getEnventsFromCookingSchedule(list);
         this.events = cloneDeep(events);
         this._changeDetectorRef.markForCheck();
-        console.log(list);
       });
   }
 
 
   private setCalendars() {
-    // Get calendars
     this._calendarService.calendars$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((calendars) => {
-        console.log(JSON.stringify(calendars));
-        // Store the calendars
         this.calendars = calendars;
-
-        // Mark for check
         this._changeDetectorRef.markForCheck();
       });
-
   }
 
 }

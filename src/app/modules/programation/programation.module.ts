@@ -5,7 +5,6 @@ import { SharedModule } from 'app/shared/shared.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { MatOptionModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -28,6 +27,14 @@ import { CalendarSidebarComponent } from './components/sidebar/sidebar.component
 import { InitialPageComponent } from './pages/initial-page/initial-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ProgramationDetailComponent } from './pages/programation-detail/programation-detail.component';
+import { HeaderModule } from 'app/shared/header/header.module';
+import { RowButtonsModule } from 'app/shared/row-buttons/row-buttons.module';
+import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
+import { MaterialBasicUitModule } from 'app/shared/modules/ui-modules.module';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { SelectRecipesComponent } from './components/select-recipes/select-recipes.component';
+import { MaterialTableModule } from 'app/shared/modules/table-modules.module';
+
 
 
 
@@ -40,29 +47,26 @@ import { ProgramationDetailComponent } from './pages/programation-detail/program
     CalendarSidebarComponent,
     InitialPageComponent,
     RegisterPageComponent,
-    ProgramationDetailComponent
+    ProgramationDetailComponent,
+    SelectRecipesComponent
   ],
   imports: [
     ProgramationRoutingModule,
     ScrollingModule,
-    MatButtonModule,
     MatButtonToggleModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
     MatDialogModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
     MatMenuModule,
     MatMomentDateModule,
-    MatRadioModule,
-    MatSelectModule,
     MatSidenavModule,
     MatTooltipModule,
     FullCalendarModule,
     TreoDateRangeModule,
-    MatOptionModule,
     SharedModule,
+    HeaderModule,
+    FormsMaterialModule,
+    MaterialBasicUitModule,
+    RowButtonsModule,
+    MaterialTableModule,
   ],
   entryComponents: [
     CalendarRecurrenceComponent

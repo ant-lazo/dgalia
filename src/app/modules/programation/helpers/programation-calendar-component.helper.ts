@@ -9,8 +9,6 @@ export default class ProgramationCalendarComponentHelper {
      * getCurrentMonth
      */
     public getCurrentMonth(): GetByMonthRequest {
-        console.log(new Date().getMonth().toString());
-
         return {
             month: `${new Date().getMonth() + 1}`,
             year: new Date().getFullYear().toString(),

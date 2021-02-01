@@ -25,5 +25,8 @@
     },
     "cookin_schedule": {
         "default": "cooking-schedule"
+    },
+    "class": {
+        "default": "class"
     }
 }

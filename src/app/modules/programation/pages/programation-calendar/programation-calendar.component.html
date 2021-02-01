@@ -2,13 +2,6 @@
 
     <mat-drawer-container>
 
-        <!-- Drawer -->
-        <!-- <mat-drawer [autoFocus]="false" [mode]="drawerMode" [opened]="drawerOpened" #drawer>
-
-            <calendar-sidebar (calendarUpdated)="onCalendarUpdated($event)"></calendar-sidebar>
-
-        </mat-drawer> -->
-
         <mat-drawer-content>
 
             <!-- Main -->
@@ -16,8 +9,10 @@
 
                 <div class="header">
 
-                    <button class="mr10" class="previous" mat-icon-button (click)="previous()">
+                    <button [routerLink]="['../programacion']" style="margin-right: 50px;" class="previous"
+                        mat-icon-button>
                         <mat-icon [svgIcon]="'chevron_left'"></mat-icon>
+                        Volver
                     </button>
 
                     <h4 class="title">
@@ -118,7 +113,8 @@
                                 <div class="actions">
                                     <!-- Non-recurring event -->
                                     <ng-container *ngIf="!event.recurrence">
-                                        <button title="Detalle" mat-icon-button [routerLink]="['../detalle', event.id]">
+                                        <button (click)="_closeEventPanel()" title="Detalle" mat-icon-button
+                                            [routerLink]="['../detalle', event.id]">
                                             <mat-icon>playlist_play</mat-icon>
                                         </button>
                                     </ng-container>
