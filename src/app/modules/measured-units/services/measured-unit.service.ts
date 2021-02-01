@@ -24,7 +24,13 @@ export class MeasuredUnitService {
     return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default + "?id="+id.toString());
   }
 
-  public editSupply(data:MeasuredUnit): Observable<JsonResp> {
+  public editMeasuredUnit(data:MeasuredUnit): Observable<JsonResp> {
     return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default, data);
   }
+
+  
+  public registerNewMeasuredUnit(data:MeasuredUnit): Observable<JsonResp> {
+    return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default, data);
+  }
+
 }
