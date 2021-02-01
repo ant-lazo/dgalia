@@ -59,7 +59,6 @@
                 {
                     "id": "3",
                     "title": "Mantenimiento",
-                    "link": "x",
                     "type": "collapsable",
                     "icon": "people",
                     "children": [
@@ -73,6 +72,20 @@
                             "id": "pages.customers.create",
                             "title": "Registro",
                             "link": "/",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "4",
+                    "title": "Administración",
+                    "type": "collapsable",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.administation.course",
+                            "title": "Cursos",
+                            "link": "/admin/cursos/listado",
                             "type": "basic"
                         }
                     ]
@@ -317,6 +330,45 @@
                             "id": "pages.company.users",
                             "title": "Pagos",
                             "link": "/",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "4",
+                    "title": "Administración",
+                    "type": "aside",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.administation.activity",
+                            "title": "Actividades Económicas",
+                            "link": "/admin/activity/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.currency",
+                            "title": "Monedas",
+                            "link": "/admin/currency/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.companyGroup",
+                            "title": "Grupo Empresarial",
+                            "link": "/admin/companyGroup/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.companySize",
+                            "title": "Tamaño Empresa",
+                            "link": "/admin/companySize/listado",
+                            "type": "basic"
+                        }
+                        ,
+                        {
+                            "id": "pages.administation.internalCompanies",
+                            "title": "Empresas Internas",
+                            "link": "/admin/internalCompanies/listado",
                             "type": "basic"
                         }
                     ]
