@@ -1,0 +1,15 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header [module]="'Cocina'" [title]="'Detalle de una'" [highlightext]="'receta'" [urlRoute]="'/recetas/listado'">
+    </app-header>
+
+    <div class="main">
+        <div class="content">
+            <detail-recipe-form [termList]="termList | async" [headquarterList]="headquarterList | async"
+                [courseList]="courseList | async" [recipe]="this.recipe">
+            </detail-recipe-form>
+            <recipe-supply-list [eliminarButtom]="false"></recipe-supply-list>
+        </div>
+
+    </div>
+</div>

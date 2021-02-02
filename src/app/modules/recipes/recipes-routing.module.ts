@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { RecipesComponent } from './recipes.component';
 import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
 import { RegisterRecipeComponent } from './pages/register-recipe/register-recipe.component';
+import { EditRecipeComponent } from './pages/edit-recipe/edit-recipe.component';
+import { DetailRecipeComponent } from './pages/detail-recipe/detail-recipe.component';
 
 const routes: Routes = [
   {
@@ -11,6 +13,8 @@ const routes: Routes = [
     children: [
       { path: 'listado', component: RecipeListComponent },
       { path: 'registro', component: RegisterRecipeComponent },
+      { path: 'editar/:id', component: EditRecipeComponent },
+      { path: 'detalle/:id', component: DetailRecipeComponent },
       { path: '', pathMatch: 'full', redirectTo: 'listado' },
     ]
   }

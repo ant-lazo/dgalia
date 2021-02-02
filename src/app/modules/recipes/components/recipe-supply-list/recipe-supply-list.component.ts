@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { RowAppButtonModel, RowButtonType } from 'app/shared/row-buttons/models/row-nutton.model';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { RecipeSupplyModalComponent } from '../recipe-supply-modal/recipe-supply-modal.component';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Supply } from 'app/modules/supply/models/supply';
 import * as _ from 'underscore';
 
 @Component({
@@ -16,7 +15,9 @@ export class RecipeSupplyListComponent implements OnInit {
 
   public addButtons: RowAppButtonModel[];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @Input() eliminarButtom: boolean = true;
 
+  
   public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'cantidad', 'actions'];
   public dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   listSupply = [];
