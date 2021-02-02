@@ -25,7 +25,7 @@ $treo-themes: ( // -------------------------------------------------------------
 
     // Light theme - DO NOT REMOVE or RENAME
     'treo-theme-light': treo-light-theme(treo-palette('red', 600),
-        treo-palette('cool-gray', 800),
+        treo-palette('red', 800),
         treo-palette('red', 700)),
 
     // -----------------------------------------------------------------------------------------------------
@@ -47,10 +47,10 @@ $treo-themes: ( // -------------------------------------------------------------
 
     // Dark theme - DO NOT REMOVE or RENAME
     'theme-dark': treo-dark-theme(treo-palette('white'),
-        treo-palette('gray', 800),
+        treo-palette('red', 800),
         treo-palette('red', 800)),
 
     // Light theme - DO NOT REMOVE or RENAME
-    'theme-light': treo-light-theme(treo-palette('black'),
-        treo-palette('gray', 800),
+    'theme-light': treo-light-theme(treo-palette('red'),
+        treo-palette('red', 800),
         treo-palette('red', 800)));

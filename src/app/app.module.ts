@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
+import es from '@angular/common/locales/es';
 import { MarkdownModule } from 'ngx-markdown';
 import { TreoModule } from '@treo';
 import { TreoConfigModule } from '@treo/services/config';
@@ -16,6 +17,11 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
 import { ToastrModule } from 'ngx-toastr';
+import { registerLocaleData } from '@angular/common';
+import { ScrollDirective } from './shared/directives/scroll.directive';
+import { NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+
+registerLocaleData(es);
 
 
 const routerConfig: ExtraOptions = {
@@ -27,6 +33,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
+        ScrollDirective
     ],
     imports: [
         BrowserModule,
@@ -52,12 +59,17 @@ const routerConfig: ExtraOptions = {
 
         ToastrModule.forRoot(),
 
+        NgxMatNativeDateModule
+
     ],
     bootstrap: [
         AppComponent
     ],
     providers: [
-        { provide: LOADING_BAR_CONFIG, useValue: { latencyThreshold: 100 } }
+        { provide: LOADING_BAR_CONFIG, useValue: { latencyThreshold: 100 } },
+        [
+            { provide: LOCALE_ID, useValue: "es-ES" }, //your locale
+        ]
     ]
 })
 export class AppModule {

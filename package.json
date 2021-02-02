@@ -12,7 +12,7 @@
         "start": "ng serve --port=36955 --open --hmr",
         "start:mem": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng serve --open",
         "build": "ng build",
-        "build:prod": "ng build --prod",
+        "bp": "ng build --prod",
         "build:prod:mem": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod",
         "test": "ng test",
         "lint": "ng lint",
@@ -25,6 +25,7 @@
     },
     "private": true,
     "dependencies": {
+        "@angular-material-components/datetime-picker": "^5.0.3",
         "@angular/animations": "11.1.0",
         "@angular/cdk": "11.1.0",
         "@angular/common": "11.1.0",
