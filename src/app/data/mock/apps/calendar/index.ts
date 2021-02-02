@@ -5,7 +5,7 @@ import RRule, { RRuleSet, rrulestr } from 'rrule';
 import { TreoMockApi } from '@treo/lib/mock-api/mock-api.interfaces';
 import { TreoMockApiService } from '@treo/lib/mock-api/mock-api.service';
 import { TreoMockApiUtils } from '@treo/lib/mock-api/mock-api.utils';
-import { calendars as calendarsData, exceptions as exceptionsData, settings as settingsData, weekdays as weekdaysData } from 'app/data/mock/apps/calendar/data';
+import { exceptions as exceptionsData, settings as settingsData, weekdays as weekdaysData } from 'app/data/mock/apps/calendar/data';
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +27,7 @@ export class CalendarMockApi implements TreoMockApi {
         private _treoMockApiService: TreoMockApiService
     ) {
         // Set the data
-        this._calendars = calendarsData;
+        // this._calendars = calendarsData;
         this._exceptions = exceptionsData;
         this._settings = settingsData;
         this._weekdays = weekdaysData;
@@ -145,34 +145,34 @@ export class CalendarMockApi implements TreoMockApi {
         // -----------------------------------------------------------------------------------------------------
         // @ Calendars - PATCH
         // -----------------------------------------------------------------------------------------------------
-        this._treoMockApiService
-            .onPatch('api/apps/calendar/calendars')
-            .reply((request) => {
+        // this._treoMockApiService
+        //     .onPatch('api/apps/calendar/calendars')
+        //     .reply((request) => {
 
-                // Get the id and calendar
-                const id = request.body.id;
-                const calendar = cloneDeep(request.body.calendar);
+        //         // Get the id and calendar
+        //         const id = request.body.id;
+        //         const calendar = cloneDeep(request.body.calendar);
 
-                // Prepare the updated calendar
-                let updatedCalendar = null;
+        //         // Prepare the updated calendar
+        //         let updatedCalendar = null;
 
-                // Find the calendar and update it
-                this._calendars.forEach((item, index, calendars) => {
+        //         // Find the calendar and update it
+        //         this._calendars.forEach((item, index, calendars) => {
 
-                    if (item.id === id) {
-                        // Update the calendar
-                        calendars[index] = assign({}, calendars[index], calendar);
+        //             if (item.id === id) {
+        //                 // Update the calendar
+        //                 calendars[index] = assign({}, calendars[index], calendar);
 
-                        // Store the updated calendar
-                        updatedCalendar = calendars[index];
-                    }
-                });
+        //                 // Store the updated calendar
+        //                 updatedCalendar = calendars[index];
+        //             }
+        //         });
 
-                return [
-                    200,
-                    updatedCalendar
-                ];
-            });
+        //         return [
+        //             200,
+        //             updatedCalendar
+        //         ];
+        //     });
 
         // -----------------------------------------------------------------------------------------------------
         // @ Calendars - DELETE

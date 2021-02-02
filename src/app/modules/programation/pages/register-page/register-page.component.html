@@ -24,14 +24,10 @@
 
                     <div class="col-span-2">
                         <mat-form-field class="w-full">
-                            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date"
+                            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Seleccionar una fecha"
                                 formControlName="date">
                             <mat-datepicker-toggle matSuffix [for]="picker">
                             </mat-datepicker-toggle>
-                            <!-- <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="1"
-                                [stepMinute]="10" [touchUi]="true" [color]="'primary'">
-                            </ngx-mat-datetime-picker> -->
-
                             <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="1"
                                 [stepMinute]="10" [touchUi]="true">
                             </ngx-mat-datetime-picker>
@@ -41,7 +37,7 @@
 
                 </div>
 
-                <div class="grid">
+                <div class="grid ">
                     <div class="w-full">
                         <mat-form-field class="treo-mat-textarea w-full">
                             <textarea formControlName="description" matInput [placeholder]="'Descripción'"
@@ -51,15 +47,29 @@
                     </div>
                 </div>
 
-                <div class="grid">
-                    <mat-form-field class="w-full">
-                        <mat-select placeholder="Seleccione un ciclo" formControlName="term_id" required>
-                            <mat-option *ngFor="let t of termList" [value]="t.id">
-                                {{t.name}}
-                            </mat-option>
-                        </mat-select>
-                        <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
-                    </mat-form-field>
+                <div class="grid  grid-cols-8 gap-4 w-full">
+
+                    <div class="col-span-4">
+                        <mat-form-field class="w-full">
+                            <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id" required>
+                                <mat-option *ngFor="let s of headquarterList" [value]="s.id">
+                                    {{s.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-span-4">
+                        <mat-form-field class="w-full">
+                            <mat-select placeholder="Seleccione un ciclo" formControlName="term_id" required>
+                                <mat-option *ngFor="let t of termList" [value]="t.id">
+                                    {{t.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+                        </mat-form-field>
+                    </div>
                 </div>
 
                 <div class="grid">

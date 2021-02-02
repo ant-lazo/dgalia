@@ -9,16 +9,26 @@ export interface CookingSchedule {
     dateString: string;
     enabled: boolean;
     recipes: any[];
-    course: any[];
-    classes: any[];
-    term: Term;
+    course: Course[];
+    classes: Course[];
+    term: Course;
     createdAt: string;
     updatedAt: string;
-    createdBy: Term;
-    updatedBy: Term;
+    createdBy: Course;
+    updatedBy: Course;
+    headquarter: Headquarter;
 }
 
-interface Term {
+interface Headquarter {
+    id: number;
+    name: string;
+    description: string;
+    address: string;
+    personInCharge: string;
+    enabled: boolean;
+}
+
+interface Course {
     id: number;
     name: string;
 }

@@ -6,6 +6,7 @@ export interface CookingScheduleRegisterForm {
     courses: number[];
     classes: number[];
     term_id: number;
+    headquarter_id: number;
 }
 
 

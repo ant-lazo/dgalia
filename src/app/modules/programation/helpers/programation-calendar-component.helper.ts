@@ -1,7 +1,9 @@
-import { CalendarEvent } from "../models/calendar.types";
+import { CalendarEvent, Calendar } from '../models/calendar.types';
 import { GetByMonthRequest } from "../models/get-by-month-request";
-import { CookingSchedule } from '../models/cooking-schedule.model';
 import moment from "moment";
+import { CookingSchedule } from '../models/cooking-schedule.model';
+import { appColors } from '../../../core/config/app.config';
+import { calendarColors } from '../components/sidebar/calendar-colors';
 
 export default class ProgramationCalendarComponentHelper {
 
@@ -24,7 +26,7 @@ export default class ProgramationCalendarComponentHelper {
         for (const item of list) {
             newList.push({
                 id: item.id.toString(),
-                calendarId: '1a470c8e-40ed-4c2d-b590-a4f1f6ead6cc',
+                calendarId: item.headquarter.id.toString(),
                 recurringEventId: item.id.toString(),
                 title: item.note,
                 description: item.description,
@@ -32,10 +34,34 @@ export default class ProgramationCalendarComponentHelper {
                 end: moment().year(9999).endOf('year').toISOString(),
                 allDay: false,
                 recurrence: null,
-                isFirstInstance: false
+                isFirstInstance: false,
+                classes: item.classes,
+                courses: item.course,
+                term: item.term
             })
         }
-        console.log(newList);
         return newList;
+    }
+
+
+    public getCalendarsFromCookingSchedule(list: CookingSchedule[]): Calendar[] {
+        const newCalendarList: Calendar[] = [];
+        for (const item of list) {
+            const founded = newCalendarList.find(calendar => calendar.id.toString() === item.headquarter.id.toString());
+            if (!founded) {
+                newCalendarList.push({
+                    id: item.headquarter.id.toString(),
+                    title: item.headquarter.name,
+                    color: this.getRandomColor(),
+                    visible: true
+                })
+            }
+        }
+        return newCalendarList;
+    }
+
+    public getRandomColor(): string {
+        const random = Math.floor(Math.random() * calendarColors.length);
+        return calendarColors[random];
     }
 }
