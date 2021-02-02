@@ -44,7 +44,8 @@ export class RegisterPageComponentHelper {
             description: data.form.description,
             note: data.form.note,
             recipes: data.recipes.map(recipe => { return { id: recipe.id, quantity: recipe.quantity } }),
-            term_id: data.form.term_id
+            term_id: data.form.term_id,
+            headquarter_id: data.form.headquarter_id,
         }
     }
 

@@ -25,6 +25,7 @@ import { CalendarRecurrenceComponent } from '../../components/recurrence/recurre
 import esLocale from '@fullcalendar/core/locales/es';
 import { CookingScheduleService } from '../../services/cooking-schedule.service';
 import ProgramationCalendarComponentHelper from '../../helpers/programation-calendar-component.helper';
+import { CookingSchedule } from '../../models/cooking-schedule.model';
 
 @Component({
   selector: 'app-programation-calendar',
@@ -151,7 +152,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
       // If this is a recurring event...
       if (this.eventForm.get('recurrence').value) {
         // Update the recurrence rules if needed
-        this._updateRecurrenceRule();
+        // this._updateRecurrenceRule();
 
         // Set the duration field
         const duration = moment(value.end).diff(moment(value.start), 'minutes');
@@ -179,9 +180,6 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
 
     // Get events
     this.setCalendarEvents();
-
-    //get calendars
-    this.setCalendars();
 
 
     // Get settings
@@ -268,8 +266,8 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
 
     // Get the view's current start and end dates, add/subtract
     // 60 days to create a ~150 days period to fetch the data for
-    const viewStart = moment(this._fullCalendarApi.view.currentStart).subtract(60, 'days');
-    const viewEnd = moment(this._fullCalendarApi.view.currentEnd).add(60, 'days');
+    // const viewStart = moment(this._fullCalendarApi.view.currentStart).subtract(60, 'days');
+    // const viewEnd = moment(this._fullCalendarApi.view.currentEnd).add(60, 'days');
 
   }
 
@@ -286,12 +284,8 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
   // @ Private methods
   // -----------------------------------------------------------------------------------------------------
 
-  /**
-   * Open the event panel
-   *
-   * @private
-   */
-  private _openEventPanel(calendarEvent): void {
+
+  private _openEventPanel(calendarEvent: any): void {
     // Create the overlay
     this._eventPanelOverlayRef = this._overlay.create({
       panelClass: ['calendar-event-panel', 'panel-mode-view'],
@@ -350,11 +344,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     this._changeDetectorRef.markForCheck();
   }
 
-  /**
-   * Close the event panel
-   *
-   * @private
-   */
+
   public _closeEventPanel(): void {
     // If template portal exists and attached...
     if (this._eventPanelTemplatePortal && this._eventPanelTemplatePortal.isAttached) {
@@ -377,78 +367,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     this._changeDetectorRef.markForCheck();
   }
 
-  /**
-   * Update the recurrence rule based on the event if needed
-   *
-   * @private
-   */
-  private _updateRecurrenceRule(): void {
-    // Get the event
-    const event = this.eventForm.value;
 
-    // Return, if this is a non-recurring event
-    if (!event.recurrence) {
-      return;
-    }
-
-    // Parse the recurrence rule
-    const parsedRules = {};
-    event.recurrence.split(';').forEach((rule) => {
-
-      // Split the rule
-      const parsedRule = rule.split('=');
-
-      // Add the rule to the parsed rules
-      parsedRules[parsedRule[0]] = parsedRule[1];
-    });
-
-    // If there is a BYDAY rule, split that as well
-    if (parsedRules['BYDAY']) {
-      parsedRules['BYDAY'] = parsedRules['BYDAY'].split(',');
-    }
-
-    // Do not update the recurrence rule if ...
-    // ... the frequency is DAILY,
-    // ... the frequency is WEEKLY and BYDAY has multiple values,
-    // ... the frequency is MONTHLY and there isn't a BYDAY rule,
-    // ... the frequency is YEARLY,
-    if (parsedRules['FREQ'] === 'DAILY' ||
-      (parsedRules['FREQ'] === 'WEEKLY' && parsedRules['BYDAY'].length > 1) ||
-      (parsedRules['FREQ'] === 'MONTHLY' && !parsedRules['BYDAY']) ||
-      parsedRules['FREQ'] === 'YEARLY') {
-      return;
-    }
-
-    // If the frequency is WEEKLY, update the BYDAY value with the new one
-    if (parsedRules['FREQ'] === 'WEEKLY') {
-      parsedRules['BYDAY'] = [moment(event.start).format('dd').toUpperCase()];
-    }
-
-    // If the frequency is MONTHLY, update the BYDAY value with the new one
-    if (parsedRules['FREQ'] === 'MONTHLY') {
-      // Calculate the weekday
-      const weekday = moment(event.start).format('dd').toUpperCase();
-
-      // Calculate the nthWeekday
-      let nthWeekdayNo = 1;
-      while (moment(event.start).isSame(moment(event.start).subtract(nthWeekdayNo, 'week'), 'month')) {
-        nthWeekdayNo++;
-      }
-
-      // Set the BYDAY
-      parsedRules['BYDAY'] = [nthWeekdayNo + weekday];
-    }
-
-    // Generate the rule string from the parsed rules
-    const rules = [];
-    Object.keys(parsedRules).forEach((key) => {
-      rules.push(key + '=' + (Array.isArray(parsedRules[key]) ? parsedRules[key].join(',') : parsedRules[key]));
-    });
-    const rrule = rules.join(';');
-
-    // Update the recurrence rule
-    this.eventForm.get('recurrence').setValue(rrule);
-  }
 
   /**
    * Update the end value based on the recurrence and duration
@@ -515,50 +434,8 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     this._drawer.toggle();
   }
 
-  /**
-   * Open recurrence panel
-   */
-  openRecurrenceDialog(): void {
-    // Open the dialog
-    const dialogRef = this._matDialog.open(CalendarRecurrenceComponent, {
-      panelClass: 'calendar-event-recurrence-dialog',
-      data: {
-        event: this.eventForm.value
-      }
-    });
-
-    // After dialog closed
-    dialogRef.afterClosed().subscribe((result) => {
-
-      // Return, if canceled
-      if (!result || !result.recurrence) {
-        return;
-      }
-
-      // Only update the recurrence if it actually changed
-      if (this.eventForm.get('recurrence').value === result.recurrence) {
-        return;
-      }
-
-      // If returned value is 'cleared'...
-      if (result.recurrence === 'cleared') {
-        // Clear the recurrence field if recurrence cleared
-        this.eventForm.get('recurrence').setValue(null);
-      }
-      // Otherwise...
-      else {
-        // Update the recurrence field with the result
-        this.eventForm.get('recurrence').setValue(result.recurrence);
-      }
-    });
-  }
 
 
-  /**
-   * Get calendar by id
-   *
-   * @param id
-   */
   getCalendar(id: any): Calendar {
     if (!id) {
       return;
@@ -567,11 +444,6 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     return this.calendars.find((calendar) => calendar.id === id);
   }
 
-  /**
-   * Change the calendar view
-   *
-   * @param view
-   */
   changeView(view: 'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listYear'): void {
     // Store the view
     this.view = view;
@@ -586,9 +458,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     }
   }
 
-  /**
-   * Moves the calendar one stop back
-   */
+
   previous(): void {
     // Go to previous stop
     this._fullCalendarApi.prev();
@@ -603,9 +473,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     // this._calendarService.prefetchPastEvents(start).subscribe();
   }
 
-  /**
-   * Moves the calendar to the current date
-   */
+
   today(): void {
     // Go to today
     this._fullCalendarApi.today();
@@ -614,9 +482,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     this.viewTitle = this._fullCalendarApi.view.title;
   }
 
-  /**
-   * Moves the calendar one stop forward
-   */
+
   next(): void {
     // Go to next stop
     this._fullCalendarApi.next();
@@ -632,11 +498,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
   }
 
 
-  /**
-   * On event click
-   *
-   * @param calendarEvent
-   */
+
   onEventClick(calendarEvent): void {
     // Find the event with the clicked event's id
     const event: any = cloneDeep(this.events.find(item => item.id === calendarEvent.event.id));
@@ -672,12 +534,13 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     this._openEventPanel(calendarEvent);
   }
 
-  /**
-   * On event render
-   *
-   * @param calendarEvent
-   */
-  onEventRender(calendarEvent): void {
+  onCalendarUpdated(_: any): void {
+    this._fullCalendarApi.rerenderEvents();
+  }
+
+
+
+  onEventRender(calendarEvent: any): void {
     // Get event's calendar
     const calendar = this.calendars.find((item) => item.id === calendarEvent.event.extendedProps.calendarId);
 
@@ -725,24 +588,20 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
 
   private setCalendarEvents() {
     const params = this.helper.getCurrentMonth();
-
     this._cookingSchedule.getByMonth(params.month, params.year)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(list => {
         const events = this.helper.getEnventsFromCookingSchedule(list);
         this.events = cloneDeep(events);
         this._changeDetectorRef.markForCheck();
+        this.setCalendars(list);
       });
   }
 
 
-  private setCalendars() {
-    this._calendarService.calendars$
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((calendars) => {
-        this.calendars = calendars;
-        this._changeDetectorRef.markForCheck();
-      });
+  private setCalendars(list: CookingSchedule[]) {
+    this.calendars = this.helper.getCalendarsFromCookingSchedule(list);
+    this._changeDetectorRef.markForCheck();
   }
 
 }

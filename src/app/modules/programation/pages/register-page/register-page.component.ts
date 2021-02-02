@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CoursesService } from '../../../course/services/courses.service';
 import { TermsService } from '../../../term/services/terms.service';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { Course } from 'app/modules/course/models/course.interface';
 import { Term } from 'app/modules/term/models/term.interface';
 import { ClassesService } from '../../../classes/services/classes.service';
@@ -15,6 +15,8 @@ import { CookingScheduleRecipe } from '../../models/cooking-schedule-recipe..mod
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CookingScheduleService } from '../../services/cooking-schedule.service';
+import { HeadquartesService } from '../../../headquarter/services/headquartes.service';
+import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 
 @Component({
   selector: 'app-register-page',
@@ -24,10 +26,10 @@ import { CookingScheduleService } from '../../services/cooking-schedule.service'
 export class RegisterPageComponent implements OnInit {
 
   public cookingScheduleForm: FormGroup;
-
   public courseList: Course[] = [];
   public termList: Term[] = [];
   public classList: Class[] = [];
+  public headquarterList: Headquarter[] = [];
 
   public classesSelected: Class[] = [];
   public coursesSelected: Course[] = [];
@@ -42,7 +44,8 @@ export class RegisterPageComponent implements OnInit {
     private _matDialog: MatDialog,
     private _router: Router,
     private _toast: ToastrService,
-    private _cookingSchedule: CookingScheduleService
+    private _cookingSchedule: CookingScheduleService,
+    private _headquarterService: HeadquartesService
   ) {
     this.setForm();
   }
@@ -112,10 +115,12 @@ export class RegisterPageComponent implements OnInit {
       this._courses.getCourseList(),
       this._classes.getList(),
       this._terms.getCompleteList(),
+      this._headquarterService.getCompleteList()
     ]).subscribe(result => {
       this.courseList = result[0];
       this.classList = result[1];
       this.termList = result[2];
+      this.headquarterList = result[3];
     });
   }
 
@@ -145,9 +150,7 @@ export class RegisterPageComponent implements OnInit {
       this._toast.success(resp.message, 'Registro exitoso');
       this.goBack();
     });
-
   }
-
 
   private goBack() {
     this._router.navigate(['programacion/pagina-inicial']);
@@ -162,7 +165,8 @@ export class RegisterPageComponent implements OnInit {
       recipes: [null],
       courses: [null],
       classes: [null],
-      term_id: [null, Validators.required]
+      term_id: [null, Validators.required],
+      headquarter_id: [null, Validators.required]
     });
   }
 

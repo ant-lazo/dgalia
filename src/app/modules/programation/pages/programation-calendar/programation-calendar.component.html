@@ -1,6 +1,11 @@
-<div class="content-layout " cdkScrollable>
+<div class="content-layout  left-sidebar-fullheight-basic-inner-scroll" cdkScrollable>
 
     <mat-drawer-container>
+
+        <!-- Drawer -->
+        <mat-drawer [autoFocus]="false" [mode]="drawerMode" [opened]="drawerOpened" #drawer>
+            <calendar-sidebar [calendars]="calendars" (calendarUpdated)="onCalendarUpdated($event)"></calendar-sidebar>
+        </mat-drawer>
 
         <mat-drawer-content>
 
@@ -124,13 +129,33 @@
 
                         </div>
 
-                        <div class="row description" *ngIf="event.description">
-                            <mat-icon [svgIcon]="'notes'"></mat-icon>
-                            <div class="row-content">{{event.description}}</div>
+                        <div class="colum description mb-10" *ngIf="event.description">
+                            <div class="row">
+                                <mat-icon [svgIcon]="'notes'"></mat-icon>
+                                <div class="row-content">{{event.description}}</div>
+                            </div>
+
+                            <div *ngIf="event.classes && event.classes.length > 0" class="row">
+                                <mat-icon [svgIcon]="'class'"></mat-icon>
+                                <div *ngFor="let c of event.classes" class="row-content">
+                                    {{ c.name }}
+                                </div>
+                            </div>
+
+                            <div *ngIf="event.courses && event.courses.length > 0" class="row">
+                                <mat-icon [svgIcon]="'school'"></mat-icon>
+                                <div *ngFor="let c of event.courses" class="row-content">{{ c.name }}</div>
+                            </div>
+
+                            <div *ngIf="event.term" class="row">
+                                <mat-icon [svgIcon]="'cached'"></mat-icon>
+                                <div class="row-content">{{event.term.name}}</div>
+                            </div>
+
                         </div>
 
                         <div class="row calendar">
-                            <mat-icon [svgIcon]="'today'"></mat-icon>
+                            <mat-icon [svgIcon]="'home'"></mat-icon>
                             <div class="row-content">
                                 <div class="color" [ngClass]="getCalendar(event.calendarId).color"></div>
                                 <div class="title">{{getCalendar(event.calendarId).title}}</div>

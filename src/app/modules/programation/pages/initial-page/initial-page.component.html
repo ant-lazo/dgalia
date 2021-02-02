@@ -1,64 +1,68 @@
-<div class="content-layout fullwidth-basic-normal-scroll">
+<div class="main-content">
+    <div class="content-layout fullwidth-basic-normal-scroll">
 
-    <!-- Background - Inline SVG for easy customizations -->
-    <svg class="background" viewBox="0 0 1531 891" preserveAspectRatio="xMidYMax slice"
-        xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 182c144.327 47.973 534.462 219.712 440.509 369.87C346.555 702.028 79.877 662.846 0 638V182z"></path>
-        <path d="M1405 848c-424.366 158.009-437-164-437-272s102-425 563-576v769c-21.333 29.333-63.333 55.667-126 79z">
-        </path>
-        <path
-            d="M1531 162c-122.914-17.284-377.96 33.191-543.433 206.414C822.095 541.636 797.342 648.75 835.842 731.622c38.5 82.871 198.243 134.841 400.555 92.053C1438.71 780.886 1492.752 775.894 1531 768V162z">
-        </path>
-    </svg>
+        <!-- Background - Inline SVG for easy customizations -->
+        <svg class="background" viewBox="0 0 1531 891" preserveAspectRatio="xMidYMax slice"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 182c144.327 47.973 534.462 219.712 440.509 369.87C346.555 702.028 79.877 662.846 0 638V182z">
+            </path>
+            <path
+                d="M1405 848c-424.366 158.009-437-164-437-272s102-425 563-576v769c-21.333 29.333-63.333 55.667-126 79z">
+            </path>
+            <path
+                d="M1531 162c-122.914-17.284-377.96 33.191-543.433 206.414C822.095 541.636 797.342 648.75 835.842 731.622c38.5 82.871 198.243 134.841 400.555 92.053C1438.71 780.886 1492.752 775.894 1531 768V162z">
+            </path>
+        </svg>
 
-    <!-- Main -->
-    <div class="main">
+        <!-- Main -->
+        <div class="main">
 
-        <!-- Header -->
-        <div class="header">
+            <!-- Header -->
+            <div class="header">
 
-            <h1>Bienvenido a programación</h1>
+                <h1>Bienvenido a programación</h1>
 
 
-            <h5>Selecciona una de las opciones por hacer hoy</h5>
+                <h5>Selecciona una de las opciones por hacer hoy</h5>
 
-            <div class="categories">
+                <div class="categories">
 
-                <a class="category" [routerLink]="['../calendario']">
-                    <mat-icon>calendar_today</mat-icon>
-                    <span class="title">Mes actual</span>
-                    <span class="subtitle">
-                        Consulta todas las programaciondes del mes actual, puedes ordenar por semana y dia tambien
-                    </span>
-                </a>
+                    <a class="category" [routerLink]="['../calendario']">
+                        <mat-icon>calendar_today</mat-icon>
+                        <span class="title">Mes actual</span>
+                        <span class="subtitle">
+                            Consulta todas las programaciondes del mes actual, puedes ordenar por semana y dia tambien
+                        </span>
+                    </a>
 
-                <a class="category" [routerLink]="['../registro']">
-                    <mat-icon [svgIcon]="'feather:file-text'"></mat-icon>
-                    <span class="title">Registrar</span>
-                    <span class="subtitle">Selecciona una fecha y una receta para registrar una programación</span>
-                </a>
+                    <a class="category" [routerLink]="['../registro']">
+                        <mat-icon [svgIcon]="'feather:file-text'"></mat-icon>
+                        <span class="title">Registrar</span>
+                        <span class="subtitle">Selecciona una fecha y una receta para registrar una programación</span>
+                    </a>
 
-                <a class="category" [routerLink]="['guides']">
-                    <mat-icon>manage_search</mat-icon>
-                    <span class="title">Encuentra</span>
-                    <span class="subtitle">
-                        Selecciona una fecha y te redigira a un listado de programacion registrado ese dia
-                    </span>
-                </a>
+                    <a class="category" [routerLink]="['guides']">
+                        <mat-icon>manage_search</mat-icon>
+                        <span class="title">Encuentra</span>
+                        <span class="subtitle">
+                            Selecciona una fecha y te redigira a un listado de programacion registrado ese dia
+                        </span>
+                    </a>
 
-                <a class="category" [routerLink]="['support']">
-                    <mat-icon>list</mat-icon>
-                    <span class="title">Listado</span>
-                    <span class="subtitle">
-                        e al listado de todas las programacion registradas a lo largo de la historia
-                    </span>
-                </a>
+                    <a class="category" [routerLink]="['support']">
+                        <mat-icon>list</mat-icon>
+                        <span class="title">Listado</span>
+                        <span class="subtitle">
+                            e al listado de todas las programacion registradas a lo largo de la historia
+                        </span>
+                    </a>
+
+                </div>
 
             </div>
 
+
         </div>
 
-
     </div>
-
 </div>
