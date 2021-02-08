@@ -62,7 +62,7 @@ export class RegisterRecipeComponent implements OnInit {
 
   public registerRecipe() {
     if (this.dataCompleted) {
-      this.registerRecipeForm.detail = this.suppliesSelectedList.map(e => { return { supplyId: e.id, measuredUnitId: e.measuredUnit.id, quantity: e.cantidad } })
+      this.registerRecipeForm.detail = this.suppliesSelectedList.map(e => { return { supplyId: e.id, measuredUnitId: e.measuredUnit.id, quantity: e.quantity } })
       this._recipe.save(this.registerRecipeForm).subscribe(result => {
         this._toast.success(result.message, 'Registro exitoso');
         this._router.navigate(['recetas/listado']);

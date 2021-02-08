@@ -7,6 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import * as _ from 'underscore';
 import { ToastrService } from 'ngx-toastr';
 import { Supply } from 'app/modules/supply/models/supply';
+import { Observable } from 'rxjs';
+import { Recipe } from '../../models/recipe.model';
 
 @Component({
   selector: 'recipe-supply-list',
@@ -21,10 +23,11 @@ export class RecipeSupplyListComponent implements OnChanges {
   
   @Output() completeList: EventEmitter<Supply[]> = new EventEmitter();
   @Input() trigger: boolean;
+  @Input() recipe: Observable<Recipe>;
 
-  public listSupply: Supply[] = [];
+  public listSupply: any[] = [];
   public addButtons: RowAppButtonModel[];
-  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'cantidad', 'actions'];
+  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
   public dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
@@ -35,8 +38,18 @@ export class RecipeSupplyListComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    if (this.trigger && this.listSupply.length === 0) this._toast.error('Debe seleccionar comominimo un insumo', 'Error en insumos')
+    if (this.trigger && this.listSupply.length === 0) this._toast.error('Debe seleccionar como minimo un insumo', 'Error en insumos')
     if (this.trigger && this.listSupply && this.listSupply.length > 0) this.completeList.emit(this.listSupply);
+    this.recipe.subscribe(element => {  
+      var linea:any = {};
+      for(const sup of element.detail){
+        linea = sup.supply;
+        linea.quantity = sup.quantity;
+        console.log("🚀 ~ file: recipe-supply-list.component.ts ~ line 48 ~ RecipeSupplyListComponent ~ ngOnChanges ~ linea", linea)
+        this.listSupply.push(linea);
+      }
+      this.setDataSourceList(this.listSupply);
+    });
   }
 
 

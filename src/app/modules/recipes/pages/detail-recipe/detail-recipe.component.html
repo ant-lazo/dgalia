@@ -6,9 +6,9 @@
     <div class="main">
         <div class="content">
             <detail-recipe-form [termList]="termList | async" [headquarterList]="headquarterList | async"
-                [courseList]="courseList | async" [recipe]="this.recipe">
+                [courseList]="courseList | async" [recipe]="recipe">
             </detail-recipe-form>
-            <recipe-supply-list [eliminarButtom]="false"></recipe-supply-list>
+            <recipe-supply-list [recipe]="recipe" [eliminarButtom]="false"></recipe-supply-list>
         </div>
 
     </div>

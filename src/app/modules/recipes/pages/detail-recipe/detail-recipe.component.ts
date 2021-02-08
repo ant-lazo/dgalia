@@ -21,7 +21,7 @@ export class DetailRecipeComponent implements OnInit {
   public courseList: Observable<Course[]>;
   public headquarterList: Observable<Headquarter[]>;
   public termList: Observable<Term[]>;
-  recipe:Recipe;
+  public recipe:Observable<Recipe>;
   private id:number;
   
   constructor(
@@ -41,10 +41,7 @@ export class DetailRecipeComponent implements OnInit {
     this.courseList = this._course.getCourseList();
     this.headquarterList = this._headquarter.getCompleteList();
     this.termList = this._term.getCompleteList();
-    this._recipe.findById(this.id).subscribe(element => {
-      console.log("🚀 ~ file: detail-recipe.component.ts ~ line 46 ~ DetailRecipeComponent ~ this._recipe.findById ~ element", element)
-      if(element) this.recipe = element;
-    });
+    this.recipe = this._recipe.findById(this.id);
   }
 
 

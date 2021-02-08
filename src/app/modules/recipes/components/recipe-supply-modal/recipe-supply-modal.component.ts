@@ -26,9 +26,9 @@ export class RecipeSupplyModalComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'cantidad', 'actions'];
+  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
   public dataSource: MatTableDataSource<Supply> = new MatTableDataSource([]);
-  cantidad = new FormControl(1, Validators.min(1));
+  quantity = new FormControl(1, Validators.min(1));
 
   constructor(
     private _dialogRef: MatDialogRef<RecipeSupplyModalComponent>,
@@ -74,8 +74,8 @@ export class RecipeSupplyModalComponent implements OnInit {
     });
     if (founded && !exist) {
       var data:any = founded;
-      data.cantidad = 1;
-      this.cantidad = new FormControl(1, Validators.min(1));
+      data.quantity = 1;
+      this.quantity = new FormControl(1, Validators.min(1));
       data.editar = true;
       this.selectedList.push(data);
       this.setDataSourceList(this.selectedList);
@@ -97,12 +97,12 @@ export class RecipeSupplyModalComponent implements OnInit {
   }
 
   guardar(element:any) {
-    element.cantidad = this.cantidad.value;
+    element.quantity = this.quantity.value;
     element.editar = false;
   }
 
   editar(element:any){
-    this.cantidad = new FormControl(element.cantidad, Validators.min(1));
+    this.quantity = new FormControl(element.quantity, Validators.min(1));
     element.editar = true;
   }
 

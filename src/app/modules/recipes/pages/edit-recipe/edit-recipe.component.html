@@ -6,7 +6,7 @@
     <div class="main">
         <div class="content">
             <edit-recipe-form [termList]="termList | async" [headquarterList]="headquarterList | async"
-                [courseList]="courseList | async" [recipe]="this.recipe">
+                [courseList]="courseList | async" [recipe]="recipe">
             </edit-recipe-form>
             <div class="flex items-center justify-end -mx-8 mt-3 px-8 py-5">
                 <button [disabled]="true" type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
@@ -14,7 +14,7 @@
                     Actualizar
                 </button>
             </div>
-            <recipe-supply-list></recipe-supply-list>
+            <recipe-supply-list [recipe]="recipe"></recipe-supply-list>
         </div>
 
     </div>
