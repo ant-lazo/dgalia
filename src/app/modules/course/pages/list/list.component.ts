@@ -8,6 +8,8 @@ import { CoursesService } from '../../services/courses.service';
 import { CourseListTableModel } from '../../view-models/list-table.model';
 import { CourseListComponentModel } from '../../view-models/list_component.model';
 import * as config from 'assets/language/es/measured-unit.json';
+import { CourseRegisterComponent } from '../../components/course-register/course-register.component';
+import { CourseEditComponent } from '../../components/course-edit/course-edit.component';
 
 @Component({
   selector: 'app-list',
@@ -35,20 +37,22 @@ export class ListComponent implements OnInit {
   }
 
   public register() {
-    // const dialogRef = this.dialog.open(CourseRegisterComponent, {
-    //   width: '650px',
-    //   height: '450px'
-    // });
+    const dialogRef = this.dialog.open(CourseRegisterComponent, {
+      width: '650px',
+      height: '520px'
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) this.getList();
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.getList();
+    });
   }
 
   private setPageModels() {
     this.model = CourseListComponentModel.fromJson(config.list_component);
     this.registerButton.push(this.model.registerButton);
     this.tableModel = CourseListTableModel.fromJson(config.list_table);
+    this.model.title = "Cursos";
+    this.model.module = "Administración";
   }
 
   private getList(): void {
@@ -58,25 +62,25 @@ export class ListComponent implements OnInit {
   }
 
   editar(event:any){
-    // const dialogRef = this.dialog.open(CourseEditComponent, {
-    //   width: '650px',
-    //   height: '450px',
-    //   data: event
-    // });
+    const dialogRef = this.dialog.open(CourseEditComponent, {
+      width: '650px',
+      height: '520px',
+      data: event
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) this.getList();
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) this.getList();
+    });
   }
 
-  public validationToDeleteCourse(measuredunit: Course): void {
+  public validationToDeleteCourse(course: Course): void {
     const dialogRef = this.dialog.open(DeleteAlertComponent, {
       width: '600px',
       height: '400px',
-      data: { title: `el suministro ${measuredunit.name}` }
+      data: { title: `el curso ${course.name}` }
     });
 
-    dialogRef.afterClosed().subscribe(result => result ? this.deleteCourse(measuredunit.id) : null);
+    dialogRef.afterClosed().subscribe(result => result ? this.deleteCourse(course.id) : null);
   }
 
   private deleteCourse(id: number): void {

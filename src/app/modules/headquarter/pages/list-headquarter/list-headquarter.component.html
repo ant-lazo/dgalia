@@ -1,0 +1,22 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header [module]="model.module" [title]="model.title"></app-header>
+
+    <div class="main">
+        <div class="content">
+            <app-row-buttons [buttons]="registerButton" [justify]="'justify-end'" (onClick)="register()">
+            </app-row-buttons>
+
+            <app-list-table 
+                [model]="tableModel" 
+                [list]="headquarterList"
+                (selectedToDelete)="validationToDeleteHeadquarter($event)" 
+                (selectedToEdit)="editar($event)" 
+            >
+            </app-list-table>
+
+        </div>
+    </div>
+
+
+</div>

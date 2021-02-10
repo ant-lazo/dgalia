@@ -16,10 +16,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MaterialBasicUitModule } from 'app/shared/modules/ui-modules.module';
 import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
 import { HeaderModule } from 'app/shared/header/header.module';
+import { CourseEditComponent } from './components/course-edit/course-edit.component';
+import { CourseRegisterComponent } from './components/course-register/course-register.component';
 
 
 @NgModule({
-  declarations: [CourseComponent, ListComponent, ListTableComponent],
+  declarations: [
+    CourseComponent, 
+    ListComponent, 
+    ListTableComponent,
+    CourseEditComponent,
+    CourseRegisterComponent
+  ],
   imports: [
     CommonModule,
     CourseRoutingModule,

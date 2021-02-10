@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-course',
   template: `
-    <p>
-      course works!
-    </p>
+<div class="w-full">
+<router-outlet></router-outlet>
+</div>
   `,
   styles: [
   ]

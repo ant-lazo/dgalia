@@ -23,4 +23,16 @@ export class TermsService {
   public getCompleteList(): Observable<Term[]> {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.term.default).pipe(map(resp => resp.data));
   }
+
+  public delete(id:number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.term.default + "?id="+id.toString());
+  }
+
+  public editTerm(data:Term): Observable<JsonResp> {
+    return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.term.default, data);
+  }
+  
+  public registerNewTerm(data:Term): Observable<JsonResp> {
+    return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.term.default, data);
+  }
 }

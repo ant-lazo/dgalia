@@ -25,14 +25,14 @@ export class CoursesService {
   }
 
   public delete(id:number): Observable<JsonResp> {
-    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default + "?id="+id.toString());
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.course.default + "?id="+id.toString());
   }
 
   public editCourse(data:Course): Observable<JsonResp> {
-    return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default, data);
+    return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.course.default, data);
   }
   
   public registerNewCourse(data:Course): Observable<JsonResp> {
-    return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default, data);
+    return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.course.default, data);
   }
 }

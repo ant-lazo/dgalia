@@ -23,4 +23,16 @@ export class HeadquartesService {
   public getCompleteList(): Observable<Headquarter[]> {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default).pipe(map(resp => resp.data));
   }
+
+  public delete(id:number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default + "?id="+id.toString());
+  }
+
+  public editHeadquarter(data:Headquarter): Observable<JsonResp> {
+    return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default, data);
+  }
+  
+  public registerNewHeadquarter(data:Headquarter): Observable<JsonResp> {
+    return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default, data);
+  }
 }
