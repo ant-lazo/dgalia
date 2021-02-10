@@ -1,0 +1,21 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header [module]="'Cocina'" [title]="'Editar una'" [highlightext]="'receta'" [urlRoute]="'/recetas/listado'">
+    </app-header>
+
+    <div class="main">
+        <div class="content">
+            <edit-recipe-form [termList]="termList | async" [headquarterList]="headquarterList | async"
+                [courseList]="courseList | async" [recipe]="recipe">
+            </edit-recipe-form>
+            <div class="flex items-center justify-end -mx-8 mt-3 px-8 py-5">
+                <button [disabled]="true" type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+                    <mat-icon class="mr-2">save</mat-icon>
+                    Actualizar
+                </button>
+            </div>
+            <recipe-supply-list [recipe]="recipe"></recipe-supply-list>
+        </div>
+
+    </div>
+</div>

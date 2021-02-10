@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MeasuredUnit } from "app/modules/measured-units/models/measured-unit.model";
 import { MeasuredUnitService } from "app/modules/measured-units/services/measured-unit.service";
+import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 
 @Component({
   selector: 'app-measured-units-edit',
@@ -16,7 +17,8 @@ export class MeasuredUnitEditComponent implements OnInit {
 
   constructor(
     private matDialogRef: MatDialogRef<MeasuredUnitEditComponent>,
-    private formBuilder: FormBuilder,
+    private _appNotifications: AppNotificationsService,
+    private formBuilder: FormBuilder,    
     public _measuredUnit: MeasuredUnitService,
     @Inject(MAT_DIALOG_DATA) public data: MeasuredUnit
     ) {
@@ -39,8 +41,8 @@ export class MeasuredUnitEditComponent implements OnInit {
 
   private editMeasuredUnit(data: any): void {
     data.id = this.id;
-    console.log("🚀 ~ file: measured-units-edit.component.ts ~ line 42 ~ MeasuredUnitEditComponent ~ editMeasuredUnit ~ data", data)
     this._measuredUnit.editMeasuredUnit(data).subscribe(() => {
+      this._appNotifications.editSuccess();
       this.matDialogRef.close(true);
     });
   }

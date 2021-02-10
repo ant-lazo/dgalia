@@ -14,9 +14,13 @@ import { SearchBoxModule } from 'app/shared/search-box/search-box.module';
 import { SoupplyRoutingModule } from '../supply/soupply-routing.module';
 import { RecipeListTableComponent } from './components/recipe-list-table/recipe-list-table.component';
 import { RegisterRecipeComponent } from './pages/register-recipe/register-recipe.component';
+import { EditRecipeComponent } from './pages/edit-recipe/edit-recipe.component';
+import { DetailRecipeComponent } from './pages/detail-recipe/detail-recipe.component';
 import { RecipeFormComponent } from './components/register-form/register-form.component';
 import { RecipeSupplyListComponent } from './components/recipe-supply-list/recipe-supply-list.component';
 import { RecipeSupplyModalComponent } from './components/recipe-supply-modal/recipe-supply-modal.component';
+import { EditRecipeFormComponent } from './components/edit-form/edit-form.component';
+import { DetailRecipeFormComponent } from './components/detail-form/detail-form.component';
 
 
 @NgModule({
@@ -25,7 +29,11 @@ import { RecipeSupplyModalComponent } from './components/recipe-supply-modal/rec
     RecipeListComponent,
     RecipeListTableComponent,
     RegisterRecipeComponent,
+    EditRecipeComponent,
+    DetailRecipeComponent,
     RecipeFormComponent,
+    EditRecipeFormComponent,
+    DetailRecipeFormComponent,
     RecipeSupplyListComponent,
     RecipeSupplyModalComponent,
   ],

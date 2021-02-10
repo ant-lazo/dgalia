@@ -5,6 +5,7 @@ import { MeasuredUnit } from "app/modules/measured-units/models/measured-unit.mo
 import { MeasuredUnitService } from "app/modules/measured-units/services/measured-unit.service";
 import { ProductCategory } from "app/modules/product-category/models/product-category.interface";
 import { ProductCategoriesService } from "app/modules/product-category/services/product-categories.service";
+import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { Observable } from 'rxjs';
 import { Supply } from "../../models/supply";
 import { SupplyService } from "../../services/supply-service.service";
@@ -23,6 +24,7 @@ export class SupplyEditComponent implements OnInit {
 
   constructor(
     private matDialogRef: MatDialogRef<SupplyEditComponent>,
+    private _appNotifications: AppNotificationsService,
     private formBuilder: FormBuilder,
     public _productCategory: ProductCategoriesService,
     public _measuredUnit: MeasuredUnitService,
@@ -51,6 +53,7 @@ export class SupplyEditComponent implements OnInit {
   private editSupply(data: any): void {
     data.id = this.id;
     this._supply.editSupply(data).subscribe(() => {
+      this._appNotifications.editSuccess();
       this.matDialogRef.close(true);
     });
   }

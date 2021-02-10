@@ -46,15 +46,15 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
         <td class="th-max" mat-cell *matCellDef="let element">
 
-            <button title="Editar {{ element.name }}" type="button" color="green" mat-icon-button>
+            <button (click)="selectedToEdit.emit(element)" title="Editar {{ element.name }}" type="button" color="green" mat-icon-button>
                 <mat-icon [color]="'green'">create</mat-icon>
             </button>
 
-            <button title="Detalle de {{ element.name }}" type="button" color="green" mat-icon-button>
+            <button (click)="selectedToDetail.emit(element)" title="Detalle de {{ element.name }}" type="button" color="green" mat-icon-button>
                 <mat-icon [color]="'green'">subject</mat-icon>
             </button>
 
-            <button title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
+            <button (click)="selectedToDelete.emit(element)" title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
                 <mat-icon>delete</mat-icon>
             </button>
         </td>

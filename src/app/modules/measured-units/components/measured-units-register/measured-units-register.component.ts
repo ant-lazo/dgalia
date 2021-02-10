@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { MeasuredUnitService } from "../../services/measured-unit.service";
 
 @Component({
@@ -14,6 +15,7 @@ export class MeasuredUnitRegisterComponent implements OnInit {
 
   constructor(
     private matDialogRef: MatDialogRef<MeasuredUnitRegisterComponent>,
+    private _appNotifications: AppNotificationsService,
     private formBuilder: FormBuilder,
     public _measuredUnit: MeasuredUnitService
   ) {
@@ -36,6 +38,7 @@ export class MeasuredUnitRegisterComponent implements OnInit {
 
   private registerMeasuredUnit(data: any): void {
     this._measuredUnit.registerNewMeasuredUnit(data).subscribe(() => {
+      this._appNotifications.registerSuccess();
       this.matDialogRef.close(true);
     });
 

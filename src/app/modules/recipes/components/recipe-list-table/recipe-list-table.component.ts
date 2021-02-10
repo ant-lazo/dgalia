@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, OnChanges } from '@angular/core';
+import { Component, Input, ViewChild, Output, EventEmitter, OnChanges } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -16,6 +16,9 @@ export class RecipeListTableComponent implements OnChanges {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @Output() selectedToDelete: EventEmitter<any> = new EventEmitter();
+  @Output() selectedToDetail: EventEmitter<any> = new EventEmitter();
+  @Output() selectedToEdit: EventEmitter<any> = new EventEmitter();
 
   public displayedColumns: string[] = ['image', 'code', 'name', 'price', 'cost', 'headquarter', 'course', 'options'];
   public dataSource: MatTableDataSource<Recipe> = new MatTableDataSource([]);

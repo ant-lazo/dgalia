@@ -21,9 +21,23 @@ export class ReciperService {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.recipe.default).pipe(map(result => result.data));
   }
 
+  public findById(id: number): Observable<Recipe> {
+    return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.recipe.default+"?id="+id)
+      .pipe(map(resp => 
+        resp.data
+      ));
+  }
+  
   public save(form: RegisterRecipeForm): Observable<JsonResp> {
     return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.recipe.default, form);
   }
 
 
+  public delete(id:number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.recipe.default + "?id="+id.toString());
+  }
+
+  public editRecipe(data:Recipe): Observable<JsonResp> {
+    return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.recipe.default, data);
+  }
 }
