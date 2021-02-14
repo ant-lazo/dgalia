@@ -79,13 +79,26 @@
                 {
                     "id": "4",
                     "title": "Administración",
+                    "link": "/",
                     "type": "collapsable",
                     "icon": "settings",
                     "children": [
                         {
+                            "id": "pages.administation.headquarter",
+                            "title": "Sedes",
+                            "link": "/sedes",
+                            "type": "basic"
+                        },
+                        {
                             "id": "pages.administation.course",
                             "title": "Cursos",
-                            "link": "/admin/cursos/listado",
+                            "link": "/cursos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.term",
+                            "title": "Términos",
+                            "link": "/terminos",
                             "type": "basic"
                         }
                     ]

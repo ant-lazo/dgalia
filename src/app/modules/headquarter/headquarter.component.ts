@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-headquarter',
   template: `
-    <p>
-      headquarter works!
-    </p>
+<div class="w-full">
+<router-outlet></router-outlet>
+</div>
   `,
   styles: [
   ]

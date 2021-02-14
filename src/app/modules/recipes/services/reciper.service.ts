@@ -7,6 +7,7 @@ import { environment } from 'environments/environment';
 import { map } from 'rxjs/operators';
 import { Recipe } from '../models/recipe.model';
 import { RegisterRecipeForm } from '../models/register-recipe-form.model';
+import { EditRecipeForm } from '../models/edit-recipe-form.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class ReciperService {
     return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.recipe.default + "?id="+id.toString());
   }
 
-  public editRecipe(data:Recipe): Observable<JsonResp> {
+  public editRecipe(data:EditRecipeForm): Observable<JsonResp> {
     return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.recipe.default, data);
   }
 }
