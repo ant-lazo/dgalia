@@ -1,13 +1,15 @@
 <form [formGroup]="recipeForm" class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
 
-    <div class="grid grid-cols-7 gap-4 w-full">
-        <div class="col-span-2">
+    <div class="grid grid-cols-2 gap-4 w-full">
+        <div class="col-span-1">
             <span>
                 <strong>
                     Código:
                 </strong>
                 {{ recipeForm.code }}
             </span>
+        </div>
+        <div class="col-span-1">
             <span>
                 <strong>
                     Nombre:
@@ -41,7 +43,7 @@
         <div class="col-span-1">
             <span>
                 <strong>
-                    Costo:
+                    Precio:
                 </strong>
                 $ {{ recipeForm.price }}
             </span>

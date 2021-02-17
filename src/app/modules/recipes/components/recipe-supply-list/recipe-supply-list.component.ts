@@ -27,7 +27,7 @@ export class RecipeSupplyListComponent implements OnChanges {
 
   public listSupply: any[] = [];
   public addButtons: RowAppButtonModel[];
-  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
+  public displayedColumns: string[] =['image', 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
   public dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
@@ -45,7 +45,6 @@ export class RecipeSupplyListComponent implements OnChanges {
       for(const sup of element.detail){
         linea = sup.supply;
         linea.quantity = sup.quantity;
-        console.log("🚀 ~ file: recipe-supply-list.component.ts ~ line 48 ~ RecipeSupplyListComponent ~ ngOnChanges ~ linea", linea)
         this.listSupply.push(linea);
       }
       this.setDataSourceList(this.listSupply);

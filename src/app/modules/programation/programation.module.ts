@@ -36,6 +36,9 @@ import { SelectRecipesComponent } from './components/select-recipes/select-recip
 import { MaterialTableModule } from 'app/shared/modules/table-modules.module';
 import { SelectedRecipesTableComponent } from './components/selected-recipes-table/selected-recipes-table.component';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { SelectDateComponent } from './components/select-date/select-date.component';
+import { ProgramationListComponent } from './pages/programation-list/programation-list.component';
+import { ListTableComponent } from './components/list-table/list-table.component';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerMod
     RegisterPageComponent,
     ProgramationDetailComponent,
     SelectRecipesComponent,
-    SelectedRecipesTableComponent
+    SelectedRecipesTableComponent,
+    SelectDateComponent,
+    ListTableComponent,
+    ProgramationListComponent
   ],
   imports: [
     ProgramationRoutingModule,
