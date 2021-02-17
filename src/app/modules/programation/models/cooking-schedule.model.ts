@@ -1,5 +1,3 @@
-
-
 export interface CookingSchedule {
     id: number;
     note: string;
@@ -8,7 +6,7 @@ export interface CookingSchedule {
     dateNumber: number;
     dateString: string;
     enabled: boolean;
-    recipes: any[];
+    recipes: Recipe[];
     course: Course[];
     classes: Course[];
     term: Course;
@@ -31,4 +29,11 @@ interface Headquarter {
 interface Course {
     id: number;
     name: string;
+}
+
+interface Recipe {
+    id: number;
+    name: string;
+    code: string;
+    quantity: number;
 }

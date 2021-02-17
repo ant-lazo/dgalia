@@ -35,4 +35,12 @@ export class CookingScheduleService {
   public register(body: CookingScheduleRegisterForm): Observable<JsonResp> {
     return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.cookin_schedule.default, body);
   }
+
+  /**
+   * get by id
+   */
+  public getById(id: string): Observable<CookingSchedule> {
+    return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.cookin_schedule.default, { params: { id } })
+      .pipe(map(resp => resp.data));
+  }
 }
