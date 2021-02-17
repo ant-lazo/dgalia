@@ -12,30 +12,27 @@ import { CookingSchedule } from '../../models/cooking-schedule.model';
   styleUrls: ['./programation-list.component.scss']
 })
 export class ProgramationListComponent implements OnInit {
-  model = {
-    title:"Lista programaciones",
-    module:"Cocina"
-  }
-  start:Date;
-  end:Date;
+
+  public model: any;
+  public start: Date;
+  public end: Date;
   public programationList: any[] = [];
   public programationFilteredList: any[] = [];
+
   constructor(
     private _programation: CookingScheduleService,
     private _router: Router,
     private dialog: MatDialog,
     private _appNotifications: AppNotificationsService,
-    route: ActivatedRoute
+    private _activatedRoute: ActivatedRoute
   ) {
-    this.start = new Date(Number(route.snapshot.paramMap.get('start').toString()));
-    console.log("🚀 ~ file: programation-list.component.ts ~ line 31 ~ ProgramationListComponent ~ this.start", this.start)
-    this.end = new Date(Number(route.snapshot.paramMap.get('end').toString()));
-    console.log("🚀 ~ file: programation-list.component.ts ~ line 33 ~ ProgramationListComponent ~ this.end", this.end)
+    this.model = { title: "Lista programaciones", module: "Cocina" };
+    this.setDates();
   }
 
   ngOnInit(): void {
     if (this.start && this.end) {
-      this.setProgramationList(this.start,this.end);
+      this.setProgramationList(this.start, this.end);
     } else {
       this.setProgramationList();
     }
@@ -44,8 +41,8 @@ export class ProgramationListComponent implements OnInit {
 
   public validationToDeleteProgramation(programation: CookingSchedule): void {
     const dialogRef = this.dialog.open(DeleteAlertComponent, {
-      width: '600px',
-      height: '400px',
+      width: '650px',
+      height: '500px',
       data: { title: `la programación ${programation.description}` }
     });
 
@@ -59,9 +56,9 @@ export class ProgramationListComponent implements OnInit {
     });
   }
 
-  setProgramationList(start?: Date, end?: Date){
+  setProgramationList(start?: Date, end?: Date) {
     if (start != null && end != null) {
-      this._programation.getByRange(start,end).subscribe(programations => {
+      this._programation.getByRange(start, end).subscribe(programations => {
         this.programationFilteredList = programations;
         this.programationList = programations;
       })
@@ -71,14 +68,20 @@ export class ProgramationListComponent implements OnInit {
         this.programationList = programations;
       })
     }
-
   }
 
-  editar(event: any) {
-    this._router.navigate(['programacion/editar/'+event.id]);
+  public editar(event: CookingSchedule): void {
+    this._router.navigate(['programacion/editar/' + event.id]);
   }
 
-  detalle(event: any) {
-    this._router.navigate(['programacion/detalle/'+event.id]);
+  public detalle(event: CookingSchedule): void {
+    this._router.navigate(['programacion/detalle/' + event.id]);
+  }
+
+  private setDates(): void {
+    if (this._activatedRoute.snapshot.paramMap.get('start') && this._activatedRoute.snapshot.paramMap.get('end')) {
+      this.start = new Date(Number(this._activatedRoute.snapshot.paramMap.get('start').toString()));
+      this.end = new Date(Number(this._activatedRoute.snapshot.paramMap.get('end').toString()));
+    }
   }
 }

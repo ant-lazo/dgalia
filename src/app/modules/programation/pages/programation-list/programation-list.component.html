@@ -4,15 +4,8 @@
 
     <div class="main">
         <div class="content">
-            <!-- <app-row-buttons [buttons]="registerButton" [justify]="'justify-end'" (onClick)="register()">
-            </app-row-buttons> -->
-
-            <app-list-table 
-                [list]="programationList"
-                (selectedToDelete)="validationToDeleteProgramation($event)" 
-                (selectedToEdit)="editar($event)" 
-                (selectedToDetail)="detalle($event)" 
-            >
+            <app-list-table [list]="programationList" (selectedToDelete)="validationToDeleteProgramation($event)"
+                (selectedToEdit)="editar($event)" (selectedToDetail)="detalle($event)">
             </app-list-table>
 
         </div>
