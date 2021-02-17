@@ -6,6 +6,7 @@ import { CalendarCalendarsResolver, CalendarSettingsResolver, CalendarWeekdaysRe
 import { InitialPageComponent } from './pages/initial-page/initial-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ProgramationDetailComponent } from './pages/programation-detail/programation-detail.component';
+import { ProgramationListComponent } from './pages/programation-list/programation-list.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,9 @@ const routes: Routes = [
       { path: 'pagina-inicial', component: InitialPageComponent },
       { path: 'registro', component: RegisterPageComponent },
       { path: 'detalle/:id', component: ProgramationDetailComponent },
+      { path: 'editar/:id', component: ProgramationDetailComponent },
+      { path: 'listado/:start/:end', component: ProgramationListComponent },
+      { path: 'listado', component: ProgramationListComponent },
       { path: '', pathMatch: 'full', redirectTo: 'pagina-inicial' },
     ]
   }

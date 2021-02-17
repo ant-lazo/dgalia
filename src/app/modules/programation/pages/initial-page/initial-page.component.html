@@ -41,7 +41,7 @@
                         <span class="subtitle">Selecciona una fecha y una receta para registrar una programación</span>
                     </a>
 
-                    <a class="category" [routerLink]="['guides']">
+                    <a class="category" (click)="selectDate()">
                         <mat-icon>manage_search</mat-icon>
                         <span class="title">Encuentra</span>
                         <span class="subtitle">
@@ -49,7 +49,7 @@
                         </span>
                     </a>
 
-                    <a class="category" [routerLink]="['support']">
+                    <a class="category" [routerLink]="['../listado']">
                         <mat-icon>list</mat-icon>
                         <span class="title">Listado</span>
                         <span class="subtitle">

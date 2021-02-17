@@ -36,47 +36,6 @@
                     ]
                 },
                 {
-                    "id": "2",
-                    "title": "Kardex",
-                    "link": "x",
-                    "type": "collapsable",
-                    "icon": "business",
-                    "children": [
-                        {
-                            "id": "pages.company.profile",
-                            "title": "Estados de cuenta",
-                            "link": "/",
-                            "type": "basic"
-                        },
-                        {
-                            "id": "pages.company.users",
-                            "title": "Pagos",
-                            "link": "/",
-                            "type": "basic"
-                        }
-                    ]
-                },
-                {
-                    "id": "3",
-                    "title": "Mantenimiento",
-                    "type": "collapsable",
-                    "icon": "people",
-                    "children": [
-                        {
-                            "id": "pages.customers.list",
-                            "title": "Listado",
-                            "link": "/",
-                            "type": "basic"
-                        },
-                        {
-                            "id": "pages.customers.create",
-                            "title": "Registro",
-                            "link": "/",
-                            "type": "basic"
-                        }
-                    ]
-                },
-                {
                     "id": "4",
                     "title": "Administración",
                     "link": "/",
@@ -307,19 +266,19 @@
                             "type": "basic"
                         },
                         {
-                            "id": "pages.sales.list",
+                            "id": "pages.cocina.recipe",
                             "title": "Recetas",
                             "link": "/recetas",
                             "type": "basic"
                         },
                         {
-                            "id": "pages.sales.reports",
+                            "id": "pages.cocina.reports",
                             "title": "Unidades de medida ",
                             "link": "/unidades-de-medida",
                             "type": "basic"
                         },
                         {
-                            "id": "pages.sales.caja",
+                            "id": "pages.cocina.caja",
                             "title": "Programación",
                             "link": "/programacion",
                             "type": "basic"
@@ -482,3 +441,4 @@
         }
     ]
 }
+
