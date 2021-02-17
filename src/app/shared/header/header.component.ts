@@ -36,8 +36,6 @@ export class HeaderComponent {
 
   public navigateToBack() {
     if (this.urlRoute === 'back') {
-      console.log('hola?');
-
       this._location.back();
       return;
     }

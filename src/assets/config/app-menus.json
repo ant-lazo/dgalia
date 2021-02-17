@@ -10,25 +10,25 @@
                     "icon": "store",
                     "children": [
                         {
-                            "id": "pages.cocina.generate",
+                            "id": "pages.cocina.insumos",
                             "title": "Insumos",
                             "link": "/insumos",
                             "type": "basic"
                         },
                         {
-                            "id": "pages.sales.list",
+                            "id": "pages.cocina.recetas",
                             "title": "Recetas",
                             "link": "/recetas",
                             "type": "basic"
                         },
                         {
-                            "id": "pages.sales.reports",
+                            "id": "pages.cocina.unidades-de-medida",
                             "title": "Unidades de medida ",
                             "link": "/unidades-de-medida",
                             "type": "basic"
                         },
                         {
-                            "id": "pages.sales.caja",
+                            "id": "pages.cocina.programacion",
                             "title": "Programación",
                             "link": "/programacion",
                             "type": "basic"
@@ -79,19 +79,19 @@
             "icon": "store",
             "children": [
                 {
-                    "id": "pages.cocina.generate",
+                    "id": "pages.cocina.insumos",
                     "title": "Insumos",
                     "link": "/insumos",
                     "type": "basic"
                 },
                 {
-                    "id": "pages.sales.list",
+                    "id": "pages.sales.recetas",
                     "title": "Recetas",
                     "link": "/recetas",
                     "type": "basic"
                 },
                 {
-                    "id": "pages.sales.reports",
+                    "id": "pages.sales.unidades-de-medida",
                     "title": "Unidades de medida ",
                     "link": "/unidades-de-medida",
                     "type": "basic"
@@ -335,8 +335,7 @@
                             "title": "Tamaño Empresa",
                             "link": "/admin/companySize/listado",
                             "type": "basic"
-                        }
-                        ,
+                        },
                         {
                             "id": "pages.administation.internalCompanies",
                             "title": "Empresas Internas",
@@ -441,4 +440,3 @@
         }
     ]
 }
-

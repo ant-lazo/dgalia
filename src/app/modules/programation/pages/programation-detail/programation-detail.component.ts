@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CookingScheduleService } from '../../services/cooking-schedule.service';
 import { CookingSchedule } from '../../models/cooking-schedule.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-programation-detail',
@@ -10,7 +11,7 @@ import { CookingSchedule } from '../../models/cooking-schedule.model';
 })
 export class ProgramationDetailComponent implements OnInit {
 
-  public cookingSchedule: CookingSchedule;
+  public cookingSchedule: Observable<CookingSchedule>;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -18,14 +19,10 @@ export class ProgramationDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setCookingScheduleDetail();
+    this.cookingSchedule = this._cookingSchedule.getById(this.cookingScheduleId);
   }
 
-  private setCookingScheduleDetail(): void {
-    this._cookingSchedule.getById(this.cookingScheduleId).subscribe(cookingSchedule => {
-      this.cookingSchedule = cookingSchedule;
-    });
-  }
+
 
   public get cookingScheduleId(): string {
     return this._activatedRoute.snapshot.params.id;

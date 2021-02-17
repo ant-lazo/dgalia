@@ -1,13 +1,104 @@
-<div class="content-layout fullwidth-standard-normal-scroll scrollingContainer">
-
-
+<div *ngIf="cookingSchedule  | async as cs " class="content-layout fullwidth-standard-normal-scroll scrollingContainer">
 
     <app-header [urlRoute]="'back'" [module]="'Programación'" [title]="'Detalle de programación'">
     </app-header>
 
-
     <div class="main">
         <div class="content">
+
+
+            <!-- nombre y fecha -->
+            <div class="grid grid-cols-10 w-full">
+                <div class="col-span-5 w-full">
+                    <div class="flex flex-col  m-4 p-4 min-h-10 max-h-20 rounded border-2 light:bg-card border-gray">
+                        <div class="flex flex-row">
+                            <mat-icon class="mr-5"> sticky_note_2 </mat-icon>
+                            <span> {{ cs.note }} </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-5 w-full">
+                    <div class="flex flex-col  m-4 p-4 min-h-10 max-h-20 rounded border-2 light:bg-card border-gray">
+                        <div class="flex flex-row">
+                            <mat-icon class="mr-5"> calendar_today </mat-icon>
+                            <span> {{ cs.dateString }} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- descripción -->
+            <div
+                class="flex flex-col items-center justify-center m-4 p-4 min-h-10 max-h-20 rounded border-2 light:bg-card border-gray">
+
+                <div class="flex flex-row w-full items-center justify-center">
+                    <div class="flex w-full ">
+                        <div class=" flex flex-row items-center justify-center ">
+                            <mat-icon class="mr-5">chrome_reader_mode</mat-icon>
+                            <h6 class=" m-0 p-0"> {{ cs.description }} </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- curso -->
+            <div
+                class="flex flex-col items-center justify-center m-4 p-4 min-h-10 max-h-20 rounded border-2 light:bg-card border-gray">
+
+                <div class="flex flex-row w-full items-center justify-center">
+                    <div class="flex w-full ">
+                        <div class=" flex flex-row items-center justify-center ">
+                            <mat-icon class=" mr-5"> school</mat-icon>
+                            <h5 class="m-0 p-0">Curso: &nbsp; </h5>
+                            <h6 class=" m-0 p-0" *ngFor="let c of cs.course"> {{ c.name + ' ' }} &nbsp;
+                                <span *ngIf="cs.course.length > 1">,</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- clases -->
+            <div
+                class="flex flex-col items-center justify-center m-4 p-4 min-h-10 max-h-20 rounded border-2 light:bg-card border-gray">
+
+                <div class="flex flex-row w-full items-center justify-center">
+                    <div class="flex w-full ">
+                        <div class=" flex flex-row items-center justify-center ">
+                            <mat-icon class=" mr-5"> class </mat-icon>
+                            <h5 class=" m-0 p-0">Clase: &nbsp; </h5>
+                            <h6 class=" m-0 p-0" *ngFor="let c of cs.classes"> {{ c.name + ' ' }}&nbsp;
+                                <span *ngIf="cs.classes.length > 1">,</span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Ciclo y sede -->
+            <div class="grid grid-cols-10 w-full">
+                <div class="col-span-5 w-full">
+                    <div class="flex flex-col  m-4 p-4 min-h-10 max-h-20 rounded border-2 light:bg-card border-gray">
+                        <div class="flex flex-row">
+                            <mat-icon class="mr-5"> add_chart </mat-icon>
+                            <span> Ciclo: {{ cs.term.name }} </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-5 w-full">
+                    <div class="flex flex-col  m-4 p-4 min-h-10 max-h-20 rounded border-2 light:bg-card border-gray">
+                        <div class="flex flex-row">
+                            <mat-icon class="mr-5"> apartment </mat-icon>
+                            <span> {{ cs.headquarter.name }} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </div>
