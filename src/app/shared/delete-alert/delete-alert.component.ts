@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-delete-alert',
   template: `
-    <h2> Esta seguro de eliminar  <span class="text-green-600"> {{ data.title }} </span>? </h2>
+    <h2> Esta seguro de eliminar  <span class="text-primary"> {{ data.title }} </span>? </h2>
     
     <h4>
         {{ data.subtitle || 'Tenga en cuenta que se hará la eliminacion de manera permante del registro y no se podrá recuperar la información.' }}
