@@ -98,9 +98,6 @@ export class InitialDataResolver implements Resolve<any>
             this._loadUser()
         ]).pipe(
             map((data) => {
-
-
-
                 return {
                     messages: data[0].messages,
                     navigation: {
@@ -113,21 +110,6 @@ export class InitialDataResolver implements Resolve<any>
                     shortcuts: data[3].shortcuts,
                     user: data[4].user
                 };
-
-
-                // old code
-                // return {
-                //     messages     : data[0].messages,
-                //     navigation   : {
-                //         compact   : data[1].compact,
-                //         default   : data[1].default,
-                //         futuristic: data[1].futuristic,
-                //         horizontal: data[1].horizontal
-                //     },
-                //     notifications: data[2].notifications,
-                //     shortcuts    : data[3].shortcuts,
-                //     user         : data[4].user
-                // };
             })
         );
     }

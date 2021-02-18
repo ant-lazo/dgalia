@@ -1,4 +1,4 @@
-import { Component, OnInit , Inject} from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
@@ -13,7 +13,7 @@ import { HeadquartesService } from "../../services/headquartes.service";
 export class HeadquarterEditComponent implements OnInit {
 
   public editForm: FormGroup;
-  private id:Number;
+  private id: Number;
 
   constructor(
     private matDialogRef: MatDialogRef<HeadquarterEditComponent>,
@@ -21,7 +21,7 @@ export class HeadquarterEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _headquarter: HeadquartesService,
     @Inject(MAT_DIALOG_DATA) public data: Headquarter
-    ) {
+  ) {
     this.setForm(this.data);
   }
 
@@ -47,12 +47,12 @@ export class HeadquarterEditComponent implements OnInit {
     });
   }
 
-  private setForm(data:Headquarter) {
+  private setForm(data: Headquarter) {
     this.editForm = this.formBuilder.group({
       description: [data.description, Validators.required],
       name: [data.name, Validators.required],
       address: [data.address, Validators.required],
-      person: [data.personInCharge, Validators.required],
+      person_in_charge: [data.personInCharge, Validators.required],
     });
     this.id = data.id;
   }

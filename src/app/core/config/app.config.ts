@@ -21,7 +21,7 @@ export interface AppConfig {
  * 'ConfigService'.
  */
 export const appConfig: AppConfig = {
-    layout: 'classy',
+    layout: 'compact',
     theme: 'light'
 };
 

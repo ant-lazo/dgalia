@@ -106,144 +106,27 @@
         },
         {
             "id": "2",
-            "title": "Empresa",
-            "link": "x",
-            "type": "aside",
-            "icon": "business",
-            "children": [
-                {
-                    "id": "pages.company.profile",
-                    "title": "Estados de cuenta",
-                    "link": "/",
-                    "type": "basic"
-                },
-                {
-                    "id": "pages.company.users",
-                    "title": "Pagos",
-                    "link": "/",
-                    "type": "basic"
-                }
-            ]
-        },
-        {
-            "id": "3",
-            "title": "Clientes",
-            "link": "x",
-            "type": "aside",
-            "icon": "people",
-            "children": [
-                {
-                    "id": "pages.customers.list",
-                    "title": "Listado",
-                    "link": "/clientes/listado",
-                    "type": "basic"
-                },
-                {
-                    "id": "pages.customers.create",
-                    "title": "Registro",
-                    "link": "/clientes/registro",
-                    "type": "basic"
-                }
-            ]
-        },
-        {
-            "id": "4",
-            "title": "Proovedores",
-            "link": "x",
-            "type": "aside",
-            "icon": "recent_actors",
-            "children": [
-                {
-                    "id": "pages.providers.list",
-                    "title": "Listado",
-                    "link": "/proveedores/listado",
-                    "type": "basic"
-                },
-                {
-                    "id": "pages.providers.create",
-                    "title": "Registro ",
-                    "link": "/proveedores/registro",
-                    "type": "basic"
-                }
-            ]
-        },
-        {
-            "id": "5",
-            "title": "Productos",
-            "link": "/",
-            "type": "aside",
-            "icon": "clear_all",
-            "children": [
-                {
-                    "id": "pages.product.list",
-                    "title": "Listado",
-                    "link": "/",
-                    "type": "basic"
-                },
-                {
-                    "id": "pages.product.create",
-                    "title": "Registro",
-                    "link": "/",
-                    "type": "basic"
-                },
-                {
-                    "id": "pages.product.kardex",
-                    "title": "Kardex",
-                    "link": "/",
-                    "type": "basic"
-                }
-            ]
-        },
-        {
-            "id": "6",
-            "title": "Contabilidad",
-            "link": "/",
-            "type": "aside",
-            "icon": "bar_chart",
-            "children": [
-                {
-                    "id": "pages.contabilidad.list",
-                    "title": "Cuentas por cobrar",
-                    "link": "/",
-                    "type": "basic"
-                },
-                {
-                    "id": "pages.contabilidad.proovedores",
-                    "title": "Facturas proovedores",
-                    "link": "/",
-                    "type": "basic"
-                }
-            ]
-        },
-        {
-            "id": "7",
             "title": "Administración",
             "link": "/",
             "type": "aside",
             "icon": "settings",
             "children": [
                 {
-                    "id": "pages.administation.users",
-                    "title": "Usuarios",
-                    "link": "/administracion/usuarios",
+                    "id": "pages.administation.headquarter",
+                    "title": "Sedes",
+                    "link": "/sedes",
                     "type": "basic"
                 },
                 {
-                    "id": "pages.administation.empresas",
-                    "title": "Empresas",
-                    "link": "/administracion/negocios",
+                    "id": "pages.administation.course",
+                    "title": "Cursos",
+                    "link": "/cursos",
                     "type": "basic"
                 },
                 {
-                    "id": "pages.administation.roles",
-                    "title": "Roles",
-                    "link": "/administracion/roles",
-                    "type": "basic"
-                },
-                {
-                    "id": "pages.administation.permisos",
-                    "title": "Permisos",
-                    "link": "/administracion/permisos",
+                    "id": "pages.administation.term",
+                    "title": "Términos",
+                    "link": "/terminos",
                     "type": "basic"
                 }
             ]
