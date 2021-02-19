@@ -6,7 +6,7 @@ export interface CookingSchedule {
     dateNumber: number;
     dateString: string;
     enabled: boolean;
-    recipes: Recipe[];
+    recipes: CookingScheduleRecipe[];
     course: Course[];
     classes: Course[];
     term: Course;
@@ -31,7 +31,7 @@ interface Course {
     name: string;
 }
 
-interface Recipe {
+export interface CookingScheduleRecipe {
     id: number;
     name: string;
     code: string;
