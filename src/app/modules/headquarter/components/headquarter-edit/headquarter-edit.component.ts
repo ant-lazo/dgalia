@@ -41,6 +41,7 @@ export class HeadquarterEditComponent implements OnInit {
 
   private editHeadquarter(data: any): void {
     data.id = this.id;
+    console.log("🚀 ~ file: headquarter-edit.component.ts ~ line 44 ~ HeadquarterEditComponent ~ editHeadquarter ~ data", data)
     this._headquarter.editHeadquarter(data).subscribe(() => {
       this._appNotifications.editSuccess();
       this.matDialogRef.close(true);
@@ -52,7 +53,7 @@ export class HeadquarterEditComponent implements OnInit {
       description: [data.description, Validators.required],
       name: [data.name, Validators.required],
       address: [data.address, Validators.required],
-      person: [data.personInCharge, Validators.required],
+      person_in_charge: [data.personInCharge, Validators.required],
     });
     this.id = data.id;
   }

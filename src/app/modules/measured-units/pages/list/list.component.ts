@@ -51,6 +51,7 @@ export class ListComponent implements OnInit {
     this.model = MeasuredunitListComponentModel.fromJson(config.list_component);
     this.registerButton.push(this.model.registerButton);
     this.tableModel = MeasuredUnitListTableModel.fromJson(config.list_table);
+    this.tableModel.tableLabels = ["code","name","options"];
   }
 
   private getList(): void {

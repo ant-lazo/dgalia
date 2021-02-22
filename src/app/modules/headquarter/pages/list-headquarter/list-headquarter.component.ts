@@ -53,6 +53,7 @@ export class ListHeadquarterComponent implements OnInit {
     this.tableModel = HeadquarterListTableModel.fromJson(config.list_table);
     this.model.title = "Sedes";
     this.model.module = "Administración";
+    this.tableModel.tableLabels = ["code","name","options"];
   }
 
   private getList(): void {

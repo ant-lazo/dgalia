@@ -51,8 +51,9 @@ export class ListTermComponent implements OnInit {
     this.model = TermListComponentModel.fromJson(config.list_component);
     this.registerButton.push(this.model.registerButton);
     this.tableModel = TermListTableModel.fromJson(config.list_table);
-    this.model.title = "Términos";
+    this.model.title = "Ciclos";
     this.model.module = "Administración";
+    this.tableModel.tableLabels = ["code","name","options"];
   }
 
   private getList(): void {
