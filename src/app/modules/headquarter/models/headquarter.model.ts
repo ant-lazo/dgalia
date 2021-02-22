@@ -7,4 +7,5 @@ export interface Headquarter {
     address: string;
     personInCharge: string;
     enabled: boolean;
+    color: string;
 }

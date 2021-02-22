@@ -52,7 +52,7 @@ export default class ProgramationCalendarComponentHelper {
                 newCalendarList.push({
                     id: item.headquarter.id.toString(),
                     title: item.headquarter.name,
-                    color: this.getRandomColor(),
+                    color: item.headquarter.color,
                     visible: true
                 })
             }

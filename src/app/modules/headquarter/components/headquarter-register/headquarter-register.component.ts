@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { appColors } from "app/core/config/app.config";
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { HeadquartesService } from "../../services/headquartes.service";
 
@@ -12,6 +13,7 @@ import { HeadquartesService } from "../../services/headquartes.service";
 export class HeadquarterRegisterComponent implements OnInit {
 
   public registerForm: FormGroup;
+  public appColors: string[] = appColors;
 
   constructor(
     private matDialogRef: MatDialogRef<HeadquarterRegisterComponent>,
@@ -49,7 +51,8 @@ export class HeadquarterRegisterComponent implements OnInit {
       name: [null, Validators.required],
       description: [null, Validators.required],
       address: [null, Validators.required],
-      person: [null, Validators.required],
+      person_in_charge: [null, Validators.required],
+      color: [null, Validators.required]
     });
   }
 
