@@ -1,0 +1,81 @@
+{
+    "list_component": {
+        "module": "cocina",
+        "title": "Unidades de medida",
+        "register_button": {
+            "label": "Registrar",
+            "color": "primary ",
+            "type": "Stroked",
+            "action": "register",
+            "icon": "save"
+        }
+    },
+    "list_table": {
+        "default_url_image": "assets/images/dgalia/logo/logo-orange.jpg",
+        "delete_icon": "delete",
+        "update_icon": "update",
+        "table_labels": [
+            "image",
+            "code",
+            "name",
+            "options"
+        ],
+        "items": [
+            {
+                "column_def": "image",
+                "label": "imagen",
+                "icon": ""
+            },
+            {
+                "column_def": "code",
+                "label": "Código",
+                "icon": ""
+            },
+            {
+                "column_def": "name",
+                "label": "Nombre",
+                "icon": ""
+            },
+            {
+                "column_def": "options",
+                "label": "Opciones",
+                "icon": ""
+            }
+        ]
+    },
+    "register": {
+        "register_nutton_label": "Registrar",
+        "register_nutton_icon": "Registrar",
+        "title": "Registrar una",
+        "subtitle": "Unidad de medida",
+        "form_code_label": "Código",
+        "form_code_icon": "Código",
+        "form_name_label": "Nombre",
+        "form_name_icon": "Nombre",
+        "cancel_button_label": "Cancelar",
+        "cancel_button_icon": "Cancelar",
+        "register_button_label": "Cancelar",
+        "register_button_icon": "Cancelar"
+    },
+    "edit": {
+        "title": "Registrar una",
+        "subtitle": "Unidad de medida",
+        "form_code_label": "Código",
+        "form_code_icon": "Código",
+        "form_name_label": "Nombre",
+        "form_name_icon": "Nombre",
+        "cancel_button_label": "Cancelar",
+        "cancel_button_icon": "Cancelar",
+        "register_button_label": "Cancelar",
+        "register_button_icon": "Cancelar"
+    },
+    "delete": {
+        "title": "Seguro que desea eliminar esta",
+        "subtitle": "Unidad de medida",
+        "warning_text": "Seguro que desea eliminar esta unidad de medida? no podrá deshacer esta acción",
+        "cancel_button_label": "Cancelar",
+        "cancel_button_icon": "Cancelar",
+        "delete_button_label": "Cancelar",
+        "delete_button_icon": "Cancelar"
+    }
+}

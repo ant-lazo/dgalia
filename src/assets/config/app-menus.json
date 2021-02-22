@@ -1,0 +1,325 @@
+{
+    "general": [
+        {
+            "children": [
+                {
+                    "id": "1",
+                    "title": "Cocina",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "store",
+                    "children": [
+                        {
+                            "id": "pages.cocina.insumos",
+                            "title": "Insumos",
+                            "link": "/insumos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.recetas",
+                            "title": "Recetas",
+                            "link": "/recetas",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.unidades-de-medida",
+                            "title": "Unidades de medida ",
+                            "link": "/unidades-de-medida",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.programacion",
+                            "title": "Programación",
+                            "link": "/programacion",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "4",
+                    "title": "Administración",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.administation.headquarter",
+                            "title": "Sedes",
+                            "link": "/sedes",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.course",
+                            "title": "Cursos",
+                            "link": "/cursos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.term",
+                            "title": "Ciclos",
+                            "link": "/ciclos",
+                            "type": "basic"
+                        }
+                    ]
+                }
+            ],
+            "icon": "apps",
+            "id": "starter",
+            "subtitle": "Menú de opciones",
+            "title": "DASHBOARD",
+            "type": "group"
+        }
+    ],
+    "compact": [
+        {
+            "id": "1",
+            "title": "Cocina",
+            "link": "/",
+            "type": "aside",
+            "icon": "store",
+            "children": [
+                {
+                    "id": "pages.cocina.insumos",
+                    "title": "Insumos",
+                    "link": "/insumos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.recetas",
+                    "title": "Recetas",
+                    "link": "/recetas",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.unidades-de-medida",
+                    "title": "Unidades de medida ",
+                    "link": "/unidades-de-medida",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.caja",
+                    "title": "Programación",
+                    "link": "/programacion",
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Administración",
+            "link": "/",
+            "type": "aside",
+            "icon": "settings",
+            "children": [
+                {
+                    "id": "pages.administation.headquarter",
+                    "title": "Sedes",
+                    "link": "/sedes",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.administation.course",
+                    "title": "Cursos",
+                    "link": "/cursos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.administation.term",
+                    "title": "Términos",
+                    "link": "/terminos",
+                    "type": "basic"
+                }
+            ]
+        }
+    ],
+    "futuristic": [
+        {
+            "children": [
+                {
+                    "id": "1",
+                    "title": "Cocina",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "store",
+                    "children": [
+                        {
+                            "id": "pages.cocina.generate",
+                            "title": "Insumos",
+                            "link": "/insumos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.recipe",
+                            "title": "Recetas",
+                            "link": "/recetas",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.reports",
+                            "title": "Unidades de medida ",
+                            "link": "/unidades-de-medida",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.caja",
+                            "title": "Programación",
+                            "link": "/programacion",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "title": "Kardex",
+                    "link": "x",
+                    "type": "collapsable",
+                    "icon": "business",
+                    "children": [
+                        {
+                            "id": "pages.company.profile",
+                            "title": "Estados de cuenta",
+                            "link": "/",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.company.users",
+                            "title": "Pagos",
+                            "link": "/",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "4",
+                    "title": "Administración",
+                    "type": "aside",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.administation.activity",
+                            "title": "Actividades Económicas",
+                            "link": "/admin/activity/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.currency",
+                            "title": "Monedas",
+                            "link": "/admin/currency/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.companyGroup",
+                            "title": "Grupo Empresarial",
+                            "link": "/admin/companyGroup/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.companySize",
+                            "title": "Tamaño Empresa",
+                            "link": "/admin/companySize/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.internalCompanies",
+                            "title": "Empresas Internas",
+                            "link": "/admin/internalCompanies/listado",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "3",
+                    "title": "Mantenimiento",
+                    "link": "x",
+                    "type": "collapsable",
+                    "icon": "people",
+                    "children": [
+                        {
+                            "id": "pages.customers.list",
+                            "title": "Listado",
+                            "link": "/",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.customers.create",
+                            "title": "Registro",
+                            "link": "/",
+                            "type": "basic"
+                        }
+                    ]
+                }
+            ],
+            "icon": "apps",
+            "id": "starter",
+            "subtitle": "Menú de opciones",
+            "title": "DASHBOARD",
+            "type": "group"
+        }
+    ],
+    "horizontal": [
+        {
+            "id": "1",
+            "title": "Cocina",
+            "type": "group",
+            "icon": "store",
+            "children": [
+                {
+                    "id": "pages.cocina.generate",
+                    "title": "Insumos",
+                    "link": "/insumos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.list",
+                    "title": "Recetas",
+                    "link": "/recetas",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.reports",
+                    "title": "Unidades de medida ",
+                    "link": "/unidades-de-medida",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.caja",
+                    "title": "Programación",
+                    "link": "/programacion",
+                    "type": "basic"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Kardex",
+            "type": "group",
+            "icon": "business",
+            "children": [
+                {
+                    "id": "pages.cocina.generate",
+                    "title": "Insumos",
+                    "link": "/insumos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.list",
+                    "title": "Recetas",
+                    "link": "/recetas",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.reports",
+                    "title": "Unidades de medida ",
+                    "link": "/unidades-de-medida",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.caja",
+                    "title": "Programación",
+                    "link": "/programacion",
+                    "type": "basic"
+                }
+            ]
+        }
+    ]
+}

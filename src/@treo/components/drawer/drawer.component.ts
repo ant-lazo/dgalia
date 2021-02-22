@@ -2,16 +2,17 @@ import { Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, 
 import { animate, AnimationBuilder, AnimationPlayer, style } from '@angular/animations';
 import { TreoDrawerMode, TreoDrawerPosition } from '@treo/components/drawer/drawer.types';
 import { TreoDrawerService } from '@treo/components/drawer/drawer.service';
+import { TreoConfigService } from '@treo/services/config';
+import { OpenDrawerService } from 'app/core/services/open-drawer.service';
 
 @Component({
-    selector     : 'treo-drawer',
-    templateUrl  : './drawer.component.html',
-    styleUrls    : ['./drawer.component.scss'],
+    selector: 'treo-drawer',
+    templateUrl: './drawer.component.html',
+    styleUrls: ['./drawer.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    exportAs     : 'treoDrawer'
+    exportAs: 'treoDrawer'
 })
-export class TreoDrawerComponent implements OnInit, OnDestroy
-{
+export class TreoDrawerComponent implements OnInit, OnDestroy {
     // Name
     @Input()
     name: string;
@@ -24,6 +25,8 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
     private _player: AnimationPlayer;
     private _position: TreoDrawerPosition;
     private _transparentOverlay: boolean | '';
+    public themeColor: string;
+    public theme: string;
 
     // On fixed changed
     @Output()
@@ -56,9 +59,10 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         private _animationBuilder: AnimationBuilder,
         private _elementRef: ElementRef,
         private _renderer2: Renderer2,
-        private _treoDrawerService: TreoDrawerService
-    )
-    {
+        private _treoDrawerService: TreoDrawerService,
+        public _openDrawerService: OpenDrawerService,
+        private themeConfig: TreoConfigService
+    ) {
         // Set the private defaults
         this._animationsEnabled = false;
         this._overlay = null;
@@ -86,11 +90,9 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      * @param value
      */
     @Input()
-    set fixed(value: boolean)
-    {
+    set fixed(value: boolean) {
         // If the value is the same, return...
-        if ( this._fixed === value )
-        {
+        if (this._fixed === value) {
             return;
         }
 
@@ -98,12 +100,10 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this._fixed = value;
 
         // Update the class
-        if ( this.fixed )
-        {
+        if (this.fixed) {
             this._renderer2.addClass(this._elementRef.nativeElement, 'treo-drawer-fixed');
         }
-        else
-        {
+        else {
             this._renderer2.removeClass(this._elementRef.nativeElement, 'treo-drawer-fixed');
         }
 
@@ -111,8 +111,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this.fixedChanged.next(this.fixed);
     }
 
-    get fixed(): boolean
-    {
+    get fixed(): boolean {
         return this._fixed;
     }
 
@@ -122,11 +121,9 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      * @param value
      */
     @Input()
-    set mode(value: TreoDrawerMode)
-    {
+    set mode(value: TreoDrawerMode) {
         // If the value is the same, return...
-        if ( this._mode === value )
-        {
+        if (this._mode === value) {
             return;
         }
 
@@ -134,18 +131,15 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this._disableAnimations();
 
         // If the mode changes: 'over -> side'
-        if ( this.mode === 'over' && value === 'side' )
-        {
+        if (this.mode === 'over' && value === 'side') {
             // Hide the overlay
             this._hideOverlay();
         }
 
         // If the mode changes: 'side -> over'
-        if ( this.mode === 'side' && value === 'over' )
-        {
+        if (this.mode === 'side' && value === 'over') {
             // If the drawer is opened
-            if ( this.opened )
-            {
+            if (this.opened) {
                 // Show the overlay
                 this._showOverlay();
             }
@@ -175,8 +169,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         }, 500);
     }
 
-    get mode(): TreoDrawerMode
-    {
+    get mode(): TreoDrawerMode {
         return this._mode;
     }
 
@@ -186,18 +179,15 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      * @param value
      */
     @Input()
-    set opened(value: boolean | '')
-    {
+    set opened(value: boolean | '') {
         // If the value is the same, return...
-        if ( this._opened === value )
-        {
+        if (this._opened === value) {
             return;
         }
 
         // If the provided value is an empty string,
         // take that as a 'true'
-        if ( value === '' )
-        {
+        if (value === '') {
             value = true;
         }
 
@@ -206,26 +196,21 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
 
         // If the drawer opened, and the mode
         // is 'over', show the overlay
-        if ( this.mode === 'over' )
-        {
-            if ( this._opened )
-            {
+        if (this.mode === 'over') {
+            if (this._opened) {
                 this._showOverlay();
             }
-            else
-            {
+            else {
                 this._hideOverlay();
             }
         }
 
         // Update opened classes
-        if ( this.opened )
-        {
+        if (this.opened) {
             this._renderer2.setStyle(this._elementRef.nativeElement, 'visibility', 'visible');
             this._renderer2.addClass(this._elementRef.nativeElement, 'treo-drawer-opened');
         }
-        else
-        {
+        else {
             this._renderer2.setStyle(this._elementRef.nativeElement, 'visibility', 'hidden');
             this._renderer2.removeClass(this._elementRef.nativeElement, 'treo-drawer-opened');
         }
@@ -234,8 +219,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this.openedChanged.next(this.opened);
     }
 
-    get opened(): boolean | ''
-    {
+    get opened(): boolean | '' {
         return this._opened;
     }
 
@@ -245,11 +229,9 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      * @param value
      */
     @Input()
-    set position(value: TreoDrawerPosition)
-    {
+    set position(value: TreoDrawerPosition) {
         // If the value is the same, return...
-        if ( this._position === value )
-        {
+        if (this._position === value) {
             return;
         }
 
@@ -270,8 +252,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this.positionChanged.next(this.position);
     }
 
-    get position(): TreoDrawerPosition
-    {
+    get position(): TreoDrawerPosition {
         return this._position;
     }
 
@@ -281,30 +262,25 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      * @param value
      */
     @Input()
-    set transparentOverlay(value: boolean | '')
-    {
+    set transparentOverlay(value: boolean | '') {
         // If the value is the same, return...
-        if ( this._opened === value )
-        {
+        if (this._opened === value) {
             return;
         }
 
         // If the provided value is an empty string,
         // take that as a 'true' and set the opened value
-        if ( value === '' )
-        {
+        if (value === '') {
             // Set the opened value
             this._transparentOverlay = true;
         }
-        else
-        {
+        else {
             // Set the transparent overlay value
             this._transparentOverlay = value;
         }
     }
 
-    get transparentOverlay(): boolean | ''
-    {
+    get transparentOverlay(): boolean | '' {
         return this._transparentOverlay;
     }
 
@@ -315,8 +291,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Register the drawer
         this._treoDrawerService.registerComponent(this.name, this);
     }
@@ -324,8 +299,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Deregister the drawer from the registry
         this._treoDrawerService.deregisterComponent(this.name);
     }
@@ -339,11 +313,9 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      *
      * @private
      */
-    private _enableAnimations(): void
-    {
+    private _enableAnimations(): void {
         // If the animations are already enabled, return...
-        if ( this._animationsEnabled )
-        {
+        if (this._animationsEnabled) {
             return;
         }
 
@@ -356,11 +328,9 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      *
      * @private
      */
-    private _disableAnimations(): void
-    {
+    private _disableAnimations(): void {
         // If the animations are already disabled, return...
-        if ( !this._animationsEnabled )
-        {
+        if (!this._animationsEnabled) {
             return;
         }
 
@@ -373,8 +343,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      *
      * @private
      */
-    private _showOverlay(): void
-    {
+    private _showOverlay(): void {
         // Create the backdrop element
         this._overlay = this._renderer2.createElement('div');
 
@@ -382,14 +351,12 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this._overlay.classList.add('treo-drawer-overlay');
 
         // Add a class depending on the fixed option
-        if ( this.fixed )
-        {
+        if (this.fixed) {
             this._overlay.classList.add('treo-drawer-overlay-fixed');
         }
 
         // Add a class depending on the transparentOverlay option
-        if ( this.transparentOverlay )
-        {
+        if (this.transparentOverlay) {
             this._overlay.classList.add('treo-drawer-overlay-transparent');
         }
 
@@ -400,7 +367,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this._player =
             this._animationBuilder
                 .build([
-                    animate('300ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({opacity: 1}))
+                    animate('300ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ opacity: 1 }))
                 ]).create(this._overlay);
 
         // Play the animation
@@ -417,10 +384,8 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      *
      * @private
      */
-    private _hideOverlay(): void
-    {
-        if ( !this._overlay )
-        {
+    private _hideOverlay(): void {
+        if (!this._overlay) {
             return;
         }
 
@@ -428,7 +393,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this._player =
             this._animationBuilder
                 .build([
-                    animate('300ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({opacity: 0}))
+                    animate('300ms cubic-bezier(0.25, 0.8, 0.25, 1)', style({ opacity: 0 }))
                 ]).create(this._overlay);
 
         // Play the animation
@@ -438,8 +403,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
         this._player.onDone(() => {
 
             // If the backdrop still exists...
-            if ( this._overlay )
-            {
+            if (this._overlay) {
                 // Remove the backdrop
                 this._overlay.parentNode.removeChild(this._overlay);
                 this._overlay = null;
@@ -453,8 +417,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      * @private
      */
     @HostListener('mouseenter')
-    private _onMouseenter(): void
-    {
+    private _onMouseenter(): void {
         // Enable the animations
         this._enableAnimations();
 
@@ -468,8 +431,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
      * @private
      */
     @HostListener('mouseleave')
-    private _onMouseleave(): void
-    {
+    private _onMouseleave(): void {
         // Enable the animations
         this._enableAnimations();
 
@@ -484,8 +446,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
     /**
      * Open the drawer
      */
-    open(): void
-    {
+    open(): void {
         // Enable the animations
         this._enableAnimations();
 
@@ -496,8 +457,7 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
     /**
      * Close the drawer
      */
-    close(): void
-    {
+    close(): void {
         // Enable the animations
         this._enableAnimations();
 
@@ -508,16 +468,29 @@ export class TreoDrawerComponent implements OnInit, OnDestroy
     /**
      * Toggle the opened status
      */
-    toggle(): void
-    {
+    toggle(): void {
         // Toggle
-        if ( this.opened )
-        {
+        if (this.opened) {
             this.close();
         }
-        else
-        {
+        else {
             this.open();
         }
+    }
+
+    public setThemeColor(event: any): void {
+        this.themeConfig.setColorTheme(event);
+        // this.close();
+    }
+
+    public setTheme(event: any): void {
+        this.themeConfig.setTheme(event);
+        // this.close();
+    }
+
+    public setCurrentConfigValues(): void {
+        const config = this.themeConfig.getSelectedConfig();
+        this.theme = config.layout;
+        this.themeColor = config.theme
     }
 }

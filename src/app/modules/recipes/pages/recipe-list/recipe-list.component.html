@@ -1,0 +1,24 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header [module]="'Cocina'" [title]="'Recetas'"></app-header>
+
+    <div class="main">
+        <div class="content">
+
+            <app-row-buttons *ngIf="registerButton" [buttons]="registerButton" [justify]="'justify-end'"
+                (onClick)="redirectToRegisterPage()">
+            </app-row-buttons>
+
+            <app-search-box [placeHolder]="'Ingrese nombre de receta'" (param)="filterByName($event)"></app-search-box>
+
+            <app-recipe-list-table 
+                *ngIf="recipeList && recipeList.length > 0"
+                (selectedToDelete)="validationToDeleteRecipe($event)" 
+                (selectedToDetail)="detalle($event)" 
+                (selectedToEdit)="editar($event)" 
+                [list]="recipeFilteredList">
+            </app-recipe-list-table>
+
+        </div>
+    </div>
+</div>
