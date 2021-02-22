@@ -18,23 +18,14 @@ import { OpenDrawerService } from 'app/core/services/open-drawer.service';
     encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements OnInit, OnDestroy {
+
     config: AppConfig;
     layout: Layout;
     theme: 'dark' | 'light';
     public showDrawer: boolean;
-
-    // Private
     private _unsubscribeAll: Subject<any>;
 
-    /**
-     * Constructor
-     *
-     * @param {ActivatedRoute} _activatedRoute
-     * @param {DOCUMENT} _document
-     * @param {Router} _router
-     * @param {TreoConfigService} _treoConfigService
-     * @param {TreoMediaWatcherService} _treoMediaWatcherService
-     */
+
     constructor(
         private _activatedRoute: ActivatedRoute,
         @Inject(DOCUMENT) private _document: any,
@@ -48,13 +39,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
         this._unsubscribeAll = new Subject();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
     ngOnInit(): void {
         this.listenOpenDrawerEvent();
         // Set the theme based on the configuration

@@ -1,1 +1,18 @@
-<p>programation-detail works!</p>
+<div *ngIf="cookingSchedule  | async as cs " class="content-layout fullwidth-standard-normal-scroll scrollingContainer">
+
+    <app-header [urlRoute]="'back'" [module]="'Programación'" [title]="'Detalle de programación'">
+    </app-header>
+
+    <div class="main">
+        <div class="content">
+
+            <!-- Items -->
+            <app-programation-detail-body [cookingSchedule]="cs"></app-programation-detail-body>
+
+            <!-- table -->
+            <div class="table mt-10 w-full">
+                <app-programation-detail-table [recipes]="cs.recipes"></app-programation-detail-table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,15 +1,12 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
 
-    <app-header [module]="'Cocina'" [title]="'Detalle de una'" [highlightext]="'receta'" [urlRoute]="'/recetas/listado'">
+    <app-header [module]="'Cocina'" [title]="'Detalle de una'" [highlightext]="'receta'" [urlRoute]="'back'">
     </app-header>
 
     <div class="main">
         <div class="content">
-            <detail-recipe-form [termList]="termList | async" [headquarterList]="headquarterList | async"
-                [courseList]="courseList | async" [recipe]="recipe">
-            </detail-recipe-form>
+            <detail-recipe-form [recipe]="recipe"> </detail-recipe-form>
             <recipe-supply-list [recipe]="recipe" [eliminarButtom]="false"></recipe-supply-list>
         </div>
-
     </div>
 </div>

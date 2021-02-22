@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoursesService } from '../../../course/services/courses.service';
 import { Observable } from 'rxjs';
 import { Course } from 'app/modules/course/models/course.interface';
@@ -21,9 +20,9 @@ export class DetailRecipeComponent implements OnInit {
   public courseList: Observable<Course[]>;
   public headquarterList: Observable<Headquarter[]>;
   public termList: Observable<Term[]>;
-  public recipe:Observable<Recipe>;
-  private id:number;
-  
+  public recipe: Observable<Recipe>;
+  private id: number;
+
   constructor(
     public _recipe: ReciperService,
     public _course: CoursesService,
@@ -33,9 +32,6 @@ export class DetailRecipeComponent implements OnInit {
   ) {
     this.id = Number(route.snapshot.paramMap.get('id'));
   }
-
-  // logica del mapper
-  // logica de envio a servidor
 
   ngOnInit(): void {
     this.courseList = this._course.getCourseList();

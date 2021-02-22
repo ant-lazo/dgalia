@@ -1,4 +1,4 @@
-<form [formGroup]="recipeForm" class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
+<div *ngIf="recipeForm" class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
 
     <div class="grid grid-cols-2 gap-4 w-full">
         <div class="col-span-1">
@@ -75,4 +75,4 @@
             </span>
         </div>
     </div>
-</form>
+</div>

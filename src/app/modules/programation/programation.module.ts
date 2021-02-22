@@ -39,6 +39,8 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerMod
 import { SelectDateComponent } from './components/select-date/select-date.component';
 import { ProgramationListComponent } from './pages/programation-list/programation-list.component';
 import { ListTableComponent } from './components/list-table/list-table.component';
+import { ProgramationDetailTableComponent } from './components/programation-detail-table/programation-detail-table.component';
+import { ProgramationDetailBodyComponent } from './components/programation-detail-body/programation-detail-body.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { ListTableComponent } from './components/list-table/list-table.component
     SelectedRecipesTableComponent,
     SelectDateComponent,
     ListTableComponent,
-    ProgramationListComponent
+    ProgramationListComponent,
+    ProgramationDetailTableComponent,
+    ProgramationDetailBodyComponent,
   ],
   imports: [
     ProgramationRoutingModule,

@@ -20,14 +20,14 @@ export class RecipeSupplyListComponent implements OnChanges {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @Input() eliminarButtom: boolean = true;
 
-  
+
   @Output() completeList: EventEmitter<Supply[]> = new EventEmitter();
   @Input() trigger: boolean;
   @Input() recipe: Observable<Recipe>;
 
   public listSupply: any[] = [];
   public addButtons: RowAppButtonModel[];
-  public displayedColumns: string[] =['image', 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
+  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
   public dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
@@ -40,12 +40,14 @@ export class RecipeSupplyListComponent implements OnChanges {
   ngOnChanges() {
     if (this.trigger && this.listSupply.length === 0) this._toast.error('Debe seleccionar como minimo un insumo', 'Error en insumos')
     if (this.trigger && this.listSupply && this.listSupply.length > 0) this.completeList.emit(this.listSupply);
-    this.recipe.subscribe(element => {  
-      var linea:any = {};
-      for(const sup of element.detail){
-        linea = sup.supply;
-        linea.quantity = sup.quantity;
-        this.listSupply.push(linea);
+    this.recipe.subscribe(element => {
+      var linea: any = {};
+      if (element?.detail) {
+        for (const sup of element.detail) {
+          linea = sup.supply;
+          linea.quantity = sup.quantity;
+          this.listSupply.push(linea);
+        }
       }
       this.setDataSourceList(this.listSupply);
     });

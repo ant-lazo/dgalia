@@ -37,9 +37,9 @@ export class CookingScheduleService {
     ).pipe(map(result => result.data));
   }
 
-    /**
-   * getByRange
-   */
+  /**
+ * getByRange
+ */
   public getAll(): Observable<CookingSchedule[]> {
     return this._http.get<JsonResp>(
       environment.apiUrl + apiRoutes.cookin_schedule.default
@@ -54,7 +54,15 @@ export class CookingScheduleService {
     return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.cookin_schedule.default, body);
   }
 
-  public delete(id:number): Observable<JsonResp> {
-    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.cookin_schedule.default + "?id="+id.toString());
+  /**
+   * get by id
+   */
+  public getById(id: string): Observable<CookingSchedule> {
+    return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.cookin_schedule.default, { params: { id } })
+      .pipe(map(resp => resp.data));
+  }
+
+  public delete(id: number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.cookin_schedule.default + "?id=" + id.toString());
   }
 }

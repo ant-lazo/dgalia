@@ -1,4 +1,6 @@
 import { Component, Input, } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,7 @@ import { Component, Input, } from '@angular/core';
           <span class="path"> {{ module || 'Modulo' }} </span>
       </div>
       <h1> 
-      <button *ngIf="urlRoute" [routerLink]="urlRoute"  mat-button router>
+      <button *ngIf="urlRoute" (click)="navigateToBack()"  mat-button router>
         <mat-icon>arrow_back</mat-icon>
       </button>
         {{ title || 'Titulo' }}
@@ -26,4 +28,19 @@ export class HeaderComponent {
   @Input() title: string;
   @Input() urlRoute: string;
   @Input() highlightext: string;
+
+  constructor(
+    private _router: Router,
+    private _location: Location
+  ) { }
+
+  public navigateToBack() {
+    if (this.urlRoute === 'back') {
+      this._location.back();
+      return;
+    }
+    this._router.navigate([this.urlRoute]);
+
+
+  }
 }

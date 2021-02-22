@@ -27,7 +27,7 @@
 
                 <div class="categories">
 
-                    <a class="category" [routerLink]="['../calendario']">
+                    <a class="category cursor-pointer" [routerLink]="['../calendario']">
                         <mat-icon>calendar_today</mat-icon>
                         <span class="title">Mes actual</span>
                         <span class="subtitle">
@@ -35,13 +35,13 @@
                         </span>
                     </a>
 
-                    <a class="category" [routerLink]="['../registro']">
+                    <a class="category cursor-pointer" [routerLink]="['../registro']">
                         <mat-icon [svgIcon]="'feather:file-text'"></mat-icon>
                         <span class="title">Registrar</span>
                         <span class="subtitle">Selecciona una fecha y una receta para registrar una programación</span>
                     </a>
 
-                    <a class="category" (click)="selectDate()">
+                    <a class="category cursor-pointer" (click)="selectDate()">
                         <mat-icon>manage_search</mat-icon>
                         <span class="title">Encuentra</span>
                         <span class="subtitle">
@@ -49,7 +49,7 @@
                         </span>
                     </a>
 
-                    <a class="category" [routerLink]="['../listado']">
+                    <a class="category cursor-pointer" [routerLink]="['../listado//']">
                         <mat-icon>list</mat-icon>
                         <span class="title">Listado</span>
                         <span class="subtitle">
