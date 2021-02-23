@@ -1,28 +1,21 @@
 <table *ngIf="list && list.length > 0" mat-table [dataSource]="dataSource" matSort class="w-full">
 
     <ng-container [matColumnDef]="displayedColumns[0]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagenn </th>
-        <td mat-cell *matCellDef="let element">
-            <img class="row-image" src="assets/images/dgalia/logo/logo-orange.jpg" alt="image">
-        </td>
-    </ng-container>
-
-    <ng-container [matColumnDef]="displayedColumns[1]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
         <td mat-cell *matCellDef="let element"> {{element.dateString}} </td>
     </ng-container>
 
-    <ng-container [matColumnDef]="displayedColumns[2]">
+    <ng-container [matColumnDef]="displayedColumns[1]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
         <td mat-cell *matCellDef="let element"> {{element.headquarter.name}} </td>
     </ng-container>
 
-    <ng-container [matColumnDef]="displayedColumns[3]">
+    <ng-container [matColumnDef]="displayedColumns[2]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
         <td mat-cell *matCellDef="let element"> {{ element.description }}</td>
     </ng-container>
 
-    <ng-container [matColumnDef]="displayedColumns[4]">
+    <ng-container [matColumnDef]="displayedColumns[3]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Opciones </th>
         <td mat-cell *matCellDef="let element">
             <button (click)="selectedToEdit.emit(element)" title="Editar {{ element.description }}" type="button" color="green" mat-icon-button>

@@ -2,9 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@a
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { CookingScheduleRegisterForm } from '../../models/cooking-schedule-register-form.model';
 import { CookingSchedule } from '../../models/cooking-schedule.model';
-import { CookingScheduleService } from '../../services/cooking-schedule.service';
 @Component({
   selector: 'app-list-table',
   templateUrl: './list-table.component.html',
@@ -13,7 +11,7 @@ import { CookingScheduleService } from '../../services/cooking-schedule.service'
 export class ListTableComponent implements OnChanges {
 
   @Input() list: CookingSchedule[];
-  public displayedColumns: string[] = ['image', 'date', 'headquarter', 'desc', 'actions'];
+  public displayedColumns: string[] = [ 'date', 'headquarter', 'desc', 'actions'];
 
   @Output() onSelected: 'update' | 'delete';
   @Output() selectedToDelete: EventEmitter<any> = new EventEmitter();
