@@ -56,8 +56,8 @@
                         },
                         {
                             "id": "pages.administation.term",
-                            "title": "Términos",
-                            "link": "/terminos",
+                            "title": "Ciclos",
+                            "link": "/ciclos",
                             "type": "basic"
                         }
                     ]
@@ -73,7 +73,7 @@
     "compact": [
         {
             "id": "1",
-            "title": "Concina",
+            "title": "Cocina",
             "link": "/",
             "type": "aside",
             "icon": "store",

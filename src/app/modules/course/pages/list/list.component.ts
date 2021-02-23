@@ -53,6 +53,7 @@ export class ListComponent implements OnInit {
     this.tableModel = CourseListTableModel.fromJson(config.list_table);
     this.model.title = "Cursos";
     this.model.module = "Administración";
+    this.tableModel.tableLabels = ["code","name","options"];
   }
 
   private getList(): void {

@@ -45,7 +45,7 @@
         <ng-container  [matColumnDef]="displayedColumns[6]">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> <span *ngIf="eliminarButtom">Opciones</span> </th>
             <td class="th-max" mat-cell *matCellDef="let element"> 
-                <button *ngIf="eliminarButtom" title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
+                <button (click)="eliminar(element)" *ngIf="eliminarButtom" title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

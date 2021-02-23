@@ -18,7 +18,7 @@ export class SupplyListTableComponent implements OnChanges {
   @Output() selectedToDelete: EventEmitter<any> = new EventEmitter();
   @Output() selectedToEdit: EventEmitter<any> = new EventEmitter();
   
-  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'actions'];
+  public displayedColumns: string[] = ['code', 'name', 'category', 'measuredUnit', 'actions'];
   public dataSource: MatTableDataSource<Supply> = new MatTableDataSource([]);
 
   constructor() { }

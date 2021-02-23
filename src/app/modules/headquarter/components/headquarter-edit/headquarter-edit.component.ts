@@ -43,6 +43,7 @@ export class HeadquarterEditComponent implements OnInit {
 
   private editHeadquarter(data: any): void {
     data.id = this.id;
+    console.log("🚀 ~ file: headquarter-edit.component.ts ~ line 44 ~ HeadquarterEditComponent ~ editHeadquarter ~ data", data)
     this._headquarter.editHeadquarter(data).subscribe(() => {
       this._appNotifications.editSuccess();
       this.matDialogRef.close(true);

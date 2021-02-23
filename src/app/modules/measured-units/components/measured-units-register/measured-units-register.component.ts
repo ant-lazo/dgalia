@@ -48,8 +48,6 @@ export class MeasuredUnitRegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       code: [null, Validators.required],
       name: [null, Validators.required],
-      category_id: [null, Validators.required],
-      measured_unit_id: [null, Validators.required]
     });
   }
 

@@ -63,7 +63,7 @@ export const appRoutes: Route[] = [
             { path: 'recetas', loadChildren: () => import('app/modules/recipes/recipes.module').then(r => r.RecipesModule) },
             { path: 'programacion', loadChildren: () => import('app/modules/programation/programation.module').then(p => p.ProgramationModule) },
             { path: 'cursos', loadChildren: () => import('app/modules/course/course.module').then(p => p.CourseModule) },
-            { path: 'terminos', loadChildren: () => import('app/modules/term/term.module').then(r => r.TermModule) },
+            { path: 'ciclos', loadChildren: () => import('app/modules/term/term.module').then(r => r.TermModule) },
             { path: 'sedes', loadChildren: () => import('app/modules/headquarter/headquarter.module').then(r => r.HeadquarterModule) }
         ]
     }
