@@ -1,5 +1,4 @@
 <div class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
-    <app-row-buttons *ngIf="eliminarButtom" (onClick)="showAddSupplyModel()" [buttons]="addButtons"></app-row-buttons>
 
     <table *ngIf="suppliesSelected.length > 0" mat-table [dataSource]="dataSource" matSort class="w-full">
 
@@ -34,9 +33,10 @@
         </ng-container>
 
         <ng-container  [matColumnDef]="displayedColumns[5]">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> <span *ngIf="eliminarButtom">Opciones</span> </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> 
+                 </th>
             <td class="th-max" mat-cell *matCellDef="let element"> 
-                <button (click)="deleteSupply(element)" *ngIf="eliminarButtom" title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
+                <button (click)="deleteSupply(element)" title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

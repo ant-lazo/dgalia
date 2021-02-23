@@ -10,7 +10,7 @@ export class RecipeSelectedSupplyMapper {
             e.supply.name,
             e.supply.category.name,
             e.supply.measuredUnit.name,
-            Number(e.quantity)
-        );
+            Number(e.quantity),
+            e.supply.measuredUnit.id        );
     });
 }

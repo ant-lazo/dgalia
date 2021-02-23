@@ -3,12 +3,12 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Term } from '../../../term/models/term.interface';
 import { Recipe } from '../../models/recipe.model';
 import { Observable } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
 import { TermsService } from 'app/modules/term/services/terms.service';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
 import { CoursesService } from 'app/modules/course/services/courses.service';
 import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 import { Course } from 'app/modules/course/models/course.interface';
+import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
 
 @Component({
   selector: 'edit-recipe-form',
@@ -29,25 +29,31 @@ export class EditRecipeFormComponent implements OnInit, OnDestroy {
     private _terms: TermsService,
     private _headquarter: HeadquartesService,
     public _course: CoursesService,
-  ) {
-
-  }
+    private _formService: RecipeRegisterFomService
+  ) {}
 
   ngOnInit(): void {
     this.setForm(this.recipesdas);
+    this.listenFormChanges();
     this.termList = this._terms.getCompleteList();
     this.courseList = this._course.getCourseList();
     this.headquarterList = this._headquarter.getCompleteList();
   }
 
   ngOnDestroy(): void {
-    console.log('some');
-    
+    this._formService.updateForm = null;
   }
 
+  public listenFormChanges(): void {
+    this._formService.updateForm = this.recipeForm.value;
+    this.recipeForm.valueChanges.subscribe(form => {
+      this._formService.updateForm = this.recipeForm.valid ? form : null;
+    });
+  }
 
   private setForm(recipe: Recipe) {
     this.recipeForm = this._formBuilder.group({
+      id: [recipe.id],
       name: [recipe.name, Validators.required],
       description: [recipe.description, Validators.required],
       code: [recipe.code, Validators.required],

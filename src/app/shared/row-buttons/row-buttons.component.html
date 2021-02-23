@@ -1,4 +1,4 @@
-<div *ngIf="buttons.length && buttons.length > 0" [class]="'flex mb-8 ' + (justify || 'justify-end')">
+<div *ngIf="buttons.length && buttons.length > 0" [class]="'flex ' + (justify || 'justify-end')">
 
   <div *ngFor="let button of buttons" [ngSwitch]="button.type">
 

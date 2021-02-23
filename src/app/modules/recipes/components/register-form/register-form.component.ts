@@ -1,40 +1,38 @@
-import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input,  OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Term } from '../../../term/models/term.interface';
 import { Headquarter } from '../../../headquarter/models/headquarter.model';
 import { Course } from '../../../course/models/course.interface';
-import { RegisterRecipeForm } from '../../models/register-recipe-form.model';
-import { ToastrService } from 'ngx-toastr';
+import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
 
 @Component({
   selector: 'recipe-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss']
 })
-export class RecipeFormComponent implements OnChanges {
+export class RecipeFormComponent implements OnInit {
 
   @Input() termList: Term[];
   @Input() headquarterList: Headquarter[];
   @Input() courseList: Course[];
-  @Input() trigger: boolean;
-  @Output() completeForm: EventEmitter<RegisterRecipeForm> = new EventEmitter();
 
   public recipeForm: FormGroup;
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _toast: ToastrService
+    private _formService: RecipeRegisterFomService
   ) {
     this.setForm();
   }
 
-  ngOnChanges(): void {
-    if (this.trigger && this.recipeForm.invalid) {
-      this._toast.error('El formulario no es válido, verifique los campos requeridos e intente nuevamente', 'Error en formulario');
-    }
-    if (this.trigger && this.recipeForm.valid) {
-      this.completeForm.emit(this.recipeForm.value);
-    }
+  ngOnInit(): void {
+    this.listenFormChanges();
+  }
+
+  public listenFormChanges(): void {
+    this.recipeForm.valueChanges.subscribe(form => {
+      if (this.recipeForm.valid) this._formService.registerForm = form;
+    });
   }
 
   private setForm() {

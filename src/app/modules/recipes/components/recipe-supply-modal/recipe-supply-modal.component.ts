@@ -5,12 +5,10 @@ import { Supply } from '../../../supply/models/supply';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import * as _ from 'underscore';
-import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
 import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
 
 @Component({
@@ -77,7 +75,8 @@ export class RecipeSupplyModalComponent implements OnInit {
         founded.name,
         founded.category.name,
         founded.measuredUnit.name,
-        1
+        1,
+        founded.measuredUnit.id
       ));
 
       this.setDataSourceList(this.selectedList);

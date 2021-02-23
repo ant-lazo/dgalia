@@ -1,13 +1,12 @@
 import { Component, ViewChild, OnChanges,   Input } from '@angular/core';
-import { RowAppButtonModel, RowButtonType } from 'app/shared/row-buttons/models/row-nutton.model';
 import { MatDialog } from '@angular/material/dialog';
 import { RecipeSupplyModalComponent } from '../recipe-supply-modal/recipe-supply-modal.component';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ToastrService } from 'ngx-toastr';
 import { Recipe } from '../../models/recipe.model';
 import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
 import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
+import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
 
 @Component({
   selector: 'recipe-supply-list',
@@ -17,21 +16,18 @@ import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply
 export class RecipeSupplyListComponent implements OnChanges {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @Input() eliminarButtom: boolean = true;
   @Input() recipe: Recipe;
+  @Input() addSupplyEvent: boolean;
 
   private recipeSelectedSupplyMapper: RecipeSelectedSupplyMapper;
   public suppliesSelected: RecipeSelectedSupply[] = [];
-  public addButtons: RowAppButtonModel[];
   public displayedColumns: string[] = [ 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
   public dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
 
-
   constructor(
     private _matDialog: MatDialog,
-    private _toast: ToastrService
+    private _formService: RecipeRegisterFomService
   ) {
-    this.buildAddSupplyButton()
     this.recipeSelectedSupplyMapper = new RecipeSelectedSupplyMapper();
   }
 
@@ -40,10 +36,10 @@ export class RecipeSupplyListComponent implements OnChanges {
       this.suppliesSelected = this.recipeSelectedSupplyMapper.getFromRecipedetail(this.recipe.detail);
       this.setDataSourceList(this.suppliesSelected);
     }
+    if (this.addSupplyEvent) this.openAddSupplyModal();
   }
 
-
-  public showAddSupplyModel() {
+  public openAddSupplyModal(): void {
     const dialogRef = this._matDialog.open(RecipeSupplyModalComponent, {
       width: '850px',
       height: '650px'
@@ -53,18 +49,9 @@ export class RecipeSupplyListComponent implements OnChanges {
       if (list && list.length > 0) this.validateNewItems(list)
     });
   }
-  private buildAddSupplyButton() {
-    this.addButtons = [
-      new RowAppButtonModel({
-        action: 'add',
-        color: 'primary',
-        icon: 'add_circle_outline',
-        label: 'Añadir insumo',
-        type: RowButtonType.Stroked
-      }),
-    ];
-  }
+
   private setDataSourceList(list: RecipeSelectedSupply[]) {
+    this._formService.supplies = list;
     this.dataSource = new MatTableDataSource(list);
     this.dataSource.sort = this.sort;
   }
