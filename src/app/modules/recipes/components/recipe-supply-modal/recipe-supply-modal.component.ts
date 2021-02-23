@@ -10,6 +10,8 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import * as _ from 'underscore';
+import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
+import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
 
 @Component({
   selector: 'app-recipe-supply-modal',
@@ -21,12 +23,12 @@ export class RecipeSupplyModalComponent implements OnInit {
   public filteredOptions: Observable<Supply[]>;
   public supplyList: Supply[] = [];
   public searchParam = new FormControl();
-  public selectedList = [];
+  public selectedList: RecipeSelectedSupply[] = [];
 
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
+  public displayedColumns: string[] = ['code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
   public dataSource: MatTableDataSource<Supply> = new MatTableDataSource([]);
   quantity = new FormControl(1, Validators.min(1));
 
@@ -64,20 +66,20 @@ export class RecipeSupplyModalComponent implements OnInit {
   }
 
   public setSupply(event: MatAutocompleteSelectedEvent): void {
+
     const founded = this.supplyList.find(e => e.name === event.option.value);
-    const exist = this.selectedList.find(element => {
-      if(element.id == founded.id){
-        element.editar = true;
-        return true;
-      };
-      return false;
-    });
-    if (founded && !exist) {
-      var data:any = founded;
-      data.quantity = 1;
-      this.quantity = new FormControl(1, Validators.min(1));
-      data.editar = true;
-      this.selectedList.push(data);
+    const exist = this.selectedList.find(element => element.id == founded.id);
+
+    if (!exist) {
+      this.selectedList.push(new RecipeSelectedSupply(
+        founded.id,
+        founded.code,
+        founded.name,
+        founded.category.name,
+        founded.measuredUnit.name,
+        1
+      ));
+
       this.setDataSourceList(this.selectedList);
     }
     this.searchParam.setValue('');
@@ -86,14 +88,6 @@ export class RecipeSupplyModalComponent implements OnInit {
   private setDataSourceList(list: any[]) {
     this.dataSource = new MatTableDataSource(list);
     this.dataSource.sort = this.sort;
-  }
-
-  print() {
-    console.log(this.selectedList);
-  }
-
-  onNoClick(): void {
-    this._dialogRef.close();
   }
 
   guardar(element:any) {

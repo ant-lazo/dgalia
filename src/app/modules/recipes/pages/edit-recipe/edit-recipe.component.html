@@ -3,19 +3,17 @@
     <app-header [module]="'Cocina'" [title]="'Editar una'" [highlightext]="'receta'" [urlRoute]="'/recetas/listado'">
     </app-header>
 
-    <div class="main">
+    <div class="main" *ngIf="recipe">
         <div class="content">
-            <edit-recipe-form [trigger]="getComponentsData" [termList]="termList | async" [headquarterList]="headquarterList | async"
-                [courseList]="courseList | async" [recipe]="recipe" 
-                (completeForm)="setCompleteData(null, $event)" >
-            </edit-recipe-form>
+            <edit-recipe-form  [recipesdas]="recipe" ></edit-recipe-form>
             <div class="flex items-center justify-end -mx-8 mt-3 px-8 py-5">
                 <button type="submit" (click)="compleData()" class="px-6 ml-3" mat-flat-button [color]="'primary'">
                     <mat-icon class="mr-2">save</mat-icon>
                     Actualizar
                 </button>
             </div>
-            <recipe-supply-list [trigger]="getComponentsData" [recipe]="recipe" (completeList)="setCompleteData($event, null)"></recipe-supply-list>
+
+            <recipe-supply-list [recipe]="recipe"></recipe-supply-list>
         </div>
 
     </div>
