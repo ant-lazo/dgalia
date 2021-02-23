@@ -63,6 +63,9 @@ export class CookingScheduleService {
   }
 
   public delete(id: number): Observable<JsonResp> {
-    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.cookin_schedule.default + "?id=" + id.toString());
+    return this._http.delete<JsonResp>(
+      environment.apiUrl + apiRoutes.cookin_schedule.default,
+      { params: { id: id.toString() } }
+    );
   }
 }
