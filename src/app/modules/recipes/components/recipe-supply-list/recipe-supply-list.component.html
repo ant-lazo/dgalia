@@ -1,6 +1,6 @@
-<div class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
+<div *ngIf="suppliesSelected.length > 0" class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
 
-    <table *ngIf="suppliesSelected.length > 0" mat-table [dataSource]="dataSource" matSort class="w-full">
+    <table  mat-table [dataSource]="dataSource" matSort class="w-full">
 
         <ng-container [matColumnDef]="displayedColumns[0]">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
@@ -34,7 +34,8 @@
 
         <ng-container  [matColumnDef]="displayedColumns[5]">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> 
-                 </th>
+               Acciones
+             </th>
             <td class="th-max" mat-cell *matCellDef="let element"> 
                 <button (click)="deleteSupply(element)" title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
                     <mat-icon>delete</mat-icon>

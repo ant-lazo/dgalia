@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnChanges,   Input } from '@angular/core';
+import { Component, ViewChild, OnChanges, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RecipeSupplyModalComponent } from '../recipe-supply-modal/recipe-supply-modal.component';
 import { MatSort } from '@angular/material/sort';
@@ -13,7 +13,7 @@ import { RecipeRegisterFomService } from '../../services/recipe-register-fom.ser
   templateUrl: './recipe-supply-list.component.html',
   styleUrls: ['./recipe-supply-list.component.scss']
 })
-export class RecipeSupplyListComponent implements OnChanges {
+export class RecipeSupplyListComponent implements OnChanges, OnDestroy {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @Input() recipe: Recipe;
@@ -21,7 +21,7 @@ export class RecipeSupplyListComponent implements OnChanges {
 
   private recipeSelectedSupplyMapper: RecipeSelectedSupplyMapper;
   public suppliesSelected: RecipeSelectedSupply[] = [];
-  public displayedColumns: string[] = [ 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
+  public displayedColumns: string[] = ['code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
   public dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
@@ -32,11 +32,17 @@ export class RecipeSupplyListComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    if (this.recipe) {  
+    console.log(this.recipe);
+    
+    if (this.recipe) {
       this.suppliesSelected = this.recipeSelectedSupplyMapper.getFromRecipedetail(this.recipe.detail);
       this.setDataSourceList(this.suppliesSelected);
     }
     if (this.addSupplyEvent) this.openAddSupplyModal();
+  }
+
+  ngOnDestroy(): void {
+    this._formService.supplies = null;
   }
 
   public openAddSupplyModal(): void {
@@ -45,7 +51,7 @@ export class RecipeSupplyListComponent implements OnChanges {
       height: '650px'
     });
 
-    dialogRef.afterClosed().subscribe((list: RecipeSelectedSupply []) => {
+    dialogRef.afterClosed().subscribe((list: RecipeSelectedSupply[]) => {
       if (list && list.length > 0) this.validateNewItems(list)
     });
   }
@@ -62,11 +68,11 @@ export class RecipeSupplyListComponent implements OnChanges {
     this.setDataSourceList(this.suppliesSelected);
   }
 
-  private validateNewItems(list: RecipeSelectedSupply[] ): void {
-   for (const item of list) {
-     const founded = this.suppliesSelected.find(e => e.id == item.id);
-     if (!founded) this.suppliesSelected.push(item);
-   } 
-   this.setDataSourceList(this.suppliesSelected);
+  private validateNewItems(list: RecipeSelectedSupply[]): void {
+    for (const item of list) {
+      const founded = this.suppliesSelected.find(e => e.id == item.id);
+      if (!founded) this.suppliesSelected.push(item);
+    }
+    this.setDataSourceList(this.suppliesSelected);
   }
 }

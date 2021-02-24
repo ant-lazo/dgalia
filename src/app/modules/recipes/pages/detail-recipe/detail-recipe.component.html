@@ -6,7 +6,7 @@
     <div class="main">
         <div class="content">
             <detail-recipe-form [recipe]="recipe"> </detail-recipe-form>
-            <recipe-supply-list [recipe]="recipe"></recipe-supply-list>
+            <recipe-supply-list [recipe]="recipe | async"></recipe-supply-list>
         </div>
     </div>
 </div>

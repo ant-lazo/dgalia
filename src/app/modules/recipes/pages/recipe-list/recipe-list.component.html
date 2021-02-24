@@ -5,18 +5,17 @@
     <div class="main">
         <div class="content">
 
-            <app-row-buttons *ngIf="registerButton" [buttons]="registerButton" [justify]="'justify-end'"
-                (onClick)="redirectToRegisterPage()">
-            </app-row-buttons>
+            <div class="mb-5">
+                <app-row-buttons *ngIf="registerButton" [buttons]="registerButton" [justify]="'justify-end'"
+                    (onClick)="redirectToRegisterPage()">
+                </app-row-buttons>
+            </div>
 
             <app-search-box [placeHolder]="'Ingrese nombre de receta'" (param)="filterByName($event)"></app-search-box>
 
-            <app-recipe-list-table 
-                *ngIf="recipeList && recipeList.length > 0"
-                (selectedToDelete)="validationToDeleteRecipe($event)" 
-                (selectedToDetail)="detalle($event)" 
-                (selectedToEdit)="editar($event)" 
-                [list]="recipeFilteredList">
+            <app-recipe-list-table *ngIf="recipeList && recipeList.length > 0"
+                (selectedToDelete)="validationToDeleteRecipe($event)" (selectedToDetail)="detalle($event)"
+                (selectedToEdit)="editar($event)" [list]="recipeFilteredList">
             </app-recipe-list-table>
 
         </div>

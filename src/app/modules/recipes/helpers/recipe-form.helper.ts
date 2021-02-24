@@ -20,4 +20,23 @@ export class RecipeFormHelper {
             }),
           ];
     }
+
+    public get buttonsRowToRegister(): RowAppButtonModel[]{
+      return [
+          new RowAppButtonModel({
+            action: 'addsupply',
+            color: 'primary',
+            icon: 'add_circle_outline',
+            label: 'Añadir insumo',
+            type: RowButtonType.Stroked
+          }),
+          new RowAppButtonModel({
+            action: 'createRecipe',
+            color: 'primary',
+            icon: 'border_color',
+            label: 'Registrar receta',
+            type: RowButtonType.Flat,
+          }),
+        ];
+  }
 }
