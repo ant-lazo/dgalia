@@ -32,8 +32,6 @@ export class RecipeSupplyListComponent implements OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-    console.log(this.recipe);
-    
     if (this.recipe) {
       this.suppliesSelected = this.recipeSelectedSupplyMapper.getFromRecipedetail(this.recipe.detail);
       this.setDataSourceList(this.suppliesSelected);

@@ -75,12 +75,9 @@ export class AuthSignInComponent implements OnInit {
 
     private setModel(): void {
         const json = this._activatedRoute.snapshot.data;
-        console.log(json);
-
         if (json) {
             this.mapper = new SignInPageMapper();
             this.model = this.mapper.getUiElementa(json);
-            console.log(this.model);
         }
     }
 

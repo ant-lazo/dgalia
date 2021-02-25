@@ -4,41 +4,41 @@
 
     <button type="button" *ngSwitchCase="'Stroked'" (click)="onClick.emit(button.action)"
       [ngClass]="{'ml-5': justify === 'justify-end', 'mr-5' : justify === 'justify-start'} " mat-stroked-button
-      color="primary">
+      [color]="button.color">
       <mat-icon class="mr-2">{{button.icon}}</mat-icon>
       {{ button.label }}
     </button>
 
     <button type="button" *ngSwitchCase="'Flat'" (click)="onClick.emit(button.action)"
       [ngClass]="{'ml-5': justify === 'justify-end', 'mr-5' : justify === 'justify-start'} " mat-flat-button
-      color="primary">
+      [color]="button.color">
       <mat-icon class="mr-2">{{button.icon}}</mat-icon>
       {{ button.label }}
     </button>
 
     <button type="button" *ngSwitchCase="'Default'" (click)="onClick.emit(button.action)"
-      [ngClass]="{'ml-5': justify === 'justify-end', 'mr-5' : justify === 'justify-start'} " mat-button color="primary">
+      [ngClass]="{'ml-5': justify === 'justify-end', 'mr-5' : justify === 'justify-start'} " mat-button [color]="button.color">
       <mat-icon class="mr-2">{{button.icon}}</mat-icon>
       {{ button.label }}
     </button>
 
     <button type="button" *ngSwitchCase="'Icon'" (click)="onClick.emit(button.action)"
       [ngClass]="{'ml-5': justify === 'justify-end', 'mr-5' : justify === 'justify-start'} " mat-icon-button
-      color="primary">
+      [color]="button.color">
       <mat-icon class="mr-2">{{button.icon}}</mat-icon>
       {{ button.label }}
     </button>
 
     <button type="button" *ngSwitchCase="'MiniFab'" (click)="onClick.emit(button.action)"
       [ngClass]="{'ml-5': justify === 'justify-end', 'mr-5' : justify === 'justify-start'} " mat-mini-fab
-      color="primary">
+      [color]="button.color">
       <mat-icon class="mr-2">{{button.icon}}</mat-icon>
       {{ button.label }}
     </button>
 
     <button type="button" *ngSwitchCase="'Raised'" (click)="onClick.emit(button.action)"
       [ngClass]="{'ml-5': justify === 'justify-end', 'mr-5' : justify === 'justify-start'} " mat-raised-button
-      color="primary">
+      [color]="button.color">
       <mat-icon class="mr-2">{{button.icon}}</mat-icon>
       {{ button.label }}
     </button>

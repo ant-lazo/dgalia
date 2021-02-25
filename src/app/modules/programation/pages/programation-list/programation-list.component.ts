@@ -43,7 +43,7 @@ export class ProgramationListComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteAlertComponent, {
       width: '650px',
       height: '450px',
-      data: { title: `la programación ${programation.description}` }
+      data: { title: programation.description }
     });
 
     dialogRef.afterClosed().subscribe(result => result ? this.deleteProgramation(programation.id) : null);

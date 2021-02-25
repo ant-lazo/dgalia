@@ -14,7 +14,7 @@
                 </app-row-buttons>
             </div>
 
-            <div class="flex flex-col mt-5">
+            <div *ngIf="showRecipeTable" class="flex flex-col mt-5">
                 <app-selected-recipes-table [list]="recipesSelected"></app-selected-recipes-table>
             </div>
 

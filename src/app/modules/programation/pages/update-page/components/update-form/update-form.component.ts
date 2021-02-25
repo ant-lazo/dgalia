@@ -7,6 +7,8 @@ import { CoursesService } from 'app/modules/course/services/courses.service';
 import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
 import { CookingSchedule } from 'app/modules/programation/models/cooking-schedule.model';
+import { CookingScheduleUpdateForm } from 'app/modules/programation/models/update-form.model';
+import { CookingScheduleFormService } from 'app/modules/programation/services/cooking-schedule-form.service';
 import { Term } from 'app/modules/term/models/term.interface';
 import { TermsService } from 'app/modules/term/services/terms.service';
 import { forkJoin } from 'rxjs';
@@ -34,7 +36,8 @@ export class UpdateFormComponent implements OnInit {
     private _courses: CoursesService,
     private _terms: TermsService,
     private _classes: ClassesService,
-    private _headquarterService: HeadquartesService
+    private _headquarterService: HeadquartesService,
+    private _formService: CookingScheduleFormService
   ) {
     this.setForm();
   }
@@ -54,9 +57,9 @@ export class UpdateFormComponent implements OnInit {
       this.classList = result[1];
       this.termList = result[2];
       this.headquarterList = result[3];
-      this.setCookingScheduleCoursesAndClasses();
       this.setForm();
-
+      this.listeFormChanges();
+      this.setCookingScheduleCoursesAndClasses();
     });
   }
 
@@ -64,15 +67,13 @@ export class UpdateFormComponent implements OnInit {
     const founded = this.classesSelected.find(e => e.id === classSelected.id);
     if (!founded) {
       this.classesSelected.push(classSelected);
-      this.updateForm.controls.classes.setValue(null);
     }
   }
 
-  public setCourses(courseSelected: Class): void {
+  public setCourses(courseSelected: Course): void {
     const founded = this.coursesSelected.find(e => e.id === courseSelected.id);
     if (!founded) {
       this.coursesSelected.push(courseSelected);
-      this.updateForm.controls.courses.setValue(null);
     }
   }
 
@@ -86,6 +87,9 @@ export class UpdateFormComponent implements OnInit {
       const courseFounded = this.courseList.find(c => c.id === course.id)
       this.coursesSelected.push(courseFounded);
     }
+
+    this.updateForm.controls.courses.setValue(this.coursesSelected);
+    this.updateForm.controls.classes.setValue(this.classesSelected);
   }
 
   public deleteClass(index: number): void {
@@ -94,6 +98,16 @@ export class UpdateFormComponent implements OnInit {
 
   public deleteCourse(index: number): void {
     this.coursesSelected.splice(index, 1);
+  }
+
+  private listeFormChanges(): void {
+    this.updateForm.valueChanges.subscribe((form: CookingScheduleUpdateForm) => {
+      if (this.updateForm.valid) {
+        form.classes = this.classesSelected.map(e => e.id);
+        form.courses = this.coursesSelected.map(e => e.id);
+        this._formService.updateForm = form
+      };
+    });
   }
 
   private setForm(): void {

@@ -61,8 +61,6 @@ export class SupplyRegisterComponent implements OnInit {
     this._supply.generateCode(event.value).subscribe((code: string) => {
       this.supplyCode = code;
       this.registerForm.controls.code.setValue(code);
-      console.log(this.registerForm);
-      
     });
   }
 
