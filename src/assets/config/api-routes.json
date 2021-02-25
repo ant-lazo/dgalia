@@ -6,7 +6,8 @@
         "default": "measured-unit"
     },
     "supply": {
-        "default": "supply"
+        "default": "supply",
+        "generateCode": "/generate-code"
     },
     "product_category": {
         "default": "product-category"

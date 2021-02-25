@@ -13,16 +13,19 @@ import { Supply } from '../models/supply';
 })
 export class SupplyService {
 
+  private baseUrl: string;
+
   constructor(
     private _http: HttpClient
-  ) { }
-
+  ) {
+    this.baseUrl = environment.apiUrl + apiRoutes.supply.default;
+  }
 
   /**
    * this method returns a complete list of supplies registered
    */
   public getList(): Observable<Supply[]> {
-    return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.supply.default).pipe(map(result => {
+    return this._http.get<JsonResp>(this.baseUrl).pipe(map(result => {
       return result.data;
     }));
   }
@@ -31,7 +34,7 @@ export class SupplyService {
    * this method save new supply in db
    */
   public registerNewSupply(data: any): Observable<JsonResp> {
-    return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.supply.default, data);
+    return this._http.post<JsonResp>(this.baseUrl, data);
   }
 
   /**
@@ -39,16 +42,22 @@ export class SupplyService {
    * @param name -> is a string with name tha should be match
    */
   public findByName(name: string): Observable<Supply[]> {
-    return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.supply.default, { params: { name } })
+    return this._http.get<JsonResp>(this.baseUrl, { params: { name } })
       .pipe(map(resp => resp.data));
   }
 
 
-  public delete(id:number): Observable<JsonResp> {
-    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.supply.default + "?id="+id.toString());
+  public delete(id: number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(this.baseUrl + "?id=" + id.toString());
   }
 
-  public editSupply(data:Supply): Observable<JsonResp> {
-    return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.supply.default, data);
+  public editSupply(data: Supply): Observable<JsonResp> {
+    return this._http.put<JsonResp>(this.baseUrl, data);
+  }
+
+  public generateCode(productCategoryId: string): Observable<string> {
+    return this._http.get<JsonResp>(this.baseUrl + apiRoutes.supply.generateCode,
+      { params: { "product-category-id": productCategoryId } })
+      .pipe(map(result => result.data))
   }
 }
