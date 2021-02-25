@@ -26,16 +26,16 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad platos</th>
         <td mat-cell *matCellDef="let element">
             <mat-form-field class="flex-auto gt-xs:pr-3">
-                <input [(ngModel)]="element.quantity" type="number" autocomplete="off" matInput required
+                <input  [(ngModel)]="element.quantity" type="number" autocomplete="off" matInput required
                     placeholder="Cantidad" min="1">
             </mat-form-field>
         </td>
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[4]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Eliminar</th>
-        <td class="td-120" mat-cell *matCellDef="let element">
-            <button (click)="removeFromList(element)" mat-stroked-button color="primary">
+        <th  mat-header-cell *matHeaderCellDef mat-sort-header>Eliminar</th>
+        <td  mat-cell *matCellDef="let element">
+            <button  (click)="removeFromList(element)" mat-stroked-button color="primary">
                 <mat-icon class="mr-2">close</mat-icon>
             </button>
     </ng-container>

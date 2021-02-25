@@ -25,7 +25,7 @@ const routes: Routes = [
       { path: 'pagina-inicial', component: InitialPageComponent },
       { path: 'registro', component: RegisterPageComponent },
       { path: 'detalle/:id', component: ProgramationDetailComponent },
-      { path: 'editar/:id', component: ProgramationDetailComponent },
+      { path: 'editar/:id', loadChildren: () => import('./pages/update-page/update-page.module').then(u => u.UpdatePageModule) },
       { path: 'listado/:start/:end', component: ProgramationListComponent },
       { path: 'listado', component: ProgramationListComponent },
       { path: '', pathMatch: 'full', redirectTo: 'pagina-inicial' },

@@ -36,6 +36,33 @@ export class RegisterPageComponentHelper {
         ];
     }
 
+    public static getPageUpdateButtons(): RowAppButtonModel[] {
+        return [
+            new RowAppButtonModel({
+                action: 'add-recipes',
+                color: 'primary',
+                icon: 'library_add',
+                label: 'Añadir receta',
+                type: RowButtonType.Stroked
+            }),
+            new RowAppButtonModel({
+                action: 'cancel',
+                color: 'primary',
+                icon: 'close',
+                label: 'Cancelar',
+                type: RowButtonType.Stroked
+            }),
+            new RowAppButtonModel({
+                action: 'update',
+                color: 'primary',
+                icon: 'save',
+                label: 'Actualizar',
+                type: RowButtonType.Flat
+            })
+        ];
+    }
+
+
     public static getCookingScheduleRegisterForm(data: { classes: Class[], courses: Course[], recipes: CookingScheduleRecipe[], form: any }): CookingScheduleRegisterForm {
         return {
             classes: data.classes.map(e => e.id),
