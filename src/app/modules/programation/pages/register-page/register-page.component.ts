@@ -156,6 +156,10 @@ export class RegisterPageComponent implements OnInit {
     this._router.navigate(['programacion/pagina-inicial']);
   }
 
+  private setRecipeSelected(): void {
+ 
+  }
+
 
   private setForm() {
     this.cookingScheduleForm = this._builder.group({

@@ -43,7 +43,7 @@
 
     <mat-form-field class="w-full">
         <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id" required>
-            <mat-option *ngFor="let h of headquarterList" [value]="h.id">
+            <mat-option *ngFor="let h of headquarterList | async" [value]="h.id">
                 {{h.name}}
             </mat-option>
         </mat-select>
@@ -54,7 +54,7 @@
         <div class="col-span-1">
             <mat-form-field class="w-full">
                 <mat-select placeholder="Seleccione un curso" formControlName="course_id" required>
-                    <mat-option *ngFor="let c of courseList" [value]="c.id">
+                    <mat-option *ngFor="let c of courseList | async" [value]="c.id">
                         {{c.name}}
                     </mat-option>
                 </mat-select>
@@ -65,7 +65,7 @@
         <div class="col-span-1">
             <mat-form-field class="w-full">
                 <mat-select placeholder="Seleccione un ciclo" formControlName="term_id" required>
-                    <mat-option *ngFor="let t of termList" [value]="t.id">
+                    <mat-option *ngFor="let t of termList | async" [value]="t.id">
                         {{t.name}}
                     </mat-option>
                 </mat-select>

@@ -40,7 +40,5 @@ export class HeaderComponent {
       return;
     }
     this._router.navigate([this.urlRoute]);
-
-
   }
 }

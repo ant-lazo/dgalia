@@ -42,8 +42,8 @@ export class ProgramationListComponent implements OnInit {
   public validationToDeleteProgramation(programation: CookingSchedule): void {
     const dialogRef = this.dialog.open(DeleteAlertComponent, {
       width: '650px',
-      height: '500px',
-      data: { title: `la programación ${programation.description}` }
+      height: '450px',
+      data: { title: programation.description }
     });
 
     dialogRef.afterClosed().subscribe(result => result ? this.deleteProgramation(programation.id) : null);
@@ -56,7 +56,7 @@ export class ProgramationListComponent implements OnInit {
     });
   }
 
-  setProgramationList(start?: Date, end?: Date) {
+  public setProgramationList(start?: Date, end?: Date): void {
     if (start != null && end != null) {
       this._programation.getByRange(start, end).subscribe(programations => {
         this.programationFilteredList = programations;

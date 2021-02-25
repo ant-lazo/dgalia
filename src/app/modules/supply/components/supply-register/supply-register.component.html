@@ -3,13 +3,14 @@
 <form [formGroup]="registerForm" (ngSubmit)="formValidation()"
     class="flex flex-col mt-4 px-8 pt-10 bg-card shadow rounded overflow-hidden">
 
-    <div class="flex flex-col gt-xs:flex-row">
-
+    <div class="flex" *ngIf="supplyCode" >
         <mat-form-field class="flex-auto gt-xs:pr-3">
-            <input formControlName="code" type="text" autocomplete="off" matInput required placeholder="Código">
+            <input readonly formControlName="code" type="text" autocomplete="off" matInput required placeholder="Código">
             <mat-icon matPrefix>integration_instructions</mat-icon>
         </mat-form-field>
+    </div>
 
+    <div class="flex">
         <mat-form-field class="flex-auto gt-xs:pr-3">
             <input formControlName="name" type="text" autocomplete="off" matInput required placeholder="Nombre">
             <mat-icon matPrefix>sticky_note_2</mat-icon>
@@ -18,9 +19,9 @@
 
     <div class="flex">
         <mat-form-field class="flex-auto gt-xs:pr-3">
-            <mat-select placeholder="Seleccione una unidad de medída" formControlName="measured_unit_id" required>
-                <mat-option *ngFor="let  mu of measuddredUnitList | async" [value]="mu.id">
-                    {{mu.name}}
+            <mat-select (selectionChange)="getSupplyCode($event)" placeholder="Seleccione una categoría" formControlName="category_id" required>
+                <mat-option *ngFor="let pc of productCategoryList | async" [value]="pc.id">
+                    {{pc.name}}
                 </mat-option>
             </mat-select>
             <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
@@ -29,9 +30,9 @@
 
     <div class="flex">
         <mat-form-field class="flex-auto gt-xs:pr-3">
-            <mat-select placeholder="Seleccione una categoría" formControlName="category_id" required>
-                <mat-option *ngFor="let pc of productCategoryList | async" [value]="pc.id">
-                    {{pc.name}}
+            <mat-select placeholder="Seleccione una unidad de medída" formControlName="measured_unit_id" required>
+                <mat-option *ngFor="let  mu of measuddredUnitList | async" [value]="mu.id">
+                    {{mu.name}}
                 </mat-option>
             </mat-select>
             <mat-icon matPrefix svgIcon="clear_all"></mat-icon>

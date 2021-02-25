@@ -5,17 +5,12 @@
 
     <div class="main">
         <div class="content">
-            <recipe-form [trigger]="getComponentsData" [termList]="termList | async"
-                [headquarterList]="headquarterList | async" [courseList]="courseList | async"
-                (completeForm)="setCompleteData(null, $event)">
-            </recipe-form>
-            <div class="flex items-center justify-end -mx-8 mt-3 px-8 py-5">
-                <button type="button" (click)="compleData()" class="px-6 ml-3" mat-flat-button [color]="'primary'">
-                    <mat-icon class="mr-2">save</mat-icon>
-                    Registrar
-                </button>
+            <recipe-form> </recipe-form>
+            <div class="mt-5">
+                <app-row-buttons [justify]="'justify-end'" (onClick)="setOptionSelected($event)" [buttons]="rowButtons">
+                </app-row-buttons>
             </div>
-            <recipe-supply-list [trigger]="getComponentsData" (completeList)="setCompleteData($event, null)">
+            <recipe-supply-list [addSupplyEvent]="addsuppliyEvent">
             </recipe-supply-list>
         </div>
 

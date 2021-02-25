@@ -62,10 +62,10 @@ export class ListHeadquarterComponent implements OnInit {
     });
   }
 
-  editar(event:any){
+  public editar(event:any): void{
     const dialogRef = this.dialog.open(HeadquarterEditComponent, {
-      width: '650px',
-      height: '600px',
+      width: '700px',
+      height: '500px',
       data: event
     });
 

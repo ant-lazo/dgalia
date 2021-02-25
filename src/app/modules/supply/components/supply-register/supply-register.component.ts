@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
+import { MatSelectChange } from "@angular/material/select";
 import { MeasuredUnit } from "app/modules/measured-units/models/measured-unit.model";
 import { MeasuredUnitService } from "app/modules/measured-units/services/measured-unit.service";
 import { ProductCategory } from "app/modules/product-category/models/product-category.interface";
@@ -19,6 +20,7 @@ export class SupplyRegisterComponent implements OnInit {
   public registerForm: FormGroup;
   public measuddredUnitList: Observable<MeasuredUnit[]>;
   public productCategoryList: Observable<ProductCategory[]>;
+  public supplyCode: string;
 
   constructor(
     private matDialogRef: MatDialogRef<SupplyRegisterComponent>,
@@ -55,9 +57,16 @@ export class SupplyRegisterComponent implements OnInit {
 
   }
 
+  public getSupplyCode(event: MatSelectChange): void {
+    this._supply.generateCode(event.value).subscribe((code: string) => {
+      this.supplyCode = code;
+      this.registerForm.controls.code.setValue(code);
+    });
+  }
+
   private setForm() {
     this.registerForm = this.formBuilder.group({
-      code: [null, Validators.required],
+      code: [null],
       name: [null, Validators.required],
       category_id: [null, Validators.required],
       measured_unit_id: [null, Validators.required]

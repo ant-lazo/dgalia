@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { appColors } from "app/core/config/app.config";
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { Headquarter } from "../../models/headquarter.model";
 import { HeadquartesService } from "../../services/headquartes.service";
@@ -14,6 +15,7 @@ export class HeadquarterEditComponent implements OnInit {
 
   public editForm: FormGroup;
   private id: Number;
+  public appColors: string[] = appColors;
 
   constructor(
     private matDialogRef: MatDialogRef<HeadquarterEditComponent>,
@@ -41,7 +43,6 @@ export class HeadquarterEditComponent implements OnInit {
 
   private editHeadquarter(data: any): void {
     data.id = this.id;
-    console.log("🚀 ~ file: headquarter-edit.component.ts ~ line 44 ~ HeadquarterEditComponent ~ editHeadquarter ~ data", data)
     this._headquarter.editHeadquarter(data).subscribe(() => {
       this._appNotifications.editSuccess();
       this.matDialogRef.close(true);
@@ -54,6 +55,7 @@ export class HeadquarterEditComponent implements OnInit {
       name: [data.name, Validators.required],
       address: [data.address, Validators.required],
       person_in_charge: [data.personInCharge, Validators.required],
+      color: [data.color, Validators.required]
     });
     this.id = data.id;
   }

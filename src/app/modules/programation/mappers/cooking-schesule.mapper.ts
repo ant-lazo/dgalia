@@ -9,7 +9,6 @@ export class CookingScheduleModelMapper {
         return {
             id: recipe.id,
             code: recipe.code,
-            image: '',
             name: recipe.name,
             quantity: 1
         }

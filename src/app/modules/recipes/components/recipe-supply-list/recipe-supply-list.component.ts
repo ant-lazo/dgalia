@@ -1,93 +1,76 @@
-import { Component, ViewChild, OnChanges, Output, EventEmitter, Input } from '@angular/core';
-import { RowAppButtonModel, RowButtonType } from 'app/shared/row-buttons/models/row-nutton.model';
+import { Component, ViewChild, OnChanges, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RecipeSupplyModalComponent } from '../recipe-supply-modal/recipe-supply-modal.component';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import * as _ from 'underscore';
-import { ToastrService } from 'ngx-toastr';
-import { Supply } from 'app/modules/supply/models/supply';
-import { Observable } from 'rxjs';
 import { Recipe } from '../../models/recipe.model';
+import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
+import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
+import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
 
 @Component({
   selector: 'recipe-supply-list',
   templateUrl: './recipe-supply-list.component.html',
   styleUrls: ['./recipe-supply-list.component.scss']
 })
-export class RecipeSupplyListComponent implements OnChanges {
+export class RecipeSupplyListComponent implements OnChanges, OnDestroy {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @Input() eliminarButtom: boolean = true;
+  @Input() recipe: Recipe;
+  @Input() addSupplyEvent: boolean;
 
-
-  @Output() completeList: EventEmitter<Supply[]> = new EventEmitter();
-  @Input() trigger: boolean;
-  @Input() recipe: Observable<Recipe>;
-
-  public listSupply: any[] = [];
-  public addButtons: RowAppButtonModel[];
-  public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
+  private recipeSelectedSupplyMapper: RecipeSelectedSupplyMapper;
+  public suppliesSelected: RecipeSelectedSupply[] = [];
+  public displayedColumns: string[] = ['code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
   public dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
     private _matDialog: MatDialog,
-    private _toast: ToastrService
+    private _formService: RecipeRegisterFomService
   ) {
-    this.buildAddSupplyButton()
+    this.recipeSelectedSupplyMapper = new RecipeSelectedSupplyMapper();
   }
 
   ngOnChanges() {
-    if (this.trigger && this.listSupply.length === 0) this._toast.error('Debe seleccionar como minimo un insumo', 'Error en insumos')
-    if (this.trigger && this.listSupply && this.listSupply.length > 0) this.completeList.emit(this.listSupply);
-    this.recipe.subscribe(element => {
-      var linea: any = {};
-      if (element?.detail) {
-        for (const sup of element.detail) {
-          linea = sup.supply;
-          linea.quantity = sup.quantity;
-          this.listSupply.push(linea);
-        }
-      }
-      this.setDataSourceList(this.listSupply);
-    });
+    if (this.recipe) {
+      this.suppliesSelected = this.recipeSelectedSupplyMapper.getFromRecipedetail(this.recipe.detail);
+      this.setDataSourceList(this.suppliesSelected);
+    }
+    if (this.addSupplyEvent) this.openAddSupplyModal();
   }
 
+  ngOnDestroy(): void {
+    this._formService.supplies = null;
+  }
 
-  public showAddSupplyModel() {
+  public openAddSupplyModal(): void {
     const dialogRef = this._matDialog.open(RecipeSupplyModalComponent, {
       width: '850px',
       height: '650px'
     });
 
-    dialogRef.afterClosed().subscribe(value => {
-      if (value) {
-        this.listSupply = value;
-        this.setDataSourceList(this.listSupply);
-      }
+    dialogRef.afterClosed().subscribe((list: RecipeSelectedSupply[]) => {
+      if (list && list.length > 0) this.validateNewItems(list)
     });
   }
 
-  private buildAddSupplyButton() {
-    this.addButtons = [
-      new RowAppButtonModel({
-        action: 'add',
-        color: 'primary',
-        icon: 'add_circle_outline',
-        label: 'Añadir insumo',
-        type: RowButtonType.Stroked
-      }),
-    ];
-  }
-  private setDataSourceList(list: any[]) {
+  private setDataSourceList(list: RecipeSelectedSupply[]) {
+    this._formService.supplies = list;
     this.dataSource = new MatTableDataSource(list);
     this.dataSource.sort = this.sort;
   }
 
-  eliminar(element: any) {
-    this.listSupply = _.reject(this.listSupply, supply => {
-      return supply.id === element.id;
-    });
-    this.setDataSourceList(this.listSupply);
+  public deleteSupply(element: RecipeSelectedSupply): void {
+    const index = this.suppliesSelected.indexOf(element);
+    this.suppliesSelected.splice(index, 1);
+    this.setDataSourceList(this.suppliesSelected);
+  }
+
+  private validateNewItems(list: RecipeSelectedSupply[]): void {
+    for (const item of list) {
+      const founded = this.suppliesSelected.find(e => e.id == item.id);
+      if (!founded) this.suppliesSelected.push(item);
+    }
+    this.setDataSourceList(this.suppliesSelected);
   }
 }
