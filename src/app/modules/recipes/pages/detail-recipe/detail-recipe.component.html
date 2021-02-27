@@ -4,9 +4,9 @@
     </app-header>
 
     <div class="main">
-        <div class="content">
+        <div class="content" *ngIf="recipe">
             <detail-recipe-form [recipe]="recipe"> </detail-recipe-form>
-            <recipe-supply-list [recipe]="recipe | async"></recipe-supply-list>
+            <recipe-supply-list [list]="suppliesSelected"></recipe-supply-list>
         </div>
     </div>
 </div>

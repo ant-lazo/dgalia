@@ -9,6 +9,7 @@ export class RecipeSelectedSupply {
   measuredUnit: string;
   quantity: number;
   measuredUnitId: number;
+  editar: boolean;
 
   constructor(
     id: number,

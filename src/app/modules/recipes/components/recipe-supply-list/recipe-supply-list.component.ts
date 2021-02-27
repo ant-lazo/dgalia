@@ -1,11 +1,7 @@
-import { Component, ViewChild, OnChanges, Input, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { RecipeSupplyModalComponent } from '../recipe-supply-modal/recipe-supply-modal.component';
+import { Component, ViewChild, OnChanges, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Recipe } from '../../models/recipe.model';
 import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
-import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
 import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
 
 @Component({
@@ -13,45 +9,29 @@ import { RecipeRegisterFomService } from '../../services/recipe-register-fom.ser
   templateUrl: './recipe-supply-list.component.html',
   styleUrls: ['./recipe-supply-list.component.scss']
 })
-export class RecipeSupplyListComponent implements OnChanges, OnDestroy {
+export class RecipeSupplyListComponent implements OnChanges, OnDestroy, OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @Input() recipe: Recipe;
-  @Input() addSupplyEvent: boolean;
+  @Input() list: RecipeSelectedSupply[] = [];
+  @Input() deleteButton: boolean;
 
-  private recipeSelectedSupplyMapper: RecipeSelectedSupplyMapper;
-  public suppliesSelected: RecipeSelectedSupply[] = [];
-  public displayedColumns: string[] = ['code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
+  public displayedColumns: string[];
   public dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
-    private _matDialog: MatDialog,
     private _formService: RecipeRegisterFomService
-  ) {
-    this.recipeSelectedSupplyMapper = new RecipeSelectedSupplyMapper();
+  ) { }
+
+  ngOnInit(): void {
+    this.setColumns();
   }
 
   ngOnChanges() {
-    if (this.recipe) {
-      this.suppliesSelected = this.recipeSelectedSupplyMapper.getFromRecipedetail(this.recipe.detail);
-      this.setDataSourceList(this.suppliesSelected);
-    }
-    if (this.addSupplyEvent) this.openAddSupplyModal();
+    if (this.list) this.setDataSourceList(this.list);
   }
 
   ngOnDestroy(): void {
     this._formService.supplies = null;
-  }
-
-  public openAddSupplyModal(): void {
-    const dialogRef = this._matDialog.open(RecipeSupplyModalComponent, {
-      width: '850px',
-      height: '650px'
-    });
-
-    dialogRef.afterClosed().subscribe((list: RecipeSelectedSupply[]) => {
-      if (list && list.length > 0) this.validateNewItems(list)
-    });
   }
 
   private setDataSourceList(list: RecipeSelectedSupply[]) {
@@ -61,16 +41,18 @@ export class RecipeSupplyListComponent implements OnChanges, OnDestroy {
   }
 
   public deleteSupply(element: RecipeSelectedSupply): void {
-    const index = this.suppliesSelected.indexOf(element);
-    this.suppliesSelected.splice(index, 1);
-    this.setDataSourceList(this.suppliesSelected);
+    const index = this.list.indexOf(element);
+    this.list.splice(index, 1);
+    this.setDataSourceList(this.list);
   }
 
-  private validateNewItems(list: RecipeSelectedSupply[]): void {
-    for (const item of list) {
-      const founded = this.suppliesSelected.find(e => e.id == item.id);
-      if (!founded) this.suppliesSelected.push(item);
-    }
-    this.setDataSourceList(this.suppliesSelected);
+  private setColumns() {
+
+    const columns: string[] = ['code', 'name', 'category', 'measuredUnit', 'quantity'];
+    if (this.deleteButton) columns.push('actions');
+    this.displayedColumns = columns;
+    console.log(this.displayedColumns);
+
   }
+
 }

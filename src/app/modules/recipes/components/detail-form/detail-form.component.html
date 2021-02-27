@@ -1,4 +1,4 @@
-<div *ngIf="recipeForm" class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
+<div class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
 
     <div class="grid grid-cols-2 gap-4 w-full">
         <div class="col-span-1">
@@ -6,7 +6,7 @@
                 <strong>
                     Código:
                 </strong>
-                {{ recipeForm.code }}
+                {{ recipe.code }}
             </span>
         </div>
         <div class="col-span-1">
@@ -14,7 +14,7 @@
                 <strong>
                     Nombre:
                 </strong>
-                {{ recipeForm.name }}
+                {{ recipe.name }}
             </span>
         </div>
     </div>
@@ -25,7 +25,7 @@
                 <strong>
                     Desccripción:
                 </strong>
-                {{ recipeForm.description }}
+                {{ recipe.description }}
             </span>
         </div>
     </div>
@@ -36,7 +36,7 @@
                 <strong>
                     Costo:
                 </strong>
-                $ {{ recipeForm.cost }}
+                $ {{ recipe.cost }}
             </span>
         </div>
 
@@ -45,7 +45,7 @@
                 <strong>
                     Precio:
                 </strong>
-                $ {{ recipeForm.price }}
+                $ {{ recipe.price }}
             </span>
         </div>
     </div>
@@ -54,7 +54,7 @@
         <strong>
             Sede:
         </strong>
-        {{ recipeForm.headquarter.name }}
+        {{ recipe.headquarter.name }}
     </span>
 
     <div class="grid grid-cols-2 gap-4 w-full">
@@ -63,7 +63,7 @@
                 <strong>
                     Curso:
                 </strong>
-                {{ recipeForm.course.name }}
+                {{ recipe.course.name }}
             </span>
         </div>
         <div class="col-span-1">
@@ -71,7 +71,7 @@
                 <strong>
                     Ciclo:
                 </strong>
-                {{ recipeForm.term.name }}
+                {{ recipe.term.name }}
             </span>
         </div>
     </div>

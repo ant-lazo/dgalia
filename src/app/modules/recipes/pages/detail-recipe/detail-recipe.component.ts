@@ -9,6 +9,8 @@ import { TermsService } from '../../../term/services/terms.service';
 import { ReciperService } from '../../services/reciper.service';
 import { Recipe } from '../../models/recipe.model';
 import { ActivatedRoute } from '@angular/router';
+import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
+import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
 
 @Component({
   selector: 'app-detail-recipe',
@@ -17,28 +19,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailRecipeComponent implements OnInit {
 
-  public courseList: Observable<Course[]>;
-  public headquarterList: Observable<Headquarter[]>;
-  public termList: Observable<Term[]>;
-  public recipe: Observable<Recipe>;
-  private id: number;
+  public recipe: Recipe;
+  public suppliesSelected: RecipeSelectedSupply[];
+  private suppliesselectedMapper: RecipeSelectedSupplyMapper;
 
   constructor(
     public _recipe: ReciperService,
-    public _course: CoursesService,
-    private _headquarter: HeadquartesService,
-    private _term: TermsService,
-    route: ActivatedRoute
+    private _activatedRoute: ActivatedRoute
   ) {
-    this.id = Number(route.snapshot.paramMap.get('id'));
+    this.suppliesselectedMapper = new RecipeSelectedSupplyMapper();
   }
 
   ngOnInit(): void {
-    this.courseList = this._course.getCourseList();
-    this.headquarterList = this._headquarter.getCompleteList();
-    this.termList = this._term.getCompleteList();
-    this.recipe = this._recipe.findById(this.id);
+    this.setRecipe();
   }
 
+  private get id(): number {
+    return Number(this._activatedRoute.snapshot.paramMap.get('id'));
+  }
+
+  private setRecipe(): void {
+    this._recipe.findById(this.id).subscribe((recipe: Recipe) => {
+      this.recipe = recipe;
+      this.suppliesSelected = this.suppliesselectedMapper.getFromRecipedetail(recipe.detail);
+    });
+  }
 
 }

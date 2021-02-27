@@ -8,6 +8,9 @@ import { RecipeFormHelper } from '../../helpers/recipe-form.helper';
 import { RowAppButtonModel } from 'app/shared/row-buttons/models/row-nutton.model';
 import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
 import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
+import { MatDialog } from '@angular/material/dialog';
+import { RecipeSupplyModalComponent } from '../../components/recipe-supply-modal/recipe-supply-modal.component';
+import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -17,44 +20,79 @@ import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
 export class EditRecipeComponent implements OnInit {
 
   public recipe: Recipe;
-  private id: number;
   private helper: RecipeFormHelper;
   public rowButtons: RowAppButtonModel[];
-  public addsuppliyEvent: boolean;
+  public suppliesSelected: RecipeSelectedSupply[] = [];
+  private recipeSelectedSupplyMapper: RecipeSelectedSupplyMapper;
 
   constructor(
     public _recipe: ReciperService,
     private _toast: ToastrService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
-    private _formService: RecipeRegisterFomService
+    private _formService: RecipeRegisterFomService,
+    private _matDialog: MatDialog
   ) {
-    this.id = Number(this._activatedRoute.snapshot.paramMap.get('id'));
     this.helper = new RecipeFormHelper();
+    this.recipeSelectedSupplyMapper = new RecipeSelectedSupplyMapper();
     this.rowButtons = this.helper.buttonsRowToUpdate;
   }
 
   ngOnInit(): void {
+    this.setRecipe();
+  }
+
+  public get id(): number {
+    return Number(this._activatedRoute.snapshot.paramMap.get('id'));
+  }
+
+  public setRecipe(): void {
     this._recipe.findById(this.id).subscribe(recipe => {
       this.recipe = recipe;
+      this.setRecipeSuplies();
     });
   }
 
+  private setRecipeSuplies(): void {
+    this.suppliesSelected = this.recipeSelectedSupplyMapper.getFromRecipedetail(this.recipe.detail);
+  }
+
   public setOptionSelected(option: string): void {
-    switch (option) {
-      case 'addsupply':
-        this.addsuppliyEvent = !this.addsuppliyEvent;
-        break;
-      case 'updateRecipe':
-        this.validateRecipedata();
-        break;
-      default:
-        break;
+    if (option === 'addsupply') {
+      this.openAddSupplyModal();
+      return;
+    }
+
+    if (option === 'updateRecipe') {
+      this.validateRecipedata();
+      return;
     }
   }
 
+  public openAddSupplyModal(): void {
+    const dialogRef = this._matDialog.open(RecipeSupplyModalComponent, {
+      width: '850px',
+      height: '650px'
+    });
+
+    dialogRef.afterClosed().subscribe((list: RecipeSelectedSupply[]) => {
+      if (list && list.length > 0) this.validateNewItems(list)
+    });
+  }
+
+  private validateNewItems(list: RecipeSelectedSupply[]): void {
+    console.log(list);
+    const newList: RecipeSelectedSupply[] = [];
+    newList.push(...this.suppliesSelected);
+    for (const item of list) {
+      const founded = newList.find(e => e.id == item.id);
+      if (!founded) newList.push(item);
+    }
+    this.suppliesSelected = newList;
+  }
+
   public validateRecipedata(): void {
-    if (!this._formService.updateForm)  {
+    if (!this._formService.updateForm) {
       this._toast.error('Por favor verifique que los campos esten correctos', 'Formulario no valido')
       return;
     }
@@ -64,15 +102,15 @@ export class EditRecipeComponent implements OnInit {
       return;
     }
 
-    this.editRecipe(this._formService.updateForm, this._formService.supplies );
+    this.editRecipe(this._formService.updateForm, this._formService.supplies);
   }
 
   public editRecipe(form: EditRecipeForm, supplies: RecipeSelectedSupply[]) {
-     form.detail = supplies.map(e => { return { supplyId: e.id, measuredUnitId: e.measuredUnitId, quantity: e.quantity } })
-      this._recipe.editRecipe(form).subscribe(result => {
-        this._toast.success(result.message, 'Actualizado exitoso');
-        this._router.navigate(['recetas/listado']);
-      });
+    form.detail = supplies.map(e => { return { supplyId: e.id, measuredUnitId: e.measuredUnitId, quantity: e.quantity } })
+    this._recipe.editRecipe(form).subscribe(result => {
+      this._toast.success(result.message, 'Actualizado exitoso');
+      this._router.navigate(['recetas/listado']);
+    });
   }
 
 }

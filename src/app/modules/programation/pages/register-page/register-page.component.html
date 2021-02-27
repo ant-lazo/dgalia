@@ -22,17 +22,15 @@
 
                     <div class="col-span-2">
                         <mat-form-field class="w-full">
-                            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Seleccionar una fecha"
+                            <input [step]="'hour'"  matInput [ngxMatDatetimePicker]="picker" placeholder="Seleccionar una fecha"
                                 formControlName="date">
                             <mat-datepicker-toggle matSuffix [for]="picker">
                             </mat-datepicker-toggle>
-                            <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="1"
-                                [stepMinute]="10" [touchUi]="true">
+                            <ngx-mat-datetime-picker #picker [showSpinners]="true"  [stepHour]="1"
+                                [stepMinute]="10" [showSeconds]="false"  [touchUi]="true">
                             </ngx-mat-datetime-picker>
                         </mat-form-field>
                     </div>
-
-
                 </div>
 
                 <div class="grid ">
@@ -117,11 +115,9 @@
                 </app-row-buttons>
             </div>
 
-
             <div class="flex flex-col mt-5">
                 <app-selected-recipes-table [list]="recipesSelected"></app-selected-recipes-table>
             </div>
-
         </div>
     </div>
 </div>

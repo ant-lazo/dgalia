@@ -10,8 +10,7 @@
                 <app-row-buttons [justify]="'justify-end'" (onClick)="setOptionSelected($event)" [buttons]="rowButtons">
                 </app-row-buttons>
             </div>
-            <recipe-supply-list [addSupplyEvent]="addsuppliyEvent">
-            </recipe-supply-list>
+            <recipe-supply-list [deleteButton]="true" [list]="suppliesSelected"> </recipe-supply-list>
         </div>
 
     </div>
