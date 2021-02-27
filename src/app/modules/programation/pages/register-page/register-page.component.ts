@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CoursesService } from '../../../course/services/courses.service';
 import { TermsService } from '../../../term/services/terms.service';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { Course } from 'app/modules/course/models/course.interface';
 import { Term } from 'app/modules/term/models/term.interface';
 import { ClassesService } from '../../../classes/services/classes.service';
@@ -155,11 +155,6 @@ export class RegisterPageComponent implements OnInit {
   private goBack() {
     this._router.navigate(['programacion/pagina-inicial']);
   }
-
-  private setRecipeSelected(): void {
- 
-  }
-
 
   private setForm() {
     this.cookingScheduleForm = this._builder.group({
