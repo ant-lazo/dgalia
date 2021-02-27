@@ -1,11 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from '../../../course/services/courses.service';
-import { Observable } from 'rxjs';
-import { Course } from 'app/modules/course/models/course.interface';
-import { Headquarter } from '../../../headquarter/models/headquarter.model';
-import { HeadquartesService } from '../../../headquarter/services/headquartes.service';
-import { Term } from '../../../term/models/term.interface';
-import { TermsService } from '../../../term/services/terms.service';
 import { RegisterRecipeForm } from '../../models/register-recipe-form.model';
 import { ReciperService } from '../../services/reciper.service';
 import { ToastrService } from 'ngx-toastr';
@@ -14,6 +7,8 @@ import { RecipeFormHelper } from '../../helpers/recipe-form.helper';
 import { RowAppButtonModel } from 'app/shared/row-buttons/models/row-nutton.model';
 import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
 import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
+import { RecipeSupplyModalComponent } from '../../components/recipe-supply-modal/recipe-supply-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register-recipe',
@@ -23,20 +18,16 @@ import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
 export class RegisterRecipeComponent implements OnInit {
 
   public helper: RecipeFormHelper;
-  public courseList: Observable<Course[]>;
-  public headquarterList: Observable<Headquarter[]>;
-  public termList: Observable<Term[]>;
-
-  public addsuppliyEvent: boolean;
   public rowButtons: RowAppButtonModel[];
-
+  public suppliesSelected: RecipeSelectedSupply[] = [];
 
   constructor(
 
     private _recipe: ReciperService,
     private _toast: ToastrService,
     private _router: Router,
-    private _formService: RecipeRegisterFomService
+    private _formService: RecipeRegisterFomService,
+    private _matDialog: MatDialog
   ) {
     this.helper = new RecipeFormHelper();
     this.rowButtons = this.helper.buttonsRowToRegister;
@@ -47,7 +38,7 @@ export class RegisterRecipeComponent implements OnInit {
   public setOptionSelected(option: string): void {
     switch (option) {
       case 'addsupply':
-        this.addsuppliyEvent = !this.addsuppliyEvent;
+        this.openAddSupplyModal();
         break;
       case 'createRecipe':
         this.validateRecipedata();
@@ -55,6 +46,28 @@ export class RegisterRecipeComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  public openAddSupplyModal(): void {
+    const dialogRef = this._matDialog.open(RecipeSupplyModalComponent, {
+      width: '850px',
+      height: '650px'
+    });
+
+    dialogRef.afterClosed().subscribe((list: RecipeSelectedSupply[]) => {
+      if (list && list.length > 0) this.validateNewItems(list)
+    });
+  }
+
+  private validateNewItems(list: RecipeSelectedSupply[]): void {
+    console.log(list);
+    const newList: RecipeSelectedSupply[] = [];
+    newList.push(...this.suppliesSelected);
+    for (const item of list) {
+      const founded = newList.find(e => e.id == item.id);
+      if (!founded) newList.push(item);
+    }
+    this.suppliesSelected = newList;
   }
 
   public validateRecipedata(): void {

@@ -69,7 +69,7 @@ export class RecipeSupplyModalComponent implements OnInit {
     const exist = this.selectedList.find(element => element.id == founded.id);
 
     if (!exist) {
-      this.selectedList.push(new RecipeSelectedSupply(
+      const newItem = new RecipeSelectedSupply(
         founded.id,
         founded.code,
         founded.name,
@@ -77,7 +77,9 @@ export class RecipeSupplyModalComponent implements OnInit {
         founded.measuredUnit.name,
         1,
         founded.measuredUnit.id
-      ));
+      );
+      newItem.editar = true;
+      this.selectedList.push(newItem);
 
       this.setDataSourceList(this.selectedList);
     }
