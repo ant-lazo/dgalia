@@ -23,7 +23,6 @@ export class RecipeSupplyModalComponent implements OnInit {
   public searchParam = new FormControl();
   public selectedList: RecipeSelectedSupply[] = [];
 
-
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   public displayedColumns: string[] = ['code', 'name', 'category', 'measuredUnit', 'quantity', 'actions'];
@@ -75,10 +74,9 @@ export class RecipeSupplyModalComponent implements OnInit {
         founded.name,
         founded.category.name,
         founded.measuredUnit.name,
-        1,
+        null,
         founded.measuredUnit.id
       );
-      newItem.editar = true;
       this.selectedList.push(newItem);
 
       this.setDataSourceList(this.selectedList);
@@ -91,15 +89,7 @@ export class RecipeSupplyModalComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  guardar(element:any) {
-    element.quantity = this.quantity.value;
-    element.editar = false;
-  }
 
-  editar(element:any){
-    this.quantity = new FormControl(element.quantity, Validators.min(1));
-    element.editar = true;
-  }
 
   eliminar(element:any){
     this.selectedList = _.reject(this.selectedList, supply => {

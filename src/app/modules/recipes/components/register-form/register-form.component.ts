@@ -60,9 +60,9 @@ export class RecipeFormComponent implements OnInit {
       code: [null, Validators.required],
       price: [null, Validators.required],
       cost: [null, Validators.required],
-      headquarter_id: [null, Validators.required],
-      course_id: [null, Validators.required],
-      term_id: [null, Validators.required],
+      headquarter_id: [null],
+      course_id: [null],
+      term_id: [null],
       detail: [null]
     });
   }

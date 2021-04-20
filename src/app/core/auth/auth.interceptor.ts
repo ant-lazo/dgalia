@@ -48,14 +48,10 @@ export class AuthInterceptor implements HttpInterceptor {
         // Response
         return next.handle(newReq).pipe(
             catchError((error) => {
-                this.toast.error(error?.error?.error?.name || 'Error inesperado al hacer solicitud', error?.error?.message || 'Error')
-
+                this.toast.error(error?.error?.error || 'Error inesperado al hacer solicitud', error?.error?.message || 'Error')
                 // Catch "401 Unauthorized" responses
                 if (error instanceof HttpErrorResponse && error.status === 401) {
-                    // Sign out
                     this._authService.signOut();
-
-                    // Reload the app
                     location.reload();
                 }
 

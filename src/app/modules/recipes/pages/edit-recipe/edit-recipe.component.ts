@@ -81,7 +81,6 @@ export class EditRecipeComponent implements OnInit {
   }
 
   private validateNewItems(list: RecipeSelectedSupply[]): void {
-    console.log(list);
     const newList: RecipeSelectedSupply[] = [];
     newList.push(...this.suppliesSelected);
     for (const item of list) {
