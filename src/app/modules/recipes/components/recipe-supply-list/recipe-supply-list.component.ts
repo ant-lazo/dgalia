@@ -47,12 +47,9 @@ export class RecipeSupplyListComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   private setColumns() {
-
     const columns: string[] = ['code', 'name', 'category', 'measuredUnit', 'quantity'];
     if (this.deleteButton) columns.push('actions');
     this.displayedColumns = columns;
-    console.log(this.displayedColumns);
-
   }
 
 }

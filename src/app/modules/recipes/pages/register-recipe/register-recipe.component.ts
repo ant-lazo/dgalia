@@ -50,7 +50,7 @@ export class RegisterRecipeComponent implements OnInit {
 
   public openAddSupplyModal(): void {
     const dialogRef = this._matDialog.open(RecipeSupplyModalComponent, {
-      width: '850px',
+      width: '950px',
       height: '650px'
     });
 
@@ -60,7 +60,6 @@ export class RegisterRecipeComponent implements OnInit {
   }
 
   private validateNewItems(list: RecipeSelectedSupply[]): void {
-    console.log(list);
     const newList: RecipeSelectedSupply[] = [];
     newList.push(...this.suppliesSelected);
     for (const item of list) {
