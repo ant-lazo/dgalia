@@ -41,4 +41,9 @@ export class ReciperService {
   public editRecipe(data:EditRecipeForm): Observable<JsonResp> {
     return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.recipe.default, data);
   }
+
+  public generateCode(): Observable<string> {
+    const url = environment.apiUrl + apiRoutes.recipe.next_code;
+    return this._http.get<JsonResp>(url).pipe(map((resp: JsonResp) => resp.data));
+  }
 }

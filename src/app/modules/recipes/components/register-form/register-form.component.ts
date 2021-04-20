@@ -1,4 +1,4 @@
-import { Component, Input,  OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Term } from '../../../term/models/term.interface';
 import { Headquarter } from '../../../headquarter/models/headquarter.model';
@@ -8,6 +8,7 @@ import { CoursesService } from 'app/modules/course/services/courses.service';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
 import { TermsService } from 'app/modules/term/services/terms.service';
 import { Observable } from 'rxjs';
+import { ReciperService } from '../../services/reciper.service';
 
 @Component({
   selector: 'recipe-form',
@@ -26,7 +27,8 @@ export class RecipeFormComponent implements OnInit {
     private _headquarter: HeadquartesService,
     private _term: TermsService,
     private _formBuilder: FormBuilder,
-    private _formService: RecipeRegisterFomService
+    private _formService: RecipeRegisterFomService,
+    private _recipes: ReciperService
   ) {
     this.setForm();
   }
@@ -35,13 +37,20 @@ export class RecipeFormComponent implements OnInit {
     this.courseList = this._course.getCourseList();
     this.headquarterList = this._headquarter.getCompleteList();
     this.termList = this._term.getCompleteList();
+    this.generateCode();
     this.listenFormChanges();
   }
 
   public listenFormChanges(): void {
     this.recipeForm.valueChanges.subscribe(form => {
-      this._formService.registerForm = this.recipeForm.valid ? form: null;
+      this._formService.registerForm = this.recipeForm.valid ? form : null;
     });
+  }
+
+  private generateCode(): void {
+    this._recipes.generateCode().subscribe((code: string) => {
+      this.recipeForm.controls.code.setValue(code);
+    })
   }
 
   private setForm() {

@@ -13,7 +13,8 @@
         "default": "product-category"
     },
     "recipe": {
-        "default": "recipe"
+        "default": "recipe",
+        "next_code": "recipe/code"
     },
     "course": {
         "default": "course"
