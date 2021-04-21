@@ -20,17 +20,23 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
-- task: ArchiveFiles@2
-  displayName: 'Archive files'
-  inputs:
-      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/'
-      includeRootFolder: false
-      archiveType: zip
-      archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-      replaceExistingArchive: true
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/dist/'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
+- task: FtpUpload@2
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftp://ftp.suit.pe'
+    username: 'devftp'
+    password: 'FTPuser2019'
+    rootDirectory: '$(System.DefaultWorkingDirectory)/dist/'
+    filePatterns: '**'
+    remoteDirectory: '/upload/$(Build.BuildId)/'
+    clean: false
+    cleanContents: true
+    preservePaths: true
+    trustSSL: false
