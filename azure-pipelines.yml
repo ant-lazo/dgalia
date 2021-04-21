@@ -33,3 +33,22 @@ steps:
     cleanContents: false
     preservePaths: false
     trustSSL: false
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'publish'
+    publishLocation: 'Container'
+- task: FtpUpload@2
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftp://ftp.suit.pe'
+    username: 'devftp'
+    password: 'FTPuser2019'
+    rootDirectory: 'agente'
+    filePatterns: '**'
+    remoteDirectory: '/upload/$(Build.BuildId)/'
+    clean: false
+    cleanContents: true
+    preservePaths: true
+    trustSSL: false
