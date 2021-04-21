@@ -20,19 +20,6 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
-- task: FtpUpload@2
-  inputs:
-    credentialsOption: 'inputs'
-    serverUrl: 'ftp.suit.pe'
-    username: 'devftp'
-    password: 'FTPuser2019'
-    rootDirectory: 'arista'
-    filePatterns: '**'
-    remoteDirectory: '/upload/$(Build.BuildId)/'
-    clean: false
-    cleanContents: false
-    preservePaths: false
-    trustSSL: false
 
 - task: PublishBuildArtifacts@1
   inputs:
