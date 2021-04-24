@@ -35,7 +35,7 @@ steps:
     password: 'FTPuser2019'
     rootDirectory: '$(System.DefaultWorkingDirectory)/dist/'
     filePatterns: '**'
-    remoteDirectory: '/logistica.dgallia.suit.pe/'
+    remoteDirectory: '/dgallia.suit.pe/'
     clean: false
     cleanContents: true
     preservePaths: true
