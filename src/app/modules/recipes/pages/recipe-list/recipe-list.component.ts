@@ -15,8 +15,8 @@ import { ReciperService } from '../../services/reciper.service';
 export class RecipeListComponent implements OnInit {
 
   public registerButton: RowAppButtonModel[];
-  public recipeList: any[] = [];
-  public recipeFilteredList: any[] = [];
+  public recipeList: Recipe[] = [];
+  public recipeFilteredList: Recipe[] = [];
 
   constructor(
     private _recipe: ReciperService,
@@ -35,7 +35,10 @@ export class RecipeListComponent implements OnInit {
   }
 
   public filterByName(name: string): void {
-
+    const list = [...this.recipeList];
+    this.recipeFilteredList = [];
+    const founded = list.filter(e => e.name.toUpperCase().includes(name.toUpperCase()));
+    this.recipeFilteredList = founded;
   }
 
   public setRecipeList(): void {
