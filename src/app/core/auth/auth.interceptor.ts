@@ -9,11 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    /**
-     * Constructor
-     *
-     * @param {AuthService} _authService
-     */
+ 
     constructor(
         private _authService: AuthService,
         private toast: ToastrService,
@@ -21,12 +17,6 @@ export class AuthInterceptor implements HttpInterceptor {
     ) {
     }
 
-    /**
-     * Intercept
-     *
-     * @param req
-     * @param next
-     */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // Clone the request object
         let newReq = req.clone();
