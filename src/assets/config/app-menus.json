@@ -43,12 +43,6 @@
                     "icon": "settings",
                     "children": [
                         {
-                            "id": "pages.administation.headquarter",
-                            "title": "Sedes",
-                            "link": "/sedes",
-                            "type": "basic"
-                        },
-                        {
                             "id": "pages.administation.course",
                             "title": "Cursos",
                             "link": "/cursos",
@@ -60,6 +54,27 @@
                             "link": "/ciclos",
                             "type": "basic"
                         }
+                    ]
+                },
+                {
+                    "id": "3",
+                    "title": "Sedes",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.sedes.listado",
+                            "title": "Listado",
+                            "link": "/sedes/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.sedes.almacenes",
+                            "title": "Almacenes",
+                            "link": "/almacenes/listado",
+                            "type": "basic"
+                        } 
                     ]
                 }
             ],
@@ -112,12 +127,6 @@
             "icon": "settings",
             "children": [
                 {
-                    "id": "pages.administation.headquarter",
-                    "title": "Sedes",
-                    "link": "/sedes",
-                    "type": "basic"
-                },
-                {
                     "id": "pages.administation.course",
                     "title": "Cursos",
                     "link": "/cursos",
@@ -129,6 +138,27 @@
                     "link": "/terminos",
                     "type": "basic"
                 }
+            ]
+        },
+        {
+            "id": "3",
+            "title": "Sedes",
+            "link": "/",
+            "type": "aside",
+            "icon": "home_work",
+            "children": [
+                {
+                    "id": "pages.sedes.listado",
+                    "title": "Listado",
+                    "link": "/sedes/listado",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sedes.almacenes",
+                    "title": "Almacenes",
+                    "link": "/almacenes/listado",
+                    "type": "basic"
+                }                
             ]
         }
     ],
