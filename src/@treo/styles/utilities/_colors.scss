@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 // -----------------------------------------------------------------------------------------------------
 // @ Functions
 // -----------------------------------------------------------------------------------------------------
@@ -154,7 +155,7 @@
 @function treo-light-theme($primary-palette, $accent-palette, $warn-palette) {
 
     // Generate the Angular Material theme
-    $angular-material-theme: mat-light-theme($primary-palette, $accent-palette, $warn-palette);
+    $angular-material-theme: mat.define-light-theme($primary-palette, $accent-palette, $warn-palette);
 
     // Modify and return the theme
     @return _treo-modify-angular-material-theme-colors($angular-material-theme);
@@ -172,7 +173,7 @@
 @function treo-dark-theme($primary-palette, $accent-palette, $warn-palette) {
 
     // Generate the Angular Material theme
-    $angular-material-theme: mat-dark-theme($primary-palette, $accent-palette, $warn-palette);
+    $angular-material-theme: mat.define-dark-theme($primary-palette, $accent-palette, $warn-palette);
 
     // Modify and return the theme
     @return _treo-modify-angular-material-theme-colors($angular-material-theme);
@@ -189,7 +190,7 @@
 /// @param {Map} $text - Text color
 ///
 @function treo-palette($palette, $default: 500, $lighter: 100, $darker: 700, $text: $default) {
-    @return mat-palette(map-get($treo-colors, $palette), $default, $lighter, $darker, $text);
+    @return mat.define-palette(map-get($treo-colors, $palette), $default, $lighter, $darker, $text);
 }
 
 // -----------------------------------------------------------------------------------------------------
