@@ -1,4 +1,4 @@
-import * as apiRoutes from 'assets/config/api-routes.json';
+import apiRoutes from 'assets/config/api-routes.json';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -24,15 +24,15 @@ export class CoursesService {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.course.default).pipe(map(resp => resp.data));
   }
 
-  public delete(id:number): Observable<JsonResp> {
-    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.course.default + "?id="+id.toString());
+  public delete(id: number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.course.default + "?id=" + id.toString());
   }
 
-  public editCourse(data:Course): Observable<JsonResp> {
+  public editCourse(data: Course): Observable<JsonResp> {
     return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.course.default, data);
   }
-  
-  public registerNewCourse(data:Course): Observable<JsonResp> {
+
+  public registerNewCourse(data: Course): Observable<JsonResp> {
     return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.course.default, data);
   }
 }

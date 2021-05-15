@@ -7,7 +7,7 @@ import { Headquarter } from '../../models/headquarter.model';
 import { HeadquartesService } from '../../services/headquartes.service';
 import { HeadquarterListTableModel } from '../../view-models/list-table.model';
 import { HeadquarterListComponentModel } from '../../view-models/list_component.model';
-import * as config from 'assets/language/es/measured-unit.json';
+import config from 'assets/language/es/measured-unit.json';
 import { HeadquarterRegisterComponent } from '../../components/headquarter-register/headquarter-register.component';
 import { HeadquarterEditComponent } from '../../components/headquarter-edit/headquarter-edit.component';
 
@@ -53,7 +53,7 @@ export class ListHeadquarterComponent implements OnInit {
     this.tableModel = HeadquarterListTableModel.fromJson(config.list_table);
     this.model.title = "Sedes";
     this.model.module = "Administración";
-    this.tableModel.tableLabels = ["code","name","options"];
+    this.tableModel.tableLabels = ["code", "name", "options"];
   }
 
   private getList(): void {
@@ -62,7 +62,7 @@ export class ListHeadquarterComponent implements OnInit {
     });
   }
 
-  public editar(event:any): void{
+  public editar(event: any): void {
     const dialogRef = this.dialog.open(HeadquarterEditComponent, {
       width: '700px',
       height: '500px',

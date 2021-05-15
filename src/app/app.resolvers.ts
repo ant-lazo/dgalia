@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as appMenu from 'assets/config/app-menus.json';
+import appMenu from 'assets/config/app-menus.json';
 
 @Injectable({
     providedIn: 'root'

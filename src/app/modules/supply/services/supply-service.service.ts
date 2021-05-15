@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as apiRoutes from 'assets/config/api-routes.json';
+import  apiRoutes from 'assets/config/api-routes.json';
 import { environment } from 'environments/environment';
 import { map } from 'rxjs/operators';
 import { JsonResp } from '../../../core/interfaces/json-resp.interface';

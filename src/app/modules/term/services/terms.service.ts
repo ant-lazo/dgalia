@@ -1,4 +1,4 @@
-import * as apiRoutes from 'assets/config/api-routes.json';
+import  apiRoutes from 'assets/config/api-routes.json';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -15,13 +15,12 @@ export class TermsService {
   constructor(
     private _http: HttpClient
   ) { }
-
   /**
    * getCompleteList
    * this method returns a observalbe with a complete list of terms on rest api
    */
   public getCompleteList(): Observable<Term[]> {
-    return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.term.default).pipe(map(resp => resp.data));
+    return this._http.get<JsonResp>(environment.apiUrl + "term").pipe(map(resp => resp.data));
   }
 
   public delete(id:number): Observable<JsonResp> {

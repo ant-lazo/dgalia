@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MeasuredunitListComponentModel } from '../../view-models/list_component.model';
-import * as config from 'assets/language/es/measured-unit.json';
+import config from 'assets/language/es/measured-unit.json';
 import { RowAppButtonModel } from '../../../../shared/row-buttons/models/row-nutton.model';
 import { MeasuredUnitListTableModel } from '../../view-models/list-table.model';
 import { MeasuredUnit } from '../../models/measured-unit.model';
@@ -51,7 +51,7 @@ export class ListComponent implements OnInit {
     this.model = MeasuredunitListComponentModel.fromJson(config.list_component);
     this.registerButton.push(this.model.registerButton);
     this.tableModel = MeasuredUnitListTableModel.fromJson(config.list_table);
-    this.tableModel.tableLabels = ["code","name","options"];
+    this.tableModel.tableLabels = ["code", "name", "options"];
   }
 
   private getList(): void {
@@ -60,7 +60,7 @@ export class ListComponent implements OnInit {
     });
   }
 
-  editar(event:any){
+  editar(event: any) {
     const dialogRef = this.dialog.open(MeasuredUnitEditComponent, {
       width: '650px',
       height: '450px',

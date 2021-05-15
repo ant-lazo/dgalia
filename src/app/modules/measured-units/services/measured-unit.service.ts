@@ -1,4 +1,4 @@
-import * as apiRoutes from 'assets/config/api-routes.json';
+import apiRoutes from 'assets/config/api-routes.json';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -20,16 +20,16 @@ export class MeasuredUnitService {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default).pipe(map(resp => MeasuredUnit.fromListFromJson(resp.data)));
   }
 
-  public delete(id:number): Observable<JsonResp> {
-    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default + "?id="+id.toString());
+  public delete(id: number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default + "?id=" + id.toString());
   }
 
-  public editMeasuredUnit(data:MeasuredUnit): Observable<JsonResp> {
+  public editMeasuredUnit(data: MeasuredUnit): Observable<JsonResp> {
     return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default, data);
   }
 
-  
-  public registerNewMeasuredUnit(data:MeasuredUnit): Observable<JsonResp> {
+
+  public registerNewMeasuredUnit(data: MeasuredUnit): Observable<JsonResp> {
     return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.measured_unit.default, data);
   }
 

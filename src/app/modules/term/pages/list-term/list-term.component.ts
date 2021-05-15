@@ -7,7 +7,7 @@ import { Term } from '../../models/term.interface';
 import { TermsService } from '../../services/terms.service';
 import { TermListTableModel } from '../../view-models/list-table.model';
 import { TermListComponentModel } from '../../view-models/list_component.model';
-import * as config from 'assets/language/es/measured-unit.json';
+import  config from 'assets/language/es/measured-unit.json';
 import { TermRegisterComponent } from '../../components/term-register/term-register.component';
 import { TermEditComponent } from '../../components/term-edit/term-edit.component';
 

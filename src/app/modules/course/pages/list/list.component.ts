@@ -7,7 +7,7 @@ import { Course } from '../../models/course.interface';
 import { CoursesService } from '../../services/courses.service';
 import { CourseListTableModel } from '../../view-models/list-table.model';
 import { CourseListComponentModel } from '../../view-models/list_component.model';
-import * as config from 'assets/language/es/measured-unit.json';
+import config from 'assets/language/es/measured-unit.json';
 import { CourseRegisterComponent } from '../../components/course-register/course-register.component';
 import { CourseEditComponent } from '../../components/course-edit/course-edit.component';
 
@@ -53,7 +53,7 @@ export class ListComponent implements OnInit {
     this.tableModel = CourseListTableModel.fromJson(config.list_table);
     this.model.title = "Cursos";
     this.model.module = "Administración";
-    this.tableModel.tableLabels = ["code","name","options"];
+    this.tableModel.tableLabels = ["code", "name", "options"];
   }
 
   private getList(): void {
@@ -62,7 +62,7 @@ export class ListComponent implements OnInit {
     });
   }
 
-  editar(event:any){
+  editar(event: any) {
     const dialogRef = this.dialog.open(CourseEditComponent, {
       width: '650px',
       height: '520px',
