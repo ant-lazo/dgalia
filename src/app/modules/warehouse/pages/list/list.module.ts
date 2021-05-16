@@ -12,6 +12,7 @@ import { ListTableComponent } from './components/list-table/list-table.component
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterButtonComponent } from './components/register-button/register-button.component';
+import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { RegisterButtonComponent } from './components/register-button/register-b
     ListRoutingModule,
     SharedModule,
     HeaderModule,
+    LoadingBodyModule,
 
     //material modules
     MatTableModule,
