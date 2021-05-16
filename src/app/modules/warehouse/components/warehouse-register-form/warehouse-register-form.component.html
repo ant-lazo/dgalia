@@ -24,7 +24,7 @@
     <div class="grid grid-cols-8 gap-4 w-full">
         <div class="col-span-4">
             <mat-form-field class="w-full">
-                <input formControlName="responsable" type="text" autocomplete="off" matInput required
+                <input formControlName="responsable_name" type="text" autocomplete="off" matInput required
                     placeholder="Encargado">
                 <mat-icon matPrefix>integration_instructions</mat-icon>
             </mat-form-field>
@@ -48,7 +48,8 @@
             <mat-icon>close</mat-icon>
             Cancelar
         </button>
-        <button (click)="saveWarehouse()" [disabled]="formGroup.invalid" mat-stroked-button color="secondary" type="submit" class="px-6 ml-3">
+        <button (click)="validateAction()" [disabled]="formGroup.invalid" mat-stroked-button color="secondary"
+            type="submit" class="px-6 ml-3">
             <mat-icon class="mr-2">save</mat-icon>
             {{ getButtonLabel() }}
         </button>

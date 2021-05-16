@@ -38,7 +38,11 @@ export class WarehouseRegisterFormComponent implements OnInit {
     this.headquarterListRequest = this._headquarter.getCompleteList();
   }
 
-  public saveWarehouse(): void {
+  public validateAction(): void {
+    this.warehouse == null ? this.saveWarehouse(): this.updateWarehouse();
+  }
+
+  private saveWarehouse(): void {
     const model: RegisterWarehouseFormModel = this.formGroup.value;
     const request: Observable<JsonResp> = this._warehouse.register(model);
 
@@ -46,6 +50,17 @@ export class WarehouseRegisterFormComponent implements OnInit {
       this._toast.success(`Se ha registrado la sede ${model.name}`, response.message);
       this.onReturn();
     });
+  }
+
+  private updateWarehouse(): void {
+    const model = this.formGroup.value;
+    const request: Observable<JsonResp> = this._warehouse.update(model);
+
+    request.subscribe((resp: JsonResp) => {
+      this._toast.success(`Se ha actualizado la sede ${model.name}`, resp.message);
+      this.onReturn();
+    });
+
   }
 
   public onReturn(): void {
@@ -63,7 +78,7 @@ export class WarehouseRegisterFormComponent implements OnInit {
       description: [this.warehouse?.getDescription(), Validators.required],
       location: [this.warehouse?.getLocation(), Validators.required],
       headquarter_id: [this.warehouse?.getHeadquarterId()],
-      responsable: [this.warehouse?.getResponsable(), Validators.required],
+      responsable_name: [this.warehouse?.getResponsable(), Validators.required],
     });
   }
 

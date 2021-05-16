@@ -28,6 +28,10 @@ export class WarehouseService {
     return this._http.post<JsonResp>(ApiRoutes.warehouse.getList, data);
   }
 
+  public update(data: any): Observable<JsonResp> {
+    return this._http.put<JsonResp>(ApiRoutes.warehouse.getList, data);
+  }
+
   public findByCode(code: string): Observable<Warehouse> {
     return this._http.get<JsonResp>(ApiRoutes.warehouse.findByCode(code)).pipe(map((resp: JsonResp) => {
       const mapper = new WarehouseMapper()

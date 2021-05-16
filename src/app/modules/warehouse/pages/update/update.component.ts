@@ -27,11 +27,9 @@ export class UpdateComponent implements OnInit {
     return this._activatedRoute.snapshot.params.code;
   }
 
-  private setWarehouse():  void {
+  private setWarehouse(): void {
     const request: Observable<Warehouse> = this._warehouse.findByCode(this.warehouseCode);
-    request.subscribe((w: Warehouse) => {
-      this.warehouse = w;
-    });
+    request.subscribe((w: Warehouse) => this.warehouse = w);
   }
 
 }
