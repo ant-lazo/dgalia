@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Warehouse } from '../../../../models/warehouse.model';
@@ -24,7 +25,8 @@ export class ListTableComponent implements OnInit {
   public dataSource: MatTableDataSource<Warehouse> = new MatTableDataSource([]);
 
   constructor(
-    private _warehouse: WarehouseService
+    private _warehouse: WarehouseService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +47,9 @@ export class ListTableComponent implements OnInit {
     this.dataSource.sort = this.sort
   }
 
+  public onUpdatepressed(code: string): void {
+    this._router.navigate(['almacenes/actualizar', code]);
+  }
 
 
 }

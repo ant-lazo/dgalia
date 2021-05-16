@@ -1,21 +1,24 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
-import { RegisterWarehouseFormModel } from 'app/modules/warehouse/models/form-models/register-form.model';
-import { WarehouseService } from 'app/modules/warehouse/services/warehouse.service';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { RegisterWarehouseFormModel } from '../../models/form-models/register-form.model';
+import { Warehouse } from '../../models/warehouse.model';
+import { WarehouseService } from '../../services/warehouse.service';
 
 @Component({
-  selector: 'warehouse-register-form',
-  templateUrl: './register-form.component.html',
+  selector: 'app-warehouse-register-form',
+  templateUrl: './warehouse-register-form.component.html',
   styles: [
   ]
 })
-export class RegisterFormComponent implements OnInit {
+export class WarehouseRegisterFormComponent implements OnInit {
+
+  @Input() warehouse: Warehouse;
 
   public formGroup: FormGroup;
   public headquarterListRequest: Observable<Headquarter[]>
@@ -31,6 +34,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.warehouse) this.setForm();
     this.headquarterListRequest = this._headquarter.getCompleteList();
   }
 
@@ -48,15 +52,19 @@ export class RegisterFormComponent implements OnInit {
     this._location.back();
   }
 
-  private setForm(): void {
-    this.formGroup = this._formBuilder.group({
-      name: [null, Validators.required],
-      description: [null, Validators.required],
-      location: [null, Validators.required],
-      headquarter_id: [null],
-      responsable: [null, Validators.required],
-    });
+  public getButtonLabel(): string {
+    return this.warehouse == null ? 'Registrar' : 'Actualizar';
   }
 
+  private setForm(): void {
+    this.formGroup = this._formBuilder.group({
+      code: [this.warehouse?.getCode()],
+      name: [this.warehouse?.getName(), Validators.required],
+      description: [this.warehouse?.getDescription(), Validators.required],
+      location: [this.warehouse?.getLocation(), Validators.required],
+      headquarter_id: [this.warehouse?.getHeadquarterId()],
+      responsable: [this.warehouse?.getResponsable(), Validators.required],
+    });
+  }
 
 }

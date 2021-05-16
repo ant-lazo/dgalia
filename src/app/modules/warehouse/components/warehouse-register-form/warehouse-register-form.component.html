@@ -50,7 +50,7 @@
         </button>
         <button (click)="saveWarehouse()" [disabled]="formGroup.invalid" mat-stroked-button color="secondary" type="submit" class="px-6 ml-3">
             <mat-icon class="mr-2">save</mat-icon>
-            Registrar
+            {{ getButtonLabel() }}
         </button>
     </div>
 </form>

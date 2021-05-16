@@ -24,7 +24,7 @@
         <ng-container [matColumnDef]="displayedColumns[3]">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
             <td class="th-max" mat-cell *matCellDef="let element">
-                <button title="Editar de {{ element.name }}" type="button" color="green" mat-icon-button>
+                <button (click)="onUpdatepressed(element.code)" title="Editar de {{ element.name }}" type="button" color="green" mat-icon-button>
                     <mat-icon>edit</mat-icon>
                 </button>
                 <button title="Eliminar de {{ element.name }}" type="button" color="green" mat-icon-button>

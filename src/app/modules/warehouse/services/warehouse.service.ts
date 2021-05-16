@@ -25,6 +25,13 @@ export class WarehouseService {
   }
 
   public register(data: RegisterWarehouseFormModel): Observable<JsonResp> {
-    return this._http.post<JsonResp>(ApiRoutes.warehouse.getList, data); 
+    return this._http.post<JsonResp>(ApiRoutes.warehouse.getList, data);
+  }
+
+  public findByCode(code: string): Observable<Warehouse> {
+    return this._http.get<JsonResp>(ApiRoutes.warehouse.findByCode(code)).pipe(map((resp: JsonResp) => {
+      const mapper = new WarehouseMapper()
+      return mapper.fromJson(resp.data);
+    }));
   }
 }

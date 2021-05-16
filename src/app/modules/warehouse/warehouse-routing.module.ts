@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path: 'registro',
         loadChildren: () => import('./pages/registro/registro.module').then(r => r.RegistroModule)
+      },
+      {
+        path: 'actualizar/:code',
+        loadChildren: () => import('./pages/update/update.module').then(u => u.UpdateModule)
       }
     ]
   }
