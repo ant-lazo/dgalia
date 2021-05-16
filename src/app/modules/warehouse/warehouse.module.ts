@@ -7,7 +7,7 @@ import { WarehouseComponent } from './warehouse.component';
 
 @NgModule({
   declarations: [
-    WarehouseComponent
+    WarehouseComponent,
   ],
   imports: [
     CommonModule,

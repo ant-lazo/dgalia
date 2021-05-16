@@ -4,6 +4,7 @@ import { ApiRoutes } from 'app/core/api/constants/api.routes';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { RegisterWarehouseFormModel } from '../models/form-models/register-form.model';
 import { Warehouse } from '../models/warehouse.model';
 import { WarehouseMapper } from './mappers/warehouse.mapper';
 
@@ -21,6 +22,9 @@ export class WarehouseService {
       const mapper = new WarehouseMapper()
       return resp.data.map((e: Warehouse) => mapper.fromJson(e));
     }));
+  }
 
+  public register(data: RegisterWarehouseFormModel): Observable<JsonResp> {
+    return this._http.post<JsonResp>(ApiRoutes.warehouse.getList, data); 
   }
 }
