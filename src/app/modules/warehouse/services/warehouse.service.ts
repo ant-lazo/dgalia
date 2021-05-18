@@ -19,7 +19,7 @@ export class WarehouseService {
 
   public getList(): Observable<Warehouse[]> {
     return this._http.get<JsonResp>(ApiRoutes.warehouse.getList).pipe(map((resp: JsonResp) => {
-      const mapper = new WarehouseMapper()
+      const mapper = new WarehouseMapper();
       return resp.data.map((e: Warehouse) => mapper.fromJson(e));
     }));
   }

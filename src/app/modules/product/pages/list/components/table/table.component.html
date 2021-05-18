@@ -1,1 +1,52 @@
-<p *ngIf="productListRequest | async" >table works!</p>
+<div *ngIf="productListRequest | async; else loading">
+    <table mat-table [dataSource]="dataSource" matSort class="w-full">
+
+        <ng-container [matColumnDef]="displayedColumns[0]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
+            <td mat-cell *matCellDef="let element">
+                <img class="row-image" [src]=" element.urlImage | getDocuments: 'product'" alt="image">
+
+            </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[1]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+            <td mat-cell *matCellDef="let element">
+                <span
+                    class="text-xs font-semibold inline-block py-1 px-2 rounded text-teal-600 bg-teal-200  last:mr-0 mr-1">
+                    {{ element.code }}
+                </span>
+            </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[2]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[3]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cateogría </th>
+            <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[4]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> acciones </th>
+            <td mat-cell *matCellDef="let element">
+                <button title="Editar {{ element.name }}" type="button" color="green" mat-icon-button>
+                    <mat-icon [color]="'green'">create</mat-icon>
+                </button>
+                <button title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #matPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
+</div>
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

@@ -15,7 +15,7 @@ export class WarehouseMapper implements Mapper<Warehouse> {
             json.headquarterName,
             json.responsable,
             json.createdAt,
-            json.updatedAt,
+            json.updatedAt == null ? new Date() : json.updatedAt,
             userMapper.fromJson(json.createdby),
             json.enabled,
         );

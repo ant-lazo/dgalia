@@ -5,6 +5,13 @@ import { ListRoutingModule } from './list-routing.module';
 import { ListComponent } from './list.component';
 import { HeaderModule } from 'app/shared/header/header.module';
 import { TableComponent } from './components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { PipesModule } from 'app/core/pipes/pipes.module';
+import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
 
 @NgModule({
@@ -15,7 +22,15 @@ import { TableComponent } from './components/table/table.component';
   imports: [
     CommonModule,
     ListRoutingModule,
-    HeaderModule
+    HeaderModule,
+    PipesModule,
+
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatButtonModule,
+    LoadingBodyModule
   ]
 })
 export class ListModule { }
