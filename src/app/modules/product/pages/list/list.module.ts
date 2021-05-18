@@ -12,18 +12,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { PipesModule } from 'app/core/pipes/pipes.module';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
+import { RegisterButtonComponent } from './components/register-button/register-button.component';
+import { SearchBoxModule } from 'app/shared/search-box/search-box.module';
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    TableComponent
+    TableComponent,
+    RegisterButtonComponent
   ],
   imports: [
     CommonModule,
     ListRoutingModule,
     HeaderModule,
     PipesModule,
+    SearchBoxModule,
 
     MatTableModule,
     MatSortModule,

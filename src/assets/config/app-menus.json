@@ -74,7 +74,7 @@
                             "title": "Almacenes",
                             "link": "/almacenes/listado",
                             "type": "basic"
-                        } 
+                        }
                     ]
                 }
             ],
@@ -131,7 +131,13 @@
                     "title": "Listado",
                     "link": "productos",
                     "type": "basic"
-                }         
+                },
+                {
+                    "id": "pages.productos.registro",
+                    "title": "Registrar",
+                    "link": "productos/registro",
+                    "type": "basic"
+                }
             ]
         },
         {
@@ -173,7 +179,7 @@
                     "title": "Almacenes",
                     "link": "/almacenes/listado",
                     "type": "basic"
-                }                
+                }
             ]
         }
     ],
