@@ -18,6 +18,7 @@ import { MeasuredUnitEditComponent } from './components/measured-unit-edit/measu
 import { MeasuredUnitRegisterComponent } from './components/measured-units-register/measured-units-register.component';
 import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
 import { MaterialBasicUitModule } from 'app/shared/modules/ui-modules.module';
+import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { MaterialBasicUitModule } from 'app/shared/modules/ui-modules.module';
     MatDialogModule,
     MaterialBasicUitModule,
     FormsMaterialModule,
+    LoadingBodyModule
   ]
 })
 export class MeasuredUnitsModule { }

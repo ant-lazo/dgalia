@@ -10,6 +10,8 @@ import { HeadquarterListComponentModel } from '../../view-models/list_component.
 import config from 'assets/language/es/measured-unit.json';
 import { HeadquarterRegisterComponent } from '../../components/headquarter-register/headquarter-register.component';
 import { HeadquarterEditComponent } from '../../components/headquarter-edit/headquarter-edit.component';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -18,6 +20,7 @@ import { HeadquarterEditComponent } from '../../components/headquarter-edit/head
 })
 export class ListHeadquarterComponent implements OnInit {
 
+  public rrequestList: Observable<Headquarter[]>;
   public model: HeadquarterListComponentModel;
   public tableModel: HeadquarterListTableModel;
   public headquarterList: Headquarter[];
@@ -57,9 +60,10 @@ export class ListHeadquarterComponent implements OnInit {
   }
 
   private getList(): void {
-    this._headquarter.getCompleteList().subscribe(list => {
+    this.rrequestList = this._headquarter.getCompleteList().pipe((map((list: Headquarter[]) => {
       this.headquarterList = list;
-    });
+      return list
+    })))
   }
 
   public editar(event: any): void {

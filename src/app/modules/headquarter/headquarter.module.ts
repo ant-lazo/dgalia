@@ -19,6 +19,7 @@ import { HeadquarterEditComponent } from './components/headquarter-edit/headquar
 import { HeadquarterRegisterComponent } from './components/headquarter-register/headquarter-register.component';
 import { ListHeadquarterComponent } from './pages/list-headquarter/list-headquarter.component';
 import { ListTableComponent } from './components/list-table/list-table.component';
+import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ListTableComponent } from './components/list-table/list-table.component
     MatButtonModule,
     MatDialogModule,
     MaterialBasicUitModule,
-    FormsMaterialModule
+    FormsMaterialModule,
+    LoadingBodyModule
   ]
 })
 export class HeadquarterModule { }

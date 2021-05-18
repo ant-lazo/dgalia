@@ -7,6 +7,8 @@ import { SupplyRegisterComponent } from '../../components/supply-register/supply
 import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { SupplyEditComponent } from '../../components/supply-edit/supply-edit.component';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-supply-list',
@@ -15,6 +17,7 @@ import { SupplyEditComponent } from '../../components/supply-edit/supply-edit.co
 })
 export class SupplyListComponent implements OnInit {
 
+  public requestSupplyList: Observable<Supply[]>;
   public registerButton: RowAppButtonModel[];
   public supplyList: Supply[];
   public supplyFilteredList: Supply[];
@@ -32,10 +35,11 @@ export class SupplyListComponent implements OnInit {
   }
 
   public setList(): void {
-    this._supply.getList().subscribe(list => {
+    this.requestSupplyList =  this._supply.getList().pipe((map((list: Supply[]) => {
       this.supplyList = list;
       this.supplyFilteredList = list;
-    });
+      return list;
+    })));
   }
 
   public register(event: string) {

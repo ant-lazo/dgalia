@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
 import { MeasuredUnitEditComponent } from '../../components/measured-unit-edit/measured-units-edit.component';
 import { MeasuredUnitRegisterComponent } from '../../components/measured-units-register/measured-units-register.component';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -18,6 +20,7 @@ import { MeasuredUnitRegisterComponent } from '../../components/measured-units-r
 })
 export class ListComponent implements OnInit {
 
+  public measureUnitListRequest: Observable<MeasuredUnit[]>;
   public model: MeasuredunitListComponentModel;
   public tableModel: MeasuredUnitListTableModel;
   public measuredUnitList: MeasuredUnit[];
@@ -55,9 +58,10 @@ export class ListComponent implements OnInit {
   }
 
   private getList(): void {
-    this._measuredUnit.getGetList().subscribe(list => {
+    this.measureUnitListRequest = this._measuredUnit.getGetList().pipe(map((list: MeasuredUnit[]) => {
       this.measuredUnitList = list;
-    });
+      return list;
+    }));
   }
 
   editar(event: any) {

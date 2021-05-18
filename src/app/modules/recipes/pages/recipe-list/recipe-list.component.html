@@ -3,7 +3,7 @@
     <app-header [module]="'Cocina'" [title]="'Recetas'"></app-header>
 
     <div class="main">
-        <div class="content">
+        <div class="content" *ngIf="recipeListRequest | async;  else loading">
 
             <div class="mb-5">
                 <app-row-buttons *ngIf="registerButton" [buttons]="registerButton" [justify]="'justify-end'"
@@ -21,3 +21,7 @@
         </div>
     </div>
 </div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>
