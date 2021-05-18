@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { SelectImageModule } from 'app/shared/select-image/select-image.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { MatButtonModule } from '@angular/material/button';
     LoadingBodyModule,
     FormsModule,
     ReactiveFormsModule,
+    SelectImageModule,
 
     MatFormFieldModule,
     MatIconModule,

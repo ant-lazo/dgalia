@@ -1,0 +1,11 @@
+<div class=" h-full w-full flex flex-wrap justify-between items-between content-between">
+    <div class="upload__image" class="image mb-2">
+        <img class="upload__image" src="https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg" alt="">
+    </div>
+    <mat-form-field class="flex-auto w-full">
+        <ngx-mat-file-input formControlName="companyImage" (change)="setImage($event)"
+            placeholder="Seleccione una imagen"></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+    </mat-form-field>
+</div>
+
