@@ -23,4 +23,12 @@ export class ProductService {
         return result.data.map((e: any) => mapper.fromJson(e));
       }));
   }
+
+  public findByCode(code: string): Observable<Product> {
+    return this._http.get<JsonResp>(ApiRoutes.product.findByCode(code)).pipe(
+      map((result: JsonResp) => {
+        const mapper: ProductMapper = new ProductMapper();
+        return mapper.fromJson(result.data);
+      }));
+  }
 }

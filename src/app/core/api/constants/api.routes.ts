@@ -11,6 +11,6 @@ export class ApiRoutes {
 
     public static product = {
         getList: `${environment.apiUrl}product`,
-        findByCode: (code: string): string => `${environment.apiUrl}warehouse?code=${code}`,
+        findByCode: (code: string): string => `${environment.apiUrl}product?code=${code}`,
     }
 }
