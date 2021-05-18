@@ -1,4 +1,5 @@
-<div *ngIf="recipesdas">
+<div *ngIf="recipe && requestData | async; else loading">
+
     <form [formGroup]="recipeForm" class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
 
         <div class="grid grid-cols-7 gap-4 w-full">
@@ -28,7 +29,7 @@
     
         <mat-form-field class="w-full">
             <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id" required>
-                <mat-option *ngFor="let h of headquarterList | async" [value]="h.id">
+                <mat-option *ngFor="let h of headquarterList" [value]="h.id">
                     {{h.name}}
                 </mat-option>
             </mat-select>
@@ -39,7 +40,7 @@
             <div class="col-span-1">
                 <mat-form-field class="w-full">
                     <mat-select placeholder="Seleccione un curso" formControlName="course_id" required>
-                        <mat-option *ngFor="let c of courseList |async" [value]="c.id">
+                        <mat-option *ngFor="let c of courseList" [value]="c.id">
                             {{c.name}}
                         </mat-option>
                     </mat-select>
@@ -50,7 +51,7 @@
             <div class="col-span-1">
                 <mat-form-field class="w-full">
                     <mat-select placeholder="Seleccione un ciclo" formControlName="term_id" required>
-                        <mat-option *ngFor="let t of termList | async" [value]="t.id">
+                        <mat-option *ngFor="let t of termList" [value]="t.id">
                             {{t.name}}
                         </mat-option>
                     </mat-select>
@@ -60,3 +61,7 @@
         </div>
     </form>
 </div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

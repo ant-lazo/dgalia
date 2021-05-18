@@ -3,9 +3,9 @@
     <app-header [module]="'Cocina'" [title]="'Editar una'" [highlightext]="'receta'" [urlRoute]="'/recetas/listado'">
     </app-header>
 
-    <div class="main" *ngIf="recipe">
+    <div class="main" *ngIf="requestData | async; else loading">
         <div class="content">
-            <edit-recipe-form [recipesdas]="recipe"></edit-recipe-form>
+            <edit-recipe-form [recipe]="recipe"></edit-recipe-form>
             <div class="mt-5">
                 <app-row-buttons [justify]="'justify-end'" (onClick)="setOptionSelected($event)" [buttons]="rowButtons">
                 </app-row-buttons>
@@ -15,3 +15,7 @@
 
     </div>
 </div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

@@ -6,15 +6,11 @@
         <div class="content" *ngIf="measureUnitListRequest | async; else loading">
             <app-row-buttons [buttons]="registerButton" [justify]="'justify-end'" (onClick)="register()">
             </app-row-buttons>
-
-            <app-list-table 
-                [model]="tableModel" 
-                [list]="measuredUnitList"
-                (selectedToDelete)="validationToDeleteMeasuredunit($event)" 
-                (selectedToEdit)="editar($event)" 
-            >
-            </app-list-table>
-
+            <div class="mt-2">
+                <app-list-table [model]="tableModel" [list]="measuredUnitList"
+                    (selectedToDelete)="validationToDeleteMeasuredunit($event)" (selectedToEdit)="editar($event)">
+                </app-list-table>
+            </div>
         </div>
     </div>
 </div>

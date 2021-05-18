@@ -11,6 +11,8 @@ import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
 import { MatDialog } from '@angular/material/dialog';
 import { RecipeSupplyModalComponent } from '../../components/recipe-supply-modal/recipe-supply-modal.component';
 import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -19,6 +21,7 @@ import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply
 })
 export class EditRecipeComponent implements OnInit {
 
+  public requestData: Observable<Recipe>;
   public recipe: Recipe;
   private helper: RecipeFormHelper;
   public rowButtons: RowAppButtonModel[];
@@ -47,10 +50,11 @@ export class EditRecipeComponent implements OnInit {
   }
 
   public setRecipe(): void {
-    this._recipe.findById(this.id).subscribe(recipe => {
+    this.requestData = this._recipe.findById(this.id).pipe(map((recipe: Recipe) => {
       this.recipe = recipe;
       this.setRecipeSuplies();
-    });
+      return recipe;
+    }));
   }
 
   private setRecipeSuplies(): void {

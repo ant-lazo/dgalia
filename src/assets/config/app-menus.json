@@ -152,12 +152,6 @@
                     "title": "Cursos",
                     "link": "/cursos",
                     "type": "basic"
-                },
-                {
-                    "id": "pages.administation.term",
-                    "title": "Términos",
-                    "link": "/terminos",
-                    "type": "basic"
                 }
             ]
         },
