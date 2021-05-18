@@ -121,6 +121,21 @@
         },
         {
             "id": "2",
+            "title": "Productos",
+            "link": "/",
+            "type": "aside",
+            "icon": "category",
+            "children": [
+                {
+                    "id": "pages.productos.listado",
+                    "title": "Listado",
+                    "link": "productos",
+                    "type": "basic"
+                }         
+            ]
+        },
+        {
+            "id": "3",
             "title": "Administración",
             "link": "/",
             "type": "aside",
@@ -141,7 +156,7 @@
             ]
         },
         {
-            "id": "3",
+            "id": "4",
             "title": "Sedes",
             "link": "/",
             "type": "aside",

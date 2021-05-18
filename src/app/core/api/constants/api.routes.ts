@@ -8,4 +8,9 @@ export class ApiRoutes {
         getList: `${environment.apiUrl}warehouse`,
         findByCode: (code: string): string => `${environment.apiUrl}warehouse?code=${code}`,
     }
+
+    public static product = {
+        getList: `${environment.apiUrl}product`,
+        findByCode: (code: string): string => `${environment.apiUrl}warehouse?code=${code}`,
+    }
 }

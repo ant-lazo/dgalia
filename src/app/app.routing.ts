@@ -64,7 +64,8 @@ export const appRoutes: Route[] = [
             { path: 'cursos', loadChildren: () => import('app/modules/course/course.module').then(p => p.CourseModule) },
             { path: 'ciclos', loadChildren: () => import('app/modules/term/term.module').then(r => r.TermModule) },
             { path: 'sedes', loadChildren: () => import('app/modules/headquarter/headquarter.module').then(r => r.HeadquarterModule) },
-            { path: 'almacenes', loadChildren: () => import('./modules/warehouse/warehouse.module').then(a => a.WarehouseModule) }
+            { path: 'almacenes', loadChildren: () => import('./modules/warehouse/warehouse.module').then(a => a.WarehouseModule) },
+            { path: 'productos', loadChildren: () => import('./modules/product/product.module').then(p => p.ProductModule) }
         ]
     }
 

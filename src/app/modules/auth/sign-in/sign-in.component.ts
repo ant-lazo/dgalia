@@ -75,8 +75,6 @@ export class AuthSignInComponent implements OnInit {
     }
 
     private setModel(): void {
-        console.log(auth.sigIng);
-
         if (auth.sigIng) {
             this.mapper = new SignInPageMapper();
             this.model = this.mapper.getUiElementa(auth.sigIng);
