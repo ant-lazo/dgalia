@@ -13,7 +13,6 @@ import { ComingSoonModule } from 'app/shared/coming-soon/coming-soon.module';
     CommonModule,
     UpdateRoutingModule,
     ComingSoonModule
-
   ]
 })
 export class UpdateModule { }
