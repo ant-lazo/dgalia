@@ -6,8 +6,9 @@
                 backButton="true">
             </app-title>
 
-            <product-register-form [measureUnitList]="measureUnitList" [productCategoryList]="productCategoryList">
-            </product-register-form> 
+            <product-register-form (registerForm)="listenForm($event)" [measureUnitList]="measureUnitList"
+                [productCategoryList]="productCategoryList">
+            </product-register-form>
         </div>
     </div>
 </div>
