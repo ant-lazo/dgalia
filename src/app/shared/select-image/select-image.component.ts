@@ -4,7 +4,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   selector: 'app-select-image',
   templateUrl: './select-image.component.html',
   styles: [
-    '.upload__image {border-radius: 12px; }}'
+    '.upload__image {border-radius: 12px; }'
   ]
 })
 export class SelectImageComponent implements OnInit {
