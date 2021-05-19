@@ -48,8 +48,8 @@ export class RegisterComponent implements OnInit {
       this._categories.getList(),
       this._measureUnit.getGetList(),
     ]).pipe(map((data: any) => {
-      this.measureUnitList = data[0];
-      this.productCategoryList = data[1]
+      this.productCategoryList = data[0];
+      this.measureUnitList = data[1]
       return data;
     }));
   }
