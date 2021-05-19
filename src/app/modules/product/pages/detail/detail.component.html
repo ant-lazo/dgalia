@@ -1,1 +1,16 @@
-<app-coming-soon></app-coming-soon>
+<div *ngIf="requestProduct  | async as product; else loading" class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header urlRoute="back" module="Productos" [highlightext]="product.name" title="Detalle de producto">
+    </app-header>
+
+    <div class="main">
+        <div class="content">
+            <product-detail-info [product]="product"></product-detail-info>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>
