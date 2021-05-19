@@ -1,5 +1,5 @@
-<div *ngIf="warehouseRequest | async ;else loading ">
-    <table mat-table [dataSource]="dataSource" matSort class="w-full">
+<div >
+    <table *ngIf="warehouseRequest | async ;else loading " mat-table [dataSource]="dataSource" matSort class="w-full">
 
         <ng-container [matColumnDef]="displayedColumns[0]">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
@@ -27,7 +27,7 @@
                 <button (click)="onUpdatepressed(element.code)" title="Editar de {{ element.name }}" type="button" color="green" mat-icon-button>
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button title="Eliminar de {{ element.name }}" type="button" color="green" mat-icon-button>
+                <button (click)="openDeleteAlertDialog(element)" title="Eliminar de {{ element.name }}" type="button" color="green" mat-icon-button>
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
@@ -36,7 +36,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
     <mat-paginator #matPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
 </div>
 

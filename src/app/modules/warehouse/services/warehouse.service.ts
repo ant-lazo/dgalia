@@ -31,6 +31,9 @@ export class WarehouseService {
   public update(data: any): Observable<JsonResp> {
     return this._http.put<JsonResp>(ApiRoutes.warehouse.getList, data);
   }
+  public delete(id: number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(ApiRoutes.warehouse.delete(id.toString()));
+  }
 
   public findByCode(code: string): Observable<Warehouse> {
     return this._http.get<JsonResp>(ApiRoutes.warehouse.findByCode(code)).pipe(map((resp: JsonResp) => {

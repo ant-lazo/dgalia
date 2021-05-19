@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RegisterButtonComponent } from './components/register-button/register-button.component';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
     MatSortModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule
   ]
 })
 export class ListModule { }

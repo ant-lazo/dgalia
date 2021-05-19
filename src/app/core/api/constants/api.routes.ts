@@ -7,6 +7,7 @@ export class ApiRoutes {
     public static warehouse = {
         getList: `${environment.apiUrl}warehouse`,
         findByCode: (code: string): string => `${environment.apiUrl}warehouse?code=${code}`,
+        delete: (id: string): string => `${environment.apiUrl}warehouse?id=${id}`,
     }
 
     public static product = {

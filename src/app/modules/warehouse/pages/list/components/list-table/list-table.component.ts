@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { JsonResp } from 'app/core/interfaces/json-resp.interface';
+import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Warehouse } from '../../../../models/warehouse.model';
@@ -26,7 +30,9 @@ export class ListTableComponent implements OnInit {
 
   constructor(
     private _warehouse: WarehouseService,
-    private _router: Router
+    private _router: Router,
+    private _dialog: MatDialog,
+    private _toat: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -51,5 +57,24 @@ export class ListTableComponent implements OnInit {
     this._router.navigate(['almacenes/actualizar', code]);
   }
 
+  public openDeleteAlertDialog(warehouse: Warehouse): void {
+    const dialog = this._dialog.open(DeleteAlertComponent, {
+      width: '70%',
+      data: {
+        title: `la sede ${warehouse.getName()}`,
+      }
+    })
 
+    dialog.afterClosed().subscribe((result: boolean) => {
+      if (result) this.deleteWarehouse(warehouse.getId()) ;
+    })
+  }
+
+  private deleteWarehouse(id: number): void {
+    const request: Observable<JsonResp> = this._warehouse.delete(id);
+    request.subscribe((result: JsonResp) => {
+      this._toat.success('Almacen eliminado exitsamente', 'vaya, al parecer todo salió bien :)')
+      this.setWarehouseList();
+    });
+  }
 }
