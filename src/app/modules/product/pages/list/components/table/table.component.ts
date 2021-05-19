@@ -18,11 +18,12 @@ export class TableComponent implements OnInit {
   public productListRequest: Observable<Product[]>;
   public produdcList: Product[] = [];
 
+
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'actions'];
-  public dataSource: MatTableDataSource<Product> = new MatTableDataSource([]);
+  public dataSource: MatTableDataSource<Product> = new MatTableDataSource();
 
   constructor(
     private _products: ProductService,
@@ -31,6 +32,10 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.setProductList();
+  }
+
+  ngAfterViewInit (){
+    this.dataSource.sort = this.sort;
   }
 
   private setProductList(): void {
@@ -44,7 +49,7 @@ export class TableComponent implements OnInit {
   private setDataTableList(list: Product[]) {
     this.dataSource = new MatTableDataSource(list);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort
+    this.dataSource.sort = this.sort;
   }
 
   public filter(name: string): void {

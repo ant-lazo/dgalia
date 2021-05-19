@@ -34,7 +34,7 @@ import { SearchBoxModule } from 'app/shared/search-box/search-box.module';
     MatPaginatorModule,
     MatIconModule,
     MatButtonModule,
-    LoadingBodyModule
+    LoadingBodyModule,
   ]
 })
 export class ListModule { }

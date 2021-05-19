@@ -1,6 +1,6 @@
 <div *ngIf="productListRequest | async; else loading">
 
-    <app-search-box placeHolder="Ingrese nombre de producto" (param)="filter($event)" ></app-search-box>
+    <app-search-box placeHolder="Ingrese nombre de producto" (param)="filter($event)"></app-search-box>
 
     <table mat-table [dataSource]="dataSource" matSort class="w-full">
 
@@ -34,13 +34,16 @@
         <ng-container [matColumnDef]="displayedColumns[4]">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> acciones </th>
             <td mat-cell *matCellDef="let element">
-                <button (click)="navigateActions('detail', element)" title="Detalle {{ element.name }}" type="button" color="green" mat-icon-button>
+                <button (click)="navigateActions('detail', element)" title="Detalle {{ element.name }}" type="button"
+                    color="green" mat-icon-button>
                     <mat-icon [color]="'green'">info</mat-icon>
                 </button>
-                <button (click)="navigateActions('edit', element)" title="Editar {{ element.name }}" type="button" color="green" mat-icon-button>
+                <button (click)="navigateActions('edit', element)" title="Editar {{ element.name }}" type="button"
+                    color="green" mat-icon-button>
                     <mat-icon [color]="'green'">create</mat-icon>
                 </button>
-                <button (click)="navigateActions('delete', element)" title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
+                <button (click)="navigateActions('delete', element)" title="Eliminar {{ element.name }}" type="button"
+                    color="warn" mat-icon-button>
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
@@ -49,8 +52,9 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator #matPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
 </div>
+<mat-paginator #matPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
+
 <ng-template #loading>
     <app-loading-body></app-loading-body>
 </ng-template>
