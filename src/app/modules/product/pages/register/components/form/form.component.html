@@ -80,9 +80,9 @@
                     </mat-form-field>
                 </div>
 
-                <div class="col-span-3">
+                <div (click)="openSelectSupplyDialog()" class="col-span-3">
                     <mat-form-field class="flex-auto w-full cursor-pointer">
-                        <input class="cursor-pointer" readonly formControlName="supply_id" matInput placeholder="Seleccione un insumo">
+                        <input class="cursor-pointer" readonly formControlName="supply_id" matInput [placeholder]="supplySelected?.name ?? 'Seleccione un insumo'">
                         <mat-icon matPrefix>highlight_alt</mat-icon>
                     </mat-form-field>
                 </div>

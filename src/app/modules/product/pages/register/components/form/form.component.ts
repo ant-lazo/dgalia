@@ -1,9 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MeasuredUnit } from 'app/modules/measured-units/models/measured-unit.model';
 import { ProductCategory } from 'app/modules/product-category/models/product-category.interface';
 import { RegisterProductFormModel } from 'app/modules/product/models/form-models/register-product-form.model';
+import { SelectSupplyComponent } from 'app/modules/supply/components/select-supply/select-supply.component';
+import { Supply } from 'app/modules/supply/models/supply';
 
 @Component({
   selector: 'product-register-form',
@@ -17,10 +20,12 @@ export class FormComponent implements OnInit {
   @Output() registerForm: EventEmitter<RegisterProductFormModel> = new EventEmitter();
 
   public formGroup: FormGroup;
+  public supplySelected: Supply;
 
   constructor(
     private _builder: FormBuilder,
-    private _location: Location
+    private _location: Location,
+    private _matDialog: MatDialog
   ) {
     this.setForm();
   }
@@ -34,6 +39,17 @@ export class FormComponent implements OnInit {
 
   public listenFileSelected(img: File): void {
     this.formGroup.controls.image.setValue(img);
+  }
+
+  public openSelectSupplyDialog(): void {
+    const dialogReg = this._matDialog.open(SelectSupplyComponent, {
+      width: '800px',
+      height: '70%',
+    })
+
+    dialogReg.afterClosed().subscribe((result: Supply) => {
+      if (result) this.supplySelected = result;
+    })
   }
 
   public validateRegisterData(): void {

@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { SelectImageModule } from 'app/shared/select-image/select-image.module';
+import { SelectSupplyModule } from 'app/modules/supply/components/select-supply/select-supply.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SelectImageModule } from 'app/shared/select-image/select-image.module';
     MatSelectModule,
     MatTooltipModule,
     MatOptionModule,
-    MatButtonModule
+    MatButtonModule,
+    SelectSupplyModule
   ]
 })
 export class RegisterModule { }
