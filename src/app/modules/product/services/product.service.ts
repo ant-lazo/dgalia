@@ -22,6 +22,10 @@ export class ProductService {
     return this._http.post<JsonResp>(ApiRoutes.product.getList, formData);
   }
 
+  public delete(code: string): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(ApiRoutes.product.delete(code));
+  }
+
   public getlist(): Observable<Product[]> {
     return this._http.get<JsonResp>(ApiRoutes.product.getList).pipe(
       map((result: JsonResp) => {

@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { Product } from 'app/modules/product/models/product.model';
 import { ProductService } from 'app/modules/product/services/product.service';
+import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -27,14 +31,16 @@ export class TableComponent implements OnInit {
 
   constructor(
     private _products: ProductService,
-    private _router: Router
+    private _router: Router,
+    private _dialog: MatDialog,
+    private _toast: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.setProductList();
   }
 
-  ngAfterViewInit (){
+  ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
@@ -56,7 +62,7 @@ export class TableComponent implements OnInit {
     const newlist: Product[] = this.produdcList.filter((element: Product) => {
       return element.name.toUpperCase().includes(name.toUpperCase());
     });
-    
+
     this.setDataTableList(newlist);
   }
 
@@ -69,10 +75,30 @@ export class TableComponent implements OnInit {
         this._router.navigate(['productos/detalle', product.code]);
         break;
       case 'delete':
+        this.openDeleteAlertDialog(product);
         break;
       default:
         break;
     }
+  }
+
+  public openDeleteAlertDialog(product: Product): void {
+    const dialog = this._dialog.open(DeleteAlertComponent, {
+      width: '70%',
+      data: { title: `El producto ${product.name}` }
+    });
+
+    dialog.afterClosed().subscribe((result: boolean) => {
+      if (result) this.deleteProduct(product.code);
+    });
+  }
+
+  private deleteProduct(code: string): void {
+    const request = this._products.delete(code);
+    request.subscribe((res: JsonResp) => {
+      this._toast.success(res.message, 'Muy bien!');
+      this.setProductList();
+    })
   }
 
 }
