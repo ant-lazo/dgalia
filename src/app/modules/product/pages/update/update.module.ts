@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UpdateRoutingModule } from './update-routing.module';
 import { UpdateComponent } from './update.component';
+import { ComingSoonModule } from 'app/shared/coming-soon/coming-soon.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,9 @@ import { UpdateComponent } from './update.component';
   ],
   imports: [
     CommonModule,
-    UpdateRoutingModule
+    UpdateRoutingModule,
+    ComingSoonModule
+
   ]
 })
 export class UpdateModule { }
