@@ -53,19 +53,21 @@
 
                 <div class="col-span-4">
                     <mat-form-field class="flex-auto w-full">
+                        <input formControlName="igv" type="number" autocomplete="off" matInput required
+                            placeholder="IGV">
+                        <mat-icon matPrefix>request_quote</mat-icon>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-span-4">
+                    <mat-form-field class="flex-auto w-full">
                         <input formControlName="sale_price" type="number" autocomplete="off" matInput required
                             placeholder="Precio de venta">
                         <mat-icon matPrefix>point_of_sale</mat-icon>
                     </mat-form-field>
                 </div>
 
-                <div class="col-span-4">
-                    <mat-form-field class="flex-auto w-full">
-                        <input formControlName="igv" type="number" autocomplete="off" matInput required
-                            placeholder="IGV">
-                        <mat-icon matPrefix>request_quote</mat-icon>
-                    </mat-form-field>
-                </div>
+             
             </div>
 
             <div class="grid grid-cols-8 gap-4 w-full">
