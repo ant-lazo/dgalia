@@ -24,7 +24,7 @@
             <div class="grid grid-cols-8 gap-4 w-full">
                 <div class="col-span-4">
                     <mat-form-field class="w-full">
-                        <mat-select placeholder="Seleccione una unidad me medida" formControlName="measure_unit_id">
+                        <mat-select placeholder="Seleccione unidad de medida" formControlName="measure_unit_id">
                             <mat-option *ngFor="let mu of measureUnitList " [value]="mu.id">
                                 {{mu.name}}
                             </mat-option>
@@ -34,13 +34,10 @@
                 </div>
 
                 <div class="col-span-4">
-                    <mat-form-field class="w-full">
-                        <mat-select placeholder="Seleccione una categoria de producto" formControlName="category_id">
-                            <mat-option *ngFor="let pc of productCategoryList" [value]="pc.id">
-                                {{pc.name}}
-                            </mat-option>
-                        </mat-select>
-                        <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+                    <mat-form-field class="flex-auto w-full">
+                        <input formControlName="weight" type="number" autocomplete="off" matInput required
+                            placeholder="Ingrese el peso">
+                        <mat-icon matPrefix>line_weight</mat-icon>
                     </mat-form-field>
                 </div>
             </div>
@@ -57,7 +54,7 @@
                 <div class="col-span-4">
                     <mat-form-field class="flex-auto w-full">
                         <input formControlName="sale_price" type="number" autocomplete="off" matInput required
-                            placeholder="Ubicación">
+                            placeholder="Precio de venta">
                         <mat-icon matPrefix>point_of_sale</mat-icon>
                     </mat-form-field>
                 </div>
@@ -72,15 +69,19 @@
             </div>
 
             <div class="grid grid-cols-8 gap-4 w-full">
-                <div class="col-span-5">
-                    <mat-form-field class="flex-auto w-full">
-                        <input formControlName="weight" type="number" autocomplete="off" matInput required
-                            placeholder="Ingrese el peso">
-                        <mat-icon matPrefix>line_weight</mat-icon>
+
+                <div class="col-span-4">
+                    <mat-form-field class="w-full">
+                        <mat-select placeholder="Seleccione una categoria de producto" formControlName="category_id">
+                            <mat-option *ngFor="let pc of productCategoryList" [value]="pc.id">
+                                {{pc.name}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
                     </mat-form-field>
                 </div>
 
-                <div (click)="openSelectSupplyDialog()" class="col-span-3">
+                <div (click)="openSelectSupplyDialog()" class="col-span-4">
                     <mat-form-field class="flex-auto w-full cursor-pointer">
                         <input class="cursor-pointer" readonly formControlName="supply_id" matInput [placeholder]="supplySelected?.name ?? 'Seleccione un insumo'">
                         <mat-icon matPrefix>highlight_alt</mat-icon>
