@@ -12,7 +12,7 @@ import { RegisterProductFormModel } from '../../models/form-models/register-prod
 import { ProductService } from '../../services/product.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'product-register',
   templateUrl: './register.component.html',
   styles: [
   ]

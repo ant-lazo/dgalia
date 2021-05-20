@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-select-image',
@@ -9,7 +9,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SelectImageComponent implements OnInit {
 
-  @Output() fileSelected: EventEmitter<File> = new EventEmitter();;
+  @Input() defaultImage: string;
+  @Output() fileSelected: EventEmitter<File> = new EventEmitter();
 
   public imgFile: File;
   public imgReader: string | ArrayBuffer;
@@ -17,6 +18,7 @@ export class SelectImageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (!this.defaultImage) this.defaultImage = 'assets/images/dgalia/backgroud/no-image.png';
   }
 
   public setImage( ): void {    

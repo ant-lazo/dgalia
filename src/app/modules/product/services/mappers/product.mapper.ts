@@ -30,7 +30,7 @@ export class ProductMapper implements Mapper<Product> {
         throw new Error("Method not implemented.");
     }
 
-    public static formDataToRegister(model: RegisterProductFormModel): FormData {
+    public static formDataToRegister(model: RegisterProductFormModel, code?: string): FormData {
         const form: FormData = new FormData();
         form.append('name', model.name);
         form.append('description', model.description);
@@ -42,7 +42,7 @@ export class ProductMapper implements Mapper<Product> {
         form.append('image', model.image);
         form.append('supply_id', model.supply_id);
         form.append('sale_price', model.sale_price);
+        if (code) form.append('code', code);
         return form;
     }
-
 }

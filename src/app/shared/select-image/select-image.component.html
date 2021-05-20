@@ -1,6 +1,6 @@
 <div class="flex w-full flex-col justify-between">
-    <div class="upload__image flex w-full justify-end"  class=" mb-2">
-        <img style="width: 100%; height: 250px; object-fit: cover;" [src]="imgReader ?? 'assets/images/dgalia/backgroud/no-image.png'" alt="">
+    <div class="upload__image flex w-full justify-end" class=" mb-2">
+        <img style="width: 100%; height: 250px; object-fit: cover;" [src]="imgReader ??  defaultImage  " alt="">
     </div>
     <mat-form-field class="flex-auto w-full">
         <ngx-mat-file-input [(ngModel)]="imgFile" (change)="setImage()" placeholder="Seleccione una imagen">
