@@ -140,6 +140,42 @@
                 }
             ]
         },
+        {            
+            "id": "logistica",
+            "title": "Logística",
+            "link": "/logistica",
+            "type": "aside",
+            "icon": "swap_horiz",
+            "children": [
+                {
+                    "id": "pages.logistica.hojas_de_demanda",
+                    "title": "Hojas de demanda",
+                    "link": "/hojas-de-demanda",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.listado",
+                            "title": "Listado",
+                            "link": "logistica/hojas-de-demanda/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.registro",
+                            "title": "Registro",
+                            "link": "logistica/hojas-de-demanda/registro",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.programaciones",
+                            "title": "Programaciones",
+                            "link": "logistica/hojas-de-demanda/programaciones",
+                            "type": "basic"
+                        }
+                    ]
+                }
+               
+            ]
+        },
         {
             "id": "3",
             "title": "Administración",

@@ -20,6 +20,7 @@ import { HeadquarterRegisterComponent } from './components/headquarter-register/
 import { ListHeadquarterComponent } from './pages/list-headquarter/list-headquarter.component';
 import { ListTableComponent } from './components/list-table/list-table.component';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
+import { DeleteAlertModule } from 'app/shared/delete-alert/delete-alert.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
     MatDialogModule,
     MaterialBasicUitModule,
     FormsMaterialModule,
-    LoadingBodyModule
+    LoadingBodyModule,
+    DeleteAlertModule
   ]
 })
 export class HeadquarterModule { }

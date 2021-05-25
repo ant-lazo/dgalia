@@ -12,10 +12,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     
     <div class="flex items-center justify-end pt-10">
         <button mat-button (click)="onNoDelete()">
-            <mat-icon svgIcon="close" ></mat-icon>
+            <mat-icon>close</mat-icon>
             Cancelar
         </button>
-        <button (click)="delete()" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+        <button (click)="delete()" class="px-6 ml-3" mat-flat-button color="primary">
             <!-- <mat-icon svgIcon="delete" ></mat-icon> -->
             Eliminar
         </button>
