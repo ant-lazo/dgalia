@@ -4,8 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import moment from 'moment';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CalendarWeekday } from '../../models/calendar.types';
-import { CalendarService } from '../../services/calendar.service';
+import { CalendarWeekday } from '../../../../models/calendar.types';
+import { CalendarService } from '../../../../services/calendar.service';
 
 
 @Component({

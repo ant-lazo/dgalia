@@ -4,7 +4,6 @@ import { ProgramationComponent } from './programation.component';
 import { ProgramationCalendarComponent } from './pages/programation-calendar/programation-calendar.component';
 import { CalendarCalendarsResolver, CalendarSettingsResolver, CalendarWeekdaysResolver } from './pages/mock-resolvers/calendar.resolvers';
 import { InitialPageComponent } from './pages/initial-page/initial-page.component';
-import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ProgramationDetailComponent } from './pages/programation-detail/programation-detail.component';
 import { ProgramationListComponent } from './pages/programation-list/programation-list.component';
 
@@ -15,12 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: 'calendario',
-        component: ProgramationCalendarComponent,
-        resolve: {
-          calendars: CalendarCalendarsResolver,
-          settings: CalendarSettingsResolver,
-          weekdays: CalendarWeekdaysResolver
-        }
+        loadChildren: () => import('./pages/calendar/calendar.module').then(c => c.CalendarModule)
       },
       { path: 'pagina-inicial', component: InitialPageComponent },
       {

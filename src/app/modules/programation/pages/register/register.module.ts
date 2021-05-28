@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 import { SelectionButtonsComponent } from './components/selection-buttons/selection-buttons.component';
@@ -61,6 +61,7 @@ import { RegisterCookingScheduleService } from './services/register.service';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatNativeDateModule
   ],
   providers: [
     RegisterFormMapper,

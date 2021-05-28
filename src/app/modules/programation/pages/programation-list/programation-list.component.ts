@@ -5,6 +5,7 @@ import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.compo
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { CookingScheduleService } from '../../services/cooking-schedule.service';
 import { CookingSchedule } from '../../models/cooking-schedule.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-programation-list',
@@ -13,6 +14,7 @@ import { CookingSchedule } from '../../models/cooking-schedule.model';
 })
 export class ProgramationListComponent implements OnInit {
 
+  public request: Observable<any[]>
   public model: any;
   public start: Date;
   public end: Date;
@@ -32,9 +34,9 @@ export class ProgramationListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.start && this.end) {
-      this.setProgramationList(this.start, this.end);
+      this.request = this._programation.getByRange(this.start, this.end);
     } else {
-      this.setProgramationList();
+      this.request = this._programation.getAll();
     }
   }
 

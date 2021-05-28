@@ -25,15 +25,14 @@ import esLocale from '@fullcalendar/core/locales/es';
 import { CookingScheduleService } from '../../services/cooking-schedule.service';
 import ProgramationCalendarComponentHelper from '../../helpers/programation-calendar-component.helper';
 import { CookingSchedule } from '../../models/cooking-schedule.model';
-
 @Component({
-  selector: 'app-programation-calendar',
-  templateUrl: './programation-calendar.component.html',
-  styleUrls: ['./programation-calendar.component.scss'],
+  selector: 'cooking-schedule-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy{
 
   public calendars: Calendar[] = [];
   public calendarPlugins: any;
@@ -572,7 +571,7 @@ export class ProgramationCalendarComponent implements OnInit, AfterViewInit, OnD
     // If current view is not month list...
     else {
       // Set the color class of the event
-      calendarEvent.el.classList.add(calendar.color);
+     
 
       // Set the event's title to '(No title)' if event title is not available
       if (!calendarEvent.event.title) {

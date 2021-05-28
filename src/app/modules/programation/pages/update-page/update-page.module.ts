@@ -12,6 +12,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { UpdateFormComponent } from './components/update-form/update-form.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SelectedRecipeTableModule } from '../../components/selected-recipe-table/selected-recipe-table.module';
+import { ComingSoonModule } from 'app/shared/coming-soon/coming-soon.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { SelectedRecipeTableModule } from '../../components/selected-recipe-tabl
   imports: [
     CommonModule,
     UpdatePageRoutingModule,
+    ComingSoonModule,
 
     RowButtonsModule,
     MaterialTableModule,

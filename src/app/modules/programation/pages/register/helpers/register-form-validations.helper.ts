@@ -8,8 +8,6 @@ export class RegisterFormHelper {
     public  validateRecipeList(list: RegisterPrgRecipeSelectedModel[]): string {
         let message: string = '';
         for (const recipe of list) {
-            console.log(recipe);
-
             if (recipe.class_id == null) {
                 message = `ups!, aun falta asignarle una clase a la receta ${recipe.name}`;
                 break;
