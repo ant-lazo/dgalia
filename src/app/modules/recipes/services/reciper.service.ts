@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { Recipe } from '../models/recipe.model';
 import { RegisterRecipeForm } from '../models/register-recipe-form.model';
 import { EditRecipeForm } from '../models/edit-recipe-form.model';
+import { ApiRoutes } from 'app/core/api/constants/api.routes';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,12 @@ export class ReciperService {
       .pipe(map(resp =>
         resp.data
       ));
+  }
+
+  public findByName(name: string): Observable<Recipe[]> {
+    return this._http.get<JsonResp>(ApiRoutes.recipes.findByName(name)).pipe(map(resp =>
+      resp.data
+    ));
   }
 
   public save(form: RegisterRecipeForm): Observable<JsonResp> {

@@ -1,0 +1,30 @@
+<div class="content-layout fullwidth-standard-normal-scroll scrollingContainer">
+
+
+
+    <div class="main">
+        <div class="content" *ngIf="request | async as data; else loading">
+
+            <app-title title="Registrar programación"
+                subtitle="Complete todos los campos del formulario para registrar una programacion de receta"
+                backButton="true">
+            </app-title>
+
+            <programation-register-form [termList]="data[3]" [headquarterList]="data[1]"
+                (formCompleted)="listenFormChanges($event)"></programation-register-form>
+
+            <programation-register-selection-buttons (onCancel)="cancel()" (onRecipeSelect)="onRecipeSelect()"
+                (onRegister)="registerValidation()">
+            </programation-register-selection-buttons>
+
+            <programation-register-recipes (selectedRecipeList)="listenRecipeListSelected($event)"
+                [courseList]="data[2]" [classAppList]="data[0]" [selectRecipe]="selectRecipe">
+            </programation-register-recipes>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

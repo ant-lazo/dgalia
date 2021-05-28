@@ -15,4 +15,12 @@ export class ApiRoutes {
         findByCode: (code: string): string => `${environment.apiUrl}product?code=${code}`,
         delete: (code: string): string => `${environment.apiUrl}product?code=${code}`,
     }
+
+    public static recipes = {
+        findByName: (name: string): string => `${environment.apiUrl}recipe?name=${name}`,
+    }
+
+    public static cookingSchedule = {
+        save: `${environment.apiUrl}cooking-schedule`,
+    }
 }

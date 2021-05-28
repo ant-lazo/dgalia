@@ -10,8 +10,8 @@ export class AppNotificationsService {
     private _toast: ToastrService
   ) { }
 
-  public errorNotification(title?: string, message?: string): void {
-    this._toast.error(message || 'Error en solicitud', title || 'Error');
+  public error(title?: string, message?: string): void {
+    this._toast.error(message ?? 'Verifica que pudo haber pasado 🙏', title || 'Algo salió mal 🤔');
   }
 
   public invalidFormMessage(title?: string, body?: string): void {
@@ -19,7 +19,7 @@ export class AppNotificationsService {
   }
 
   public registerSuccess(title?: string, body?: string): void {
-    this._toast.success(body || 'Se ha hecho el registro de manera exitosa', title || 'Registro exitoso')
+    this._toast.success(body ?? 'Registro exitoso', title ?? '👏 Excelente!')
   }
 
   public editSuccess(title?: string, body?: string): void {

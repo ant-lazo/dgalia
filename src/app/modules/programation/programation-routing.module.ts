@@ -23,7 +23,10 @@ const routes: Routes = [
         }
       },
       { path: 'pagina-inicial', component: InitialPageComponent },
-      { path: 'registro', component: RegisterPageComponent },
+      {
+        path: 'registro',
+        loadChildren: () => import('./pages/register/register.module').then(r => r.RegisterModule)
+      },
       { path: 'detalle/:id', component: ProgramationDetailComponent },
       { path: 'editar/:id', loadChildren: () => import('./pages/update-page/update-page.module').then(u => u.UpdatePageModule) },
       { path: 'listado/:start/:end', component: ProgramationListComponent },
