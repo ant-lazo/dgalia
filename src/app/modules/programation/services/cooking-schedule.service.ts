@@ -9,6 +9,9 @@ import { map } from 'rxjs/operators';
 import { CookingScheduleRegisterForm } from '../models/cooking-schedule-register-form.model';
 import moment from 'moment';
 import { CookingScheduleUpdateForm } from '../models/update-form.model';
+import { CookingScheduleResumen } from '../models/cooking-schedule-resumen.model';
+import { ApiRoutes } from 'app/core/api/constants/api.routes';
+import { CookingScheduleResumeMapper } from './mappers/cooking-schedule-resume.mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -75,4 +78,10 @@ export class CookingScheduleService {
     return this._http.put<JsonResp>(this.baseUrl, cookingschedule);
   }
 
+  public getResume(id: number): Observable<CookingScheduleResumen[]> {
+    return this._http.get<JsonResp>(ApiRoutes.cookingSchedule.getResume(id)).pipe(map((resp: JsonResp) => {
+      const mapper: CookingScheduleResumeMapper = new CookingScheduleResumeMapper();
+      return resp.data.map(e => mapper.fromJson(e));
+    }));
+  }
 }
