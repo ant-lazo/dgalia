@@ -162,7 +162,7 @@
                         {
                             "id": "pages.logistica.hojas_de_demanda.registro",
                             "title": "Registro",
-                            "link": "logistica/hojas-de-demanda/registro",
+                            "link": "logistica/hojas-de-demanda/registro/none",
                             "type": "basic"
                         },
                         {
