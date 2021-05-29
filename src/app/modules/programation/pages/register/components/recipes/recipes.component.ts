@@ -26,7 +26,7 @@ export class RecipesComponent implements OnInit, OnChanges {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   public displayedColumns: string[] = ['code', 'name', 'quantity', 'classList', 'courseList', 'date', 'actions'];
-  public dataSource: MatTableDataSource<CookingScheduleRecipe> = new MatTableDataSource([]);
+  public dataSource: MatTableDataSource<RegisterPrgRecipeSelectedModel> = new MatTableDataSource([]);
 
   constructor(
     private _matDialog: MatDialog
