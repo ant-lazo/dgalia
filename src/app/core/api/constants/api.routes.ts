@@ -22,5 +22,6 @@ export class ApiRoutes {
 
     public static cookingSchedule = {
         save: `${environment.apiUrl}cooking-schedule`,
+        getResume: (id: number): string => `${environment.apiUrl}cooking-schedule/resumen?id=${id}`,
     }
 }
