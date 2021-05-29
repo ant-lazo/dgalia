@@ -23,23 +23,23 @@ export default class ProgramationCalendarComponentHelper {
      */
     public getEnventsFromCookingSchedule(list: CookingSchedule[]): CalendarEvent[] {
         const newList: CalendarEvent[] = [];
-        for (const item of list) {
-            newList.push({
-                id: item.id.toString(),
-                calendarId: item.headquarter.id.toString(),
-                recurringEventId: item.id.toString(),
-                title: item.note,
-                description: item.description,
-                start: moment(item.completeDate).toISOString(),
-                end: moment().year(9999).endOf('year').toISOString(),
-                allDay: false,
-                recurrence: null,
-                isFirstInstance: false,
-                classes: item.classes,
-                courses: item.course,
-                term: item.term
-            })
-        }
+        // for (const item of list) {
+        //     newList.push({
+        //         id: item.id.toString(),
+        //         calendarId: item.headquarter.id.toString(),
+        //         recurringEventId: item.id.toString(),
+        //         title: item.note,
+        //         description: item.description,
+        //         start: moment(item.completeDate).toISOString(),
+        //         end: moment().year(9999).endOf('year').toISOString(),
+        //         allDay: false,
+        //         recurrence: null,
+        //         isFirstInstance: false,
+        //         classes: item.classes,
+        //         courses: item.course,
+        //         term: item.term
+        //     })
+        // }
         return newList;
     }
 

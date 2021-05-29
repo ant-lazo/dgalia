@@ -1,20 +1,23 @@
 export interface CookingSchedule {
     id: number;
+    code: string;
     note: string;
     description: string;
-    completeDate: string;
-    dateNumber: number;
-    dateString: string;
+    startDate: Date;
+    endDate: Date;
     enabled: boolean;
     recipes: CookingScheduleRecipe[];
-    course: Course[];
-    classes: Course[];
-    term: Course;
-    createdAt: string;
-    updatedAt: string;
-    createdBy: Course;
-    updatedBy: Course;
     headquarter: Headquarter;
+    createdAt: Date;
+    createdBy: CreatedBy;
+    updatedAt: Date;
+    term: Term;
+}
+
+interface CreatedBy {
+    id: number;
+    fullname: string;
+    email: string;
 }
 
 interface Headquarter {
@@ -24,17 +27,24 @@ interface Headquarter {
     address: string;
     personInCharge: string;
     enabled: boolean;
-    color:string
-}
-
-interface Course {
-    id: number;
-    name: string;
+    color: string;
 }
 
 export interface CookingScheduleRecipe {
-    id: number;
+    recipeId: number;
     name: string;
     code: string;
     quantity: number;
+    date: Date;
+    className: string;
+    classId: number;
+    courseName: string;
+    courseId: number;
+}
+
+interface Term {
+    id: number;
+    name: string;
+    description: string;
+    enabled: boolean;
 }
