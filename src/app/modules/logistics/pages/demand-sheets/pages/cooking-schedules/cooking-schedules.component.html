@@ -1,1 +1,15 @@
-<p>cooking-schedules works!</p>
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header module="Logistica" title="Programaciones"></app-header>
+
+    <div class="main">
+        <div class="content" *ngIf="request  | async as cookingScheduleList; else loading">
+            <logistic-cooking-schedules-list [cookingScheduleList]="cookingScheduleList">
+            </logistic-cooking-schedules-list>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

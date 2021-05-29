@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  public cookingScheduleId: string;
+
+  constructor(
+    private _activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+     this.cookingScheduleId=  this._activatedRoute.snapshot.params.cookingScheduleId;
   }
 
 }
