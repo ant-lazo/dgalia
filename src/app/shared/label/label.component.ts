@@ -32,9 +32,6 @@ export class LabelComponent implements OnInit {
       case 'orange':
         this.type = 'text-orange-600 bg-orange-200';
         break;
-      case 'emerald':
-        this.type = 'text-emerald-600 bg-emerald-200';
-        break;
       case 'teal':
         this.type = 'text-teal-600 bg-teal-200';
         break;
@@ -45,6 +42,5 @@ export class LabelComponent implements OnInit {
         this.type = 'text-red-600 bg-red-200'
         break;
     }
-    console.log(this.type);
   }
 }

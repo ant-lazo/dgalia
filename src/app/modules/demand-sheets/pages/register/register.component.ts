@@ -36,6 +36,8 @@ export class RegisterComponent implements OnInit {
       this._cookingSchedule.getById(this.cookingScheduleId)
     ]).pipe(map((result: any) => {
       this.cookingSchedule = result[2];
+      console.log(result[0]);
+      
       return result;
     }));
   }
