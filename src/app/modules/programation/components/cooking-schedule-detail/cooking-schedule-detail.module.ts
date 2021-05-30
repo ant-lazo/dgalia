@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CookingScheduleDetailComponent } from './cooking-schedule-detail.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { LabelModule } from 'app/shared/label/label.module';
 
 
 
@@ -13,7 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    LabelModule
   ],
   exports: [
     CookingScheduleDetailComponent
