@@ -156,19 +156,19 @@
                         {
                             "id": "pages.logistica.hojas_de_demanda.listado",
                             "title": "Listado",
-                            "link": "logistica/hojas-de-demanda/listado",
+                            "link": "hojas-de-demanda/listado",
                             "type": "basic"
                         },
                         {
                             "id": "pages.logistica.hojas_de_demanda.registro",
                             "title": "Registro",
-                            "link": "logistica/hojas-de-demanda/registro/none",
+                            "link": "hojas-de-demanda/registro/none",
                             "type": "basic"
                         },
                         {
                             "id": "pages.logistica.hojas_de_demanda.programaciones",
                             "title": "Programaciones",
-                            "link": "logistica/hojas-de-demanda/programaciones",
+                            "link": "hojas-de-demanda/programaciones",
                             "type": "basic"
                         }
                     ]
