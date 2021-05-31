@@ -24,4 +24,8 @@ export class ApiRoutes {
         save: `${environment.apiUrl}cooking-schedule`,
         getResume: (id: number): string => `${environment.apiUrl}cooking-schedule/resumen?id=${id}`,
     }
+
+    public static demandSheet = {
+        save: `${environment.apiUrl}demand-sheet`,
+    }
 }

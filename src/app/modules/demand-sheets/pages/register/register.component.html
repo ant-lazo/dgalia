@@ -14,8 +14,10 @@
 
                 <app-cooking-schedule-detail [cookingSchedule]="cookingSchedule"></app-cooking-schedule-detail>
 
-                <logistic-demand_sheets-register-supply_list [measureUnitList]="data[1]" [resumenList]="data[0]">
-                </logistic-demand_sheets-register-supply_list>
+                <demand_sheets-register-supply_list [measureUnitList]="data[1]" [resumenList]="resumenList">
+                </demand_sheets-register-supply_list>
+
+                <demand_sheets-register-buttons (registerPressed)="validateDataToRegister()" ></demand_sheets-register-buttons>
             </div>
         </div>
     </div>
