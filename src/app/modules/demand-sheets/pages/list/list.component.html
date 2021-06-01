@@ -1,1 +1,14 @@
-<app-coming-soon></app-coming-soon>
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header module="Hojas de demanda" title="Listado de hojas de demanda"></app-header>
+
+    <div class="main">
+        <div class="content" *ngIf="request | async as demandSheetList; else loading">
+            <demand_sheet-list-table [demandSheetList]="demandSheetList"></demand_sheet-list-table>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body message="Cargando hojas de demanda.."></app-loading-body>
+</ng-template>

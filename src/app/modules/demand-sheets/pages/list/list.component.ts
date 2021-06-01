@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DemandSheet } from '../../models/demand-sheet.model';
+import { DemandSheetService } from '../../services/demand-sheet.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  public request: Observable<DemandSheet[]>
+
+  constructor(
+    private _demandSheets: DemandSheetService
+  ) { }
 
   ngOnInit(): void {
+    this.request = this._demandSheets.getAll();
   }
 
 }

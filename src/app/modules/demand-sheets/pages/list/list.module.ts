@@ -3,17 +3,34 @@ import { CommonModule } from '@angular/common';
 
 import { ListRoutingModule } from './list-routing.module';
 import { ListComponent } from './list.component';
-import { ComingSoonModule } from 'app/shared/coming-soon/coming-soon.module';
+import { HeaderModule } from 'app/shared/header/header.module';
+import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
+import { TableComponent } from './components/table/table.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { LabelModule } from 'app/shared/label/label.module';
 
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
     ListRoutingModule,
-    ComingSoonModule
+    HeaderModule,
+    LoadingBodyModule,
+    LabelModule,
+
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
   ]
 })
 export class ListModule { }
