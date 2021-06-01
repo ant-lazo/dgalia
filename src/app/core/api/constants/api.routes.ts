@@ -22,10 +22,12 @@ export class ApiRoutes {
 
     public static cookingSchedule = {
         save: `${environment.apiUrl}cooking-schedule`,
-        getResume: (id: number): string => `${environment.apiUrl}cooking-schedule/resumen?id=${id}`,
+        getResume: (code: string): string => `${environment.apiUrl}cooking-schedule/resumen?code=${code}`,
+        findByCode: (code: string): string => `${environment.apiUrl}cooking-schedule?code=${code}`,
     }
 
     public static demandSheet = {
         save: `${environment.apiUrl}demand-sheet`,
+        findByCookingScheduleCode: (code: string): string => `${environment.apiUrl}demand-sheet/validate?cooking_schedule_code=${code}`,
     }
 }

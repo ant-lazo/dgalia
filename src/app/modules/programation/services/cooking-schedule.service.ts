@@ -26,9 +26,6 @@ export class CookingScheduleService {
     this.baseUrl = environment.apiUrl + apiRoutes.cookin_schedule.default;
   }
 
-  /**
-   * getByMonth
-   */
   public getByMonth(month: string, year: string): Observable<CookingSchedule[]> {
     return this._http.get<JsonResp>(
       this.baseUrl,
@@ -36,37 +33,29 @@ export class CookingScheduleService {
     ).pipe(map(result => result.data));
   }
 
-  /**
-   * getByRange
-   */
   public getByRange(start: Date, end: Date): Observable<CookingSchedule[]> {
     return this._http.get<JsonResp>(
       this.baseUrl + "?from=" + moment(start).format('yyyy-MM-DD') + "&to=" + moment(end).format('yyyy-MM-DD')
     ).pipe(map(result => result.data));
   }
 
-  /**
- * getByRange
- */
   public getAll(): Observable<CookingSchedule[]> {
     return this._http.get<JsonResp>(
       this.baseUrl
     ).pipe(map(result => result.data));
   }
 
-  /**
-   * register
-   * @param body -> CookingScheduleForm
-   */
   public register(body: CookingScheduleRegisterForm): Observable<JsonResp> {
     return this._http.post<JsonResp>(this.baseUrl, body);
   }
 
-  /**
-   * get by id
-   */
   public getById(id: string): Observable<CookingSchedule> {
     return this._http.get<JsonResp>(this.baseUrl, { params: { id } })
+      .pipe(map(resp => resp.data));
+  }
+
+  public getByCode(code: string): Observable<CookingSchedule> {
+    return this._http.get<JsonResp>(ApiRoutes.cookingSchedule.findByCode(code))
       .pipe(map(resp => resp.data));
   }
 
@@ -78,8 +67,8 @@ export class CookingScheduleService {
     return this._http.put<JsonResp>(this.baseUrl, cookingschedule);
   }
 
-  public getResume(id: number): Observable<CookingScheduleResumen[]> {
-    return this._http.get<JsonResp>(ApiRoutes.cookingSchedule.getResume(id)).pipe(map((resp: JsonResp) => {
+  public getResume(code: string): Observable<CookingScheduleResumen[]> {
+    return this._http.get<JsonResp>(ApiRoutes.cookingSchedule.getResume(code)).pipe(map((resp: JsonResp) => {
       const mapper: CookingScheduleResumeMapper = new CookingScheduleResumeMapper();
       return resp.data.map(e => mapper.fromJson(e));
     }));

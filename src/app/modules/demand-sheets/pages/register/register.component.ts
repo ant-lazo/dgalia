@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppPaths } from 'app/core/config/app-routes';
@@ -7,7 +8,8 @@ import { CookingSchedule } from 'app/modules/programation/models/cooking-schedul
 import { CookingScheduleService } from 'app/modules/programation/services/cooking-schedule.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { DemandSheetService } from '../../services/demand-sheet.service';
 import { DemandSheetRegisterFormMapper } from './mappers/demand-sheet-form.mapper';
 import { ResumeItemFormMapper } from './mappers/resume-item-form.mapper';
 import { RqDemandSheetRegister } from './models/demand-sheet-form.model';
@@ -24,7 +26,7 @@ export class RegisterComponent implements OnInit {
   public request: Observable<any>;
   public cookingSchedule: CookingSchedule;
 
-  public cookingScheduleId: string;
+  public cookingscheduleCode: string;
   public resumenList: ResumeFormList[] = [];
 
   constructor(
@@ -33,24 +35,33 @@ export class RegisterComponent implements OnInit {
     private _measureUnits: MeasuredUnitService,
     private _notifcations: AppNotificationsService,
     private _register: RegisterDemandSheetService,
-    private _router: Router
+    private _demandSheet: DemandSheetService,
+    private _router: Router,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
-    this.cookingScheduleId = this._activatedRoute.snapshot.params.cookingScheduleId;
-    if (this.cookingScheduleId != 'none') this.setData();
+    this.cookingscheduleCode = this._activatedRoute.snapshot.params.cookingScheduleCode;
+    if (this.cookingscheduleCode != 'none') this.setData();
   }
 
   public setData(): void {
     this.request = combineLatest([
-      this._cookingSchedule.getResume(Number(this.cookingScheduleId)),
+      this._cookingSchedule.getResume(this.cookingscheduleCode),
       this._measureUnits.getGetList(),
-      this._cookingSchedule.getById(this.cookingScheduleId)
-    ]).pipe(map((result: any) => {
-      this.resumenList = new ResumeItemFormMapper().fromResumeList(result[0]);
-      this.cookingSchedule = result[2];
-      return result;
-    }));
+      this._cookingSchedule.getByCode(this.cookingscheduleCode),
+      this._demandSheet.validateByCookingScheduleCode(this.cookingscheduleCode)
+    ]).pipe(
+      map((result: any) => {
+        this.resumenList = new ResumeItemFormMapper().fromResumeList(result[0]);
+        this.cookingSchedule = result[2];
+        return result;
+      }),
+      catchError((error: any) => {
+        this._location.back();
+        return error;
+      })
+    );
   }
 
 

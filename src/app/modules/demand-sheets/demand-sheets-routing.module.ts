@@ -16,7 +16,7 @@ const routes: Routes = [
         loadChildren: () => import('./pages/cooking-schedules/cooking-schedules.module').then(c => c.CookingSchedulesModule)
       },
       {
-        path: 'registro/:cookingScheduleId',
+        path: 'registro/:cookingScheduleCode',
         loadChildren: () => import('./pages/register/register.module').then(r => r.RegisterModule)
       },
       {

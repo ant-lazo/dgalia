@@ -18,4 +18,8 @@ export class DemandSheetService {
   public getAll(): Observable<DemandSheet[]> {
     return this._http.get<JsonResp>(ApiRoutes.demandSheet.save).pipe(map((resp: JsonResp) => resp.data));
   }
+
+  public validateByCookingScheduleCode(code: string): Observable<any> {
+    return this._http.get<JsonResp>(ApiRoutes.demandSheet.findByCookingScheduleCode(code));
+  }
 }
