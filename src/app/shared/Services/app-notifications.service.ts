@@ -26,8 +26,7 @@ export class AppNotificationsService {
     this._toast.success(body || 'Se ha hecho la actualización del registro de manera exitosa', title || 'Actualización exitoso')
   }
 
-
   public deleteSuccess(title?: string, body?: string): void {
-    this._toast.success(body || 'Se ha eliminado el registro correctamente', title || 'Eliminación exitosa')
+    this._toast.success(body || 'Se ha eliminado el registro correctamente', title || 'Sabemos que hiciste lo correcto 👏')
   }
 }

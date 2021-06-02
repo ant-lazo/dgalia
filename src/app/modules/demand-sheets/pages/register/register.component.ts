@@ -17,7 +17,7 @@ import { ResumeFormList } from './models/resume-list-request-model';
 import { RegisterDemandSheetService } from './services/register.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'demand-sheets-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })

@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { LabelModule } from 'app/shared/label/label.module';
+import { DeleteAlertModule } from 'app/shared/delete-alert/delete-alert.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { LabelModule } from 'app/shared/label/label.module';
     HeaderModule,
     LoadingBodyModule,
     LabelModule,
+    DeleteAlertModule,
 
     MatPaginatorModule,
     MatSortModule,

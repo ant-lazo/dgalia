@@ -19,7 +19,15 @@ export class DemandSheetService {
     return this._http.get<JsonResp>(ApiRoutes.demandSheet.save).pipe(map((resp: JsonResp) => resp.data));
   }
 
+  public findByCode(code: string): Observable<DemandSheet> {
+    return this._http.get<JsonResp>(ApiRoutes.demandSheet.findByCode(code)).pipe(map((resp: JsonResp) => resp.data));
+  }
+
   public validateByCookingScheduleCode(code: string): Observable<any> {
     return this._http.get<JsonResp>(ApiRoutes.demandSheet.findByCookingScheduleCode(code));
+  }
+
+  public delete(code: string): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(ApiRoutes.demandSheet.deleteByCode(code));
   }
 }
