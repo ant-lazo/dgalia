@@ -12,7 +12,9 @@ export class CookingScheduleDetailComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    console.log(this.cookingSchedule.recipes);
+    
   }
 
 }

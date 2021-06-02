@@ -77,7 +77,7 @@ export class ProgramationListComponent implements OnInit {
   }
 
   public detalle(event: CookingSchedule): void {
-    this._router.navigate(['programacion/detalle/' + event.id]);
+    this._router.navigate(['programacion/detalle', event.code]);
   }
 
   private setDates(): void {

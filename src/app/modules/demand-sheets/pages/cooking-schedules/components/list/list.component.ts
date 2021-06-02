@@ -27,8 +27,8 @@ export class ListComponent implements OnChanges {
     if (this.cookingScheduleList) this.setDataSourceList();
   }
 
-  public navigateToDetail(cookingScheduleid: number): void {
-    this._router.navigate(['/programacion/detalle', cookingScheduleid]);
+  public navigateToDetail(cookingScheduleCode: number): void {
+    this._router.navigate(['/programacion/detalle', cookingScheduleCode]);
   }
 
   public navigateToRegister(cookingScheduleCode: number): void {

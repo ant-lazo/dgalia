@@ -6,7 +6,6 @@ import { NgModule } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { InitialPageComponent } from './pages/initial-page/initial-page.component';
-import { ProgramationDetailComponent } from './pages/programation-detail/programation-detail.component';
 import { HeaderModule } from 'app/shared/header/header.module';
 import { RowButtonsModule } from 'app/shared/row-buttons/row-buttons.module';
 import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
@@ -31,7 +30,6 @@ import { MatIconModule } from '@angular/material/icon';
     ProgramationComponent,
     ProgramationCalendarComponent,
     InitialPageComponent,
-    ProgramationDetailComponent,
     SelectRecipesComponent,
     SelectDateComponent,
     ListTableComponent,
