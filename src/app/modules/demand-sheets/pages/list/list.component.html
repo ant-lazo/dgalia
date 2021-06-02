@@ -4,7 +4,8 @@
 
     <div class="main">
         <div class="content" *ngIf="request | async as demandSheetList; else loading">
-            <demand_sheet-list-table [demandSheetList]="demandSheetList"></demand_sheet-list-table>
+            <demand_sheet-list-table [demandSheetList]="demandSheetList" (selectedToDelete)="onDeletePressed($event)">
+            </demand_sheet-list-table>
         </div>
     </div>
 </div>
