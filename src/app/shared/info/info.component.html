@@ -14,11 +14,10 @@
                 </div>
                 <div *ngIf="showButton" class="flex flex-row mt-3 justify-center">
                     <button (click)="location.back()" mat-stroked-button color="primary">
-                        <mat-icon class="mr-2">thumb_up_alt</mat-icon>
-                        Entiendo
+                        {{ buttonText ?? 'Entiendo' }}
+                        <mat-icon class="mr-2">{{ buttonIcon ?? 'thumb_up_alt' }}</mat-icon>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
