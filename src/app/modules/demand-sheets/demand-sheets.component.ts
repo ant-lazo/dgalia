@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemandSheetsComponent implements OnInit {
 
+  public static listRoute: string = '/hojas-de-demanda/listado';
+
   constructor() { }
 
   ngOnInit(): void {
