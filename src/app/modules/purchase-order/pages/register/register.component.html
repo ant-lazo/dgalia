@@ -1,0 +1,9 @@
+<div *ngIf="!demandSheetCode; else register">
+    <app-info title="Solo te falta un paso" buttonText="Ir a hojas de demanda"
+        (butttonAction)="navigateToDemandSheetList()" buttonIcon="arrow_forward_ios"
+        message="Para generar una orden de compra debes primero seleccionar una hoja de demanda" [showButton]="true">
+    </app-info>
+</div>
+<ng-template #register>
+    <app-coming-soon></app-coming-soon>
+</ng-template>

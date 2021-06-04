@@ -13,7 +13,7 @@
                     {{ message ?? '' }}
                 </div>
                 <div *ngIf="showButton" class="flex flex-row mt-3 justify-center">
-                    <button (click)="location.back()" mat-stroked-button color="primary">
+                    <button (click)="listenButtonClick()" mat-stroked-button color="primary">
                         {{ buttonText ?? 'Entiendo' }}
                         <mat-icon class="mr-2">{{ buttonIcon ?? 'thumb_up_alt' }}</mat-icon>
                     </button>
