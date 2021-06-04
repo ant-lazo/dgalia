@@ -21,7 +21,7 @@ import { RecipeSupplyListComponent } from './components/recipe-supply-list/recip
 import { RecipeSupplyModalComponent } from './components/recipe-supply-modal/recipe-supply-modal.component';
 import { EditRecipeFormComponent } from './components/edit-form/edit-form.component';
 import { DetailRecipeFormComponent } from './components/detail-form/detail-form.component';
-
+import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { DetailRecipeFormComponent } from './components/detail-form/detail-form.
     MaterialBasicUitModule,
     MatDialogModule,
     FormsMaterialModule,
-    SearchBoxModule
+    SearchBoxModule,
+    LoadingBodyModule
   ]
 })
 export class RecipesModule { }

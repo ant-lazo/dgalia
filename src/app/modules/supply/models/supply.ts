@@ -6,8 +6,9 @@ export interface Supply {
     category: Category;
     enabled: boolean;
     measuredUnit: MeasuredUnit;
-    createdAt: string;
-    updatedAt?: string;
+    createdAt: Date;
+    updatedAt: Date;
+    estimatedPrice: number;
 }
 
 interface MeasuredUnit {

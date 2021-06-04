@@ -1,4 +1,5 @@
-trigger: none
+trigger:
+- feature/*
 
 pool:
   vmImage: ubuntu-latest

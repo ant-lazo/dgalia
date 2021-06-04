@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
 import { SearchBoxModule } from '../../shared/search-box/search-box.module';
 import { SupplyEditComponent } from './components/supply-edit/supply-edit.component';
+import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SupplyEditComponent } from './components/supply-edit/supply-edit.compon
     MaterialBasicUitModule,
     MatDialogModule,
     FormsMaterialModule,
-    SearchBoxModule
+    SearchBoxModule,
+    LoadingBodyModule
   ]
 })
 export class SoupplyModule { }

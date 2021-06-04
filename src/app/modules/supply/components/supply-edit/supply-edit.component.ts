@@ -63,7 +63,8 @@ export class SupplyEditComponent implements OnInit {
       code: [data.code, Validators.required],
       name: [data.name, Validators.required],
       category_id: [data.category.id, Validators.required],
-      measured_unit_id: [data.measuredUnit.id, Validators.required]
+      measured_unit_id: [data.measuredUnit.id, Validators.required],
+      estimated_price:[data?.estimatedPrice || 0]
     });
     this.id = data.id;
   }

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SignInPageModel } from 'app/modules/auth/models/sign-in.model';
 import { SignInPageMapper } from '../mappers/sign-in.mapper';
 import { PageMapper } from '../../../core/interfaces/page-mapper';
+import auth from './../../../../assets/language/es/auth.json';
 
 @Component({
     selector: 'auth-sign-in',
@@ -74,10 +75,9 @@ export class AuthSignInComponent implements OnInit {
     }
 
     private setModel(): void {
-        const json = this._activatedRoute.snapshot.data;
-        if (json) {
+        if (auth.sigIng) {
             this.mapper = new SignInPageMapper();
-            this.model = this.mapper.getUiElementa(json);
+            this.model = this.mapper.getUiElementa(auth.sigIng);
         }
     }
 

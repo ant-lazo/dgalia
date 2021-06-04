@@ -1,4 +1,4 @@
-import * as apiRoutes from 'assets/config/api-routes.json';
+import apiRoutes from 'assets/config/api-routes.json';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -24,15 +24,15 @@ export class HeadquartesService {
     return this._http.get<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default).pipe(map(resp => resp.data));
   }
 
-  public delete(id:number): Observable<JsonResp> {
-    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default + "?id="+id.toString());
+  public delete(id: number): Observable<JsonResp> {
+    return this._http.delete<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default + "?id=" + id.toString());
   }
 
-  public editHeadquarter(data:Headquarter): Observable<JsonResp> {
+  public editHeadquarter(data: Headquarter): Observable<JsonResp> {
     return this._http.put<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default, data);
   }
-  
-  public registerNewHeadquarter(data:Headquarter): Observable<JsonResp> {
+
+  public registerNewHeadquarter(data: Headquarter): Observable<JsonResp> {
     return this._http.post<JsonResp>(environment.apiUrl + apiRoutes.headquarter.default, data);
   }
 }

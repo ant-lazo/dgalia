@@ -69,7 +69,8 @@ export class SupplyRegisterComponent implements OnInit {
       code: [null],
       name: [null, Validators.required],
       category_id: [null, Validators.required],
-      measured_unit_id: [null, Validators.required]
+      measured_unit_id: [null, Validators.required],
+      estimated_price: [0]
     });
   }
 

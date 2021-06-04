@@ -11,7 +11,7 @@
 
         <div class="toggle" (click)="toggleCalendarVisibility(calendar)">
 
-            <mat-icon class="visibility" [ngClass]="'text-' + calendar.color"
+            <mat-icon class="visibility" [ngClass]="'text-' + calendar?.color ?? 'gray'"
                 [svgIcon]="calendar.visible ? 'check_box' : 'check_box_outline_blank'"></mat-icon>
 
             <span class="title">

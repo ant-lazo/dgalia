@@ -21,7 +21,6 @@ import { takeUntil } from 'rxjs/operators';
 import { TreoMediaWatcherService } from '@treo/services/media-watcher';
 import { Calendar, CalendarDrawerMode, CalendarEvent, CalendarEventEditMode, CalendarEventPanelMode, CalendarSettings } from '../../models/calendar.types';
 import { CalendarService } from '../../services/calendar.service';
-import { CalendarRecurrenceComponent } from '../../components/recurrence/recurrence.component';
 import esLocale from '@fullcalendar/core/locales/es';
 import { CookingScheduleService } from '../../services/cooking-schedule.service';
 import ProgramationCalendarComponentHelper from '../../helpers/programation-calendar-component.helper';

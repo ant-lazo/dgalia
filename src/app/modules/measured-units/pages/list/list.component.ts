@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MeasuredunitListComponentModel } from '../../view-models/list_component.model';
-import * as config from 'assets/language/es/measured-unit.json';
+import config from 'assets/language/es/measured-unit.json';
 import { RowAppButtonModel } from '../../../../shared/row-buttons/models/row-nutton.model';
 import { MeasuredUnitListTableModel } from '../../view-models/list-table.model';
 import { MeasuredUnit } from '../../models/measured-unit.model';
@@ -10,6 +10,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
 import { MeasuredUnitEditComponent } from '../../components/measured-unit-edit/measured-units-edit.component';
 import { MeasuredUnitRegisterComponent } from '../../components/measured-units-register/measured-units-register.component';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -18,6 +20,7 @@ import { MeasuredUnitRegisterComponent } from '../../components/measured-units-r
 })
 export class ListComponent implements OnInit {
 
+  public measureUnitListRequest: Observable<MeasuredUnit[]>;
   public model: MeasuredunitListComponentModel;
   public tableModel: MeasuredUnitListTableModel;
   public measuredUnitList: MeasuredUnit[];
@@ -51,16 +54,17 @@ export class ListComponent implements OnInit {
     this.model = MeasuredunitListComponentModel.fromJson(config.list_component);
     this.registerButton.push(this.model.registerButton);
     this.tableModel = MeasuredUnitListTableModel.fromJson(config.list_table);
-    this.tableModel.tableLabels = ["code","name","options"];
+    this.tableModel.tableLabels = ["code", "name", "options"];
   }
 
   private getList(): void {
-    this._measuredUnit.getGetList().subscribe(list => {
+    this.measureUnitListRequest = this._measuredUnit.getGetList().pipe(map((list: MeasuredUnit[]) => {
       this.measuredUnitList = list;
-    });
+      return list;
+    }));
   }
 
-  editar(event:any){
+  editar(event: any) {
     const dialogRef = this.dialog.open(MeasuredUnitEditComponent, {
       width: '650px',
       height: '450px',

@@ -1,0 +1,79 @@
+<table mat-table [dataSource]="dataSource" matSort class="w-full mt-5">
+
+    <ng-container [matColumnDef]="displayedColumns[0]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+        <td mat-cell *matCellDef="let element">
+            <app-label [text]="element.code" color="teal"></app-label>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[1]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Familia </th>
+        <td mat-cell *matCellDef="let element">
+            <span class="text-sm"> {{ element.category.name }} </span>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[2]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Insumo </th>
+        <td mat-cell *matCellDef="let element">
+            <span class="text-sm"> {{ element.name }} </span>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[3]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> cantidad </th>
+        <td mat-cell *matCellDef="let element">
+            {{ element.quantity }}
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[4]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> U. de medida </th>
+        <td mat-cell *matCellDef="let element">
+            <span class="text-sm">{{ element.measuredUnit.name }}</span>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[5]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad eq </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-form-field class="w-20 mt-3">
+                <input type="number" [(ngModel)]="element.equivalentQuantity" matInput>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[6]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> U. de medida eq </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-form-field class="mt-3">
+                <mat-select [(ngModel)]="element.enquivalentMeasuredUnitCode">
+                    <mat-option *ngFor="let mu of measureUnitList" [value]="mu.code">
+                        {{mu.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[7]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-form-field class="w-20 mt-3">
+                <input type="number" [(ngModel)]="element.estimatedPrice" matInput>
+            </mat-form-field>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[8]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+        <td mat-cell *matCellDef="let element">
+           S/. {{ element.estimatedPrice * element.equivalentQuantity || 0 | currency: 'display': ''}}
+
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

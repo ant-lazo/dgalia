@@ -18,6 +18,7 @@ import { FormsMaterialModule } from 'app/shared/modules/forms-material.module';
 import { HeaderModule } from 'app/shared/header/header.module';
 import { CourseEditComponent } from './components/course-edit/course-edit.component';
 import { CourseRegisterComponent } from './components/course-register/course-register.component';
+import { DeleteAlertModule } from 'app/shared/delete-alert/delete-alert.module';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { CourseRegisterComponent } from './components/course-register/course-reg
     MatDialogModule,
     MaterialBasicUitModule,
     FormsMaterialModule,
+    DeleteAlertModule
   ]
 })
 export class CourseModule { }

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
 import { RowAppButtonModel, RowButtonType } from 'app/shared/row-buttons/models/row-nutton.model';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Recipe } from '../../models/recipe.model';
 import { ReciperService } from '../../services/reciper.service';
 
@@ -14,6 +16,7 @@ import { ReciperService } from '../../services/reciper.service';
 })
 export class RecipeListComponent implements OnInit {
 
+  public recipeListRequest: Observable<Recipe[]>;
   public registerButton: RowAppButtonModel[];
   public recipeList: Recipe[] = [];
   public recipeFilteredList: Recipe[] = [];
@@ -42,10 +45,11 @@ export class RecipeListComponent implements OnInit {
   }
 
   public setRecipeList(): void {
-    this._recipe.getAllRecipes().subscribe(recipes => {
-      this.recipeFilteredList = recipes;
-      this.recipeList = recipes;
-    })
+    this.recipeListRequest = this._recipe.getAllRecipes().pipe(map((list: Recipe[]) => {
+      this.recipeFilteredList = list;
+      this.recipeList = list;
+      return list;
+    }))
   }
 
   public buildRegisterButton(): void {
@@ -78,10 +82,10 @@ export class RecipeListComponent implements OnInit {
   }
 
   editar(event: any) {
-    this._router.navigate(['recetas/editar/'+event.id]);
+    this._router.navigate(['recetas/editar/' + event.id]);
   }
 
   detalle(event: any) {
-    this._router.navigate(['recetas/detalle/'+event.id]);
+    this._router.navigate(['recetas/detalle/' + event.id]);
   }
 }

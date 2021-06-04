@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from '../../../course/services/courses.service';
 import { Observable } from 'rxjs';
-import { Course } from 'app/modules/course/models/course.interface';
-import { Headquarter } from '../../../headquarter/models/headquarter.model';
-import { HeadquartesService } from '../../../headquarter/services/headquartes.service';
-import { Term } from '../../../term/models/term.interface';
-import { TermsService } from '../../../term/services/terms.service';
 import { ReciperService } from '../../services/reciper.service';
 import { Recipe } from '../../models/recipe.model';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeSelectedSupply } from '../../models/recipe-selected-supply';
 import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply.mapper';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail-recipe',
@@ -19,7 +14,7 @@ import { RecipeSelectedSupplyMapper } from '../../mappers/recipe-selected-supply
 })
 export class DetailRecipeComponent implements OnInit {
 
-  public recipe: Recipe;
+  public recipe: Observable<Recipe>;
   public suppliesSelected: RecipeSelectedSupply[];
   private suppliesselectedMapper: RecipeSelectedSupplyMapper;
 
@@ -39,10 +34,10 @@ export class DetailRecipeComponent implements OnInit {
   }
 
   private setRecipe(): void {
-    this._recipe.findById(this.id).subscribe((recipe: Recipe) => {
-      this.recipe = recipe;
-      this.suppliesSelected = this.suppliesselectedMapper.getFromRecipedetail(recipe.detail);
-    });
+   this.recipe =  this._recipe.findById(this.id).pipe(map((recipe: Recipe) => {
+    this.suppliesSelected = this.suppliesselectedMapper.getFromRecipedetail(recipe.detail);
+    return recipe;
+   }))
   }
 
 }

@@ -43,12 +43,6 @@
                     "icon": "settings",
                     "children": [
                         {
-                            "id": "pages.administation.headquarter",
-                            "title": "Sedes",
-                            "link": "/sedes",
-                            "type": "basic"
-                        },
-                        {
                             "id": "pages.administation.course",
                             "title": "Cursos",
                             "link": "/cursos",
@@ -58,6 +52,27 @@
                             "id": "pages.administation.term",
                             "title": "Ciclos",
                             "link": "/ciclos",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "3",
+                    "title": "Sedes",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.sedes.listado",
+                            "title": "Listado",
+                            "link": "/sedes/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.sedes.almacenes",
+                            "title": "Almacenes",
+                            "link": "/almacenes/listado",
                             "type": "basic"
                         }
                     ]
@@ -106,27 +121,93 @@
         },
         {
             "id": "2",
+            "title": "Productos",
+            "link": "/",
+            "type": "aside",
+            "icon": "category",
+            "children": [
+                {
+                    "id": "pages.productos.listado",
+                    "title": "Listado",
+                    "link": "productos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.productos.registro",
+                    "title": "Registrar",
+                    "link": "productos/registro",
+                    "type": "basic"
+                }
+            ]
+        },
+        {            
+            "id": "logistica",
+            "title": "Logística",
+            "link": "/logistica",
+            "type": "aside",
+            "icon": "swap_horiz",
+            "children": [
+                {
+                    "id": "pages.logistica.hojas_de_demanda",
+                    "title": "Hojas de demanda",
+                    "link": "/hojas-de-demanda",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.listado",
+                            "title": "Listado",
+                            "link": "hojas-de-demanda/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.registro",
+                            "title": "Registro",
+                            "link": "hojas-de-demanda/registro/none",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.programaciones",
+                            "title": "Programaciones",
+                            "link": "hojas-de-demanda/programaciones",
+                            "type": "basic"
+                        }
+                    ]
+                }
+               
+            ]
+        },
+        {
+            "id": "3",
             "title": "Administración",
             "link": "/",
             "type": "aside",
             "icon": "settings",
             "children": [
                 {
-                    "id": "pages.administation.headquarter",
-                    "title": "Sedes",
-                    "link": "/sedes",
-                    "type": "basic"
-                },
-                {
                     "id": "pages.administation.course",
                     "title": "Cursos",
                     "link": "/cursos",
                     "type": "basic"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "title": "Sedes",
+            "link": "/",
+            "type": "aside",
+            "icon": "home_work",
+            "children": [
+                {
+                    "id": "pages.sedes.listado",
+                    "title": "Listado",
+                    "link": "/sedes/listado",
+                    "type": "basic"
                 },
                 {
-                    "id": "pages.administation.term",
-                    "title": "Términos",
-                    "link": "/terminos",
+                    "id": "pages.sedes.almacenes",
+                    "title": "Almacenes",
+                    "link": "/almacenes/listado",
                     "type": "basic"
                 }
             ]

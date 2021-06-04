@@ -3,7 +3,6 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
-import { routesConfig } from './routes.config';
 
 
 // @formatter:off
@@ -29,7 +28,7 @@ export const appRoutes: Route[] = [
             { path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule) },
             { path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.module').then(m => m.AuthForgotPasswordModule) },
             { path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule) },
-            { data: routesConfig.auth, path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule) },
+            { path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule) },
             { path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule) }
         ]
     },
@@ -64,7 +63,10 @@ export const appRoutes: Route[] = [
             { path: 'programacion', loadChildren: () => import('app/modules/programation/programation.module').then(p => p.ProgramationModule) },
             { path: 'cursos', loadChildren: () => import('app/modules/course/course.module').then(p => p.CourseModule) },
             { path: 'ciclos', loadChildren: () => import('app/modules/term/term.module').then(r => r.TermModule) },
-            { path: 'sedes', loadChildren: () => import('app/modules/headquarter/headquarter.module').then(r => r.HeadquarterModule) }
+            { path: 'sedes', loadChildren: () => import('app/modules/headquarter/headquarter.module').then(r => r.HeadquarterModule) },
+            { path: 'almacenes', loadChildren: () => import('./modules/warehouse/warehouse.module').then(a => a.WarehouseModule) },
+            { path: 'productos', loadChildren: () => import('./modules/product/product.module').then(p => p.ProductModule) },
+            { path: 'hojas-de-demanda', loadChildren: () => import('./modules/demand-sheets/demand-sheets.module').then(d => d.DemandSheetsModule) }
         ]
     }
 

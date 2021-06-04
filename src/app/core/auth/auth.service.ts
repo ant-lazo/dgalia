@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { AuthUtils } from 'app/core/auth/auth.utils';
-import * as apiRoutes from 'assets/config/api-routes.json';
+import apiRoutes from 'assets/config/api-routes.json';
 import { environment } from '../../../environments/environment';
 import { AuthenticatedUser } from 'app/core/models/authenticated-user.model';
 

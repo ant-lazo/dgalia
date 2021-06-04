@@ -38,6 +38,13 @@
         </mat-form-field>
     </div>
 
+    <div class="flex" >
+        <mat-form-field class="flex-auto gt-xs:pr-3">
+            <input  formControlName="estimated_price" type="number" autocomplete="off" matInput placeholder="Precio estimado">
+            <mat-icon matPrefix>integration_instructions</mat-icon>
+        </mat-form-field>
+    </div>
+
     <div
         class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
         <button type="button" (click)="onNoCreate()" color="primary" mat-stroked-button>
