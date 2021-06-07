@@ -1,13 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Term } from '../../../term/models/term.interface';
-import { Headquarter } from '../../../headquarter/models/headquarter.model';
-import { Course } from '../../../course/models/course.interface';
-import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoursesService } from 'app/modules/course/services/courses.service';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
 import { TermsService } from 'app/modules/term/services/terms.service';
 import { Observable } from 'rxjs';
+
+import { Course } from '../../../course/models/course.interface';
+import { Headquarter } from '../../../headquarter/models/headquarter.model';
+import { Term } from '../../../term/models/term.interface';
+import { RecipeRegisterFomService } from '../../services/recipe-register-fom.service';
 import { ReciperService } from '../../services/reciper.service';
 
 @Component({
