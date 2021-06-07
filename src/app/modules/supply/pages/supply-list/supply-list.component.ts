@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RowAppButtonModel, RowButtonType } from '../../../../shared/row-buttons/models/row-nutton.model';
-import { Supply } from '../../models/supply';
-import { SupplyService } from '../../services/supply-service.service';
-import { SupplyRegisterComponent } from '../../components/supply-register/supply-register.component';
 import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
-import { SupplyEditComponent } from '../../components/supply-edit/supply-edit.component';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { RowAppButtonModel, RowButtonType } from '../../../../shared/row-buttons/models/row-nutton.model';
+import { SupplyEditComponent } from '../../components/supply-edit/supply-edit.component';
+import { SupplyRegisterComponent } from '../../components/supply-register/supply-register.component';
+import { Supply } from '../../models/supply';
+import { SupplyService } from '../../services/supply-service.service';
 
 @Component({
   selector: 'app-supply-list',

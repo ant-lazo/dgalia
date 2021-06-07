@@ -192,6 +192,12 @@
                             "type": "basic"
                         }
                     ]
+                },
+                {
+                    "id": "pages.logistica.proveedores",
+                    "title": "Proveedores",
+                    "link": "/proveedores",
+                    "type": "basic"
                 }
                
             ]

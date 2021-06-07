@@ -26,6 +26,15 @@ export class ApiRoutes {
         findByCode: (code: string): string => `${environment.apiUrl}cooking-schedule?code=${code}`,
     }
 
+    public static provider = {
+        save: `${environment.apiUrl}provider`,
+        getAll: `${environment.apiUrl}provider`,
+    }
+
+    public static documentType = {
+        getAll: `${environment.apiUrl}document-type`,
+    }
+
     public static demandSheet = {
         save: `${environment.apiUrl}demand-sheet`,
         findByCookingScheduleCode: (code: string): string => `${environment.apiUrl}demand-sheet/validate?cooking_schedule_code=${code}`,

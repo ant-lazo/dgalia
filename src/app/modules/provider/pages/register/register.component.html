@@ -1,0 +1,19 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="main">
+        <div class="content">
+            <app-title backButton="true" title="Formulario para registro de Proveedor"
+                subtitle="Completa todos los campos para registrar de manera exitosa un proveedor">
+            </app-title>
+
+            <provider-register-form *ngIf="documentTypeList | async as data; else loading" [documentTypeList]="data"
+                (completedForm)="setForm($event)" (onCancel)="onCancel()" (registerButtonPressed)="onRegisterPressed()">
+            </provider-register-form>
+
+
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>
