@@ -1,25 +1,25 @@
+import { NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
-import es from '@angular/common/locales/es';
-import { MarkdownModule } from 'ngx-markdown';
+import { LOADING_BAR_CONFIG, LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { TreoModule } from '@treo';
-import { TreoConfigModule } from '@treo/services/config';
 import { TreoMockApiModule } from '@treo/lib/mock-api';
-import { CoreModule } from 'app/core/core.module';
-import { appConfig } from 'app/core/config/app.config';
-import { mockDataServices } from 'app/data/mock';
-import { LayoutModule } from 'app/layout/layout.module';
+import { TreoConfigModule } from '@treo/services/config';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-import { LoadingBarModule } from '@ngx-loading-bar/core';
-import { LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
+import { appConfig } from 'app/core/config/app.config';
+import { CoreModule } from 'app/core/core.module';
+import { mockDataServices } from 'app/data/mock';
+import { LayoutModule } from 'app/layout/layout.module';
+import { MarkdownModule } from 'ngx-markdown';
 import { ToastrModule } from 'ngx-toastr';
-import { registerLocaleData } from '@angular/common';
+
 import { ScrollDirective } from './shared/directives/scroll.directive';
-import { NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 
 registerLocaleData(es);
 
@@ -59,8 +59,7 @@ const routerConfig: ExtraOptions = {
 
         ToastrModule.forRoot(),
 
-        NgxMatNativeDateModule
-
+        NgxMatNativeDateModule,
     ],
     bootstrap: [
         AppComponent

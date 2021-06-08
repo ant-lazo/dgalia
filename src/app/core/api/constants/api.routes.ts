@@ -35,6 +35,10 @@ export class ApiRoutes {
         getAll: `${environment.apiUrl}document-type`,
     }
 
+    public static purchaseOrder = {
+        getNextCode: `${environment.apiUrl}purchase-order/next-code`,
+    }
+
     public static demandSheet = {
         save: `${environment.apiUrl}demand-sheet`,
         findByCookingScheduleCode: (code: string): string => `${environment.apiUrl}demand-sheet/validate?cooking_schedule_code=${code}`,
