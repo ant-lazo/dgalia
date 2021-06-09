@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DemandSheetsComponent } from 'app/modules/demand-sheets/demand-sheets.component';
+import { RegisterService } from './services/register.service';
 
 @Component({
   selector: 'purchase_order-register',
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _register: RegisterService
   ) { }
 
   ngOnInit(): void {

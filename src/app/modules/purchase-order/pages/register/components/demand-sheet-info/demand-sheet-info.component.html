@@ -1,1 +1,53 @@
-<p>demand-sheet-info works!</p>
+<div *ngIf="rqDemandSheet">
+    <div *ngIf="rqDemandSheet | async as demandSheet; else loading">
+        <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+            <div class="flex flex-row">
+                <mat-icon class="mr-5"> event </mat-icon>
+                <span>
+                    Fecha de programación: del {{ demandSheet.startDate | date: 'fullDate'}} a {{
+                    demandSheet.endDate | date: 'fullDate'
+                    }}
+                </span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-10 w-full">
+            <div class="col-span-5 w-full">
+                <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+                    <div class="flex flex-row">
+                        <mat-icon class="mr-5"> list_alt </mat-icon>
+                        <span> Hoja de demanda: {{ demandSheet.code }} </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-5 w-full">
+                <div class="flex flex-col  p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+                    <div class="flex flex-row">
+                        <mat-icon class="mr-5"> ballot </mat-icon>
+                        <span>
+                            Programación {{ demandSheet.cookingScheduleCode }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+            <div class="flex flex-row">
+                <mat-icon class="mr-5"> store </mat-icon>
+                <span>
+                    Sede: {{ demandSheet.headquarter.name }}
+                </span>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<ng-template #loading>
+    <ngx-skeleton-loader count="1"></ngx-skeleton-loader>
+</ng-template>

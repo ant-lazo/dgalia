@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { PurchaseOrderService } from 'app/modules/purchase-order/services/purchase-order.service';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'purchase_order-register-new_doc_info',
   templateUrl: './new-doc-info.component.html',
-  styles: [
-  ]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewDocInfoComponent implements OnInit {
 
