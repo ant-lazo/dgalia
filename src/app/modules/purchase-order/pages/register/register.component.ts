@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DemandSheetsComponent } from 'app/modules/demand-sheets/demand-sheets.component';
+
+import { ResumeComponent } from './components/resume/resume.component';
 import { RegisterService } from './services/register.service';
 
 @Component({
@@ -16,7 +19,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _register: RegisterService
+    private _register: RegisterService,
+    private _matDialog: MatDialog
   ) { }
 
 
@@ -35,6 +39,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public navigateToDemandSheetList(): void {
     this._router.navigate([DemandSheetsComponent.listRoute]);
+  }
+
+  public listenRegisterAction(): void {
+    const dialogRef = this._matDialog.open(ResumeComponent, {
+      width: '70%',
+      height: '500px'
+    });
+
   }
 
 }

@@ -1,0 +1,45 @@
+<div class="flex flex-col w-full">
+
+    <div class="flex  flex-row justify-between align-center">
+        <div>
+            <span class="text-blue-900 text-2xl">Generar orden de compra</span>
+        </div>
+        <button (click)="onCancel()" mat-icon-button color="primary">
+            <mat-icon> close </mat-icon>
+        </button>
+    </div>
+
+    <mat-divider class="m-3"></mat-divider>
+
+    <div *ngIf="requestData | async as data; else loading">
+        <purchase_order-register-new_doc_info></purchase_order-register-new_doc_info>
+
+        <mat-form-field class="mt-3 w-full">
+            <mat-label>Seleccione una sede</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let headquarter of data[0]" [value]="headquarter.id">
+                    {{headquarter.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="mt-2 w-full">
+            <mat-label>Seleccione una proveedor</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let provider of data[1]" [value]="provider.code">
+                    {{provider.commercialName}} - {{provider.legalName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+
+
+
+
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

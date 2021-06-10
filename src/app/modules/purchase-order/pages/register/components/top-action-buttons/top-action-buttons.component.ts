@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DemandSheetsComponent } from 'app/modules/demand-sheets/demand-sheets.component';
@@ -12,6 +12,8 @@ import { SelectProductDialogComponent } from '../selec-product-dialog/select-pro
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopActionButtonsComponent implements OnInit {
+
+  @Output() registeredPressed: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private _router: Router,
@@ -30,7 +32,6 @@ export class TopActionButtonsComponent implements OnInit {
       width: '70%',
       height: '500px'
     });
-
   }
 
 }

@@ -5,7 +5,7 @@
                 subtitle="Complete todos los campos para registrar una orden de compra, te avisaremos si algo falta o sale mal">
             </app-title>
 
-            <purchase_order-register-action_buttons></purchase_order-register-action_buttons>
+            <purchase_order-register-action_buttons (registeredPressed)="listenRegisterAction()" ></purchase_order-register-action_buttons>
 
             <purchase_order-register-new_doc_info></purchase_order-register-new_doc_info>
 
