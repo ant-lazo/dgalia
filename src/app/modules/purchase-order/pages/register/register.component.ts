@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DemandSheetsComponent } from 'app/modules/demand-sheets/demand-sheets.component';
 import { RegisterService } from './services/register.service';
@@ -9,7 +9,7 @@ import { RegisterService } from './services/register.service';
   styles: [
   ]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   public demandSheetCode: string;
 
@@ -18,6 +18,11 @@ export class RegisterComponent implements OnInit {
     private _router: Router,
     private _register: RegisterService
   ) { }
+
+
+  ngOnDestroy(): void {
+    this._register.currentProducts.next([]);
+  }
 
   ngOnInit(): void {
     this.setDemandsheetCode();

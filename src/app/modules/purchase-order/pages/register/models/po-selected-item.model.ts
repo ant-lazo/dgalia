@@ -11,7 +11,7 @@ export class RqPoSelectedItem {
     productUnitPrice: number;
     productMuName: string;
     productCategoryName: string;
-
+    total: number;
     constructor(data: {
         supplyId: number,
         supplyName: string,
@@ -24,7 +24,6 @@ export class RqPoSelectedItem {
         productUnitPrice: number,
         productMuName: string,
         productCategoryName: string,
-
     }) {
         this.localId = new Date().getSeconds() + new Date().getMilliseconds();
         this.supplyId = data.supplyId;
@@ -38,6 +37,7 @@ export class RqPoSelectedItem {
         this.productUnitPrice = data.productUnitPrice;
         this.productMuName = data.productMuName;
         this.productCategoryName = data.productCategoryName;
+        this.total = (this.productQuantity * this.productUnitPrice) + this.productIgv
     }
 
 }

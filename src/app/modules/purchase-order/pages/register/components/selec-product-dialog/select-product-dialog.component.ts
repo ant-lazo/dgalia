@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Product } from 'app/modules/product/models/product.model';
 import { ProductService } from 'app/modules/product/services/product.service';
@@ -11,8 +11,8 @@ import { RegisterService } from '../../services/register.service';
 @Component({
   selector: 'purchase_order-register-selec-product-dialog',
   templateUrl: './select-product-dialog.component.html',
-  styles: [
-  ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class SelectProductDialogComponent implements OnInit {
 
@@ -52,8 +52,8 @@ export class SelectProductDialogComponent implements OnInit {
       productUnitPrice: product.priceList,
       requiredMeasuredUnitName: null,
       requiredQuantity: null,
-      supplyId: product.supplyId,
-      supplyName: product.supplyName,
+      supplyId: product.supplyId ?? 0,
+      supplyName: product.supplyName ?? 'N/A',
       productMuName: product.measureUnit.name,
       productCategoryName: product.category.name,
     });
@@ -74,7 +74,7 @@ export class SelectProductDialogComponent implements OnInit {
   }
 
   public addProduct(): void {
-    if (this.productSelected.productQuantity === null  || this.productSelected.productQuantity <= 0 ) {
+    if (this.productSelected.productQuantity === null || this.productSelected.productQuantity <= 0) {
       this._toast.error(null, 'Deberias ingresar una cantidad mayor a cero');
       return;
     }
@@ -82,6 +82,10 @@ export class SelectProductDialogComponent implements OnInit {
     this.onClose();
   }
 
+  public setProductSelectedTotal(): void {
+    const total: number = (this.productSelected.productQuantity * this.productSelected.productUnitPrice) + this.productSelected.productIgv;
+    this.productSelected.total = Number((total).toFixed(2));
 
+  }
 
 }

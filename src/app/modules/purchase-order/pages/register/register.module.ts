@@ -21,6 +21,9 @@ import { TopActionButtonsComponent } from './components/top-action-buttons/top-a
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { RegisterService } from './services/register.service';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ListTableComponent } from './components/list-table/list-table.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { RegisterService } from './services/register.service';
     DemandSheetInfoComponent,
     TopActionButtonsComponent,
     SelectProductDialogComponent,
-    SelectedProductCardComponent
+    SelectedProductCardComponent,
+    ProductListComponent,
+    ListTableComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +53,8 @@ import { RegisterService } from './services/register.service';
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTableModule,
   ],
   providers: [
     RegisterService
