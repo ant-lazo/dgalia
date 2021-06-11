@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { DemandSheetsComponent } from 'app/modules/demand-sheets/demand-sheets.component';
+import { DemandSheet, DemandSheetItem } from 'app/modules/demand-sheets/models/demand-sheet.model';
+import { DemandSheetService } from 'app/modules/demand-sheets/services/demand-sheet.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { Observable } from 'rxjs';
 
@@ -11,6 +13,7 @@ import { ResumeComponent } from './components/resume/resume.component';
 import { PurchaseOrderRegisterMapper } from './mappers/po-register.mapper';
 import { PoResumeModalRespData } from './models/po-resume-modal-data.model';
 import { PoRqRegisterForm } from './models/po-rq-register-form.model';
+import { RqPoSelectedItem } from './models/po-selected-item.model';
 import { RegisterService } from './services/register.service';
 
 @Component({
@@ -21,11 +24,12 @@ import { RegisterService } from './services/register.service';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-  public demandSheetCode: string;
+  public demandSheet: DemandSheet;
   private mapper: PurchaseOrderRegisterMapper;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _demandSheets: DemandSheetService,
     private _router: Router,
     private _register: RegisterService,
     private _matDialog: MatDialog,
@@ -40,12 +44,42 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.setDemandsheetCode();
+    this.validateDemandSheetCode();
   }
 
-  private setDemandsheetCode(): void {
-    const code: string = this._activatedRoute.snapshot.params.demandSheetCode;
-    this.demandSheetCode = code !== 'none' ? code : null;
+  private validateDemandSheetCode(): void {
+    //const code: string = this._activatedRoute.snapshot.params.demandSheetCode;
+    const code: string = 'HDD00002';
+    if (code) this.setDemandSheet(code);
+  }
+
+  private setDemandSheet(code: string): void {
+    const request: Observable<DemandSheet> = this._demandSheets.findByCode(code);
+    request.subscribe((resp: DemandSheet) => {
+      this.demandSheet = resp;
+      this.setDemandSheetProducts(resp.items);
+    });
+  }
+
+
+  private setDemandSheetProducts(items: DemandSheetItem[]): void {
+    const products: RqPoSelectedItem[] = items.map(e => {
+      return new RqPoSelectedItem({
+        productCategoryName: null,
+        productCode: null,
+        productIgv: null,
+        productMuName: null,
+        productName: null,
+        productQuantity: null,
+        productUnitPrice: null,
+        requiredMeasuredUnitName: e.measuredunitRequired.name,
+        requiredQuantity: e.quantityRequired,
+        supplyId: e.supplyId,
+        supplyName: e.supplyName,
+      });
+    });
+
+    this._register.currentProducts.next(products);
   }
 
   public navigateToDemandSheetList(): void {

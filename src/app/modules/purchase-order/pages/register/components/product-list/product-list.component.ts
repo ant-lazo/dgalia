@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit {
   public tableList: any[] = [];
 
   constructor(
-    private _register: RegisterService
+    private _register: RegisterService,
   ) { }
 
   ngOnInit(): void {

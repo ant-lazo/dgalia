@@ -22,7 +22,14 @@
 
     <ng-container [matColumnDef]="displayedColumns[4]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Producto</th>
-        <td mat-cell *matCellDef="let element"> {{ element.productName }}</td>
+        <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.productName; else select">{{ element.productName }}</span>
+            <ng-template #select >
+                <button (click)="openSelectProduct()" mat-stroked-button color="primary">
+                    Seleccionar
+                </button>
+            </ng-template>
+        </td>
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[5]">
