@@ -37,6 +37,7 @@ export class ApiRoutes {
 
     public static purchaseOrder = {
         getNextCode: `${environment.apiUrl}purchase-order/next-code`,
+        save: `${environment.apiUrl}purchase-order`,
     }
 
     public static demandSheet = {

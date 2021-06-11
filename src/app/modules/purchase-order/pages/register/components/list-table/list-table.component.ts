@@ -14,7 +14,7 @@ export class ListTableComponent implements OnChanges {
   @Input() list: RqPoSelectedItem[];
   @Output() selectedToDelete:EventEmitter<RqPoSelectedItem> = new EventEmitter();
 
-  public displayedColumns: string[] = ['supplyCode', 'supplyName', 'reqQuant', 'reqMu', 'pdt', 'pu', 'total', 'opts'];
+  public displayedColumns: string[] = ['supplyCode', 'supplyName', 'reqQuant', 'reqMu', 'pdt', 'pu', 'qtt', 'giv', 'total', 'opts'];
   public dataSource: MatTableDataSource<RqPoSelectedItem> = new MatTableDataSource([]);
 
   constructor() { }

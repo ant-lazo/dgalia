@@ -12,7 +12,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseOrderComponent implements OnInit {
 
-  public static registerRoute = '/orden-de-compra/registro'
+  public static registerRoute = '/orden-de-compra/registro';
+  public static listRoute = '/orden-de-compra/listado';
 
   constructor() { }
 
