@@ -14,6 +14,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   public static registerRoute = '/orden-de-compra/registro';
   public static listRoute = '/orden-de-compra/listado';
+  public static detailRoute = '/orden-de-compra/detalle';
 
   constructor() { }
 

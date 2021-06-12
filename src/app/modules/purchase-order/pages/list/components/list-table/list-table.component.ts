@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, ViewChild } from 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { PurchaseOrder } from 'app/modules/purchase-order/models/ purchase-order.model';
+import { PurchaseOrderComponent } from 'app/modules/purchase-order/purchase-order.component';
 
 @Component({
   selector: 'purchase_order-list-table',
@@ -19,14 +21,17 @@ export class ListTableComponent implements OnChanges {
   public displayedColumns: string[] = ['code', 'provider', 'headquarter', 'status', 'date', 'options'];
   public dataSource: MatTableDataSource<PurchaseOrder> = new MatTableDataSource([]);
 
-  constructor() { }
+  constructor(
+    private _router: Router
+  ) { }
 
   ngOnChanges(): void {
-    console.log(this.list);
-    
     if (this.list && this.list.length && this.list.length > 0) this.setDatatable();
   }
 
+  public navigateToDetail(code: string): void {
+    this._router.navigate([PurchaseOrderComponent.detailRoute, code])
+  }
 
   public setDatatable() {
     this.dataSource = new MatTableDataSource(this.list);

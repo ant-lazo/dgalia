@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { PurchaseOrderComponent } from './purchase-order.component';
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: 'registro/:demandSheetCode',
         loadChildren: () => import('./pages/register/register.module').then(r => r.RegisterModule)
+      },
+      {
+        path: 'detalle/:code',
+        loadChildren: () => import('./pages/detail/detail.module').then(d => d.DetailModule)
       }
     ]
   }
