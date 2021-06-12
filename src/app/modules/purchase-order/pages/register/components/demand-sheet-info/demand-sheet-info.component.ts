@@ -6,15 +6,13 @@ import { DemandSheet } from 'app/modules/demand-sheets/models/demand-sheet.model
   templateUrl: './demand-sheet-info.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DemandSheetInfoComponent   {
+export class DemandSheetInfoComponent {
 
   @Input() demandSheet: DemandSheet;
 
-  constructor(
-  ) { }
+  constructor() { }
 
- 
+
 
 
 }
-  

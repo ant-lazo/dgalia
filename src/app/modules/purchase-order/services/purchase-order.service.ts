@@ -15,7 +15,8 @@ export class PurchaseOrderService {
     private _http: HttpClient
   ) { }
 
-  public getNextCode(): Observable<string> {
-    return this._http.get<JsonResp>(ApiRoutes.purchaseOrder.getNextCode).pipe(map(resp => resp.data));
+  public getNextCode(demandsheetCode?: string): Observable<string> {
+    return this._http.get<JsonResp>(ApiRoutes.purchaseOrder.getNextCode(demandsheetCode))
+      .pipe(map(resp => resp.data));
   }
 }

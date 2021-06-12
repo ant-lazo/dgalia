@@ -25,6 +25,7 @@ import { RegisterService } from './services/register.service';
 export class RegisterComponent implements OnInit, OnDestroy {
 
   public demandSheet: DemandSheet;
+  public demandSheetCode: string;
   private mapper: PurchaseOrderRegisterMapper;
 
   constructor(
@@ -48,17 +49,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   private validateDemandSheetCode(): void {
-    //const code: string = this._activatedRoute.snapshot.params.demandSheetCode;
-    const code: string = 'HDD00002';
-    if (code) this.setDemandSheet(code);
+    this.demandSheetCode = this._activatedRoute.snapshot.params.demandSheetCode;
+    this.setDemandSheet();
   }
 
-  private setDemandSheet(code: string): void {
-    const request: Observable<DemandSheet> = this._demandSheets.findByCode(code);
-    request.subscribe((resp: DemandSheet) => {
-      this.demandSheet = resp;
-      this.setDemandSheetProducts(resp.items);
-    });
+  private setDemandSheet(): void {
+    if (this.demandSheetCode) {
+      const request: Observable<DemandSheet> = this._demandSheets.findByCode(this.demandSheetCode);
+      request.subscribe((resp: DemandSheet) => {
+        this.demandSheet = resp;
+        this.setDemandSheetProducts(resp.items);
+      });
+    }
   }
 
 
@@ -96,7 +98,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       items: products,
       demandSheetCode: this.demandSheet ? this.demandSheet.code : null
     });
-    
+
     this.registerPurchaseOrder(data);
   }
 

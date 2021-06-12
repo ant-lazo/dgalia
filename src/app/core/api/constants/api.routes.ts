@@ -37,7 +37,15 @@ export class ApiRoutes {
     }
 
     public static purchaseOrder = {
-        getNextCode: `${environment.apiUrl}purchase-order/next-code`,
+        getNextCode: (demandSheetCode?: string): string => {
+            let url: string = '';
+            if (demandSheetCode != null || demandSheetCode != undefined) {
+                url = `${environment.apiUrl}purchase-order/next-code?demand_sheet_code=${demandSheetCode}`;
+            } else {
+                url = `${environment.apiUrl}purchase-order/next-code`;
+            }
+            return url;
+        },
         save: `${environment.apiUrl}purchase-order`,
     }
 

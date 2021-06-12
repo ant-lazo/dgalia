@@ -8,7 +8,7 @@
             <purchase_order-register-action_buttons (registeredPressed)="listenRegisterActionToOpenDialog()">
             </purchase_order-register-action_buttons>
 
-            <purchase_order-register-new_doc_info></purchase_order-register-new_doc_info>
+            <purchase_order-register-new_doc_info [demandsheetCode]="demandSheetCode"></purchase_order-register-new_doc_info>
 
             <purchase_order-register-ds_info *ngIf="demandSheet" [demandSheet]="demandSheet">
             </purchase_order-register-ds_info>
