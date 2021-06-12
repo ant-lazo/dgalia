@@ -37,6 +37,8 @@ export class ApiRoutes {
     }
 
     public static purchaseOrder = {
+        save: `${environment.apiUrl}purchase-order`,
+        getAll: `${environment.apiUrl}purchase-order`,
         getNextCode: (demandSheetCode?: string): string => {
             let url: string = '';
             if (demandSheetCode != null || demandSheetCode != undefined) {
@@ -46,7 +48,6 @@ export class ApiRoutes {
             }
             return url;
         },
-        save: `${environment.apiUrl}purchase-order`,
     }
 
     public static demandSheet = {

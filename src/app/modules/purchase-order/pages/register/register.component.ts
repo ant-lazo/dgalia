@@ -49,7 +49,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   private validateDemandSheetCode(): void {
-    this.demandSheetCode = this._activatedRoute.snapshot.params.demandSheetCode;
+    const queryValue: string = this._activatedRoute.snapshot.params.demandSheetCode;;
+    if (queryValue && queryValue != 'none') this.demandSheetCode = queryValue;
     this.setDemandSheet();
   }
 

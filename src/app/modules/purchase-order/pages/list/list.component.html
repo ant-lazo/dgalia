@@ -1,1 +1,14 @@
-<app-coming-soon></app-coming-soon>
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header module="Orden de compra" title="Listado de ordenes de compra"></app-header>
+
+    <div class="main" *ngIf="purchaseOrderList | async as data; else loading">
+        <div class="content">
+            <purchase_order-list-table [list]="data"> </purchase_order-list-table>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>
