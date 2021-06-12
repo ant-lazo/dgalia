@@ -24,6 +24,7 @@ export class ProductMapper implements Mapper<Product> {
             updatedAt: json.updatedAt,
             createdby: new UserInfoMapper().fromJson(json.createdby),
             enabled: json.enabled,
+            supplyCode: json.supplyCode,
         });
     }
     toJson(doc: Product) {

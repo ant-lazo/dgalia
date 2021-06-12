@@ -1,6 +1,7 @@
 export interface PoRqRegisterForm {
     provider_code: string;
     is_draft: boolean;
+    demand_sheet_code: string;
     headquarter_id: number;
     products: PoRqRegisterFormItem[];
     comments: string;

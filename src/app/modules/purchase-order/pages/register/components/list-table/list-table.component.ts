@@ -14,7 +14,7 @@ import { SelectProductDialogComponent } from '../selec-product-dialog/select-pro
 export class ListTableComponent implements OnChanges {
 
   @Input() list: RqPoSelectedItem[];
-  @Output() selectedToDelete:EventEmitter<RqPoSelectedItem> = new EventEmitter();
+  @Output() selectedToDelete: EventEmitter<RqPoSelectedItem> = new EventEmitter();
 
   public displayedColumns: string[] = ['supplyCode', 'supplyName', 'reqQuant', 'reqMu', 'pdt', 'pu', 'qtt', 'giv', 'total', 'opts'];
   public dataSource: MatTableDataSource<RqPoSelectedItem> = new MatTableDataSource([]);
@@ -31,10 +31,11 @@ export class ListTableComponent implements OnChanges {
     this.dataSource = new MatTableDataSource(this.list);
   }
 
-  public openSelectProduct(): void {
+  public openSelectProduct(item: RqPoSelectedItem): void {
     this._matDialog.open(SelectProductDialogComponent, {
       width: '70%',
-      height: '500px'
+      height: '500px',
+      data: { supplyCode: item.supplyCode }
     });
   }
 

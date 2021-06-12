@@ -13,6 +13,7 @@ export class ApiRoutes {
     public static product = {
         getList: `${environment.apiUrl}product`,
         findByCode: (code: string): string => `${environment.apiUrl}product?code=${code}`,
+        findBySupplyCode: (code: string): string => `${environment.apiUrl}product?supply_code=${code}`,
         delete: (code: string): string => `${environment.apiUrl}product?code=${code}`,
     }
 

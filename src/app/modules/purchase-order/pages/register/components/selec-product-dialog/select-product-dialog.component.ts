@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Product } from 'app/modules/product/models/product.model';
 import { ProductService } from 'app/modules/product/services/product.service';
@@ -11,8 +11,6 @@ import { RegisterService } from '../../services/register.service';
 @Component({
   selector: 'purchase_order-register-selec-product-dialog',
   templateUrl: './select-product-dialog.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-
 })
 export class SelectProductDialogComponent implements OnInit {
 
@@ -52,7 +50,7 @@ export class SelectProductDialogComponent implements OnInit {
       productUnitPrice: product.priceList,
       requiredMeasuredUnitName: null,
       requiredQuantity: null,
-      supplyId: product.supplyId ?? 0,
+      supplyCode: product.supplyCode,
       supplyName: product.supplyName ?? 'N/A',
       productMuName: product.measureUnit.name,
       productCategoryName: product.category.name,
@@ -60,9 +58,19 @@ export class SelectProductDialogComponent implements OnInit {
   }
 
   private setProductList(): void {
-    if (!this.data?.supplyCode) {
+    if (this.data?.supplyCode) {
+      this.setProductListBySupply();
+    } else {
       this.setCompleteProductList();
     }
+  }
+
+  private setProductListBySupply(): void {
+
+    const request: Observable<Product[]> = this._products.findBySupplyCode(this.data.supplyCode);
+    request.subscribe((list: Product[]) => {
+      this.selectedProductList = list;
+    });
   }
 
   private setCompleteProductList(): void {
@@ -78,8 +86,30 @@ export class SelectProductDialogComponent implements OnInit {
       this._toast.error(null, 'Deberias ingresar una cantidad mayor a cero');
       return;
     }
-    this._register.addProduct(this.productSelected);
-    this.onClose();
+
+    if (this.data?.supplyCode) {
+      const pdtStd: RqPoSelectedItem = this.productSelected;
+      const founded: RqPoSelectedItem = this._register.findbySupplyCode(this.data.supplyCode);
+      const newproduct = new RqPoSelectedItem({
+        productCategoryName: pdtStd.productCategoryName,
+        productCode: pdtStd.productCode,
+        productIgv: pdtStd.productIgv,
+        productMuName: pdtStd.productMuName,
+        productName: pdtStd.productName,
+        productQuantity: pdtStd.productQuantity,
+        productUnitPrice: pdtStd.productUnitPrice,
+        requiredMeasuredUnitName: founded.requiredMeasuredUnitName,
+        requiredQuantity: founded.requiredQuantity,
+        supplyCode: founded.supplyCode,
+        supplyName: founded.supplyName,
+      });
+
+      this._register.updateBySuplyCode(newproduct);
+      this.onClose();
+    } else {
+      this._register.addProduct(this.productSelected);
+      this.onClose();
+    }
   }
 
   public setProductSelectedTotal(): void {

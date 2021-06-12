@@ -1,13 +1,15 @@
 <div *ngIf="!productSelected; else productInfo">
     <div class="flex w-full flex-row">
-        <app-search-box class="w-full" placeHolder="Ingrese nombre de insumo" (param)="listenSearchBoxParam($event)">
+        <app-search-box *ngIf="!data?.supplyCode" class="w-full" placeHolder="Ingrese nombre de insumo"
+            (param)="listenSearchBoxParam($event)">
         </app-search-box>
         <button (click)="onClose()" style="padding: 22px;" class=" ml-2" mat-stroked-button>
             <mat-icon>close</mat-icon>
         </button>
     </div>
 
-    <div *ngIf="selectedProductList.length === 0" class="flex flex-wrap h-50 justify-center content-center">
+    <div *ngIf="selectedProductList.length === 0  && !data?.supplyCode"
+        class="flex flex-wrap h-50 justify-center content-center">
         <div
             class="mt-6 text-2xl text-center font-medium font-sans leading-snug tracking-tight text-cool-gray-500 xs:mt-3 xs:text-lg">
             Ingresa el nombre del producto.
@@ -21,6 +23,13 @@
             [name]="product.name" [muName]="product.measureUnit.name" [categoryName]="product.category.name">
         </purchase_order-register-selected-product-card>
     </div>
+
+    <div *ngIf="data?.supplyCode && selectedProductList.length === 0">
+        <app-info title="Se te olvida algo 🙃" showButton="false"
+            message="Al insumo {{ data?.supplyCode }} aún no le has asignado un producto. Ve a /productos/listado edita un producto y en la parte inferior podrás asignar un insumo.">
+            Se te olvida algo 🙃,
+        </app-info>
+    </div>
 </div>
 
 <ng-template #productInfo>
@@ -32,8 +41,8 @@
 
         <mat-form-field>
             <mat-label>Precio unitario</mat-label>
-            <input (keyup)="setProductSelectedTotal()" [(ngModel)]="productSelected.productUnitPrice"
-                type="number" matInput [value]="productSelected.productUnitPrice">
+            <input (keyup)="setProductSelectedTotal()" [(ngModel)]="productSelected.productUnitPrice" type="number"
+                matInput [value]="productSelected.productUnitPrice">
         </mat-form-field>
 
         <div class="grid grid-cols-10 w-full">

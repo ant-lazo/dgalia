@@ -20,6 +20,7 @@ export class Product {
     public updatedAt: Date;
     public createdby: UserInfo;
     public enabled: boolean;
+    public supplyCode: string;
 
     constructor(data: {
         id: number,
@@ -38,7 +39,8 @@ export class Product {
         createdAt: Date,
         updatedAt: Date,
         createdby: UserInfo,
-        enabled: boolean
+        enabled: boolean,
+        supplyCode: string,
     }) {
         this.id = data.id;
         this.code = data.code;
@@ -57,5 +59,6 @@ export class Product {
         this.updatedAt = data.updatedAt;
         this.createdby = data.createdby;
         this.enabled = data.enabled;
+        this.supplyCode = data.supplyCode;
     }
 }

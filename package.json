@@ -9,7 +9,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=36955 --open --hmr",
+    "start": "ng serve --port=36955 --open",
     "start:mem": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng serve --open",
     "build": "ng build",
     "bp": "ng build --prod",

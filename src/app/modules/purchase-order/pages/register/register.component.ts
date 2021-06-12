@@ -64,21 +64,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   private setDemandSheetProducts(items: DemandSheetItem[]): void {
     const products: RqPoSelectedItem[] = items.map(e => {
-      return new RqPoSelectedItem({
-        productCategoryName: null,
-        productCode: null,
-        productIgv: null,
-        productMuName: null,
-        productName: null,
-        productQuantity: null,
-        productUnitPrice: null,
-        requiredMeasuredUnitName: e.measuredunitRequired.name,
-        requiredQuantity: e.quantityRequired,
-        supplyId: e.supplyId,
-        supplyName: e.supplyName,
-      });
+      return this.mapper.getProductFromDemandSheetItem(e);
     });
-
     this._register.currentProducts.next(products);
   }
 
@@ -87,17 +74,42 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   public listenRegisterActionToOpenDialog(): void {
+
+    const products = this.validateProducts();
+    if (products.length == 0) return;
+
     const dialogRed = this._matDialog.open(ResumeComponent, {
       width: '70%',
       height: '500px'
     });
 
     dialogRed.afterClosed().subscribe((resume: PoResumeModalRespData) => {
-      if (resume) {
-        const data: PoRqRegisterForm = this.mapper.buildFoormData({ resume, items: this._register.currentProducts.value });
-        this.registerPurchaseOrder(data);
-      }
+      if (resume) this.validateData(resume);
     });
+  }
+
+  private validateData(resume: PoResumeModalRespData): void {
+    const products: RqPoSelectedItem[] = this.validateProducts();
+
+    const data: PoRqRegisterForm = this.mapper.buildFormData({
+      resume,
+      items: products,
+      demandSheetCode: this.demandSheet ? this.demandSheet.code : null
+    });
+    
+    this.registerPurchaseOrder(data);
+  }
+
+  private validateProducts(): RqPoSelectedItem[] {
+    let products: RqPoSelectedItem[] = this._register.currentProducts.value;
+    for (const product of products) {
+      if (!product?.productCode) {
+        this._toast.error(null, 'No podemos registrar la orden de compra si no asignas todos los productos correspondientes, verifica si te falta alguno por seleccionar.')
+        products = [];
+        break;
+      }
+    }
+    return products;
   }
 
   private registerPurchaseOrder(form: PoRqRegisterForm): void {

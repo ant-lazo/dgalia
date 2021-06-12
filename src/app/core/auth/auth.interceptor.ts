@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
- 
+
     constructor(
         private _authService: AuthService,
         private toast: ToastrService,
@@ -38,7 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // Response
         return next.handle(newReq).pipe(
             catchError((error) => {
-                this.toast.error(error?.error?.error || 'Error inesperado al hacer solicitud', 'Lo sentimos 😕 algo ha salido mal.')
+                this.toast.error(error?.error?.error?.name ?? error?.error?.error ?? 'Error inesperado al hacer solicitud', 'Lo sentimos 😕 algo ha salido mal.')
                 // Catch "401 Unauthorized" responses
                 if (error instanceof HttpErrorResponse && error.status === 401) {
                     this._authService.signOut();

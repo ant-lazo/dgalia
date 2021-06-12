@@ -1,6 +1,6 @@
 export class RqPoSelectedItem {
     localId: number;
-    supplyId: number;
+    supplyCode: string;
     supplyName: string;
     requiredQuantity: number;
     requiredMeasuredUnitName: string;
@@ -13,7 +13,7 @@ export class RqPoSelectedItem {
     productCategoryName: string;
     total: number;
     constructor(data: {
-        supplyId: number,
+        supplyCode: string,
         supplyName: string,
         requiredQuantity: number,
         requiredMeasuredUnitName: string,
@@ -26,7 +26,7 @@ export class RqPoSelectedItem {
         productCategoryName: string,
     }) {
         this.localId = new Date().getSeconds() + new Date().getMilliseconds();
-        this.supplyId = data.supplyId;
+        this.supplyCode = data.supplyCode;
         this.supplyName = data.supplyName;
         this.requiredQuantity = data.requiredQuantity;
         this.requiredMeasuredUnitName = data.requiredMeasuredUnitName;
