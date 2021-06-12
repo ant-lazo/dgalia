@@ -25,4 +25,8 @@ export class PurchaseOrderService {
   public getAll(): Observable<PurchaseOrder[]> {
     return this._http.get<JsonResp>(ApiRoutes.purchaseOrder.getAll).pipe(map(resp => resp.data));
   }
+
+  public findbyCode(code: string): Observable<PurchaseOrder> {
+    return this._http.get<JsonResp>(ApiRoutes.purchaseOrder.findByCode(code)).pipe(map(resp => resp.data));
+  }
 }

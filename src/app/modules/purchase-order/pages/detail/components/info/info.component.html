@@ -1,0 +1,63 @@
+<div *ngIf="purchaseOrder">
+    <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+        <div class="flex flex-row">
+            <mat-icon class="mr-5">code</mat-icon>
+            <span> Código: {{ purchaseOrder.code}}</span>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-10 w-full">
+        <div class="col-span-5 w-full">
+            <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+                <div class="flex flex-row">
+                    <mat-icon class="mr-5">holiday_village</mat-icon>
+                    <span> Sede: {{ purchaseOrder.headquarter.name}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-5 w-full">
+            <div class="flex flex-col  p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+                <div class="flex flex-row">
+                    <mat-icon class="mr-5">fact_check</mat-icon>
+                    <span>
+                        Estado: {{ purchaseOrder.status.name }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+        <div class="flex flex-row">
+            <mat-icon class="mr-5">domain</mat-icon>
+            <span>
+                Proveedor:
+                {{ purchaseOrder.provider.legalName }} -
+                {{ purchaseOrder.provider.commercialName }}
+            </span>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-10 w-full">
+        <div class="col-span-5 w-full">
+            <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+                <div class="flex flex-row">
+                    <mat-icon class="mr-5">today</mat-icon>
+                    <span> Fecha: {{ purchaseOrder.createdAt | date :'fullDate'}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-5 w-full">
+            <div class="flex flex-col  p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+                <div class="flex flex-row">
+                    <mat-icon class="mr-5">person</mat-icon>
+                    <span>
+                        Responsable: {{ purchaseOrder.createdBy.fullname }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
