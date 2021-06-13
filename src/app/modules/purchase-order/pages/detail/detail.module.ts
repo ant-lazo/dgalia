@@ -10,6 +10,13 @@ import { ItemsComponent } from './components/items/items.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { LabelModule } from 'app/shared/label/label.module';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ResumenComponent } from './components/resumen/resumen.component';
 
 
 @NgModule({
@@ -17,16 +24,21 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
     DetailComponent,
     InfoComponent,
     ItemsComponent,
-    ActionButtonsComponent
+    ActionButtonsComponent,
+    ResumenComponent
   ],
   imports: [
     CommonModule,
     DetailRoutingModule,
     LoadingBodyModule,
     TitleModule,
+    LabelModule,
 
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSortModule,
+    MatTableModule,
+    MatProgressBarModule
   ]
 })
 export class DetailModule { }

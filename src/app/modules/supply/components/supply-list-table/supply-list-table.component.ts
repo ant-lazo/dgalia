@@ -13,12 +13,11 @@ import { Supply } from '../../models/supply';
 export class SupplyListTableComponent implements OnChanges {
 
   @Input() list: Supply[];
+  @Output() selectedToDelete: EventEmitter<any> = new EventEmitter();
+  @Output() selectedToEdit: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @Output() selectedToDelete: EventEmitter<any> = new EventEmitter();
-  @Output() selectedToEdit: EventEmitter<any> = new EventEmitter();
-  
   public displayedColumns: string[] = ['code', 'name', 'category', 'measuredUnit', 'actions'];
   public dataSource: MatTableDataSource<Supply> = new MatTableDataSource([]);
 

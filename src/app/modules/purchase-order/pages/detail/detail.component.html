@@ -13,6 +13,10 @@
             </purchase_order-detail-info>
 
             <purchase_order-detail-info></purchase_order-detail-info>
+
+            <purchase_order-detail-items [productList]="purchaseOrder.products"></purchase_order-detail-items>
+
+            <purchase_order-detail-resumen [purchaseOrder]="purchaseOrder"></purchase_order-detail-resumen>
         </div>
     </div>
 </div>
