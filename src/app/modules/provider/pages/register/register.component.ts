@@ -58,7 +58,4 @@ export class RegisterComponent implements OnInit {
   public onCancel(): void {
     this._router.navigate([ProviderComponent.listRoute]);
   }
-
-
-
 }
