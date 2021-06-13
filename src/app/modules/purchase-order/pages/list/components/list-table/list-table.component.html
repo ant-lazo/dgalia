@@ -30,11 +30,6 @@
     <ng-container [matColumnDef]="displayedColumns[5]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
         <td class="th-max" mat-cell *matCellDef="let element">
-
-            <button title="Eliminar {{ element.name }}" type="button" color="warn" mat-icon-button>
-                <mat-icon>delete</mat-icon>
-            </button>
-
             <button (click)="navigateToDetail(element.code)" title="Detalle {{ element.name }}" type="button"
                 mat-icon-button>
                 <mat-icon>arrow_forward_ios</mat-icon>
