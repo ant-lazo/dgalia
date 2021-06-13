@@ -75,7 +75,7 @@
     <div class="grid grid-cols-8 gap-4 w-full">
         <div class="col-span-4">
             <mat-form-field class="w-full">
-                <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id" >
+                <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id">
                     <mat-option *ngFor="let hq of headquarterList " [value]="hq.id">
                         {{hq.name}}
                     </mat-option>
@@ -86,7 +86,7 @@
 
         <div class="col-span-4">
             <mat-form-field class="w-full">
-                <mat-select placeholder="Seleccione una Familia de productos" formControlName="category_code" >
+                <mat-select placeholder="Seleccione una Familia de productos" formControlName="category_code">
                     <mat-option *ngFor="let pdtc of productCategoryList " [value]="pdtc.code">
                         {{pdtc.name}}
                     </mat-option>
@@ -112,10 +112,10 @@
             <mat-icon>close</mat-icon>
             Cancelar
         </button>
-        <button (click)="registerButtonPressed.emit(true)" [disabled]="form.invalid" type="submit" class="px-6 ml-3"
+        <button (click)="onUpdatePressed.emit(true)" [disabled]="form.invalid" type="submit" class="px-6 ml-3"
             mat-flat-button [color]="'primary'">
             <mat-icon class="mr-2">save</mat-icon>
-            Registrar
+            Actualizar
         </button>
     </div>
 </form>

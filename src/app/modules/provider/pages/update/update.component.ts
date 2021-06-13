@@ -1,11 +1,14 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { DocumentTypeService } from 'app/modules/document-types/services/document-type.service';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
 import { ProductCategoriesService } from 'app/modules/product-category/services/product-categories.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Provider } from '../../models/provider';
 
 import { ProviderComponent } from '../../provider.component';
 import { ProviderService } from '../../services/provider.service';
@@ -27,6 +30,8 @@ export class UpdateComponent implements OnInit {
     private _headquarter: HeadquartesService,
     private _providers: ProviderService,
     private _appNtf: AppNotificationsService,
+    private _activatedRoute: ActivatedRoute,
+    private _location: Location,
     private _router: Router
   ) { }
 
@@ -38,21 +43,30 @@ export class UpdateComponent implements OnInit {
     this.rqData = combineLatest([
       this._documentTypes.getAll(),
       this._headquarter.getCompleteList(),
-      this._productCategories.getList()
+      this._productCategories.getList(),
+      this._providers.findByCode(this.providerCode)
     ]);
+  }
+
+  private get providerCode(): string {
+    const code: string = this._activatedRoute.snapshot.params.code;
+    if (!code) this._location.back();
+    return code;
   }
 
   public setForm(form: RqRegisterProvider): void {
     this.rqRegisterProvider = form;
   }
 
-  public onRegisterPressed(): void {
-    const request: Observable<JsonResp> = this._providers.save(this.rqRegisterProvider);
+  public onUpdatePressed(): void {
+    console.log('here');
+    
+    // const request: Observable<JsonResp> = this._providers.save(this.rqRegisterProvider);
 
-    request.subscribe((resp: JsonResp) => {
-      this._appNtf.registerSuccess(null, `Se ha registrado exitosamente el proveedor con el código ${resp.data}`);
-      this._router.navigate([ProviderComponent.listRoute]);
-    });
+    // request.subscribe((resp: JsonResp) => {
+    //   this._appNtf.registerSuccess(null, `Se ha registrado exitosamente el proveedor con el código ${resp.data}`);
+    //   this._router.navigate([ProviderComponent.listRoute]);
+    // });
   }
 
   public onCancel(): void {

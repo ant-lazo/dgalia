@@ -1,3 +1,6 @@
+import { DocumentType } from 'app/modules/document-types/models/document-type';
+import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
+import { ProductCategory } from 'app/modules/product-category/models/product-category.interface';
 import { UserInfo } from 'app/modules/user/models/user-info.model';
 
 export interface Provider {
@@ -16,12 +19,8 @@ export interface Provider {
     updatedAt: Date;
     createdBy: UserInfo;
     updatedBy: UserInfo;
-}
-
-
-interface DocumentType {
     id: number;
-    code: string;
-    name: string;
-    description: string;
+    headquarter: Headquarter;
+    productCategory: ProductCategory;
 }
+

@@ -1,34 +1,36 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocumentType } from 'app/modules/document-types/models/document-type';
 import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 import { ProductCategory } from 'app/modules/product-category/models/product-category.interface';
-import { RqRegisterProvider } from '../../../register/models/rq-register-provider';
+import { Provider } from 'app/modules/provider/models/provider';
 
+import { RqRegisterProvider } from '../../../register/models/rq-register-provider';
 
 @Component({
   selector: 'provider-update-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormComponent implements OnInit {
 
+  @Input() provider: Provider;
   @Input() documentTypeList: DocumentType[];
   @Input() headquarterList: Headquarter[];
   @Input() productCategoryList: ProductCategory[];
   @Output() completedForm: EventEmitter<RqRegisterProvider> = new EventEmitter();
-  @Output() registerButtonPressed: EventEmitter<any> = new EventEmitter();
+  @Output() onUpdatePressed: EventEmitter<any> = new EventEmitter();
   @Output() onCancel: EventEmitter<any> = new EventEmitter();
 
   public form: FormGroup;
 
   constructor(
     private _builder: FormBuilder
-  ) {
-    this.setForm();
-  }
+  ) {  }
 
   ngOnInit(): void {
+    this.setForm();
     this.listenFormChanges();
   }
 
@@ -44,17 +46,17 @@ export class FormComponent implements OnInit {
 
   private setForm(): void {
     this.form = this._builder.group({
-      legal_name: [null, Validators.required],
-      commercial_name: [null, Validators.required],
-      document: [null, Validators.required],
-      location: [null, Validators.required],
-      document_type_code: [null, Validators.required],
-      phone: [null, Validators.required],
-      heading: [null, Validators.required],
-      contact_names: [null, Validators.required],
-      commnets: [null, Validators.required],
-      category_code: [null],
-      headquarter_id: [null]
+      legal_name: [this.provider.legalName, Validators.required],
+      commercial_name: [this.provider.commercialName, Validators.required],
+      document: [this.provider.document, Validators.required],
+      location: [this.provider.location, Validators.required],
+      document_type_code: [this.provider.documentType.code, Validators.required],
+      phone: [this.provider.phone, Validators.required],
+      heading: [this.provider.heading, Validators.required],
+      contact_names: [this.provider.contactNames, Validators.required],
+      commnets: [this.provider.comments, Validators.required],
+      category_code: [this.provider?.productCategory?.code],
+      headquarter_id: [this.provider?.headquarter?.id]
     });
   }
 
