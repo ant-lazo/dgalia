@@ -72,6 +72,30 @@
         </mat-form-field>
     </div>
 
+    <div class="grid grid-cols-8 gap-4 w-full">
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id" >
+                    <mat-option *ngFor="let hq of headquarterList " [value]="hq.id">
+                        {{hq.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Seleccione una Familia de productos" formControlName="category_code" >
+                    <mat-option *ngFor="let pdtc of productCategoryList " [value]="pdtc.code">
+                        {{pdtc.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
     <div class="flex">
         <mat-form-field class="treo-mat-textarea flex-auto">
             <textarea formControlName="commnets" autocomplete="off" matInput placeholder="Comentarios/Observaciones"
@@ -79,6 +103,8 @@
             <mat-icon matPrefix>notes</mat-icon>
         </mat-form-field>
     </div>
+
+
 
     <div
         class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">

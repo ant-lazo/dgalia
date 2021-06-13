@@ -5,10 +5,12 @@
                 subtitle="Completa todos los campos para registrar de manera exitosa un proveedor">
             </app-title>
 
-            <provider-register-form *ngIf="documentTypeList | async as data; else loading" [documentTypeList]="data"
-                (completedForm)="setForm($event)" (onCancel)="onCancel()" (registerButtonPressed)="onRegisterPressed()">
-            </provider-register-form>
-
+            <div *ngIf="rqData | async as data; else loading">
+                <provider-register-form [documentTypeList]="data[0]" [headquarterList]="data[1]"
+                    [productCategoryList]="data[2]" (completedForm)="setForm($event)" (onCancel)="onCancel()"
+                    (registerButtonPressed)="onRegisterPressed()">
+                </provider-register-form>
+            </div>
 
         </div>
     </div>

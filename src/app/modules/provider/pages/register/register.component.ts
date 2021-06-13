@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
-import { DocumentType } from 'app/modules/document-types/models/document-type';
 import { DocumentTypeService } from 'app/modules/document-types/services/document-type.service';
+import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
+import { ProductCategoriesService } from 'app/modules/product-category/services/product-categories.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 
 import { ProviderComponent } from '../../provider.component';
 import { ProviderService } from '../../services/provider.service';
@@ -17,18 +18,28 @@ import { RqRegisterProvider } from './models/rq-register-provider';
 })
 export class RegisterComponent implements OnInit {
 
-  public documentTypeList: Observable<DocumentType[]>;
+  public rqData: Observable<any[]>;
   public rqRegisterProvider: RqRegisterProvider;
 
   constructor(
     private _documentTypes: DocumentTypeService,
+    private _productCategories: ProductCategoriesService,
+    private _headquarter: HeadquartesService,
     private _providers: ProviderService,
     private _appNtf: AppNotificationsService,
     private _router: Router
   ) { }
 
   ngOnInit(): void {
-    this.documentTypeList = this._documentTypes.getAll();
+    this.setData();
+  }
+
+  private setData(): void {
+    this.rqData = combineLatest([
+      this._documentTypes.getAll(),
+      this._headquarter.getCompleteList(),
+      this._productCategories.getList()
+    ]);
   }
 
   public setForm(form: RqRegisterProvider): void {
