@@ -25,6 +25,10 @@ export class ProviderService {
     return this._http.post<JsonResp>(ApiRoutes.provider.save, newProvider);
   }
 
+  public update(newProvider: RqRegisterProvider): Observable<JsonResp> {
+    return this._http.put<JsonResp>(ApiRoutes.provider.update, newProvider);
+  }
+
   public findByCode(code: string): Observable<Provider> {
     return this._http.get<JsonResp>(ApiRoutes.provider.findByCode(code)).pipe(map(resp => resp.data));
   }

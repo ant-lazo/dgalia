@@ -7,8 +7,6 @@ import { HeadquartesService } from 'app/modules/headquarter/services/headquartes
 import { ProductCategoriesService } from 'app/modules/product-category/services/product-categories.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Provider } from '../../models/provider';
 
 import { ProviderComponent } from '../../provider.component';
 import { ProviderService } from '../../services/provider.service';
@@ -22,7 +20,7 @@ import { RqRegisterProvider } from '../register/models/rq-register-provider';
 export class UpdateComponent implements OnInit {
 
   public rqData: Observable<any[]>;
-  public rqRegisterProvider: RqRegisterProvider;
+  public rqUpdateProvider: RqRegisterProvider;
 
   constructor(
     private _documentTypes: DocumentTypeService,
@@ -55,18 +53,15 @@ export class UpdateComponent implements OnInit {
   }
 
   public setForm(form: RqRegisterProvider): void {
-    this.rqRegisterProvider = form;
+    this.rqUpdateProvider = form;
   }
 
   public onUpdatePressed(): void {
-    console.log('here');
-    
-    // const request: Observable<JsonResp> = this._providers.save(this.rqRegisterProvider);
-
-    // request.subscribe((resp: JsonResp) => {
-    //   this._appNtf.registerSuccess(null, `Se ha registrado exitosamente el proveedor con el código ${resp.data}`);
-    //   this._router.navigate([ProviderComponent.listRoute]);
-    // });
+    const request: Observable<JsonResp> = this._providers.update(this.rqUpdateProvider);
+    request.subscribe((_resp: JsonResp) => {
+      this._appNtf.editSuccess(null, `${this.rqUpdateProvider.legal_name} actualizado y listo para usarse`);
+      this._router.navigate([ProviderComponent.listRoute]);
+    });
   }
 
   public onCancel(): void {

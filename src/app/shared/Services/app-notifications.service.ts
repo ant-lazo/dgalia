@@ -23,7 +23,7 @@ export class AppNotificationsService {
   }
 
   public editSuccess(title?: string, body?: string): void {
-    this._toast.success(body || 'Se ha hecho la actualización del registro de manera exitosa', title || 'Actualización exitoso')
+    this._toast.success(body || 'Se ha hecho la actualización del registro de manera exitosa', title || 'Todo salió bien 😉')
   }
 
   public deleteSuccess(title?: string, body?: string): void {

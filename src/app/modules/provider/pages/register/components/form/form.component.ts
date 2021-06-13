@@ -52,7 +52,7 @@ export class FormComponent implements OnInit {
       phone: [null, Validators.required],
       heading: [null, Validators.required],
       contact_names: [null, Validators.required],
-      commnets: [null, Validators.required],
+      comments: [null, Validators.required],
       category_code: [null],
       headquarter_id: [null]
     });

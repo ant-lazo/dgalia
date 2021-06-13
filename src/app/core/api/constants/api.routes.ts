@@ -29,6 +29,7 @@ export class ApiRoutes {
 
     public static provider = {
         save: `${environment.apiUrl}provider`,
+        update: `${environment.apiUrl}provider`,
         getAll: `${environment.apiUrl}provider`,
         findByCode: (code: string): string => `${environment.apiUrl}provider?code=${code}`,
     }

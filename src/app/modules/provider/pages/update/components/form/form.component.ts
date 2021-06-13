@@ -46,6 +46,7 @@ export class FormComponent implements OnInit {
 
   private setForm(): void {
     this.form = this._builder.group({
+      code: [this.provider.code],
       legal_name: [this.provider.legalName, Validators.required],
       commercial_name: [this.provider.commercialName, Validators.required],
       document: [this.provider.document, Validators.required],
@@ -54,7 +55,7 @@ export class FormComponent implements OnInit {
       phone: [this.provider.phone, Validators.required],
       heading: [this.provider.heading, Validators.required],
       contact_names: [this.provider.contactNames, Validators.required],
-      commnets: [this.provider.comments, Validators.required],
+      comments: [this.provider.comments, Validators.required],
       category_code: [this.provider?.productCategory?.code],
       headquarter_id: [this.provider?.headquarter?.id]
     });
