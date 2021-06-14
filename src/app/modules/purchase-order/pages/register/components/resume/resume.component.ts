@@ -25,6 +25,7 @@ export class ResumeComponent implements OnInit {
   public products: RqPoSelectedItem[] = [];
   private provider: Provider;
   private headquarter: Headquarter;
+  public comments: string;
 
 
   constructor(
@@ -80,7 +81,7 @@ export class ResumeComponent implements OnInit {
     }
     
     const rq: PoResumeModalRespData = new PoResumeModalRespData({
-      commnets: '',
+      commnets: this.comments ?? 'Sin comentarios',
       headquarter: this.headquarter,
       provider: this.provider,
       registrationType: draft ? 'draft' : 'register',

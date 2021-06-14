@@ -30,7 +30,7 @@ export class PurchaseOrderService {
     return this._http.get<JsonResp>(ApiRoutes.purchaseOrder.findByCode(code)).pipe(map(resp => resp.data));
   }
 
-  public updateStatus(stsCode: string, code: string): Observable<JsonResp> {
-    return this._http.patch<JsonResp>(ApiRoutes.purchaseOrder.updateStatus, { code, status_code: stsCode });
+  public updateStatus(stsCode: string, code: string, comments: string): Observable<JsonResp> {
+    return this._http.patch<JsonResp>(ApiRoutes.purchaseOrder.updateStatus, { code, status_code: stsCode, comments });
   }
 }
