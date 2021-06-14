@@ -17,6 +17,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ResumenComponent } from './components/resumen/resumen.component';
+import { RowButtonsModule } from 'app/shared/row-buttons/row-buttons.module';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ResumenComponent } from './components/resumen/resumen.component';
     LoadingBodyModule,
     TitleModule,
     LabelModule,
+    RowButtonsModule,
 
     MatIconModule,
     MatButtonModule,

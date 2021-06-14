@@ -21,7 +21,7 @@
                 <div class="flex flex-row">
                     <mat-icon class="mr-5">fact_check</mat-icon>
                     <span>
-                        Estado: {{ purchaseOrder.status.name }}
+                        Estado: <app-label [text]="purchaseOrder.status.name"></app-label>
                     </span>
                 </div>
             </div>
@@ -59,5 +59,9 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
+        <textarea readonly rows="2">  {{ purchaseOrder.comments ?? 'Sin comentarios'}} </textarea>
     </div>
 </div>

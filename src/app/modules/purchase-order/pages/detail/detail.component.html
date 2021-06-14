@@ -7,7 +7,7 @@
                 subtitle="En este detalle podras ver los componentes de la orden de compra y actualizar su estado">
             </app-title>
 
-            <purchase_order-detail-action_buttons></purchase_order-detail-action_buttons>
+            <purchase_order-detail-action_buttons [purchaseOrder]="purchaseOrder" ></purchase_order-detail-action_buttons>
 
             <purchase_order-detail-info [purchaseOrder]="purchaseOrder">
             </purchase_order-detail-info>

@@ -39,7 +39,7 @@
 
     <ng-container [matColumnDef]="displayedColumns[6]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</th>
-        <td mat-cell *matCellDef="let element"> S/. {{ element.productQuantity | currency: 'display': ''}} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.productQuantity | currency: 'display': ''}} </td>
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[7]">

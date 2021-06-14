@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path: 'detalle/:code',
         loadChildren: () => import('./pages/detail/detail.module').then(d => d.DetailModule)
+      },
+      {
+        path: 'editar/:code',
+        loadChildren: () => import('./pages/update/update.module').then(u => u.UpdateModule)
       }
     ]
   }
