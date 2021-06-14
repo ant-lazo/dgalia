@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { PurchaseOrderSts } from 'app/core/models/puecharse-order-sts.model';
 import { PurchaseOrder } from 'app/modules/purchase-order/models/ purchase-order.model';
 import { PurchaseOrderComponent } from 'app/modules/purchase-order/purchase-order.component';
 
@@ -12,7 +13,6 @@ import { PurchaseOrderComponent } from 'app/modules/purchase-order/purchase-orde
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListTableComponent implements OnChanges {
-
 
   @Input() list: PurchaseOrder[];
 
@@ -37,5 +37,23 @@ export class ListTableComponent implements OnChanges {
     this.dataSource = new MatTableDataSource(this.list);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
+  }
+
+  public getStatusColor(code: string): string {
+    let color: string = '';
+    switch (code) {
+      case PurchaseOrderSts.Approved:
+        color = 'teal';
+        break;
+      case PurchaseOrderSts.Rejected:
+      case PurchaseOrderSts.Cancel:
+        color = 'red';
+        break;
+      default:
+        color = 'indigo';
+        break;
+    }
+
+    return color;
   }
 }
