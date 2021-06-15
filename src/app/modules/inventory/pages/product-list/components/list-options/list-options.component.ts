@@ -5,7 +5,7 @@ import { InventoryComponent } from 'app/modules/inventory/inventory.component';
 import { ProductStock } from 'app/modules/inventory/models/product-stock.model';
 
 @Component({
-  selector: 'app-list-options',
+  selector: 'inventory-products_list-list_options',
   templateUrl: './list-options.component.html',
   styles: [
   ]

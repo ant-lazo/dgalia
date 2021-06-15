@@ -1,0 +1,28 @@
+<div class="grid grid-cols-10 w-full gap-3">
+
+    <div *ngIf="filterType  === 'a'" class="col-span-7">
+        <app-search-box  (param)="listenSearchBox($event)"  placeHolder="Ingresar nombre de producto"></app-search-box>
+    </div>
+
+    <div *ngIf="filterType  === 'b'" class="col-span-7">
+        <mat-form-field class="w-full">
+            <mat-select (valueChange)="headquarterChange($event)" placeholder="Selecciona un tipo de filtro">
+                <mat-option *ngFor="let hq of rqheadquarter| async" [value]="hq.name">
+                    {{ hq.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="col-span-3">
+        <mat-form-field class="w-full">
+            <mat-select [(ngModel)]="filterType" placeholder="Selecciona un tipo de filtro">
+                <mat-option value="a">Nombre de producto</mat-option>
+                <mat-option value="b">Sede</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+
+</div>

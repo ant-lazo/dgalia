@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductStock } from 'app/modules/inventory/models/product-stock.model';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
+
 import { ListOptionsComponent } from '../list-options/list-options.component';
 
 @Component({
@@ -12,7 +13,7 @@ import { ListOptionsComponent } from '../list-options/list-options.component';
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnChanges {
 
   @Input() inventoryList: ProductStock[];
 
@@ -25,8 +26,8 @@ export class ListComponent implements OnInit {
     private _bottomSheet: MatBottomSheet
   ) { }
 
-  ngOnInit(): void {
-    if (this.inventoryList && this.inventoryList?.length && this.inventoryList.length > 0) this.setDataSourceList();
+  ngOnChanges(): void {
+    if (this.inventoryList) this.setDataSourceList();
   }
 
   private setDataSourceList(): void {
@@ -36,7 +37,7 @@ export class ListComponent implements OnInit {
   }
 
   public openSheet(item: ProductStock): void {
-    this._bottomSheet.open(ListOptionsComponent, {data: item});
+    this._bottomSheet.open(ListOptionsComponent, { data: item });
   }
 
 }

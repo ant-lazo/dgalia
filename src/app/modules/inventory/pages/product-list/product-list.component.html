@@ -1,13 +1,15 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
 
-    <app-header title="Productos" module="Inventario"  ></app-header>
+    <app-header title="Productos" module="Inventario"></app-header>
 
     <div class="main">
         <div class="content">
 
-            <div *ngIf="request | async as data">
-                <inventory-products-list [inventoryList]="data"></inventory-products-list>
+            <inventory-products_list-filter_options (paramSelected)="listenFilter($event)">
+            </inventory-products_list-filter_options>
 
+            <div *ngIf="request | async; else loading ">
+                <inventory-products-list [inventoryList]="filteredlist"></inventory-products-list>
             </div>
         </div>
     </div>
