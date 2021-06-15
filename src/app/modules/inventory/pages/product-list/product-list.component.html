@@ -1,0 +1,19 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header title="Productos" module="Inventario"  ></app-header>
+
+    <div class="main">
+        <div class="content">
+
+            <div *ngIf="request | async as data">
+                <inventory-products-list [inventoryList]="data"></inventory-products-list>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

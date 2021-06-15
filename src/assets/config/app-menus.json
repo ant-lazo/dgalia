@@ -198,6 +198,26 @@
                     "title": "Proveedores",
                     "link": "/proveedores",
                     "type": "basic"
+                },
+                {
+                    "id": "pages.logistica.inventario",
+                    "title": "Inventario",
+                    "link": "/inventario",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.inventario.listado",
+                            "title": "Listado de productos",
+                            "link": "inventario/productos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.inventario.salidas",
+                            "title": "Salidas",
+                            "link": "inventario/salidas",
+                            "type": "basic"
+                        }
+                    ]
                 }
                
             ]

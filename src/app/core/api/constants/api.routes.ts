@@ -38,6 +38,10 @@ export class ApiRoutes {
         getAll: `${environment.apiUrl}document-type`,
     }
 
+    public static inventory = {
+        getStock : `${environment.apiUrl}inventory`,
+    }
+
     public static purchaseOrder = {
         save: `${environment.apiUrl}purchase-order`,
         getAll: `${environment.apiUrl}purchase-order`,

@@ -68,7 +68,8 @@ export const appRoutes: Route[] = [
             { path: 'productos', loadChildren: () => import('./modules/product/product.module').then(p => p.ProductModule) },
             { path: 'hojas-de-demanda', loadChildren: () => import('./modules/demand-sheets/demand-sheets.module').then(d => d.DemandSheetsModule) },
             { path: 'orden-de-compra', loadChildren: () => import('./modules/purchase-order/purchase-order.module').then(p => p.PurchaseOrderModule) },
-            { path: 'proveedores', loadChildren: () => import('./modules/provider/provider.module').then(p => p.ProviderModule) }
+            { path: 'proveedores', loadChildren: () => import('./modules/provider/provider.module').then(p => p.ProviderModule) },
+            { path: 'inventario', loadChildren: () => import('./modules/inventory/inventory.module').then(i => i.InventoryModule) }
         ]
     }
 
