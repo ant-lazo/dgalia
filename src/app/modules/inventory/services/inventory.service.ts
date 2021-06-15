@@ -5,6 +5,7 @@ import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { ProductKardex } from '../models/product-kardex.model';
 import { ProductStock } from '../models/product-stock.model';
 
 @Injectable({
@@ -16,5 +17,9 @@ export class InventoryService {
 
   public getSotck(): Observable<ProductStock[]> {
     return this._http.get<JsonResp>(ApiRoutes.inventory.getStock).pipe(map(resp => resp.data));
+  }
+
+  public getKardex(productKardex: string): Observable<ProductKardex> {
+    return this._http.get<JsonResp>(ApiRoutes.inventory.getProdutKardex(productKardex)).pipe(map(resp => resp.data));
   }
 }

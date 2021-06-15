@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
 import { InventoryComponent } from 'app/modules/inventory/inventory.component';
@@ -7,8 +7,7 @@ import { ProductStock } from 'app/modules/inventory/models/product-stock.model';
 @Component({
   selector: 'inventory-products_list-list_options',
   templateUrl: './list-options.component.html',
-  styles: [
-  ]
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListOptionsComponent implements OnInit {
 

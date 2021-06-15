@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
 import { Observable } from 'rxjs';
@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'inventory-products_list-filter_options',
   templateUrl: './filter-options.component.html',
-  styleUrls: ['./filter-options.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterOptionsComponent implements OnInit {
 
