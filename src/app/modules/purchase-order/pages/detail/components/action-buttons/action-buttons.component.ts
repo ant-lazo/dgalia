@@ -9,6 +9,7 @@ import { PurchaseOrderService } from 'app/modules/purchase-order/services/purcha
 import { RowAppButtonModel, RowButtonType } from 'app/shared/row-buttons/models/row-nutton.model';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { Observable } from 'rxjs';
+
 import { AddCommentUpdateModalComponent } from '../add-comment-update-modal/add-comment-update-modal.component';
 
 @Component({
@@ -40,7 +41,7 @@ export class ActionButtonsComponent implements OnInit {
 
     switch (this.purchaseOrder.status.code) {
       case PurchaseOrderSts.Draft:
-        finalbuttons = [ this.requiredbuttons[2], this.requiredbuttons[0], this.requiredbuttons[1]];
+        finalbuttons = [this.requiredbuttons[2], this.requiredbuttons[0], this.requiredbuttons[1]];
         break;
       case PurchaseOrderSts.Pending:
         finalbuttons = [this.requiredbuttons[2], this.requiredbuttons[3], this.requiredbuttons[4]];
@@ -62,6 +63,7 @@ export class ActionButtonsComponent implements OnInit {
   public listenActionsPressed(action: string): void {
     const dialogRed = this._dialog.open(AddCommentUpdateModalComponent, {
       width: '70%',
+      data: action === 'input' ? this.getCompletePoBody() : null
     });
 
     dialogRed.afterClosed().subscribe((comment: string) => {
@@ -89,6 +91,9 @@ export class ActionButtonsComponent implements OnInit {
       case 'approve':
         this.updateStatus(PurchaseOrderSts.Approved);
         break;
+      case 'input':
+        this.completePurchaseOrder();
+        break;
       default:
         break;
     }
@@ -96,6 +101,16 @@ export class ActionButtonsComponent implements OnInit {
 
   private updateStatus(statusCode: string): void {
     const request: Observable<JsonResp> = this._purchaseOrder.updateStatus(statusCode, this.purchaseOrder.code, this.updaterCommnet);
+
+    request.subscribe((resp: JsonResp) => {
+      this._toast.editSuccess(null, resp.data);
+      this._router.navigate([PurchaseOrderComponent.listRoute]);
+    });
+  }
+
+
+  private completePurchaseOrder(): void {
+    const request: Observable<JsonResp> = this._purchaseOrder.complete(this.purchaseOrder.code, this.updaterCommnet);
 
     request.subscribe((resp: JsonResp) => {
       this._toast.editSuccess(null, resp.data);
@@ -149,5 +164,14 @@ export class ActionButtonsComponent implements OnInit {
       })
     ];
   }
+
+  private getCompletePoBody(): any {
+    return {
+      title: '¿Estas seguro de hacer esto?',
+      subtitle: `Con esta acción darás por completado la orden de compra, lo que quiere decir que los productos llegaron completos según el documento y estos serán ingresados a inventario.
+     Si los productos no están completos, mejor ve a inventario/ingresar documento y carga la orden de compra.`
+    }
+  }
+
 
 }

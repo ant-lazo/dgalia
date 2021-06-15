@@ -42,6 +42,7 @@ export class ApiRoutes {
         save: `${environment.apiUrl}purchase-order`,
         getAll: `${environment.apiUrl}purchase-order`,
         updateStatus: `${environment.apiUrl}purchase-order/status`,
+        complete: `${environment.apiUrl}purchase-order/status?completed=true`,
         findByCode: (code: string): string => `${environment.apiUrl}purchase-order?code=${code}`,
         getNextCode: (demandSheetCode?: string): string => {
             let url: string = '';

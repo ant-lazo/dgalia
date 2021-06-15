@@ -33,4 +33,8 @@ export class PurchaseOrderService {
   public updateStatus(stsCode: string, code: string, comments: string): Observable<JsonResp> {
     return this._http.patch<JsonResp>(ApiRoutes.purchaseOrder.updateStatus, { code, status_code: stsCode, comments });
   }
+
+  public complete(purchaseOrderCode: string, comments: string): Observable<JsonResp> {
+    return this._http.patch<JsonResp>(ApiRoutes.purchaseOrder.complete, { code: purchaseOrderCode, comments });
+  }
 }
