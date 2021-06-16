@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DemandSheet } from 'app/modules/demand-sheets/models/demand-sheet.model';
+import { PurchaseOrderComponent } from 'app/modules/purchase-order/purchase-order.component';
 
 @Component({
   selector: 'demand_sheet-list-table',
@@ -37,7 +38,11 @@ export class TableComponent implements OnInit {
 
   public navigateToDetailPage(code: string): void {
     this._router.navigate(['/hojas-de-demanda/detalle', code])
-  } 
+  }
+
+  public navigateToGeneratePurchaseorder(demandSheetCode: string) {
+    this._router.navigate([PurchaseOrderComponent.registerRoute, demandSheetCode])
+  }
 
   public sendSelectedToDelete(item: DemandSheet): void {
     this.selectedToDelete.emit(item);

@@ -1,0 +1,67 @@
+<table mat-table [dataSource]="dataSource" class="w-full mt-3">
+
+    <ng-container [matColumnDef]="displayedColumns[0]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cod insumo </th>
+        <td mat-cell *matCellDef="let element"> {{ element.supplyCode ?? 'N/A' }} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[1]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre insumo </th>
+        <td mat-cell *matCellDef="let element"> {{element.supplyName ?? 'N/A'}} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[2]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cant requerida </th>
+        <td mat-cell *matCellDef="let element"> {{ element.requiredQuantity ?? '0'}} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[3]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>U. medida req </th>
+        <td mat-cell *matCellDef="let element"> {{ element.requiredMeasuredUnitName ?? 'N/A'}} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[4]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Producto</th>
+        <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.productName; else select">{{ element.productName }}</span>
+            <ng-template #select >
+                <button (click)="openSelectProduct(element)" mat-stroked-button color="primary">
+                    Seleccionar
+                </button>
+            </ng-template>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[5]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio unitario</th>
+        <td mat-cell *matCellDef="let element"> S/. {{ element.productUnitPrice | currency: 'display': ''}} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[6]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</th>
+        <td mat-cell *matCellDef="let element"> {{ element.productQuantity | currency: 'display': ''}} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[7]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Igv</th>
+        <td mat-cell *matCellDef="let element"> S/. {{ element.productIgv | currency: 'display': ''}} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[8]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total </th>
+        <td mat-cell *matCellDef="let element"> s/. {{ element.total | currency: 'display': '' }} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[9]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
+        <td mat-cell *matCellDef="let element">
+            <button (click)="selectedToDelete.emit(element)" title="Eliminar " type="button" color="warn"
+                mat-icon-button>
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

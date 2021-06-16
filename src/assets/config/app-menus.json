@@ -172,6 +172,52 @@
                             "type": "basic"
                         }
                     ]
+                },
+                {
+                    "id": "pages.logistica.orden_de_compra",
+                    "title": "Ordenes de compra",
+                    "link": "/orden-de-compra",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.orden_de_compra.listado",
+                            "title": "Listado",
+                            "link": "orden-de-compra/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.orden_de_compra.registro",
+                            "title": "Registro",
+                            "link": "orden-de-compra/registro/none",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "pages.logistica.proveedores",
+                    "title": "Proveedores",
+                    "link": "/proveedores",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.logistica.inventario",
+                    "title": "Inventario",
+                    "link": "/inventario",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.inventario.listado",
+                            "title": "Listado de productos",
+                            "link": "inventario/productos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.inventario.salidas",
+                            "title": "Salidas",
+                            "link": "inventario/salidas",
+                            "type": "basic"
+                        }
+                    ]
                 }
                
             ]

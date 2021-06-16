@@ -4,6 +4,7 @@
 
     <div class="main">
         <div class="content" *ngIf="request | async as data;  else loading">
+            <demand_sheets-detail-action-buttons [demandSheet]="data" ></demand_sheets-detail-action-buttons>
             <demand-sheets-detail-info [demandSheet]="data"></demand-sheets-detail-info>
             <demand_sheets-detail-item_list [demandSheet]="data"></demand_sheets-detail-item_list>
         </div>

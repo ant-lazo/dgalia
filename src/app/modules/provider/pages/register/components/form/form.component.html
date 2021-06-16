@@ -1,0 +1,121 @@
+<form [formGroup]="form" class="flex flex-col mt-4 px-8 pt-10 bg-card shadow rounded overflow-hidden">
+
+    <div class="grid grid-cols-8 gap-4 w-full">
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <input formControlName="legal_name" type="text" autocomplete="off" matInput required
+                    placeholder="Nombre legal">
+                <mat-icon matPrefix>fact_check</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <input formControlName="commercial_name" type="text" autocomplete="off" matInput required
+                    placeholder="Nombre comercial">
+                <mat-icon matPrefix>sort</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-8 gap-4 w-full">
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Seleccione un tipo de documento" formControlName="document_type_code" required>
+                    <mat-option *ngFor="let pc of documentTypeList " [value]="pc.code">
+                        {{pc.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <input formControlName="document" type="text" autocomplete="off" matInput required
+                    placeholder="Ingresar un documento">
+                <mat-icon matPrefix>badge</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="flex">
+        <mat-form-field class="flex-auto gt-xs:pr-3">
+            <input formControlName="location" type="text" autocomplete="off" matInput required
+                placeholder="Ubicación - Dirección">
+            <mat-icon matPrefix>location_on</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-8 gap-4 w-full">
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <input formControlName="contact_names" type="text" autocomplete="off" matInput required
+                    placeholder="Encargado/representante">
+                <mat-icon matPrefix>person</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <input formControlName="phone" type="tel" autocomplete="off" matInput required
+                    placeholder="Número de teléfono">
+                <mat-icon matPrefix>call</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="flex">
+        <mat-form-field class="flex-auto gt-xs:pr-3">
+            <input formControlName="heading" type="text" autocomplete="off" matInput required placeholder="Rubro/Area">
+            <mat-icon matPrefix>business</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-8 gap-4 w-full">
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id" >
+                    <mat-option *ngFor="let hq of headquarterList " [value]="hq.id">
+                        {{hq.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Seleccione una Familia de productos" formControlName="category_code" >
+                    <mat-option *ngFor="let pdtc of productCategoryList " [value]="pdtc.code">
+                        {{pdtc.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="flex">
+        <mat-form-field class="treo-mat-textarea flex-auto">
+            <textarea formControlName="comments" autocomplete="off" matInput placeholder="Comentarios/Observaciones"
+                required [rows]="2"></textarea>
+            <mat-icon matPrefix>notes</mat-icon>
+        </mat-form-field>
+    </div>
+
+
+
+    <div
+        class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
+        <button (click)="onCancel.emit(true)" type="button" color="primary" mat-stroked-button>
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+        <button (click)="registerButtonPressed.emit(true)" [disabled]="form.invalid" type="submit" class="px-6 ml-3"
+            mat-flat-button [color]="'primary'">
+            <mat-icon class="mr-2">save</mat-icon>
+            Registrar
+        </button>
+    </div>
+</form>

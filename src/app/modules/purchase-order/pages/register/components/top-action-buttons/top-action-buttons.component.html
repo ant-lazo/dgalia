@@ -1,0 +1,17 @@
+<div class="w-full flex flex-row justify-end mb-2">
+
+    <button (click)="navigateToDemandSheetList()" mat-stroked-button class="mr-2">
+        <mat-icon class="mr-2">ballot</mat-icon>
+        Seleccionar hoja de demanda
+    </button>
+
+    <button (click)="openSelectProduct()" mat-stroked-button class="mr-2">
+        <mat-icon class="mr-2">grading</mat-icon>
+        Seleccionar producto
+    </button>
+
+    <button (click)="registeredPressed.emit({})" mat-stroked-button color="primary">
+        Registrar
+        <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+</div>

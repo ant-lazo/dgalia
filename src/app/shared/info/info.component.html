@@ -12,13 +12,12 @@
                 <div class=" flex flex-row justify-center">
                     {{ message ?? '' }}
                 </div>
-                <div class="flex flex-row mt-3 justify-center">
-                    <button (click)="location.back()" mat-stroked-button color="primary">
-                        <mat-icon class="mr-2">thumb_up_alt</mat-icon>
-                        Entiendo
+                <div *ngIf="showButton == true" class="flex flex-row mt-3 justify-center">
+                    <button (click)="listenButtonClick()" mat-stroked-button color="primary">
+                        {{ buttonText ?? 'Entiendo' }}
+                        <mat-icon class="mr-2">{{ buttonIcon ?? 'thumb_up_alt' }}</mat-icon>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>

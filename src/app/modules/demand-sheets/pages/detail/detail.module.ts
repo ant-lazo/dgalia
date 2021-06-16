@@ -1,24 +1,27 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { HeaderModule } from 'app/shared/header/header.module';
+import { LabelModule } from 'app/shared/label/label.module';
+import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
+import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
+import { InfoComponent } from './components/info/info.component';
+import { ItemListComponent } from './components/item-list/item-list.component';
 import { DetailRoutingModule } from './detail-routing.module';
 import { DetailComponent } from './detail.component';
-import { HeaderModule } from 'app/shared/header/header.module';
-import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
-import { InfoComponent } from './components/info/info.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { LabelModule } from 'app/shared/label/label.module';
-import { ItemListComponent } from './components/item-list/item-list.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
   declarations: [
     DetailComponent,
     InfoComponent,
-    ItemListComponent
+    ItemListComponent,
+    ActionButtonsComponent
   ],
   imports: [
     CommonModule,
@@ -30,8 +33,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatButtonModule,
     MatTableModule,
-    MatSortModule
-    
+    MatSortModule,
+    MatDialogModule
   ]
 })
 export class DetailModule { }

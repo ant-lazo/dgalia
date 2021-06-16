@@ -36,11 +36,14 @@
                 mat-icon-button>
                 <mat-icon>info</mat-icon>
             </button>
+
             <button (click)="sendSelectedToDelete(element)" title="Eliminar {{ element.name }}" type="button"
                 mat-icon-button>
                 <mat-icon>delete</mat-icon>
             </button>
-            <button title="Generar orden de compra {{ element.name }}" type="button" mat-icon-button>
+
+            <button (click)="navigateToGeneratePurchaseorder(element.code)"
+                title="Generar orden de compra {{ element.name }}" type="button" mat-icon-button>
                 <mat-icon>arrow_forward_ios</mat-icon>
             </button>
         </td>

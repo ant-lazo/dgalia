@@ -1,0 +1,21 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="main">
+        <div class="content">
+            <app-title backButton="true" title="Formulario para edición de Proveedor"
+                subtitle="Completa todos los campos para editar de manera exitosa un proveedor">
+            </app-title>
+
+            <div *ngIf="rqData | async as data; else loading">
+                <provider-update-form [documentTypeList]="data[0]" [headquarterList]="data[1]" [provider]="data[3]"
+                    [productCategoryList]="data[2]" (completedForm)="setForm($event)" (onCancel)="onCancel()"
+                    (onUpdatePressed)="onUpdatePressed()">
+                </provider-update-form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

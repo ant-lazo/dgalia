@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
 import { CookingSchedule } from '../../models/cooking-schedule.model';
 
 @Component({
@@ -6,15 +7,8 @@ import { CookingSchedule } from '../../models/cooking-schedule.model';
   templateUrl: './cooking-schedule-detail.component.html',
   styleUrls: ['./cooking-schedule-detail.component.scss']
 })
-export class CookingScheduleDetailComponent implements OnInit {
+export class CookingScheduleDetailComponent   {
 
   @Input() cookingSchedule: CookingSchedule;
-
-  constructor() { }
-
-  ngOnInit(): void { 
-    console.log(this.cookingSchedule.recipes);
-    
-  }
 
 }

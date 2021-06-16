@@ -1,0 +1,80 @@
+<div class="flex flex-col w-full">
+
+    <div class="flex  flex-row justify-between align-center">
+        <div>
+            <span class="text-blue-900 text-2xl">Generar orden de compra</span>
+        </div>
+        <div class="flex flex-row justify-end">
+            <button (click)="onCancel()" class="mr-2" mat-stroked-button>
+                <mat-icon class="mr-2">cancel</mat-icon>
+                Cancelar
+            </button>
+
+            <button (click)="onSave(true)" class="mr-2" mat-stroked-button color="primary">
+                <mat-icon class="mr-2">mode</mat-icon>
+                Grabar
+            </button>
+
+            <button (click)="onSave(false)" mat-stroked-button color="primary">
+                <mat-icon class="mr-2">save</mat-icon>
+                Registrar
+            </button>
+        </div>
+    </div>
+
+    <mat-divider class="m-3"></mat-divider>
+
+    <purchase_order-register-new_doc_info></purchase_order-register-new_doc_info>
+
+    <div *ngIf="requestData | async as data; else loading">
+        <div id="select-options-required">
+
+            <div class="grid grid-cols-8 gap-4 w-full mt-2">
+                <div class="col-span-4">
+                    <mat-form-field class="w-full">
+                        <mat-label>Seleccione una sede</mat-label>
+                        <mat-select>
+                            <mat-option (click)="setHeadquarter(hdq)" *ngFor=" let hdq  of data[0]" [value]="hdq.id">
+                                {{hdq.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-span-4">
+                    <mat-form-field class="w-full">
+                        <mat-label>Seleccione una proveedor</mat-label>
+                        <mat-select>
+                            <mat-option (click)="setProvider(provider)" *ngFor="let provider of data[1]"
+                                [value]="provider.code">
+                                {{provider.commercialName}} - {{provider.legalName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-form-field class="w-full">
+                <textarea [(ngModel)]="comments" matInput placeholder="Comentarios"></textarea>
+            </mat-form-field>
+        </div>
+        <mat-divider class="m-3"></mat-divider>
+        <div class="flex flex-row w-full">
+            <div class="flex flex-col justify-start w-full">
+                <span class="text-green-900 text-2xl">Subtotal</span>
+                <span class="text-green-900 text-2xl">Igv:</span>
+                <span class="text-green-900 text-2xl">Total:</span>
+            </div>
+
+            <div class="flex flex-col justify-end w-full">
+                <span class="flex justify-end text-red-900 text-2xl"> {{ subTotal | currency: 'display': '' }} </span>
+                <span class="flex justify-end text-red-900 text-2xl"> {{ igv | currency: 'display': '' }} </span>
+                <span class="flex justify-end text-red-900 text-2xl"> {{ total | currency: 'display': '' }} </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

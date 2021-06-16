@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { MeasuredunitListComponentModel } from '../../view-models/list_component.model';
-import config from 'assets/language/es/measured-unit.json';
-import { RowAppButtonModel } from '../../../../shared/row-buttons/models/row-nutton.model';
-import { MeasuredUnitListTableModel } from '../../view-models/list-table.model';
-import { MeasuredUnit } from '../../models/measured-unit.model';
-import { MeasuredUnitService } from '../../services/measured-unit.service';
-import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteAlertComponent } from 'app/shared/delete-alert/delete-alert.component';
-import { MeasuredUnitEditComponent } from '../../components/measured-unit-edit/measured-units-edit.component';
-import { MeasuredUnitRegisterComponent } from '../../components/measured-units-register/measured-units-register.component';
+import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
+import config from 'assets/language/es/measured-unit.json';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { RowAppButtonModel } from '../../../../shared/row-buttons/models/row-nutton.model';
+import { MeasuredUnitEditComponent } from '../../components/measured-unit-edit/measured-units-edit.component';
+import { MeasuredUnitRegisterComponent } from '../../components/measured-units-register/measured-units-register.component';
+import { MeasuredUnit } from '../../models/measured-unit.model';
+import { MeasuredUnitService } from '../../services/measured-unit.service';
+import { MeasuredUnitListTableModel } from '../../view-models/list-table.model';
+import { MeasuredunitListComponentModel } from '../../view-models/list_component.model';
 
 @Component({
   selector: 'app-list',

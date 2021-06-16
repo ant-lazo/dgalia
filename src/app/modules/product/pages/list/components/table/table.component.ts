@@ -22,10 +22,8 @@ export class TableComponent implements OnInit {
   public productListRequest: Observable<Product[]>;
   public produdcList: Product[] = [];
 
-
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
   public displayedColumns: string[] = ['image', 'code', 'name', 'category', 'actions'];
   public dataSource: MatTableDataSource<Product> = new MatTableDataSource();
 
