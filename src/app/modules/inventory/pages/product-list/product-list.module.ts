@@ -11,6 +11,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import {
+  RegisterOutputDialogModule,
+} from 'app/modules/inventory-movements/pages/outputs/components/register-output-dialog/register-output-dialog.module';
 import { HeaderModule } from 'app/shared/header/header.module';
 import { LabelModule } from 'app/shared/label/label.module';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
@@ -38,6 +41,7 @@ import { ProductListComponent } from './product-list.component';
     LabelModule,
     SearchBoxModule,
     FormsModule,
+    RegisterOutputDialogModule,
 
     MatTableModule,
     MatIconModule,

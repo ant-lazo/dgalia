@@ -17,6 +17,10 @@ export class ApiRoutes {
         delete: (code: string): string => `${environment.apiUrl}product?code=${code}`,
     }
 
+    public static outputs = {
+        save: `${environment.apiUrl}inventory/output`,
+    }
+
     public static recipes = {
         findByName: (name: string): string => `${environment.apiUrl}recipe?name=${name}`,
     }
