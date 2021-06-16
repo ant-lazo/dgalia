@@ -1,3 +1,4 @@
+import { MeasuredUnit } from 'app/modules/measured-units/models/measured-unit.model';
 import { ProductInventory } from './product-inventory.model';
 
 export interface ProductKardex {
@@ -9,4 +10,5 @@ export interface ProductKardex {
     productName: string;
     productCode: string;
     inventory: ProductInventory[];
+    measuredUnit: MeasuredUnit;
 }

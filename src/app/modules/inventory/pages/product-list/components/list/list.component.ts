@@ -18,7 +18,7 @@ export class ListComponent implements OnChanges {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  public displayedColumns: string[] = ['code', 'name', 'headquarter', 'quantity', 'update', 'options'];
+  public displayedColumns: string[] = ['code', 'name', 'headquarter', 'quantity', 'measuredUnit', 'update', 'options'];
   public dataSource: MatTableDataSource<ProductStock> = new MatTableDataSource();
 
   constructor(
