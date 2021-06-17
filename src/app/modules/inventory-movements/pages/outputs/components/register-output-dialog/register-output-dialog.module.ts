@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -20,6 +20,7 @@ import { RegisterOutputDialogComponent } from './register-output-dialog.componen
     CommonModule,
     LoadingBodyModule,
     FormsModule,
+    ReactiveFormsModule,
 
     MatDialogModule,
     MatIconModule,

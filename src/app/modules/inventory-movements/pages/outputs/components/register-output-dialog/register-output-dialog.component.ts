@@ -1,11 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
+import { Product } from 'app/modules/product/models/product.model';
 import { ProductService } from 'app/modules/product/services/product.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { OutputsService } from '../../services/outputs.service';
 
 @Component({
@@ -17,7 +20,7 @@ import { OutputsService } from '../../services/outputs.service';
 export class RegisterOutputDialogComponent implements OnInit {
 
   public requestData: Observable<any[]>;
-  public rqRegister: rqRegister;
+  public form: FormGroup;
 
   constructor(
     private _headquarters: HeadquartesService,
@@ -25,8 +28,11 @@ export class RegisterOutputDialogComponent implements OnInit {
     private _dialogRef: MatDialogRef<RegisterOutputDialogComponent>,
     private _toast: AppNotificationsService,
     private _outputs: OutputsService,
+    private _builder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: { productCode: string },
-  ) { }
+  ) {
+    this.setForm();
+  }
 
   ngOnInit(): void {
     if (this.data?.productCode) this.setRequestData();
@@ -37,14 +43,7 @@ export class RegisterOutputDialogComponent implements OnInit {
       this._headquarters.getCompleteList(),
       this._product.findByCode(this.data?.productCode)
     ]).pipe(map((resp) => {
-      this.rqRegister = {
-        headquarter_id: null,
-        igv: resp[1].igv ?? 0,
-        product_code: this.data.productCode,
-        quantity: null,
-        unit_price: resp[1].priceList ?? 0,
-        comments: null
-      }
+      this.setForm(resp[1]);
       return resp;
     }));
   }
@@ -54,25 +53,26 @@ export class RegisterOutputDialogComponent implements OnInit {
   }
 
   public onRegister(): void {
-    if (this.rqRegister?.headquarter_id == null || this.rqRegister?.quantity == null || this.rqRegister?.quantity === 0) {
-      this._toast.error('Espera, te falta algo', 'Debes completar todos los datos');
-      return;
-    }
-
-    if (this.rqRegister?.comments == null) this.rqRegister.comments = 'Sin comentarios';
-
-    this._outputs.saveProduct(this.rqRegister).subscribe((resp: JsonResp) => {
+    this._outputs.saveProduct(this.form.value).subscribe((resp: JsonResp) => {
       this._toast.registerSuccess(null, resp.data);
       this._dialogRef.close(true);
     });
   }
+
+  private setForm(product?: Product): void {
+    this.form = this._builder.group({
+      headquarter_id: [null, Validators.required],
+      igv: [product?.igv, Validators.required],
+      product_code: [product?.code, Validators.required],
+      quantity: [null, Validators.required],
+      unit_price: [product?.priceList, Validators.required],
+      comment: [null, Validators.required],
+      output_type: [null, Validators.required],
+    })
+  }
+
+
 }
 
-interface rqRegister {
-  quantity: number,
-  headquarter_id: number
-  unit_price: number
-  igv: number,
-  product_code: string;
-  comments: string;
-}
+
+
