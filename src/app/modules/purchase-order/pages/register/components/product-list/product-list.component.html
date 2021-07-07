@@ -1,5 +1,0 @@
-<div *ngFor="let category of tableList">
-    <h6> {{ category.id }} </h6>
-    <purchase_order-register-list-table (selectedToDelete)="listenProductDelete($event)" [list]="category.list">
-    </purchase_order-register-list-table>
-</div>
