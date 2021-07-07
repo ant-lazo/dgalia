@@ -1,0 +1,76 @@
+<form [formGroup]="recipeForm" class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
+
+    <div class="grid grid-cols-7 gap-4 w-full">
+        <div class="col-span-2">
+            <mat-form-field class="w-full">
+                <input formControlName="code" readonly type="text" autocomplete="off" matInput required placeholder="Código">
+                <mat-icon matPrefix>integration_instructions</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-5">
+            <mat-form-field class="w-full">
+                <input formControlName="name" type="text" autocomplete="off" matInput required placeholder="Nombre">
+                <mat-icon matPrefix>sticky_note_2</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="w-full">
+            <mat-form-field class="treo-mat-textarea w-full">
+                <textarea formControlName="description" matInput [placeholder]="'Descripción'" [rows]="3"></textarea>
+                <mat-icon matPrefix>notes</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 w-full">
+        <div class="col-span-1">
+            <mat-form-field class="w-full">
+                <input formControlName="cost" type="number" autocomplete="off" matInput required placeholder="Costo">
+                <mat-icon matPrefix>point_of_sale</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-1">
+            <mat-form-field class="w-full">
+                <input formControlName="price" type="number" autocomplete="off" matInput required placeholder="Precio">
+                <mat-icon matPrefix>request_quote</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-form-field class="w-full">
+        <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id" >
+            <mat-option *ngFor="let h of headquarterList | async" [value]="h.id">
+                {{h.name}}
+            </mat-option>
+        </mat-select>
+        <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+    </mat-form-field>
+
+    <div class="grid grid-cols-2 gap-4 w-full">
+        <div class="col-span-1">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Seleccione un curso" formControlName="course_id" >
+                    <mat-option *ngFor="let c of courseList | async" [value]="c.id">
+                        {{c.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-1">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Seleccione un ciclo" formControlName="term_id" >
+                    <mat-option *ngFor="let t of termList | async" [value]="t.id">
+                        {{t.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,18 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div *ngIf="requestData | async as rquestProduct; else loading" class="main">
+        <div class="content" *ngIf="requestData | async; else loading">
+            <app-title title="Formulario para edición Productos"
+                [subtitle]="'Edita el producto ' + rquestProduct.name + ' Rellenando todos los campos del formulario'"
+                backButton="true">
+            </app-title>
+            <product-update-form (updateForm)="setForm($event, rquestProduct.code)" [muList]="measureUnitList"
+                [ctrList]="categoryList" [product]="rquestProduct">
+            </product-update-form>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

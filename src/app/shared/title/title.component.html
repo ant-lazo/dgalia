@@ -1,0 +1,14 @@
+<div class="flex flex-row w-full content-center items-center mb-5">
+    <button (click)="backButtonPressed()" *ngIf="backButton || backWithRoute" class="mr-5" mat-button router>
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="flex flex-col justify-start w-full ">
+        <h2 class=" mt-0 mb-0 text-3xl md:text-4xl font-extrabold tracking-tight leading-7 md:leading-10 truncate">
+           {{  title ?? 'Título' }}
+        </h2>
+        <div class="font-medium tracking-tight text-secondary">
+            {{ subtitle ?? 'Subtitulo' }}
+        </div>
+    </div>
+</div>

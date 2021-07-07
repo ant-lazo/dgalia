@@ -1,0 +1,34 @@
+{
+    "authentication": {
+        "sigin": "auth/sign-in"
+    },
+    "measured_unit": {
+        "default": "measured-unit"
+    },
+    "supply": {
+        "default": "supply",
+        "generateCode": "/generate-code"
+    },
+    "product_category": {
+        "default": "product-category"
+    },
+    "recipe": {
+        "default": "recipe",
+        "next_code": "recipe/code"
+    },
+    "course": {
+        "default": "course"
+    },
+    "headquarter": {
+        "default": "headquarter"
+    },
+    "term": {
+        "default": "term"
+    },
+    "cookin_schedule": {
+        "default": "cooking-schedule"
+    },
+    "class": {
+        "default": "class"
+    }
+}

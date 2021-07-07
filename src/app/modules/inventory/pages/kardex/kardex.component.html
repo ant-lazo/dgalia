@@ -1,0 +1,16 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <div class="main">
+        <div class="content" *ngIf="request | async as data; else loading">
+            <app-title [backButton]="true" subtitle="" title="Kardex de producto {{ data?.productName ?? '' }}">
+            </app-title>
+            <inventory-kardex-values [data]="data"></inventory-kardex-values>
+            <inventory-kardex-list [inventoryList]="data.inventory"></inventory-kardex-list>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

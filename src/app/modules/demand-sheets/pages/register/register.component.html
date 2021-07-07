@@ -1,0 +1,29 @@
+<app-info *ngIf="cookingscheduleCode == 'none'; else showForm" title="🤔 Ups, algo falta aquí"
+    message="Parece que no has seleccionado una programación para registrar su hoja de demanda">
+</app-info>
+
+
+<ng-template #showForm>
+
+    <div class="content-layout fullwidth-standard-normal-scroll">
+
+        <app-header urlRoute="back" module="Logistica" title="Registrar hoja de demanda"></app-header>
+
+        <div class="main">
+            <div class="content" *ngIf="request | async as data;  else loading">
+
+                <app-cooking-schedule-detail [cookingSchedule]="cookingSchedule"></app-cooking-schedule-detail>
+
+                <demand_sheets-register-supply_list [measureUnitList]="data[1]" [resumenList]="resumenList">
+                </demand_sheets-register-supply_list>
+
+                <demand-sheets-register-buttons (registerPressed)="validateDataToRegister()"></demand-sheets-register-buttons>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #loading>
+        <app-loading-body message="Consultando insumos, espere un momento..."></app-loading-body>
+    </ng-template>
+
+</ng-template>

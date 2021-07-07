@@ -1,0 +1,93 @@
+<div *ngIf="model" class="content-layout fullwidth-basic-normal-scroll">
+
+    <treo-card class="auth-card fullscreen">
+
+        <!-- Form container -->
+        <div class="form-container">
+
+            <div class="form">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <img src="assets/images/dgalia/backgroud/dgallia.jpg">
+                </div>
+
+                <!-- Title -->
+                <div class="title">{{ model.title }} </div>
+
+                <!-- Message -->
+                <treo-message *ngIf="message" [appearance]="message.appearance" [showIcon]="message.showIcon"
+                    [type]="message.type" [@shake]="message.shake">
+                    {{message.content}}
+                </treo-message>
+
+                <!-- Sign in form -->
+                <form [formGroup]="signInForm">
+
+                    <!-- Email field -->
+                    <mat-form-field>
+                        <mat-label> {{model.emailAddressInput}} </mat-label>
+                        <input id="email" matInput [formControlName]="'email'">
+                    </mat-form-field>
+
+                    <!-- Password field -->
+                    <mat-form-field>
+                        <mat-label> {{model.passwordInput }} </mat-label>
+                        <input id="password" matInput type="password" [formControlName]="'password'" #passwordField>
+                        <button mat-icon-button
+                            (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                            tabindex="-1" matSuffix>
+                            <mat-icon *ngIf="passwordField.type === 'password'" [svgIcon]="'visibility'"></mat-icon>
+                            <mat-icon *ngIf="passwordField.type === 'text'" [svgIcon]="'visibility_off'"></mat-icon>
+                        </button>
+                    </mat-form-field>
+
+                    <!-- Field footer -->
+                    <div class="field-footer">
+                        <div class="remember-me">
+                            <mat-checkbox [color]="'primary'" [formControlName]="'rememberMe'">
+                                {{ model.rememberLabel }}
+                            </mat-checkbox>
+                        </div>
+                        <a class="link" [routerLink]="['/forgot-password']"> {{ model.forgotPasswordLabel }} </a>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button class="submit-button treo-mat-button-large" mat-flat-button type="button"
+                        [color]="'primary'" [disabled]="signInForm.disabled" (click)="signIn()">
+                        <span *ngIf="!signInForm.disabled">
+                            {{ model.signInButtonText }}
+                        </span>
+                        <mat-progress-spinner *ngIf="signInForm.disabled" [diameter]="24" [mode]="'indeterminate'">
+                        </mat-progress-spinner>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Content container -->
+        <div class="content-container">
+
+            <!-- Background - Inline SVG for easy customizations -->
+            <img style="object-fit:cover" class="background" [src]="model.backgroundImageLink" alt="background">
+
+            <div class="content">
+                <div class="title">
+                    <span> {{ model.backgroudTextTitle }}</span>
+                </div>
+                <div class="description">
+                    {{ model.backgroudTextSubTitle }}
+                </div>
+                <button (click)="goToseeMorePage(model.seeMoreButtonLink)" class="learn-more-button" mat-stroked-button>
+                    {{ model.seeMoreButtonLabel }}
+                </button>
+            </div>
+
+        </div>
+
+    </treo-card>
+
+</div>
