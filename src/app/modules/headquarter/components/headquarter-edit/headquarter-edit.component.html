@@ -1,0 +1,53 @@
+<h1>Editar <span class="text-primary"> sede </span> en sistema </h1>
+
+<form [formGroup]="editForm" (ngSubmit)="formValidation()"
+    class="flex flex-col mt-4 px-8 pt-10 bg-card shadow rounded overflow-hidden">
+
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field class="flex-auto">
+            <input formControlName="name" type="text" autocomplete="off" matInput required placeholder="Nombre">
+            <mat-icon matPrefix>sticky_note_2</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field class="treo-mat-textarea flex-auto">
+            <textarea formControlName="description" autocomplete="off" matInput placeholder="Descripción" required
+                [rows]="2"></textarea>
+            <mat-icon matPrefix>notes</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field class="flex-auto">
+            <input formControlName="address" type="text" autocomplete="off" matInput required placeholder="Dirección">
+            <mat-icon matPrefix>location_on</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field class="flex-auto">
+            <input formControlName="person_in_charge" type="text" autocomplete="off" matInput required placeholder="Responsable">
+            <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field class="w-full">
+        <mat-select placeholder="Seleccione un color" formControlName="color" required>
+            <mat-option *ngFor="let c of appColors" [value]="c">
+                {{c}}
+            </mat-option>
+        </mat-select>
+        <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+    </mat-form-field>
+
+    <div
+        class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
+        <button type="button" (click)="onNoCreate()" color="primary" mat-stroked-button>
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+        <button [disabled]="editForm.invalid" type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+            <mat-icon class="mr-2">save</mat-icon>
+            Actualizar
+        </button>
+    </div>
+</form>

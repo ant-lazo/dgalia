@@ -1,0 +1,78 @@
+<h2>Selecciona <span class="text-primary"> insumos </span> para la receta </h2>
+
+<div class="flex flex-col">
+
+    <form class="example-form full-width w-full mt-5">
+        <mat-form-field class="w-full">
+            <input type="text" placeholder="Ingresa un nombre de insumo" matInput [formControl]="searchParam"
+                [matAutocomplete]="auto">
+            <mat-autocomplete (optionSelected)="setSupply($event)" #auto="matAutocomplete">
+                <mat-option *ngFor="let supply of filteredOptions | async" [value]="supply.name">
+                    {{supply.code}} - {{ supply.name }}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-icon>search</mat-icon>
+        </mat-form-field>
+    </form>
+
+    <table mat-table [dataSource]="dataSource" matSort class="w-full">
+        <ng-container [matColumnDef]="displayedColumns[0]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+            <td mat-cell *matCellDef="let element">
+                <span
+                    class="text-xs font-semibold inline-block py-1 px-2 rounded text-teal-600 bg-teal-200  last:mr-0 mr-1">
+                    {{ element.code }}
+                </span>
+            </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[1]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[2]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoría </th>
+            <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[3]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Unidad de medida </th>
+            <td mat-cell *matCellDef="let element"> {{element.measuredUnit}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[4]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field class="flex-auto mt-3 p-0">
+                    <input [(ngModel)]="element.quantity" type="number" autocomplete="off" matInput required
+                        placeholder="Cantidad" min="1">
+                </mat-form-field>
+            </td>
+        </ng-container>
+        <ng-container [matColumnDef]="displayedColumns[5]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
+            <td class="th-max" mat-cell *matCellDef="let element">
+                <button (click)="eliminar(element)" title="Eliminar {{ element.name }}" type="button" color="warn"
+                    mat-icon-button>
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+    <div class="flex items-center justify-end border-t pt-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
+        <button (click)="onNoSelect()" type="button" color="primary" mat-stroked-button>
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+        <button [disabled]="selectedList.length == 0" [mat-dialog-close]="selectedList" type="button" class="px-6 ml-3"
+            mat-flat-button [color]="'primary'">
+            <mat-icon class="mr-2">add_circle</mat-icon>
+            Agregar
+        </button>
+    </div>
+</div>

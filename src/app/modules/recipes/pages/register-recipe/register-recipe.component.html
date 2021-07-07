@@ -1,0 +1,17 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header [module]="'Cocina'" [title]="'Registrar una'" [highlightext]="'receta'" [urlRoute]="'/recetas/listado'">
+    </app-header>
+
+    <div class="main">
+        <div class="content">
+            <recipe-form> </recipe-form>
+            <div class="mt-5">
+                <app-row-buttons [justify]="'justify-end'" (onClick)="setOptionSelected($event)" [buttons]="rowButtons">
+                </app-row-buttons>
+            </div>
+            <recipe-supply-list [deleteButton]="true" [list]="suppliesSelected"> </recipe-supply-list>
+        </div>
+
+    </div>
+</div>

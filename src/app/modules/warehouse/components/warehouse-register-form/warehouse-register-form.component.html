@@ -1,0 +1,57 @@
+<form [formGroup]="formGroup" class="flex flex-col mt-4 px-8 pt-10 bg-card shadow rounded overflow-hidden">
+
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field class="flex-auto">
+            <input formControlName="name" type="text" autocomplete="off" matInput required placeholder="Nombre">
+            <mat-icon matPrefix>sticky_note_2</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field class="treo-mat-textarea flex-auto">
+            <textarea formControlName="description" autocomplete="off" matInput placeholder="Descripción" required
+                [rows]="2"></textarea>
+            <mat-icon matPrefix>notes</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="flex flex-col gt-xs:flex-row">
+        <mat-form-field class="flex-auto">
+            <input formControlName="location" type="text" autocomplete="off" matInput required placeholder="Ubicación">
+            <mat-icon matPrefix>location_on</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-8 gap-4 w-full">
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <input formControlName="responsable_name" type="text" autocomplete="off" matInput required
+                    placeholder="Encargado">
+                <mat-icon matPrefix>integration_instructions</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-4">
+            <mat-form-field class="w-full">
+                <mat-select placeholder="Seleccione una sede.. o no." formControlName="headquarter_id">
+                    <mat-option *ngFor="let h of headquarterListRequest | async" [value]="h.id">
+                        {{h.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div
+        class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
+        <button (click)="onReturn()" type="button" color="primary" mat-stroked-button>
+            <mat-icon>close</mat-icon>
+            Cancelar
+        </button>
+        <button (click)="validateAction()" [disabled]="formGroup.invalid" mat-stroked-button color="secondary"
+            type="submit" class="px-6 ml-3">
+            <mat-icon class="mr-2">save</mat-icon>
+            {{ getButtonLabel() }}
+        </button>
+    </div>
+</form>

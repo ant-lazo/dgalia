@@ -1,0 +1,48 @@
+<table mat-table [dataSource]="dataSource" matSort class="w-full">
+
+    <ng-container [matColumnDef]="displayedColumns[0]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+        <td mat-cell *matCellDef="let element">
+            <app-label [text]="element.code" color="teal"></app-label>
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[1]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Inicio - Fin </th>
+        <td mat-cell *matCellDef="let element">
+            {{element.startDate | date: 'shortDate' }}
+            -
+            {{ element.endDate | date: 'shortDate'}}
+        </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[2]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
+        <td mat-cell *matCellDef="let element"> {{element.headquarter.name}} </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[3]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+        <td mat-cell *matCellDef="let element"> {{ element.description }}</td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="displayedColumns[4]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Opciones </th>
+        <td mat-cell *matCellDef="let element">
+            <button (click)="navigateToDetail(element.code)" title="Detalle de {{ element.description }}" type="button"
+                mat-icon-button>
+                <mat-icon [color]="'green'">subject</mat-icon>
+            </button>
+
+            <button (click)="navigateToRegister(element.code)" title="Registrar hoja de demanda" type="button"
+                mat-icon-button>
+                <mat-icon>input</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator #matPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>

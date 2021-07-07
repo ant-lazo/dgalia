@@ -1,0 +1,21 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header module="Logistica" title="Proveedores"></app-header>
+
+    <div class="main">
+        <div class="content" *ngIf="request | async as data; else loading">
+
+            <div class="flex mb-2 flex-row justify-end">
+                <button (click)="navigateToRegisterPage()" mat-stroked-button color="primary">
+                    <mat-icon>save</mat-icon>
+                    Registrar
+                </button>
+            </div>
+            <provider-list-table [list]="data"></provider-list-table>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>
