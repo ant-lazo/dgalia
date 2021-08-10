@@ -24,6 +24,9 @@ export class ApiRoutes {
     public static recipes = {
         findByName: (name: string): string => `${environment.apiUrl}recipe?name=${name}`,
     }
+    public static subRecipes = {
+        findByName: (name: string): string => `${environment.apiUrl}sub-recipe?name=${name}`,
+    }
 
     public static cookingSchedule = {
         save: `${environment.apiUrl}cooking-schedule`,

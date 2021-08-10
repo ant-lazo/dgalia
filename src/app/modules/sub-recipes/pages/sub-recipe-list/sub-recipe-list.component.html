@@ -1,8 +1,7 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
-  <app-header [module]="'Cocina'" [title]="'Recetas'"></app-header>
-
+  <app-header [module]="'Cocina'" [title]="'Sub recetas'"></app-header>
   <div class="main">
-    <div class="content" *ngIf="recipeListRequest | async; else loading">
+    <div class="content" *ngIf="subRecipeListRequest | async; else loading">
       <div class="mb-5">
         <app-row-buttons
           *ngIf="registerButton"
@@ -14,18 +13,18 @@
       </div>
 
       <app-search-box
-        [placeHolder]="'Ingrese nombre de receta'"
+        [placeHolder]="'Ingrese nombre de sub receta'"
         (param)="filterByName($event)"
       ></app-search-box>
 
-      <app-recipe-list-table
-        *ngIf="recipeList && recipeList.length > 0"
-        (selectedToDelete)="validationToDeleteRecipe($event)"
+      <app-sub-recipe-list-table
+        *ngIf="subRecipeList && subRecipeList.length > 0"
+        (selectedToDelete)="validationToDeleteSubRecipe($event)"
         (selectedToDetail)="detalle($event)"
         (selectedToEdit)="editar($event)"
-        [list]="recipeFilteredList"
+        [list]="subRecipeFilteredList"
       >
-      </app-recipe-list-table>
+      </app-sub-recipe-list-table>
     </div>
   </div>
 </div>
