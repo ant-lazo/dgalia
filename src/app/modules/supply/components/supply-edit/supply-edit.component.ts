@@ -1,4 +1,4 @@
-import { Component, OnInit , Inject} from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { MeasuredUnit } from "app/modules/measured-units/models/measured-unit.model";
@@ -18,7 +18,7 @@ import { SupplyService } from "../../services/supply-service.service";
 export class SupplyEditComponent implements OnInit {
 
   public editForm: FormGroup;
-  private id:Number;
+  private id: Number;
   public measuddredUnitList: Observable<MeasuredUnit[]>;
   public productCategoryList: Observable<ProductCategory[]>;
 
@@ -30,7 +30,7 @@ export class SupplyEditComponent implements OnInit {
     public _measuredUnit: MeasuredUnitService,
     private _supply: SupplyService,
     @Inject(MAT_DIALOG_DATA) public data: Supply
-    ) {
+  ) {
     this.setForm(this.data);
   }
 
@@ -58,13 +58,14 @@ export class SupplyEditComponent implements OnInit {
     });
   }
 
-  private setForm(data:Supply) {
+  private setForm(data: Supply) {
     this.editForm = this.formBuilder.group({
       code: [data.code, Validators.required],
       name: [data.name, Validators.required],
       category_id: [data.category.id, Validators.required],
       measured_unit_id: [data.measuredUnit.id, Validators.required],
-      estimated_price:[data?.estimatedPrice || 0]
+      estimated_price: [data?.estimatedPrice || 0],
+      loss_percentage: [data?.lossPercentage || 0]
     });
     this.id = data.id;
   }
