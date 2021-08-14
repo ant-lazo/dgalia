@@ -86,7 +86,7 @@ export class FormComponent implements OnInit {
       weight: [null, Validators.required],
       image: [null],
       supply_id: [null],
-      minimum_stock: [null, Validators.required],
+      minimum_stock: [null, [Validators.required, Validators.min(1)]],
 
     });
   }
