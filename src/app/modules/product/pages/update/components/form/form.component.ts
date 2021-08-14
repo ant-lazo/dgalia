@@ -52,7 +52,9 @@ export class FormComponent implements OnInit {
       sale_price: form.sale_price.toString(),
       weight: form.weight.toString(),
       image: form.image,
-      supply_id: this.supplySelected ? this.supplySelected.id.toString() : null,
+      // supply_id: this.supplySelected ? this.supplySelected.id.toString() : null,
+      supply_id: this.supplySelected ? this.supplySelected.id.toString() : this.product.supplyId.toString(),
+      minimum_stock: form.minimum_stock.toString(),
     }
     this.updateForm.emit(registerForm);
   }
@@ -69,9 +71,8 @@ export class FormComponent implements OnInit {
     })
 
     dialogReg.afterClosed().subscribe((result: Supply) => {
-      if (result) {
-        this.supplySelected = result;
-      }
+      if (result) this.supplySelected = result;
+
     })
   }
 
@@ -87,7 +88,9 @@ export class FormComponent implements OnInit {
       sale_price: [this.product.salePrice, Validators.required],
       weight: [this.product.weight, Validators.required],
       image: [null],
-      supply_id: [null]
+      supply_id: [null],
+      minimum_stock: [this.product.minimumStock, Validators.required],
+
     });
   }
 

@@ -21,6 +21,7 @@ export class Product {
     public createdby: UserInfo;
     public enabled: boolean;
     public supplyCode: string;
+    public minimumStock: string;
 
     constructor(data: {
         id: number,
@@ -41,6 +42,7 @@ export class Product {
         createdby: UserInfo,
         enabled: boolean,
         supplyCode: string,
+        minimumStock: string,
     }) {
         this.id = data.id;
         this.code = data.code;
@@ -60,5 +62,6 @@ export class Product {
         this.createdby = data.createdby;
         this.enabled = data.enabled;
         this.supplyCode = data.supplyCode;
+        this.minimumStock = data.minimumStock;
     }
 }

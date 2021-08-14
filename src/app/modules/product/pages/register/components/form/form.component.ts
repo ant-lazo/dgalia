@@ -48,12 +48,14 @@ export class FormComponent implements OnInit {
     })
 
     dialogReg.afterClosed().subscribe((result: Supply) => {
+      console.log(result);
       if (result) this.supplySelected = result;
     })
   }
 
   public validateRegisterData(): void {
     const form = this.formGroup.value;
+    console.log(form);
     const registerForm: RegisterProductFormModel = {
       name: form.name,
       description: form.description,
@@ -64,7 +66,10 @@ export class FormComponent implements OnInit {
       sale_price: form.sale_price.toString(),
       weight: form.weight.toString(),
       image: form.image,
-      supply_id: form.supply_id ? form.supply_id.toString() : null,
+      // supply_id: form.supply_id ? form.supply_id.toString() : null,
+      supply_id: this.supplySelected.id ? this.supplySelected.id.toString() : null,
+      minimum_stock: form.minimum_stock.toString(),
+
     }
     this.registerForm.emit(registerForm);
   }
@@ -80,7 +85,9 @@ export class FormComponent implements OnInit {
       sale_price: [null, Validators.required],
       weight: [null, Validators.required],
       image: [null],
-      supply_id: [null]
+      supply_id: [null],
+      minimum_stock: [null, Validators.required],
+
     });
   }
 
