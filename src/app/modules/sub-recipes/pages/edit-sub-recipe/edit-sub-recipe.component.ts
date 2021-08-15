@@ -114,6 +114,7 @@ export class EditSubRecipeComponent implements OnInit {
       this._toast.success(result.message, 'Actualizado exitoso');
       this._router.navigate(['sub-recetas/listado']);
     });
+
   }
 
 

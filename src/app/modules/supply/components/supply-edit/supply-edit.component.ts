@@ -21,6 +21,7 @@ export class SupplyEditComponent implements OnInit {
   private id: Number;
   public measuddredUnitList: Observable<MeasuredUnit[]>;
   public productCategoryList: Observable<ProductCategory[]>;
+  private readonly supplyTypeDefault = 'I';
 
   constructor(
     private matDialogRef: MatDialogRef<SupplyEditComponent>,
@@ -65,7 +66,9 @@ export class SupplyEditComponent implements OnInit {
       category_id: [data.category.id, Validators.required],
       measured_unit_id: [data.measuredUnit.id, Validators.required],
       estimated_price: [data?.estimatedPrice || 0],
-      loss_percentage: [data?.lossPercentage || 0]
+      loss_percentage: [data?.lossPercentage || 0],
+      supply_type: this.supplyTypeDefault
+
     });
     this.id = data.id;
   }
