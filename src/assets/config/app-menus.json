@@ -68,12 +68,6 @@
                             "title": "Listado",
                             "link": "/sedes/listado",
                             "type": "basic"
-                        },
-                        {
-                            "id": "pages.sedes.almacenes",
-                            "title": "Almacenes",
-                            "link": "/almacenes/listado",
-                            "type": "basic"
                         }
                     ]
                 }
@@ -193,12 +187,7 @@
                         }
                     ]
                 },
-                {
-                    "id": "pages.logistica.proveedores",
-                    "title": "Proveedores",
-                    "link": "/proveedores",
-                    "type": "basic"
-                },
+              
                 {
                     "id": "pages.logistica.inventario",
                     "title": "Inventario",
@@ -234,30 +223,30 @@
                     "title": "Cursos",
                     "link": "/cursos",
                     "type": "basic"
-                }
-            ]
-        },
-        {
-            "id": "4",
-            "title": "Sedes",
-            "link": "/",
-            "type": "aside",
-            "icon": "home_work",
-            "children": [
+                },
                 {
-                    "id": "pages.sedes.listado",
-                    "title": "Listado",
-                    "link": "/sedes/listado",
+                    "id": "pages.logistica.proveedores",
+                    "title": "Proveedores",
+                    "link": "/proveedores",
                     "type": "basic"
                 },
                 {
-                    "id": "pages.sedes.almacenes",
-                    "title": "Almacenes",
-                    "link": "/almacenes/listado",
-                    "type": "basic"
+                    "id": "pages.administation.sedes",
+                    "title": "Sedes",
+                    "link": "/sedes",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.sedes.listado",
+                            "title": "Listado",
+                            "link": "/sedes/listado",
+                            "type": "basic"
+                        }
+                    ]
                 }
             ]
         }
+    
     ],
     "futuristic": [
         {

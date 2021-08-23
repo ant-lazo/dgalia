@@ -14,7 +14,7 @@ export class ItemsComponent implements OnInit {
   @Input() productList: PurchaseOrderProduct[];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  public displayedColumns: string[] = ['code', 'name', 'measuredUnit', 'unitPrice', 'quantity', 'igv', 'subtotal', 'total'];
+  public displayedColumns: string[] = ['code', 'name', 'measuredUnit', 'unitPrice', 'quantity', 'igv', 'subtotal', 'total','acciones'];
   public dataSource: MatTableDataSource<PurchaseOrderProduct> = new MatTableDataSource([]);
 
   constructor() { }

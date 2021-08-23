@@ -62,6 +62,18 @@
     </div>
 
     <div class="flex flex-col p-4 min-h-10 max-h-20 rounded border-2 light:bg-card">
-        <textarea readonly rows="2">  {{ purchaseOrder.comments ?? 'Sin comentarios'}} </textarea>
+        <div style="display: inline-flex;">
+            <div class="contenido" style="width: 95%;">
+                <textarea readonly style="width: 100%;">  {{ purchaseOrder.comments ?? 'Sin comentarios'}} </textarea>
+            </div>
+            <div style="width: 5%;">
+                <button _ngcontent-yuw-c346="" type="button" mat-icon-button="" class="mat-focus-indicator mat-icon-button mat-button-base" title="editar">
+                    <span><mat-icon style="color: green;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">edit</mat-icon></span>
+                         </button>
+            </div>
+        </div>
+       
+        
+    
     </div>
 </div>

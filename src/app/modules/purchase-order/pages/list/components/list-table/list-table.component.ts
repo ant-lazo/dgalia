@@ -37,7 +37,13 @@ export class ListTableComponent implements OnChanges {
     this.dataSource = new MatTableDataSource(this.list);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
+    console.log(this.list);
   }
+
+  public viewDetail(){
+      console.log("ad");
+  }
+  
 
   public getStatusColor(code: string): string {
     let color: string = '';
