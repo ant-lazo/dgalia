@@ -184,6 +184,12 @@
                             "title": "Registro",
                             "link": "orden-de-compra/registro/none",
                             "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.orden_de_compra.listadoFactura",
+                            "title": "Listado Facturas",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
                         }
                     ]
                 },

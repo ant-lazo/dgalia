@@ -1,0 +1,71 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <div class="main" >
+        <div class="content">
+
+            <h1>Editar <span class="text-primary"> orden de compra</span>  </h1>
+           
+            
+            <form class="example-form">
+                <div class="grid grid-cols-12 gap-4 w-full" style="margin-bottom: 2rem;">
+                    <div class="col-span-4">
+                        <mat-label>Codigo</mat-label>
+                        <input matInput placeholder="" value="B00016" disabled>
+                    </div>
+                    <div class="col-span-4">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="" value="Prueba update" disabled>
+                    </div>
+                    <div class="col-span-4">
+                        <mat-label>Unidad de Medida</mat-label>
+                        <input matInput placeholder="" value="BARRA" disabled>
+                    </div>
+                </div> 
+
+                <div class="grid grid-cols-12 gap-4 w-full" style="margin-bottom: 2rem;">
+                    <div class="col-span-4">
+                        <mat-label>Precio Unitario</mat-label>
+                        <input matInput placeholder="" value="S/. 10,00" disabled>
+                    </div>
+                    <div class="col-span-4">
+                        <mat-label>Cantidad</mat-label>
+                        <input matInput placeholder="" value="3,00" >
+                    </div>
+                    <!-- <div class="col-span-4">
+                        <mat-label>Igv</mat-label>
+                        <input matInput placeholder="" value="	S/. 10,00" disabled>
+                    </div>-->
+                </div> 
+
+              <!--  <div class="grid grid-cols-12 gap-4 w-full" style="margin-bottom: 2rem;">
+                    <div class="col-span-4">
+                        <mat-label>Subtotal</mat-label>
+                        <input matInput placeholder="" value="S/. 30,00" disabled>
+                    </div>
+                    <div class="col-span-4">
+                        <mat-label>Total</mat-label>
+                        <input matInput placeholder="" value="S/. 40,00" disabled>
+                    </div>
+                    
+                </div> -->
+
+
+            </form>
+            
+            
+            <div
+            class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
+            <button type="button"  (click)="closeModal()"  color="primary" mat-stroked-button>
+                <mat-icon>close</mat-icon>
+                Cancelar
+            </button>
+            <button  type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+                <mat-icon class="mr-2">save</mat-icon>
+                Actualizar
+            </button>
+     </div>
+
+
+     </div>  
+        </div>  
+ </div>  
