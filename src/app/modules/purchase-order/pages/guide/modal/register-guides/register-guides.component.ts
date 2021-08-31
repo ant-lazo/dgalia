@@ -1,33 +1,36 @@
-
 import { Component, OnInit, Inject } from "@angular/core";
+
+
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { appColors } from "app/core/config/app.config";
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
-import { BillsPayment } from "../../../models/bills-Payment.model";
+import { GuidesOrder } from "../../../../models/Guides-order.model";
+
+
 
 
 @Component({
-  selector: 'app-register-payment-bills',
-  templateUrl: './register-payment-bills.component.html',
-  styleUrls: ['./register-payment-bills.component.scss']
+  selector: 'app-register-guides',
+  templateUrl: './register-guides.component.html',
+  styleUrls: ['./register-guides.component.scss']
 })
+export class RegisterGuidesComponent implements OnInit {
 
-export class RegisterPaymentBillsComponent implements OnInit {
-
+  
   public editForm: FormGroup;
   private id: Number;
   public appStatus: string[] = ['Cancelado', 'Pendiente', 'Terminado'];
 
 
 
-  constructor( private matDialogRef: MatDialogRef<RegisterPaymentBillsComponent>,
+  constructor( private matDialogRef: MatDialogRef<RegisterGuidesComponent>,
     private _appNotifications: AppNotificationsService,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: BillsPayment) {
+    @Inject(MAT_DIALOG_DATA) public data: GuidesOrder) {
     
       var dt = new Date();
-      let item:BillsPayment ={comentarios : "05/07/2021",descStatus:"Cancelado",fechaPago  :dt,id:1,nroBills :"F005-5455",status :4};
+      let item:GuidesOrder ={codStatus:"1",code:'3',DateRegister : "05/07/2021",descStatus:"Cancelado",id:1,descSede:"",descProveedor:""};
 
 
       /*let item:BillsPayment;
@@ -46,14 +49,14 @@ export class RegisterPaymentBillsComponent implements OnInit {
 
   }
 
-  private setForm(data: BillsPayment) {
+  private setForm(data: GuidesOrder) {
     this.editForm = this.formBuilder.group({
       description: [data.id, Validators.required],
-      name: [ { value: data.nroBills , disabled: true }, Validators.required ],
+      name: [ { value: data.descProveedor , disabled: true }, Validators.required ],
       
-      address: [data.comentarios, Validators.required],
-      person_in_charge: [data.status, Validators.required],
-      color: [data.descStatus, Validators.required]
+      address: [data.descProveedor, Validators.required],
+      person_in_charge: [data.descProveedor, Validators.required],
+    
     });
     this.id = data.id;
   }
@@ -62,6 +65,5 @@ export class RegisterPaymentBillsComponent implements OnInit {
 public onNoCreate() {
     this.matDialogRef.close();
   }
-
 
 }

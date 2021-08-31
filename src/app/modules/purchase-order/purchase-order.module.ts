@@ -29,10 +29,13 @@ import { LabelModule } from 'app/shared/label/label.module';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
 import { ListComponent } from './pages/bills/list/list.component';
+import { ListGuidesComponent } from './pages/guide/list/list.component';
 import { RegisterPaymentBillsComponent } from './pages/bills/register-payment-bills/register-payment-bills.component';
+import { DetailBillsComponent } from './pages/bills/detail-bills/detail-bills.component';
+import { RegisterGuidesComponent } from './pages/guide/modal/register-guides/register-guides.component';
 @NgModule({
   declarations: [ 
-    PurchaseOrderComponent,ModalOrderComponent,ModalCommentsComponent, RegisterBillsComponent, ListComponent, RegisterPaymentBillsComponent
+    PurchaseOrderComponent,ModalOrderComponent,ModalCommentsComponent, RegisterBillsComponent, ListComponent, RegisterPaymentBillsComponent, DetailBillsComponent,ListGuidesComponent, RegisterGuidesComponent
   ],
   imports: [
     FormsModule,

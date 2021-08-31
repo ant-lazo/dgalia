@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PurchaseOrderComponent } from './purchase-order.component';
 import {ListComponent} from '../purchase-order/pages/bills/list/list.component'
+import { ListGuidesComponent } from '../purchase-order/pages/guide/list/list.component'
+import {DetailBillsComponent} from '../purchase-order/pages/bills/detail-bills/detail-bills.component'
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
       {
         path: 'listado-Factura',
         component:ListComponent
+      },
+      {
+        path: 'listado-Guias',
+        component:ListGuidesComponent
+      },
+      {
+        path: 'detalle-Factura/:code',
+        component:DetailBillsComponent
       },
       {
         path: 'registro/:demandSheetCode',

@@ -214,6 +214,7 @@
                         }
                     ]
                 }
+              
                
             ]
         },
@@ -246,6 +247,46 @@
                             "id": "pages.sedes.listado",
                             "title": "Listado",
                             "link": "/sedes/listado",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "pages.logistica.factura",
+                    "title": "Factura",
+                    "link": "/factura",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.factura.listado",
+                            "title": "Listado",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.factura.listado",
+                            "title": "registro",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "pages.logistica.guias",
+                    "title": "Guia",
+                    "link": "/guia",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.guia.listado",
+                            "title": "Listado",
+                            "link": "orden-de-compra/listado-Guias",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.guia.listado",
+                            "title": "registro",
+                            "link": "orden-de-compra/listado-Guias",
                             "type": "basic"
                         }
                     ]
