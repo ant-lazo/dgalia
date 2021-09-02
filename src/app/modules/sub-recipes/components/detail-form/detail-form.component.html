@@ -1,0 +1,73 @@
+<div
+  class="
+    flex flex-col
+    mt-4
+    px-8
+    pt-10
+    pb-10
+    bg-card
+    shadow
+    rounded
+    overflow-hidden
+  "
+>
+  <div class="grid grid-cols-2 gap-4 w-full">
+    <div class="col-span-1">
+      <span>
+        <strong> Código: </strong>
+        {{ subRecipe.code }}
+      </span>
+    </div>
+    <div class="col-span-1">
+      <span>
+        <strong> Nombre: </strong>
+        {{ subRecipe.name }}
+      </span>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="w-full">
+      <span>
+        <strong> Desccripción: </strong>
+        {{ subRecipe.description }}
+      </span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 w-full">
+    <div class="col-span-1">
+      <span>
+        <strong> Costo: </strong>
+        $ {{ subRecipe.cost }}
+      </span>
+    </div>
+
+    <div class="col-span-1">
+      <span>
+        <strong> Precio: </strong>
+        $ {{ subRecipe.price }}
+      </span>
+    </div>
+  </div>
+
+  <span>
+    <strong> Sede: </strong>
+    {{ subRecipe.headquarter.name }}
+  </span>
+
+  <div class="grid grid-cols-2 gap-4 w-full">
+    <div class="col-span-1">
+      <span>
+        <strong> Curso: </strong>
+        {{ subRecipe.course.name }}
+      </span>
+    </div>
+    <div class="col-span-1">
+      <span>
+        <strong> Ciclo: </strong>
+        {{ subRecipe.term.name }}
+      </span>
+    </div>
+  </div>
+</div>

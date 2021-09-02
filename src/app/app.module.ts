@@ -33,8 +33,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
-        ScrollDirective
-    ],
+        ScrollDirective],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

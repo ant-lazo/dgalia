@@ -25,6 +25,7 @@ export class ProductMapper implements Mapper<Product> {
             createdby: new UserInfoMapper().fromJson(json.createdby),
             enabled: json.enabled,
             supplyCode: json.supplyCode,
+            minimumStock: json.minimumStock,
         });
     }
     toJson(doc: Product) {
@@ -43,6 +44,7 @@ export class ProductMapper implements Mapper<Product> {
         form.append('image', model.image);
         form.append('supply_id', model.supply_id);
         form.append('sale_price', model.sale_price);
+        form.append('minimum_stock', model.minimum_stock);
         if (code) form.append('code', code);
         return form;
     }

@@ -1,0 +1,34 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+  <app-header [module]="'Cocina'" [title]="'Sub recetas'"></app-header>
+  <div class="main">
+    <div class="content" *ngIf="subRecipeListRequest | async; else loading">
+      <div class="mb-5">
+        <app-row-buttons
+          *ngIf="registerButton"
+          [buttons]="registerButton"
+          [justify]="'justify-end'"
+          (onClick)="redirectToRegisterPage()"
+        >
+        </app-row-buttons>
+      </div>
+
+      <app-search-box
+        [placeHolder]="'Ingrese nombre de sub receta'"
+        (param)="filterByName($event)"
+      ></app-search-box>
+
+      <app-sub-recipe-list-table
+        *ngIf="subRecipeList && subRecipeList.length > 0"
+        (selectedToDelete)="validationToDeleteSubRecipe($event)"
+        (selectedToDetail)="detalle($event)"
+        (selectedToEdit)="editar($event)"
+        [list]="subRecipeFilteredList"
+      >
+      </app-sub-recipe-list-table>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <app-loading-body></app-loading-body>
+</ng-template>

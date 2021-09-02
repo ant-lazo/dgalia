@@ -9,6 +9,7 @@ export interface Supply {
     createdAt: Date;
     updatedAt: Date;
     estimatedPrice: number;
+    lossPercentage: number;
 }
 
 interface MeasuredUnit {
