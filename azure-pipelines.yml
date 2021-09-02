@@ -27,10 +27,8 @@ steps:
 
 - task: FtpUpload@2
   inputs:
-    credentialsOption: 'inputs'
-    serverUrl: 'ftp://ftp.suit.pe'
-    username: 'devftp'
-    password: 'FTPuser2019'
+    credentialsOption: 'serviceEndpoint'
+    serverEndpoint: 'prod-frontend-server'
     rootDirectory: '$(System.DefaultWorkingDirectory)/dist/'
     filePatterns: '**'
     remoteDirectory: '/logistica.dgallia.suit.pe/'
