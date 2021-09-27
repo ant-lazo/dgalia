@@ -1,12 +1,13 @@
 
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject,Input } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { appColors } from "app/core/config/app.config";
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { BillsPayment } from "../../../models/bills-Payment.model";
-
-
+import {BillsOrder } from 'app/modules/purchase-order/models/bills-order.model';
+import {BillsStatus } from 'app/modules/purchase-order/models/bills-status.model';
+import {BillsService} from '../../../services/bills.service'
 @Component({
   selector: 'app-register-payment-bills',
   templateUrl: './register-payment-bills.component.html',
@@ -14,19 +15,21 @@ import { BillsPayment } from "../../../models/bills-Payment.model";
 })
 
 export class RegisterPaymentBillsComponent implements OnInit {
-
+  @Input() measureUnitList: BillsStatus[];
   public editForm: FormGroup;
   private id: Number;
-  public appStatus: string[] = ['Cancelado', 'Pendiente', 'Terminado'];
+  public appStatus:Array<BillsStatus> =[{id : 1,description : "sad",name :"d"} ];
 
 
 
   constructor( private matDialogRef: MatDialogRef<RegisterPaymentBillsComponent>,
     private _appNotifications: AppNotificationsService,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: BillsPayment) {
+    private service:BillsService,
+    @Inject(MAT_DIALOG_DATA) public data: BillsOrder) {
     
       var dt = new Date();
+      console.log(data);
       let item:BillsPayment ={comentarios : "05/07/2021",descStatus:"Cancelado",fechaPago  :dt,id:1,nroBills :"F005-5455",status :4};
 
 
@@ -41,9 +44,28 @@ export class RegisterPaymentBillsComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    this.loadStatus();
   }
   formValidation(){
 
+  }
+
+  private loadStatus(): void {
+    this.service.getlistStatus().subscribe(
+      (e) =>{
+          console.log(e);
+          if(e.data.length > 0){
+            this.appStatus = <Array<BillsStatus>>(e.data);
+            console.log(this.appStatus);
+          }
+      },(r)=>{
+            console.error(r);
+      }
+    );
+      //this.produdcList = products;
+      //this.setDataTableList(products)
+      //return products;
+    
   }
 
   private setForm(data: BillsPayment) {

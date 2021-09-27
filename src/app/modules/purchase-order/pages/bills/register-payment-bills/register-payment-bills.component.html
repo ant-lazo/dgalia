@@ -29,8 +29,8 @@
                  
             <mat-form-field class="w-full">
                 <mat-select placeholder="Seleccione un estados" formControlName="color" required>
-                    <mat-option *ngFor="let c of appStatus" [value]="c">
-                        {{c}}
+                    <mat-option *ngFor="let c of appStatus" [value]="c.id">
+                        {{c.name}}
                     </mat-option>
                 </mat-select>
                 <mat-icon matPrefix svgIcon="clear_all"></mat-icon>

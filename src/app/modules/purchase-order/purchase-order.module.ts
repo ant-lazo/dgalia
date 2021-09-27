@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { PurchaseOrderRoutingModule } from './purchase-order-routing.module';
 import { PurchaseOrderComponent } from './purchase-order.component';
 
@@ -27,6 +27,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { LabelModule } from 'app/shared/label/label.module';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { ListComponent } from './pages/bills/list/list.component';
 import { ListGuidesComponent } from './pages/guide/list/list.component';
@@ -38,10 +40,13 @@ import { RegisterGuidesComponent } from './pages/guide/modal/register-guides/reg
     PurchaseOrderComponent,ModalOrderComponent,ModalCommentsComponent, RegisterBillsComponent, ListComponent, RegisterPaymentBillsComponent, DetailBillsComponent,ListGuidesComponent, RegisterGuidesComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     PurchaseOrderRoutingModule,
     TitleModule,
+    MatInputModule,
+    MatSelectModule,
     MatDialogModule,
     MatButtonModule,
     MatTooltipModule,

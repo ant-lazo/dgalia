@@ -11,11 +11,12 @@ import {BillsOrder } from 'app/modules/purchase-order/models/bills-order.model';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {  RegisterPaymentBillsComponent } from '../register-payment-bills/register-payment-bills.component';
-
+import {BillsService} from '../../../services/bills.service'
 
 import { PurchaseOrder } from 'app/modules/purchase-order/models/ purchase-order.model';
 import { PurchaseOrderComponent } from 'app/modules/purchase-order/purchase-order.component';
 import { bindAll } from 'lodash';
+import { EEXIST } from 'constants';
 
 @Component({
   selector: 'app-list',
@@ -37,20 +38,22 @@ public dataSource: MatTableDataSource<BillsOrder> = new MatTableDataSource([]);
 
 constructor(
   private _router: Router,
+  public service:BillsService,
   public matDialog: MatDialog
 ) { }
 
   ngOnInit(): void {
+    this.setBillList();
     this.loadData();
     
   }
   public loadData(){
     var today = new Date();
 
-    let item:BillsOrder = {id : 1,code : "F008-54545",descProveedor : "Inkafarma",descSede : "Principal",codStatus : "teal",
-    descStatus:"Pendiente",DatePayment :"10/05/2021",createdAt :"10/05/2021" };
+   // let item:BillsOrder = {id : 1,code : "F008-54545",descProveedor : "Inkafarma",descSede : "Principal",codStatus : "teal",
+    //descStatus:"Pendiente",DatePayment :"10/05/2021"};
 
-    this.list.push(item);
+  //  this.list.push(item);
 
 
     this.dataSource = new MatTableDataSource(this.list);
@@ -60,12 +63,37 @@ constructor(
 
   }
 
-  RegisterBills():void{
+  private setBillList(): void {
+    this.service.getlist().subscribe(
+      (e) =>{
+          console.log(e);
+          if(e.success == true && e.data !== null){
+                this.list = <Array<BillsOrder>>(e.data);
+                console.log(this.list);
+
+                this.dataSource = new MatTableDataSource(this.list);
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort
+                console.log(this.list);
+
+          }
+      },(r)=>{
+            console.error(r);
+      }
+    );
+      //this.produdcList = products;
+      //this.setDataTableList(products)
+      //return products;
+    
+  }
+
+  RegisterBills(event:any):void{
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "550px";
     dialogConfig.width = "800px";
+    dialogConfig.data = event;
     const modalDialog = this.matDialog.open(RegisterPaymentBillsComponent, dialogConfig);
   }
 
