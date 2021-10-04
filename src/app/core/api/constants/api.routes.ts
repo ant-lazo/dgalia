@@ -53,7 +53,7 @@ export class ApiRoutes {
     }
 
     public static inventory = {
-        getStock: `${environment.apiUrl}inventory`,
+        getStock: `${environment.apiUrl}inventory/stock`,
         getProdutKardex: (code: string) => `${environment.apiUrl}inventory?product_code=${code}`,
     }
 
