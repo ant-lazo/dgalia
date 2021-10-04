@@ -99,6 +99,12 @@
                     "link": "/recetas",
                     "type": "basic"
                 },
+                 {
+                    "id": "pages.sales.sub-recetas",
+                    "title": "Sub recetas",
+                    "link": "/sub-recetas",
+                    "type": "basic"
+                },
                 {
                     "id": "pages.sales.unidades-de-medida",
                     "title": "Unidades de medida ",
