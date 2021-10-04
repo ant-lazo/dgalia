@@ -16,6 +16,13 @@ export class ApiRoutes {
         findBySupplyCode: (code: string): string => `${environment.apiUrl}product?supply_code=${code}`,
         delete: (code: string): string => `${environment.apiUrl}product?code=${code}`,
     }
+    public static bills = {
+        getList: `${environment.apiUrl}invoice`,
+        getListStatus:`${environment.apiUrl}invoice-status`,
+        findByCode: (code: string): string => `${environment.apiUrl}product?code=${code}`,
+        findBySupplyCode: (code: string): string => `${environment.apiUrl}product?supply_code=${code}`,
+        delete: (code: string): string => `${environment.apiUrl}product?code=${code}`,
+    }
 
     public static outputs = {
         save: `${environment.apiUrl}inventory/output`,

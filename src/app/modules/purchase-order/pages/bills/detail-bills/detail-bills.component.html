@@ -1,0 +1,26 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+<!--*ngIf="rqPurchaseOrder | async as purchaseOrder; else loading"-->
+    <div class="main" >
+        <div class="content">
+
+            <app-title title="Detalle de factura  B112-5454" backButton="true"
+                subtitle="En este detalle podras ver los componentes de la factura y actualizar su estado">
+            </app-title>
+
+            <!--<purchase_order-detail-action_buttons [purchaseOrder]="purchaseOrder" ></purchase_order-detail-action_buttons>
+
+            <purchase_order-detail-info [purchaseOrder]="purchaseOrder">
+            </purchase_order-detail-info>
+
+            <purchase_order-detail-info></purchase_order-detail-info>
+
+            <purchase_order-detail-items [purchaseOrder]="purchaseOrder" [productList]="purchaseOrder.products ></purchase_order-detail-items>
+
+            <purchase_order-detail-resumen [purchaseOrder]="purchaseOrder"></purchase_order-detail-resumen>-->
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

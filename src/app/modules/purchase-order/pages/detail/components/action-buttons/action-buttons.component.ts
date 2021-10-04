@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { PurchaseOrderSts } from 'app/core/models/puecharse-order-sts.model';
@@ -11,6 +11,10 @@ import { AppNotificationsService } from 'app/shared/Services/app-notifications.s
 import { Observable } from 'rxjs';
 
 import { AddCommentUpdateModalComponent } from '../add-comment-update-modal/add-comment-update-modal.component';
+
+
+import {RegisterBillsComponent } from '../../../../pages/bills/register-bills/register-bills.component';
+
 
 @Component({
   selector: 'purchase_order-detail-action_buttons',
@@ -35,7 +39,14 @@ export class ActionButtonsComponent implements OnInit {
   ngOnInit(): void {
     this.buttons = this.getFinalButtons();
   }
-
+  RegisterBills():void{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "550px";
+    dialogConfig.width = "800px";
+    const modalDialog = this._dialog.open(RegisterBillsComponent, dialogConfig);
+  }
   private getFinalButtons(): RowAppButtonModel[] {
     let finalbuttons: RowAppButtonModel[] = [];
 
@@ -161,7 +172,16 @@ export class ActionButtonsComponent implements OnInit {
         icon: 'login',
         label: 'Registrar ingreso',
         type: RowButtonType.Stroked
+      }),
+      new RowAppButtonModel({
+        action: 'input',
+        color: 'primary',
+        icon: 'save',
+        label: 'Actualizar',
+        type: RowButtonType.Stroked
       })
+
+      
     ];
   }
 

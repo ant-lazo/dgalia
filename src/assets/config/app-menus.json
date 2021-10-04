@@ -1,457 +1,488 @@
 {
-  "general": [
-    {
-      "children": [
+    "general": [
         {
-          "id": "1",
-          "title": "Cocina",
-          "link": "/",
-          "type": "collapsable",
-          "icon": "store",
-          "children": [
-            {
-              "id": "pages.cocina.insumos",
-              "title": "Insumos",
-              "link": "/insumos",
-              "type": "basic"
-            },
-            {
-              "id": "pages.cocina.recetas",
-              "title": "Recetas",
-              "link": "/recetas",
-              "type": "basic"
-            },
-            {
-              "id": "pages.cocina.unidades-de-medida",
-              "title": "Unidades de medida ",
-              "link": "/unidades-de-medida",
-              "type": "basic"
-            },
-            {
-              "id": "pages.cocina.programacion",
-              "title": "Programación",
-              "link": "/programacion",
-              "type": "basic"
-            }
-          ]
-        },
-        {
-          "id": "4",
-          "title": "Administración",
-          "link": "/",
-          "type": "collapsable",
-          "icon": "settings",
-          "children": [
-            {
-              "id": "pages.administation.course",
-              "title": "Cursos",
-              "link": "/cursos",
-              "type": "basic"
-            },
-            {
-              "id": "pages.administation.term",
-              "title": "Ciclos",
-              "link": "/ciclos",
-              "type": "basic"
-            }
-          ]
-        },
-        {
-          "id": "3",
-          "title": "Sedes",
-          "link": "/",
-          "type": "collapsable",
-          "icon": "settings",
-          "children": [
-            {
-              "id": "pages.sedes.listado",
-              "title": "Listado",
-              "link": "/sedes/listado",
-              "type": "basic"
-            },
-            {
-              "id": "pages.sedes.almacenes",
-              "title": "Almacenes",
-              "link": "/almacenes/listado",
-              "type": "basic"
-            }
-          ]
+            "children": [
+                {
+                    "id": "1",
+                    "title": "Cocina",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "store",
+                    "children": [
+                        {
+                            "id": "pages.cocina.insumos",
+                            "title": "Insumos",
+                            "link": "/insumos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.recetas",
+                            "title": "Recetas",
+                            "link": "/recetas",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.unidades-de-medida",
+                            "title": "Unidades de medida ",
+                            "link": "/unidades-de-medida",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.programacion",
+                            "title": "Programación",
+                            "link": "/programacion",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "4",
+                    "title": "Administración",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.administation.course",
+                            "title": "Cursos",
+                            "link": "/cursos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.term",
+                            "title": "Ciclos",
+                            "link": "/ciclos",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "3",
+                    "title": "Sedes",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.sedes.listado",
+                            "title": "Listado",
+                            "link": "/sedes/listado",
+                            "type": "basic"
+                        }
+                    ]
+                }
+            ],
+            "icon": "apps",
+            "id": "starter",
+            "subtitle": "Menú de opciones",
+            "title": "DASHBOARD",
+            "type": "group"
         }
-      ],
-      "icon": "apps",
-      "id": "starter",
-      "subtitle": "Menú de opciones",
-      "title": "DASHBOARD",
-      "type": "group"
-    }
-  ],
-  "compact": [
-    {
-      "id": "1",
-      "title": "Cocina",
-      "link": "/",
-      "type": "aside",
-      "icon": "store",
-      "children": [
+    ],
+    "compact": [
         {
-          "id": "pages.cocina.insumos",
-          "title": "Insumos",
-          "link": "/insumos",
-          "type": "basic"
+            "id": "1",
+            "title": "Cocina",
+            "link": "/",
+            "type": "aside",
+            "icon": "store",
+            "children": [
+                {
+                    "id": "pages.cocina.insumos",
+                    "title": "Insumos",
+                    "link": "/insumos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.recetas",
+                    "title": "Recetas",
+                    "link": "/recetas",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.unidades-de-medida",
+                    "title": "Unidades de medida ",
+                    "link": "/unidades-de-medida",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.caja",
+                    "title": "Programación",
+                    "link": "/programacion",
+                    "type": "basic"
+                }
+            ]
         },
         {
-          "id": "pages.sales.recetas",
-          "title": "Recetas",
-          "link": "/recetas",
-          "type": "basic"
+            "id": "2",
+            "title": "Productos",
+            "link": "/",
+            "type": "aside",
+            "icon": "category",
+            "children": [
+                {
+                    "id": "pages.productos.listado",
+                    "title": "Listado",
+                    "link": "productos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.productos.registro",
+                    "title": "Registrar",
+                    "link": "productos/registro",
+                    "type": "basic"
+                }
+            ]
+        },
+        {            
+            "id": "logistica",
+            "title": "Logística",
+            "link": "/logistica",
+            "type": "aside",
+            "icon": "swap_horiz",
+            "children": [
+                {
+                    "id": "pages.logistica.hojas_de_demanda",
+                    "title": "Hojas de demanda",
+                    "link": "/hojas-de-demanda",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.listado",
+                            "title": "Listado",
+                            "link": "hojas-de-demanda/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.registro",
+                            "title": "Registro",
+                            "link": "hojas-de-demanda/registro/none",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.hojas_de_demanda.programaciones",
+                            "title": "Programaciones",
+                            "link": "hojas-de-demanda/programaciones",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "pages.logistica.orden_de_compra",
+                    "title": "Ordenes de compra",
+                    "link": "/orden-de-compra",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.orden_de_compra.listado",
+                            "title": "Listado",
+                            "link": "orden-de-compra/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.orden_de_compra.registro",
+                            "title": "Registro",
+                            "link": "orden-de-compra/registro/none",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.orden_de_compra.listadoFactura",
+                            "title": "Listado Facturas",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
+                        }
+                    ]
+                },
+              
+                {
+                    "id": "pages.logistica.inventario",
+                    "title": "Inventario",
+                    "link": "/inventario",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.inventario.listado",
+                            "title": "Listado de productos",
+                            "link": "inventario/productos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.inventario.salidas",
+                            "title": "Salidas",
+                            "link": "inventario/salidas",
+                            "type": "basic"
+                        }
+                    ]
+                }
+              
+               
+            ]
         },
         {
-          "id": "pages.sales.sub-recetas",
-          "title": "Sub recetas",
-          "link": "/sub-recetas",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sales.unidades-de-medida",
-          "title": "Unidades de medida ",
-          "link": "/unidades-de-medida",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sales.caja",
-          "title": "Programación",
-          "link": "/programacion",
-          "type": "basic"
+            "id": "3",
+            "title": "Administración",
+            "link": "/",
+            "type": "aside",
+            "icon": "settings",
+            "children": [
+                {
+                    "id": "pages.administation.course",
+                    "title": "Cursos",
+                    "link": "/cursos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.logistica.proveedores",
+                    "title": "Proveedores",
+                    "link": "/proveedores",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.administation.sedes",
+                    "title": "Sedes",
+                    "link": "/sedes",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.sedes.listado",
+                            "title": "Listado",
+                            "link": "/sedes/listado",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "pages.logistica.factura",
+                    "title": "Factura",
+                    "link": "/factura",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.factura.listado",
+                            "title": "Listado",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.factura.listado",
+                            "title": "registro",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "pages.logistica.guias",
+                    "title": "Guia",
+                    "link": "/guia",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.guia.listado",
+                            "title": "Listado",
+                            "link": "orden-de-compra/listado-Guias",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.guia.listado",
+                            "title": "registro",
+                            "link": "orden-de-compra/listado-Guias",
+                            "type": "basic"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
-    },
-    {
-      "id": "2",
-      "title": "Productos",
-      "link": "/",
-      "type": "aside",
-      "icon": "category",
-      "children": [
+    
+    ],
+    "futuristic": [
         {
-          "id": "pages.productos.listado",
-          "title": "Listado",
-          "link": "productos",
-          "type": "basic"
-        },
-        {
-          "id": "pages.productos.registro",
-          "title": "Registrar",
-          "link": "productos/registro",
-          "type": "basic"
+            "children": [
+                {
+                    "id": "1",
+                    "title": "Cocina",
+                    "link": "/",
+                    "type": "collapsable",
+                    "icon": "store",
+                    "children": [
+                        {
+                            "id": "pages.cocina.generate",
+                            "title": "Insumos",
+                            "link": "/insumos",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.recipe",
+                            "title": "Recetas",
+                            "link": "/recetas",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.reports",
+                            "title": "Unidades de medida ",
+                            "link": "/unidades-de-medida",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.cocina.caja",
+                            "title": "Programación",
+                            "link": "/programacion",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "title": "Kardex",
+                    "link": "x",
+                    "type": "collapsable",
+                    "icon": "business",
+                    "children": [
+                        {
+                            "id": "pages.company.profile",
+                            "title": "Estados de cuenta",
+                            "link": "/",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.company.users",
+                            "title": "Pagos",
+                            "link": "/",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "4",
+                    "title": "Administración",
+                    "type": "aside",
+                    "icon": "settings",
+                    "children": [
+                        {
+                            "id": "pages.administation.activity",
+                            "title": "Actividades Económicas",
+                            "link": "/admin/activity/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.currency",
+                            "title": "Monedas",
+                            "link": "/admin/currency/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.companyGroup",
+                            "title": "Grupo Empresarial",
+                            "link": "/admin/companyGroup/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.companySize",
+                            "title": "Tamaño Empresa",
+                            "link": "/admin/companySize/listado",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.administation.internalCompanies",
+                            "title": "Empresas Internas",
+                            "link": "/admin/internalCompanies/listado",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "3",
+                    "title": "Mantenimiento",
+                    "link": "x",
+                    "type": "collapsable",
+                    "icon": "people",
+                    "children": [
+                        {
+                            "id": "pages.customers.list",
+                            "title": "Listado",
+                            "link": "/",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.customers.create",
+                            "title": "Registro",
+                            "link": "/",
+                            "type": "basic"
+                        }
+                    ]
+                }
+            ],
+            "icon": "apps",
+            "id": "starter",
+            "subtitle": "Menú de opciones",
+            "title": "DASHBOARD",
+            "type": "group"
         }
-      ]
-    },
-    {
-      "id": "logistica",
-      "title": "Logística",
-      "link": "/logistica",
-      "type": "aside",
-      "icon": "swap_horiz",
-      "children": [
+    ],
+    "horizontal": [
         {
-          "id": "pages.logistica.hojas_de_demanda",
-          "title": "Hojas de demanda",
-          "link": "/hojas-de-demanda",
-          "type": "collapsable",
-          "children": [
-            {
-              "id": "pages.logistica.hojas_de_demanda.listado",
-              "title": "Listado",
-              "link": "hojas-de-demanda/listado",
-              "type": "basic"
-            },
-            {
-              "id": "pages.logistica.hojas_de_demanda.registro",
-              "title": "Registro",
-              "link": "hojas-de-demanda/registro/none",
-              "type": "basic"
-            },
-            {
-              "id": "pages.logistica.hojas_de_demanda.programaciones",
-              "title": "Programaciones",
-              "link": "hojas-de-demanda/programaciones",
-              "type": "basic"
-            }
-          ]
+            "id": "1",
+            "title": "Cocina",
+            "type": "group",
+            "icon": "store",
+            "children": [
+                {
+                    "id": "pages.cocina.generate",
+                    "title": "Insumos",
+                    "link": "/insumos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.list",
+                    "title": "Recetas",
+                    "link": "/recetas",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.reports",
+                    "title": "Unidades de medida ",
+                    "link": "/unidades-de-medida",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.caja",
+                    "title": "Programación",
+                    "link": "/programacion",
+                    "type": "basic"
+                }
+            ]
         },
         {
-          "id": "pages.logistica.orden_de_compra",
-          "title": "Ordenes de compra",
-          "link": "/orden-de-compra",
-          "type": "collapsable",
-          "children": [
-            {
-              "id": "pages.logistica.orden_de_compra.listado",
-              "title": "Listado",
-              "link": "orden-de-compra/listado",
-              "type": "basic"
-            },
-            {
-              "id": "pages.logistica.orden_de_compra.registro",
-              "title": "Registro",
-              "link": "orden-de-compra/registro/none",
-              "type": "basic"
-            }
-          ]
-        },
-        {
-          "id": "pages.logistica.proveedores",
-          "title": "Proveedores",
-          "link": "/proveedores",
-          "type": "basic"
-        },
-        {
-          "id": "pages.logistica.inventario",
-          "title": "Inventario",
-          "link": "/inventario",
-          "type": "collapsable",
-          "children": [
-            {
-              "id": "pages.logistica.inventario.listado",
-              "title": "Listado de productos",
-              "link": "inventario/productos",
-              "type": "basic"
-            },
-            {
-              "id": "pages.logistica.inventario.salidas",
-              "title": "Salidas",
-              "link": "inventario/salidas",
-              "type": "basic"
-            }
-          ]
+            "id": "2",
+            "title": "Kardex",
+            "type": "group",
+            "icon": "business",
+            "children": [
+                {
+                    "id": "pages.cocina.generate",
+                    "title": "Insumos",
+                    "link": "/insumos",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.list",
+                    "title": "Recetas",
+                    "link": "/recetas",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.reports",
+                    "title": "Unidades de medida ",
+                    "link": "/unidades-de-medida",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.sales.caja",
+                    "title": "Programación",
+                    "link": "/programacion",
+                    "type": "basic"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "id": "3",
-      "title": "Administración",
-      "link": "/",
-      "type": "aside",
-      "icon": "settings",
-      "children": [
-        {
-          "id": "pages.administation.course",
-          "title": "Cursos",
-          "link": "/cursos",
-          "type": "basic"
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "title": "Sedes",
-      "link": "/",
-      "type": "aside",
-      "icon": "home_work",
-      "children": [
-        {
-          "id": "pages.sedes.listado",
-          "title": "Listado",
-          "link": "/sedes/listado",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sedes.almacenes",
-          "title": "Almacenes",
-          "link": "/almacenes/listado",
-          "type": "basic"
-        }
-      ]
-    }
-  ],
-  "futuristic": [
-    {
-      "children": [
-        {
-          "id": "1",
-          "title": "Cocina",
-          "link": "/",
-          "type": "collapsable",
-          "icon": "store",
-          "children": [
-            {
-              "id": "pages.cocina.generate",
-              "title": "Insumos",
-              "link": "/insumos",
-              "type": "basic"
-            },
-            {
-              "id": "pages.cocina.recipe",
-              "title": "Recetas",
-              "link": "/recetas",
-              "type": "basic"
-            },
-            {
-              "id": "pages.cocina.reports",
-              "title": "Unidades de medida ",
-              "link": "/unidades-de-medida",
-              "type": "basic"
-            },
-            {
-              "id": "pages.cocina.caja",
-              "title": "Programación",
-              "link": "/programacion",
-              "type": "basic"
-            }
-          ]
-        },
-        {
-          "id": "2",
-          "title": "Kardex",
-          "link": "x",
-          "type": "collapsable",
-          "icon": "business",
-          "children": [
-            {
-              "id": "pages.company.profile",
-              "title": "Estados de cuenta",
-              "link": "/",
-              "type": "basic"
-            },
-            {
-              "id": "pages.company.users",
-              "title": "Pagos",
-              "link": "/",
-              "type": "basic"
-            }
-          ]
-        },
-        {
-          "id": "4",
-          "title": "Administración",
-          "type": "aside",
-          "icon": "settings",
-          "children": [
-            {
-              "id": "pages.administation.activity",
-              "title": "Actividades Económicas",
-              "link": "/admin/activity/listado",
-              "type": "basic"
-            },
-            {
-              "id": "pages.administation.currency",
-              "title": "Monedas",
-              "link": "/admin/currency/listado",
-              "type": "basic"
-            },
-            {
-              "id": "pages.administation.companyGroup",
-              "title": "Grupo Empresarial",
-              "link": "/admin/companyGroup/listado",
-              "type": "basic"
-            },
-            {
-              "id": "pages.administation.companySize",
-              "title": "Tamaño Empresa",
-              "link": "/admin/companySize/listado",
-              "type": "basic"
-            },
-            {
-              "id": "pages.administation.internalCompanies",
-              "title": "Empresas Internas",
-              "link": "/admin/internalCompanies/listado",
-              "type": "basic"
-            }
-          ]
-        },
-        {
-          "id": "3",
-          "title": "Mantenimiento",
-          "link": "x",
-          "type": "collapsable",
-          "icon": "people",
-          "children": [
-            {
-              "id": "pages.customers.list",
-              "title": "Listado",
-              "link": "/",
-              "type": "basic"
-            },
-            {
-              "id": "pages.customers.create",
-              "title": "Registro",
-              "link": "/",
-              "type": "basic"
-            }
-          ]
-        }
-      ],
-      "icon": "apps",
-      "id": "starter",
-      "subtitle": "Menú de opciones",
-      "title": "DASHBOARD",
-      "type": "group"
-    }
-  ],
-  "horizontal": [
-    {
-      "id": "1",
-      "title": "Cocina",
-      "type": "group",
-      "icon": "store",
-      "children": [
-        {
-          "id": "pages.cocina.generate",
-          "title": "Insumos",
-          "link": "/insumos",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sales.list",
-          "title": "Recetas",
-          "link": "/recetas",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sales.reports",
-          "title": "Unidades de medida ",
-          "link": "/unidades-de-medida",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sales.caja",
-          "title": "Programación",
-          "link": "/programacion",
-          "type": "basic"
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "title": "Kardex",
-      "type": "group",
-      "icon": "business",
-      "children": [
-        {
-          "id": "pages.cocina.generate",
-          "title": "Insumos",
-          "link": "/insumos",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sales.list",
-          "title": "Recetas",
-          "link": "/recetas",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sales.reports",
-          "title": "Unidades de medida ",
-          "link": "/unidades-de-medida",
-          "type": "basic"
-        },
-        {
-          "id": "pages.sales.caja",
-          "title": "Programación",
-          "link": "/programacion",
-          "type": "basic"
-        }
-      ]
-    }
-  ]
+    ]
 }

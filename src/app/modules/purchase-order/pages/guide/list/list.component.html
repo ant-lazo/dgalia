@@ -1,0 +1,75 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header module="Guias" title="Listado de Guías"></app-header>
+<!-- *ngIf="purchaseOrderList | async as data; else loading"-->
+    <div class="main">
+        <div class="content">
+           
+
+            <table mat-table [dataSource]="dataSource" matSort class="w-full">
+
+                <ng-container [matColumnDef]="displayedColumns[0]">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>N° </th>
+                    <td mat-cell *matCellDef="let element">
+                        <app-label [text]="element.code"></app-label>
+                    </td>
+                </ng-container>
+            
+                <ng-container [matColumnDef]="displayedColumns[1]">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Proveedor </th>
+                    <td mat-cell *matCellDef="let element"> {{element.descProveedor}} </td>
+                </ng-container>
+            
+                <ng-container [matColumnDef]="displayedColumns[2]">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sede</th>
+                    <td mat-cell *matCellDef="let element"> {{element.descSede}} </td>
+                </ng-container>
+            
+                <ng-container [matColumnDef]="displayedColumns[3]">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado </th>
+                    <td mat-cell *matCellDef="let element">
+                        <app-label [color]="getStatusColor(element.codStatus)" [text]="element.descStatus"></app-label>
+                    </td>
+                </ng-container>
+            
+                
+                <ng-container [matColumnDef]="displayedColumns[4]">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>F. Registro </th>
+                    <td mat-cell *matCellDef="let element"> {{element.DateRegister }} </td>
+                </ng-container>
+              
+            
+                <ng-container [matColumnDef]="displayedColumns[5]">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
+                    <td class="th-max" mat-cell *matCellDef="let element">
+                       <!-- <button (click)="navigateToDetail(element.code)" title="Detalle {{ element.name }}" type="button"
+                            mat-icon-button>
+                            <mat-icon>arrow_forward_ios</mat-icon>
+                        </button>--> 
+            
+                        <button   (click) = "RegisterGuides()"  _ngcontent-yuw-c346="" type="button" mat-icon-button="" class="mat-focus-indicator mat-icon-button mat-button-base" title="Registrar Pago">
+                            <span><mat-icon style="color: green;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">description</mat-icon></span>
+                                 </button>
+            
+                        
+                   
+                        
+            
+            
+                    </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row   style="cursor: pointer;"   *matRowDef="let row; columns: displayedColumns;"   ></tr>
+            </table>
+            
+            <mat-paginator #matPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
+
+
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

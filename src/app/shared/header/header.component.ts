@@ -7,9 +7,9 @@ import { Location } from '@angular/common'
   host: { 'class': 'header' },
   template: `
   <div class="container">
-      <div class="breadcrumb">
+     <!-- <div class="breadcrumb">
           <span class="path"> {{ module || 'Modulo' }} </span>
-      </div>
+      </div>-->
       <h1> 
       <button *ngIf="urlRoute" (click)="navigateToBack()"  mat-button router>
         <mat-icon>arrow_back</mat-icon>

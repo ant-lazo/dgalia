@@ -9,15 +9,15 @@
 <mat-menu class="user-actions-menu" [xPosition]="'before'" #userActions="matMenu">
     <button mat-menu-item>
         <span class="user-info">
-            <span>Signed in as</span>
+            <span>Registrado como</span>
             <span class="email">{{user.getEmail()}}</span>
         </span>
     </button>
     <mat-divider class="my-2"></mat-divider>
-    <button mat-menu-item>
+ <!--   <button mat-menu-item>
         <mat-icon [svgIcon]="'account_circle'"></mat-icon>
         <span>Perfil</span>
-    </button>
+    </button>-->
     <button (click)="openDrawer()" mat-menu-item>
         <mat-icon [svgIcon]="'settings'"></mat-icon>
         <span>Configuración</span>
