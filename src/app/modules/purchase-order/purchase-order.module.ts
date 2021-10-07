@@ -20,8 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
 import { RegisterBillsComponent } from './pages/bills/register-bills/register-bills.component';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
-
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -61,7 +61,9 @@ import { RegisterGuidesComponent } from './pages/guide/modal/register-guides/reg
     LabelModule,
     LoadingBodyModule,
     NgxMatDatetimePickerModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ]
 })

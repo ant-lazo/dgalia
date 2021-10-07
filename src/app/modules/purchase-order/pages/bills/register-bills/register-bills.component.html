@@ -1,68 +1,79 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
 
-    <div class="main" >
+    <div style="padding: 10px;" >
         <div class="content">
+            <h1 class="mt-0">Registrar <span class="text-primary"> Factura</span>  </h1>
 
-            <h1>Registrar <span class="text-primary"> Factura</span>  </h1>
-
-
-            <form class="example-form">
+            <form [formGroup]="formRegisterBill" (ngSubmit)="formValidation()">
                 <div class="grid grid-cols-12 gap-4 w-full" style="margin-bottom: 2rem;">
                     <div class="col-span-6">
-                        <mat-label>Factura : </mat-label>
-                        <input matInput placeholder="" value="" >
+                        <p>Factura: </p> 
+                        <div class="flex flex-col gt-xs:flex-row">                         
+                            <mat-form-field class="flex-auto">
+                                <input formControlName="code" type="text" matInput placeholder="Ingresar Factura">
+                            </mat-form-field>
+                        </div>
                     </div>
                     <div class="col-span-6">
-                        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Seleccionar una fecha"
-                        >
-                    <mat-datepicker-toggle matSuffix [for]="picker">
-                    </mat-datepicker-toggle>
-                    <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="1"
-                        [stepMinute]="10" [touchUi]="true">
-                    </ngx-mat-datetime-picker>
-                        </div>  
+                        <p>Fecha de Emisión: </p> 
+                        <div class="flex flex-col gt-xs:flex-row">                          
+                            <mat-form-field class="flex-auto">
+                                <input formControlName="invoiceDate" matInput [matDatepicker]="pickerEmision" placeholder="Seleccionar fecha">
+                                <mat-datepicker-toggle matSuffix [for]="pickerEmision"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerEmision></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>  
     
                 </div>
                 <div class="grid grid-cols-12 gap-4 w-full" style="margin-bottom: 2rem;">
                     <div class="col-span-6">
-                        <mat-label>Estado : </mat-label>
-                        <mat-select placeholder="Seleccione estado" >
-                            <mat-option  [value]="1">Pendiente</mat-option>
-                        </mat-select>
-                       
+                        <p>Estado: </p> 
+                        <div class="flex flex-col gt-xs:flex-row">
+                            <mat-form-field class="flex-auto">
+                                <mat-select formControlName="invoiceStatusId" placeholder="Seleccione un estado">
+                                  <mat-option [value]="1">Pendiente</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        
                     </div>
                     <div class="col-span-6">
-                        <input matInput [ngxMatDatetimePicker]="picker" placeholder="Seleccionar una fecha"
-                        >
-                    <mat-datepicker-toggle matSuffix [for]="picker">
-                    </mat-datepicker-toggle>
-                    <ngx-mat-datetime-picker #picker [showSpinners]="true" [showSeconds]="false" [stepHour]="1"
-                        [stepMinute]="10" [touchUi]="true">
-                    </ngx-mat-datetime-picker>
-                        </div> 
+                        <p>Fecha de Vencimiento: </p> 
+                        <div class="flex flex-col gt-xs:flex-row">
+                            <mat-form-field class="flex-auto">
+                                <input formControlName="dueDate" matInput [matDatepicker]="pickerVencimiento" placeholder="Seleccionar fecha">
+                                <mat-datepicker-toggle matSuffix [for]="pickerVencimiento"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerVencimiento></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    
+                    </div> 
                 </div>
-                <div class="grid grid-cols-12 gap-4 w-full" style="margin-bottom: 2rem;">
-                    <div class="col-span-12">
-                        <textarea  style="width: 100%;" autocomplete="off" matInput placeholder="Descripción"
-                        required [rows]="2"></textarea>
+                <div class="col-span-12">
+                    <p>Descripción: </p>
+                    <div class="flex flex-col gt-xs:flex-row">
+                        <mat-form-field class="treo-mat-textarea flex-auto">
+                            <textarea formControlName="description" autocomplete="off" matInput placeholder="Ingrese una descripción"
+                                [rows]="2"></textarea>
+                            <mat-icon matPrefix>notes</mat-icon>
+                        </mat-form-field>
                     </div>
                 </div>
-
+                
+                <div
+                    class="flex items-center justify-end border-t -mx-8 mt-5 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
+                    <button type="button"  (click)="closeModal()"  color="primary" mat-stroked-button>
+                        <mat-icon>close</mat-icon>
+                        Cancelar
+                    </button>
+                    <button  type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+                        <mat-icon class="mr-2">save</mat-icon>
+                        Registrar
+                    </button>
+               </div>
             </form>
-        
-              
-            <div
-            class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
-            <button type="button"  (click)="closeModal()"  color="primary" mat-stroked-button>
-                <mat-icon>close</mat-icon>
-                Cancelar
-            </button>
-            <button  type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
-                <mat-icon class="mr-2">save</mat-icon>
-                Registrar
-            </button>
-           </div>
-
+                
         </div>
 
     </div>

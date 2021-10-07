@@ -40,11 +40,14 @@ export class ActionButtonsComponent implements OnInit {
     this.buttons = this.getFinalButtons();
   }
   RegisterBills():void{
+    console.log(this.purchaseOrder)
+ 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "550px";
     dialogConfig.width = "800px";
+    console.log(dialogConfig, 'dialogConfig')
     const modalDialog = this._dialog.open(RegisterBillsComponent, dialogConfig);
   }
   private getFinalButtons(): RowAppButtonModel[] {
