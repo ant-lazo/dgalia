@@ -29,6 +29,7 @@ import { LabelModule } from 'app/shared/label/label.module';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
 import { ListComponent } from './pages/bills/list/list.component';
 import { ListGuidesComponent } from './pages/guide/list/list.component';
@@ -63,8 +64,11 @@ import { RegisterGuidesComponent } from './pages/guide/modal/register-guides/reg
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     MatDatepickerModule,
-    MatNativeDateModule
-
+    MatNativeDateModule,
+    MatMomentDateModule
+  ],
+  providers: [
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
   ]
 })
 export class PurchaseOrderModule { }

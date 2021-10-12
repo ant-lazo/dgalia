@@ -22,6 +22,8 @@ export class ApiRoutes {
         findByCode: (code: string): string => `${environment.apiUrl}product?code=${code}`,
         findBySupplyCode: (code: string): string => `${environment.apiUrl}product?supply_code=${code}`,
         delete: (code: string): string => `${environment.apiUrl}product?code=${code}`,
+        post: `${environment.apiUrl}invoice`,
+        put: `${environment.apiUrl}invoice/updatepaid`
     }
 
     public static outputs = {

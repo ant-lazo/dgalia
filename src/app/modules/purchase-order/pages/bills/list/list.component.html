@@ -45,18 +45,19 @@
                 <ng-container [matColumnDef]="displayedColumns[6]">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
                     <td class="th-max" mat-cell *matCellDef="let element">
+
                        <!-- <button (click)="navigateToDetail(element.code)" title="Detalle {{ element.name }}" type="button"
                             mat-icon-button>
                             <mat-icon>arrow_forward_ios</mat-icon>
                         </button>--> 
             
+                        <!--<button   (click) = "RegisterBills(element)"  _ngcontent-yuw-c346="" type="button" mat-icon-button="" class="mat-focus-indicator mat-icon-button mat-button-base" title="Registrar Pago">
+                            <span><mat-icon style="color: green;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">description</mat-icon></span>
+                        </button>-->
+
                         <button   (click) = "RegisterBills(element)"  _ngcontent-yuw-c346="" type="button" mat-icon-button="" class="mat-focus-indicator mat-icon-button mat-button-base" title="Registrar Pago">
                             <span><mat-icon style="color: green;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">description</mat-icon></span>
-                                 </button>
-            
-                        
-                   
-                        
+                        </button>
             
             
                     </td>

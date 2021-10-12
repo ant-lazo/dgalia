@@ -44,6 +44,7 @@ export class SupplyRegisterComponent implements OnInit {
   }
 
   public formValidation(): void {
+    console.log(this.registerForm.value)
     if (this.registerForm.valid) {
       this.registerSupply(this.registerForm.value);
       return;

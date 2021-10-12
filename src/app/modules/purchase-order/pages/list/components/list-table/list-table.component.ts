@@ -30,6 +30,7 @@ export class ListTableComponent implements OnChanges {
   }
 
   public navigateToDetail(code: string): void {
+    console.log("codigo de orden de compra: ", code);
     this._router.navigate([PurchaseOrderComponent.detailRoute, code])
   }
 

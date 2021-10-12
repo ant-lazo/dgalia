@@ -24,9 +24,9 @@
                             </mat-form-field>
                         </div>
                     </div>  
-    
                 </div>
                 <div class="grid grid-cols-12 gap-4 w-full" style="margin-bottom: 2rem;">
+                     
                     <div class="col-span-6">
                         <p>Estado: </p> 
                         <div class="flex flex-col gt-xs:flex-row">
@@ -36,15 +36,15 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        
                     </div>
+                    
                     <div class="col-span-6">
                         <p>Fecha de Vencimiento: </p> 
                         <div class="flex flex-col gt-xs:flex-row">
                             <mat-form-field class="flex-auto">
-                                <input formControlName="dueDate" matInput [matDatepicker]="pickerVencimiento" placeholder="Seleccionar fecha">
-                                <mat-datepicker-toggle matSuffix [for]="pickerVencimiento"></mat-datepicker-toggle>
-                                <mat-datepicker #pickerVencimiento></mat-datepicker>
+                                <input formControlName="dueDate" matInput [matDatepicker]="pickerPago" placeholder="Seleccionar fecha">
+                                <mat-datepicker-toggle matSuffix [for]="pickerPago"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerPago></mat-datepicker>
                             </mat-form-field>
                         </div>
                     
@@ -54,15 +54,30 @@
                     <p>Descripción: </p>
                     <div class="flex flex-col gt-xs:flex-row">
                         <mat-form-field class="treo-mat-textarea flex-auto">
-                            <textarea formControlName="description" autocomplete="off" matInput placeholder="Ingrese una descripción"
+                            <textarea formControlName="comments" autocomplete="off" matInput placeholder="Ingrese una descripción"
                                 [rows]="2"></textarea>
                             <mat-icon matPrefix>notes</mat-icon>
                         </mat-form-field>
                     </div>
                 </div>
+
+                <!-- Para crear la factura debe ir datos de la orden de compra-->
+
+                <!-- *************************** -->
                 
                 <div
                     class="flex items-center justify-end border-t -mx-8 mt-5 px-8 py-5 light:bg-cool-gray-50 dark:bg-cool-gray-700">
+
+                    <!-- Para crear la factura debe ir datos de la orden de compra -->
+                    <mat-form-field class="flex-auto invisible">
+                        <input formControlName="purchaseOrderId" type="text" matInput placeholder="purchaseOrderId">
+                    </mat-form-field>
+    
+                    <mat-form-field class="flex-auto invisible">
+                        <input formControlName="providerDocument" type="text" matInput placeholder="providerDocument">
+                    </mat-form-field>
+                    <!-- ************** -->
+
                     <button type="button"  (click)="closeModal()"  color="primary" mat-stroked-button>
                         <mat-icon>close</mat-icon>
                         Cancelar

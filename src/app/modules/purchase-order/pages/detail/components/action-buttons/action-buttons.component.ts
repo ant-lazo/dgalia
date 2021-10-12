@@ -15,6 +15,7 @@ import { AddCommentUpdateModalComponent } from '../add-comment-update-modal/add-
 
 import {RegisterBillsComponent } from '../../../../pages/bills/register-bills/register-bills.component';
 
+import { RegisterGuidesComponent } from 'app/modules/purchase-order/pages/guide/modal/register-guides/register-guides.component';
 
 @Component({
   selector: 'purchase_order-detail-action_buttons',
@@ -33,22 +34,27 @@ export class ActionButtonsComponent implements OnInit {
     private _router: Router,
     private _purchaseOrder: PurchaseOrderService,
     private _toast: AppNotificationsService,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.buttons = this.getFinalButtons();
   }
+
   RegisterBills():void{
-    console.log(this.purchaseOrder)
+    //console.log("providerDocument: ",this.purchaseOrder.provider.document)
  
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "550px";
     dialogConfig.width = "800px";
-    console.log(dialogConfig, 'dialogConfig')
-    const modalDialog = this._dialog.open(RegisterBillsComponent, dialogConfig);
+    // se necesita el purchaseOrder.id y purchaseOrder.provider.document
+    dialogConfig.data= this.purchaseOrder;
+
+    //const modalDialog = this._dialog.open(RegisterBillsComponent, dialogConfig);
+    //this._dialog.open(RegisterBillsComponent, dialogConfig);
+    this._dialog.open(RegisterBillsComponent, dialogConfig);
   }
   private getFinalButtons(): RowAppButtonModel[] {
     let finalbuttons: RowAppButtonModel[] = [];
@@ -194,6 +200,15 @@ export class ActionButtonsComponent implements OnInit {
       subtitle: `Con esta acción darás por completado la orden de compra, lo que quiere decir que los productos llegaron completos según el documento y estos serán ingresados a inventario.
      Si los productos no están completos, mejor ve a inventario/ingresar documento y carga la orden de compra.`
     }
+  }
+
+  RegisterGuides():void{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "550px";
+    dialogConfig.width = "800px";
+    const modalDialog = this._dialog.open(RegisterGuidesComponent, dialogConfig);
   }
 
 

@@ -45,7 +45,7 @@ constructor(
   ngOnInit(): void {
     this.setBillList();
     this.loadData();
-    
+    console.log("se modifico ......")
   }
   public loadData(){
     var today = new Date();
@@ -66,7 +66,7 @@ constructor(
   private setBillList(): void {
     this.service.getlist().subscribe(
       (e) =>{
-          console.log(e);
+          console.log("es la lista: ",e);
           if(e.success == true && e.data !== null){
                 this.list = <Array<BillsOrder>>(e.data);
                 console.log(this.list);
