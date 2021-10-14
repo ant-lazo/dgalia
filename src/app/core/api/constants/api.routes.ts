@@ -74,6 +74,7 @@ export class ApiRoutes {
             }
             return url;
         },
+        sendEmail: (code: string): string => `${environment.apiUrl}purchase-order/send-email/pdf/?code=${code}`,
     }
 
     public static demandSheet = {
@@ -82,4 +83,10 @@ export class ApiRoutes {
         findByCode: (code: string): string => `${environment.apiUrl}demand-sheet?code=${code}`,
         deleteByCode: (code: string): string => `${environment.apiUrl}demand-sheet?code=${code}`,
     }
+
+    public static guide={
+        save: `${environment.apiUrl}referralguide`,
+        getAll: `${environment.apiUrl}referralguide`,
+    }
+
 }

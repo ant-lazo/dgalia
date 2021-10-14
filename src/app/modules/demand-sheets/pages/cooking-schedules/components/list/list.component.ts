@@ -25,6 +25,7 @@ export class ListComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.cookingScheduleList) this.setDataSourceList();
+    console.log("lista de la tabla: ",this.cookingScheduleList)
   }
 
   public navigateToDetail(cookingScheduleCode: number): void {

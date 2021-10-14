@@ -45,7 +45,6 @@ constructor(
   ngOnInit(): void {
     this.setBillList();
     this.loadData();
-    console.log("se modifico ......")
   }
   public loadData(){
     var today = new Date();
@@ -59,7 +58,7 @@ constructor(
     this.dataSource = new MatTableDataSource(this.list);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort
-    console.log(this.list);
+    console.log("dataSource fac: ",this.dataSource);
 
   }
 
@@ -69,7 +68,7 @@ constructor(
           console.log("es la lista: ",e);
           if(e.success == true && e.data !== null){
                 this.list = <Array<BillsOrder>>(e.data);
-                console.log(this.list);
+                console.log("listaFactura: ",this.list);
 
                 this.dataSource = new MatTableDataSource(this.list);
                 this.dataSource.paginator = this.paginator;

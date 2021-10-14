@@ -37,4 +37,8 @@ export class PurchaseOrderService {
   public complete(purchaseOrderCode: string, comments: string): Observable<JsonResp> {
     return this._http.patch<JsonResp>(ApiRoutes.purchaseOrder.complete, { code: purchaseOrderCode, comments });
   }
+
+  public sendEmailbyCode(code: string, data:any): Observable<any> {
+    return this._http.post(ApiRoutes.purchaseOrder.sendEmail(code),data);
+  }
 }

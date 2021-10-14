@@ -7,24 +7,31 @@
         </td>
     </ng-container>
 
-    <ng-container [matColumnDef]="displayedColumns[1]">
+    <!--<ng-container [matColumnDef]="displayedColumns[1]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Familia </th>
         <td mat-cell *matCellDef="let element">
             <span class="text-sm"> {{ element.category.name }} </span>
         </td>
-    </ng-container>
+    </ng-container>-->
 
-    <ng-container [matColumnDef]="displayedColumns[2]">
+    <ng-container [matColumnDef]="displayedColumns[1]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Insumo </th>
         <td mat-cell *matCellDef="let element">
             <span class="text-sm"> {{ element.name }} </span>
         </td>
     </ng-container>
 
+    <ng-container [matColumnDef]="displayedColumns[2]">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
+        <td mat-cell *matCellDef="let element">
+            <span class="text-sm"> {{ element.stock }} </span>
+        </td>
+    </ng-container>
+
     <ng-container [matColumnDef]="displayedColumns[3]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> cantidad </th>
         <td mat-cell *matCellDef="let element">
-            {{ element.quantity }}
+            {{ element.quantityRecipe }}
         </td>
     </ng-container>
 
@@ -39,7 +46,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad eq </th>
         <td mat-cell *matCellDef="let element">
             <mat-form-field class="w-20 mt-3">
-                <input type="number" [(ngModel)]="element.equivalentQuantity" matInput>
+                <input type="number" [(ngModel)]="element.quantityNeeded" matInput>
             </mat-form-field>
         </td>
     </ng-container>

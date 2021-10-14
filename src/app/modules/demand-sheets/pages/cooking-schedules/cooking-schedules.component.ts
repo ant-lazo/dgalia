@@ -17,5 +17,6 @@ export class CookingSchedulesComponent implements OnInit {
 
   ngOnInit(): void {
     this.request = this._cookingSchedule.getAll(); 
+    console.log("que viene? ",this.request)
   }
 }

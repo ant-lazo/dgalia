@@ -21,11 +21,14 @@ export class RegisterPaymentBillsComponent implements OnInit {
   public editForm: FormGroup;
   //private id: Number;
   //public appStatus:Array<BillsStatus> =[{id : 1,description : "sad",name :"d"} ];
+  public appStatus:Array<BillsStatus>;
 
   id: number;
   code: string;
   paidDate:string;
   paidComments:string;
+  //invoiceStatusId:number;
+  numberCancel: number = 2;
   dateToday: string;
   billsOrder: BillsOrder;
 
@@ -46,6 +49,7 @@ export class RegisterPaymentBillsComponent implements OnInit {
       this.id=data.id;
       this.code=data.code;
       this.paidDate=data.paidDate;
+      //this.invoiceStatusId=data.in
       //this.billsOrder = data;
       console.log("fecha del data: ",data.paidDate);
       console.log("fecha ya asignada: ",this.paidDate);
@@ -65,18 +69,20 @@ export class RegisterPaymentBillsComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    //this.loadStatus();
     this.editForm.patchValue({
       code: this.code,
       paidDate: this.paidDate,
       paidComments:this.paidComments,
-      id:this.id
+      id:this.id,
+      invoiceStatusId:this.numberCancel
     });
-
-    //this.loadStatus();
   }
+
   formValidation(){
     //console.log("data: ",data)
     if (this.editForm.valid) { 
+      console.log("datos del formulario: ",this.editForm.value)
       this.updatePaid(this.editForm.value);
       console.log("valores del form: ", this.editForm.value)
       return;
@@ -101,7 +107,7 @@ export class RegisterPaymentBillsComponent implements OnInit {
   }
 
   /*private loadStatus(): void {
-    this.service.getlistStatus().subscribe(
+    this._bill.getlistStatus().subscribe(
       (e) =>{
           console.log(e);
           if(e.data.length > 0){
@@ -135,7 +141,8 @@ export class RegisterPaymentBillsComponent implements OnInit {
       id:  [  null , Validators.required ],
       code: [ {value:null, disabled: true }, Validators.required],
       paidDate: [  null , Validators.required ],
-      paidComments: [null, Validators.required]
+      paidComments: [null, Validators.required],
+      invoiceStatusId: [null, Validators.required]
     });
 
   }

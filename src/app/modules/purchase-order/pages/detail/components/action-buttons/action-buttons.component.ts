@@ -30,6 +30,8 @@ export class ActionButtonsComponent implements OnInit {
   public buttons: RowAppButtonModel[] = [];
   public updaterCommnet: string;
 
+  public data: any= null;
+
   constructor(
     private _router: Router,
     private _purchaseOrder: PurchaseOrderService,
@@ -208,7 +210,21 @@ export class ActionButtonsComponent implements OnInit {
     dialogConfig.id = "modal-component";
     dialogConfig.height = "550px";
     dialogConfig.width = "800px";
+    dialogConfig.data= this.purchaseOrder;
     const modalDialog = this._dialog.open(RegisterGuidesComponent, dialogConfig);
+  }
+
+  SendEmail():void{
+    console.log("codigo purchaseOrder: ", this.purchaseOrder.code);
+    this._purchaseOrder.sendEmailbyCode(this.purchaseOrder.code,this.data).subscribe(
+      (resp:JsonResp)=>{
+        if(resp.success==true){
+          this._toast.sendSuccess(null,null);
+        }else{
+          this._toast.error(null,null);
+        }
+      }
+    )
   }
 
 
