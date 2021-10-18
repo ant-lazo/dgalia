@@ -227,5 +227,9 @@ export class ActionButtonsComponent implements OnInit {
     )
   }
 
+  PdfDownload(): void{
+    console.log("codigo purchaseOrder: ", this.purchaseOrder.code);
+  }
+
 
 }

@@ -8,7 +8,7 @@ export class ResumeItemFormMapper {
         const newList: ResumeFormList[] = [];
         for (const item of list) {
             newList.push({
-                category: item.getCategory(),
+                /*category: item.getCategory(),
                 code: item.getCode(),
                 enquivalentMeasuredUnitCode: null,
                 equivalentQuantity: null,
@@ -16,7 +16,18 @@ export class ResumeItemFormMapper {
                 id: item.getId(),
                 measuredUnit: item.getMeasuredUnit(),
                 name: item.getName(),
-                quantity: item.getQuantity()
+                quantity: item.getQuantity()*/
+                id: item.getId(),
+                code: item.getCode(),
+                name: item.getName(),
+                quantityNeeded: item.getQuantityNeeded(),
+                quantityRecipe: item.getQuantityRecipe(),
+                stock: item.getStock(),
+                category: item.getCategory(),
+                measuredUnit: item.getMeasuredUnit(),
+                estimatedPrice: item.getEstimatedPrice(),
+                losspercentage: item.getLossPercentage()
+                
             });
         }
         return newList

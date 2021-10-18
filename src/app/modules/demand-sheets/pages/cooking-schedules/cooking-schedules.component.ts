@@ -16,7 +16,8 @@ export class CookingSchedulesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //{{dgalliaUrl}}api/v1/cooking-schedule
     this.request = this._cookingSchedule.getAll(); 
-    console.log("que viene? ",this.request)
+    console.log("{{dgalliaUrl}}api/v1/cooking-schedule: ",this.request)
   }
 }

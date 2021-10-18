@@ -13,12 +13,35 @@ export class DemandSheetRegisterFormMapper {
             headquarter_id: data.headquarter_id,
             items: data.resumenList.map(e => {
                 return {
-                    equivalent_measuredunit: e.enquivalentMeasuredUnitCode,
+                    /*equivalent_measuredunit: e.enquivalentMeasuredUnitCode,
                     equivalent_quantity: e.equivalentQuantity,
                     measuredunit_required: e.measuredUnit.code,
                     quantity_required: e.quantity,
                     supply_code: e.code,
-                    unit_price: e.estimatedPrice
+                    unit_price: e.estimatedPrice*/
+                    
+                    supply_id:e.id,
+                    supply_code: e.code,
+                    supply_name: e.name,
+                    equivalent_quantity: e.quantityNeeded,
+                    quantity_required: e.quantityRecipe,
+                    supply_stock: e.stock,
+                    supply_category: e.category,
+                    equivalent_measuredunit: e.measuredUnit,
+                    unit_price: e.estimatedPrice,
+                    percentage_loss: e.losspercentage
+                
+                    /*id: number,
+                    code: string,
+                    name: string,
+                    quantityNeeded: number,
+                    quantityRecipe: number,
+                    stock: number,
+                    category: ProductCategory;
+                    measuredUnit: MeasuredUnit;
+                    estimatedPrice: number,
+                    losspercentage: number*/
+
                 }
             })
         }

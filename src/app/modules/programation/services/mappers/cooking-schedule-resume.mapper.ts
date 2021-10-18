@@ -7,13 +7,26 @@ import { CookingScheduleResumen } from "../../models/cooking-schedule-resumen.mo
 export class CookingScheduleResumeMapper implements Mapper<CookingScheduleResumen> {
 
     fromJson = (json: any): CookingScheduleResumen => new CookingScheduleResumen({
-        category: new ProductCategoryMapper().fromJson(json.category),
+        /*category: new ProductCategoryMapper().fromJson(json.category),
         measuredUnit: new MeasureUnitMapper().fromJson(json.measuredUnit),
         code: json.code,
         estimatedPrice: json.estimatedPrice,
         id: json.id,
         name: json.name,
-        quantity: json.quantity
+        quantity: json.quantity*/
+
+        id: json.id,
+        code: json.code,
+        name: json.name,
+        quantityNeeded: json.quantityNeeded,
+        quantityRecipe: json.quantityRecipe,
+        stock: json.stock,
+        category: new ProductCategoryMapper().fromJson(json.category),
+        measuredUnit: new MeasureUnitMapper().fromJson(json.measuredUnit),
+        estimatedPrice: json.estimatedPrice,
+        losspercentage:json.losspercentage
+        
+
     });
 
 
