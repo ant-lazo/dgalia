@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CookingScheduleService } from 'app/modules/programation/services/cooking-schedule.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { RegisterMerchandiseAlertComponent } from 'app/shared/registerMerchandise-alert/registerMerchandise-alert.component';
+//import { RegisterMerchandiseAlertComponent } from 'app/shared/registerMerchandise-alert/registerMerchandise-alert.component';
+import { RegisterMerchandiseAlertComponent } from 'app/shared/register-merchandise-alert/register-merchandise-alert.component';
+import { RowAppButtonModel, RowButtonType } from 'app/shared/row-buttons/models/row-nutton.model';
 
 @Component({
   selector: 'app-departures',
@@ -12,6 +14,7 @@ import { RegisterMerchandiseAlertComponent } from 'app/shared/registerMerchandis
 export class DeparturesComponent implements OnInit {
 
   public request: Observable<any[]>;
+  public registerButton: RowAppButtonModel[];
 
   constructor(
     private _cookingSchedule: CookingScheduleService,
@@ -20,6 +23,8 @@ export class DeparturesComponent implements OnInit {
 
   ngOnInit(): void {
     //{{dgalliaUrl}}api/v1/cooking-schedule
+    //se añadio para ver si se colocan los estilos
+    this.buildRegisterButton();
     this.request = this._cookingSchedule.getAll(); 
     console.log("{{dgalliaUrl}}api/v1/cooking-schedule: ",this.request)
   }
@@ -36,6 +41,18 @@ export class DeparturesComponent implements OnInit {
 
   public registerMerchandise(id: number){
 
+  }
+
+  public buildRegisterButton(): void {
+    this.registerButton = [
+      new RowAppButtonModel({
+        action: 'register',
+        color: 'primary',
+        icon: 'save',
+        label: 'Registrar',
+        type: RowButtonType.Stroked
+      }),
+    ];
   }
 
 }

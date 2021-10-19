@@ -6,9 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { RegisterMerchandiseAlertComponent } from './register-merchandise-alert/register-merchandise-alert.component';
 @NgModule({
     declarations: [
-    ],
+    
+    RegisterMerchandiseAlertComponent
+  ],
     imports: [
         CommonModule,
         FormsModule,
@@ -23,7 +26,8 @@ import { MatInputModule } from '@angular/material/input';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule
+        RouterModule,
+        RegisterMerchandiseAlertComponent
     ]
 })
 export class SharedModule {
