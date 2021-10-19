@@ -5,11 +5,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-registerMerchandise-alert',
   template: `
-    <h2> Esta seguro de eliminar  <span class="text-primary"> {{ data?.title ?? 'Este elemento' }} </span>? </h2>
+    <h2> Esta seguro de retirar  <span class="text-primary"> {{ dataschedule?.code ?? 'Este elemento' }} </span>? </h2>
     
     <h4>
-        {{ data?.subtitle ?? 'Tenga en cuenta que se hará la eliminacion de manera permante del registro y no se podrá recuperar la información.' }}
-    </h4>
+        <!-- {{ datashedule?.subtitle ?? 'Tenga en cuenta que se hará la eliminacion de manera permante del registro y no se podrá recuperar la información.' }}-->
+        {{ 'Tenga en cuenta que al realizar el retiro de la programación, se eliminará de manera permante del registro y no se podrá recuperar la información.' }}
+      </h4>
     
     <div class="flex items-center justify-end pt-10">
         <button mat-button (click)="onNoDelete()">
@@ -18,8 +19,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         </button>
         <button (click)="delete()" class="px-6 ml-3" mat-flat-button color="primary">
             <!--<mat-icon svgIcon="delete" ></mat-icon>-->
-            <mat-icon>input</mat-icon>
-            Retirar Mercaderia
+            <mat-icon>input</mat-icon>Retirar Mercaderia
         </button>
     </div>
   `,
@@ -30,7 +30,7 @@ export class RegisterMerchandiseAlertComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<RegisterMerchandiseAlertComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { title: string, subtitle: string }
+    @Inject(MAT_DIALOG_DATA) public dataschedule: { code: string, createdById: number }
   ) { }
 
   ngOnInit(): void {

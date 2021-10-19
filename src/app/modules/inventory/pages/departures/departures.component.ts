@@ -29,17 +29,17 @@ export class DeparturesComponent implements OnInit {
     console.log("{{dgalliaUrl}}api/v1/cooking-schedule: ",this.request)
   }
 
-  public validationToRegisterMerchandise(supply: any): void {
+  public validationToRegisterMerchandise(schedule: any): void {
     const dialogRef = this.dialog.open(RegisterMerchandiseAlertComponent, {
       width: '600px',
       height: '400px',
-      data: { title: `la Sub receta ${supply.name}` }
+      data: { title: `La programación: ${schedule.code}` }
     });
 
-    dialogRef.afterClosed().subscribe(result => result ? this.registerMerchandise(supply.id) : null);
+    dialogRef.afterClosed().subscribe(result => result ? this.registerMerchandise(schedule.code) : null);
   }
 
-  public registerMerchandise(id: number){
+  public registerMerchandise(code: string){
 
   }
 
