@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-delete-alert',
+  selector: 'app-registerMerchandise-alert',
   template: `
-    <h2> Esta seguro de eliminar  <span class="text-primary"> {{ data?.title ?? 'Este elemento' }} </span>? </h2>
+    <h2> Hola omar  <span class="text-primary"> {{ data?.title ?? 'Este elemento' }} </span>? </h2>
     
     <h4>
         {{ data?.subtitle ?? 'Tenga en cuenta que se hará la eliminacion de manera permante del registro y no se podrá recuperar la información.' }}
@@ -12,11 +12,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     
     <div class="flex items-center justify-end pt-10">
         <button mat-button (click)="onNoDelete()">
-            <mat-icon>close</mat-icon>
+            <!--<mat-icon>close</mat-icon>-->
             Cancelar
         </button>
         <button (click)="delete()" class="px-6 ml-3" mat-flat-button color="primary">
-            <mat-icon svgIcon="delete" ></mat-icon>
+            <!--<mat-icon svgIcon="delete" ></mat-icon>-->
             Eliminar
         </button>
     </div>
@@ -24,10 +24,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styles: [
   ]
 })
-export class DeleteAlertComponent implements OnInit {
+export class RegisterMerchandiseAlertComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<DeleteAlertComponent>,
+    private dialogRef: MatDialogRef<RegisterMerchandiseAlertComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { title: string, subtitle: string }
   ) { }
 

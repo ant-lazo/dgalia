@@ -33,4 +33,8 @@ export class AppNotificationsService {
   public sendSuccess(title?: string, body?: string): void {
     this._toast.success(body || 'Se ha hecho el envío de email de manera exitosa', title || 'Todo salió bien 😉')
   }
+
+  public downloadSuccess(title?: string, body?: string): void {
+    this._toast.success(body || 'Se ha hecho la descarga de manera exitosa', title || 'Todo salió bien 😉')
+  }
 }

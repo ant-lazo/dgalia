@@ -229,6 +229,15 @@ export class ActionButtonsComponent implements OnInit {
 
   PdfDownload(): void{
     console.log("codigo purchaseOrder: ", this.purchaseOrder.code);
+    this._purchaseOrder.pdfDownloadPurchaseOrder(this.purchaseOrder.code).subscribe(
+      (resp:JsonResp)=>{
+        if(resp.success==true){
+          this._toast.sendSuccess(null,null);
+        }else{
+          this._toast.error(null,null);
+        }
+      }
+    )
   }
 
 

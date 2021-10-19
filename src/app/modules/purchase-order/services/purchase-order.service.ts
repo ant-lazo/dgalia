@@ -41,4 +41,8 @@ export class PurchaseOrderService {
   public sendEmailbyCode(code: string, data:any): Observable<any> {
     return this._http.post(ApiRoutes.purchaseOrder.sendEmail(code),data);
   }
+
+  public pdfDownloadPurchaseOrder(code:string): Observable<any> {
+    return this._http.get(ApiRoutes.purchaseOrder.pdfDownload(code))
+  }
 }

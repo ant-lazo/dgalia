@@ -75,6 +75,7 @@ export class ApiRoutes {
             return url;
         },
         sendEmail: (code: string): string => `${environment.apiUrl}purchase-order/send-email/pdf/?code=${code}`,
+        pdfDownload: (code: string): string =>`${environment.apiUrl}purchase-order/download/pdf/?code=${code}`
     }
 
     public static demandSheet = {

@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/kardex/kardex.module').then(k => k.KardexModule)
       },
       {
+        path: 'salidas',
+        loadChildren: () => import('./pages/departures/departures.module').then(d => d.DeparturesModule)
+      },
+      {
         path: '', pathMatch: 'full', redirectTo: 'productos'
       }
     ]
