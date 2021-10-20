@@ -18,8 +18,10 @@ import { mockDataServices } from 'app/data/mock';
 import { LayoutModule } from 'app/layout/layout.module';
 import { MarkdownModule } from 'ngx-markdown';
 import { ToastrModule } from 'ngx-toastr';
-
+import { CommonModule } from '@angular/common';
 import { ScrollDirective } from './shared/directives/scroll.directive';
+
+
 
 registerLocaleData(es);
 
@@ -33,7 +35,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
-        ScrollDirective
+        ScrollDirective,
     ],
     imports: [
         BrowserModule,

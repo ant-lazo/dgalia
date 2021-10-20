@@ -15,12 +15,15 @@ export class SupplyListComponent implements OnInit {
   @Input() measureUnitList: MeasuredUnit[];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  //public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
   public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
   public dataSource: MatTableDataSource<ResumeFormList> = new MatTableDataSource([]);
   constructor() { }
 
   ngOnInit(): void {
     if (this.resumenList) this.setDatatable();
+    console.log("resumenList: ",this.resumenList);
+    //console.log("measureUnitList: ",this.measureUnitList)
   }
 
   public setDatatable() {

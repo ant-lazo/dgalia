@@ -1,0 +1,22 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+  <app-header
+    [module]="'Cocina'"
+    [title]="'Detalle de una'"
+    [highlightext]="'sub receta'"
+    [urlRoute]="'back'"
+  >
+  </app-header>
+
+  <div class="main">
+    <div class="content" *ngIf="subRecipe | async as subRecipe; else loading">
+      <detail-sub-recipe-form [subRecipe]="subRecipe"> </detail-sub-recipe-form>
+      <sub-recipe-supply-list
+        [list]="suppliesSelected"
+      ></sub-recipe-supply-list>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <app-loading-body></app-loading-body>
+</ng-template>

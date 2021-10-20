@@ -16,7 +16,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
             Cancelar
         </button>
         <button (click)="delete()" class="px-6 ml-3" mat-flat-button color="primary">
-            <!-- <mat-icon svgIcon="delete" ></mat-icon> -->
+            <mat-icon svgIcon="delete" ></mat-icon>
             Eliminar
         </button>
     </div>

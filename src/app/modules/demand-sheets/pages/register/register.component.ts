@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //code:PG00005
     this.cookingscheduleCode = this._activatedRoute.snapshot.params.cookingScheduleCode;
     if (this.cookingscheduleCode != 'none') this.setData();
   }
@@ -54,6 +55,8 @@ export class RegisterComponent implements OnInit {
     ]).pipe(
       map((result: any) => {
         this.resumenList = new ResumeItemFormMapper().fromResumeList(result[0]);
+        //comprobar si viene todo
+        console.log("viene todo los datos? ",this.resumenList);
         this.cookingSchedule = result[2];
         return result;
       }),
@@ -93,14 +96,14 @@ export class RegisterComponent implements OnInit {
   public itemsValidations(): string {
     let message: string = '';
     for (const item of this.resumenList) {
-      if (!item.equivalentQuantity || item.equivalentQuantity == 0) {
+      if (!item.quantityNeeded || item.quantityNeeded == 0) {
         message = `Debe ingrsar una cantidad equivalente valida para el insumo ${item.code}`;
         break;
       }
-      if (!item.enquivalentMeasuredUnitCode) {
+      /*if (!item.enquivalentMeasuredUnitCode) {
         message = `Debe seleciconar una unidad de medida equivalente del insumo ${item.code}`;
         break;
-      }
+      }*/
     }
 
     return message;

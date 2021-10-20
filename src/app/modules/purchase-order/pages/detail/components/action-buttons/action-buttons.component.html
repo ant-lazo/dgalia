@@ -1,3 +1,33 @@
 <div class="w-full flex flex-row justify-end my-3">
     <app-row-buttons justify="justify-end" [buttons]="buttons" (onClick)="listenActionsPressed($event)"> </app-row-buttons>
+
+    <button (click) ="SendEmail()" *ngIf="purchaseOrder.status.code == 'TER01' ||  purchaseOrder.status.code == 'APR02'"    type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+        <mat-icon class="mr-2">markunread</mat-icon>
+        Enviar
+    </button>
+
+    <button *ngIf="purchaseOrder.status.code == 'APR02'"   type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+        <mat-icon class="mr-2">save</mat-icon>
+        Actualizar
+    </button>
+
+    <button (click)="PdfDownload()" *ngIf="purchaseOrder.status.code == 'TER01' ||  purchaseOrder.status.code == 'APR02'"    type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+        <mat-icon class="mr-2">print</mat-icon>
+        Imprimir
+    </button>
+
+    <button (click) ="RegisterBills()" *ngIf="purchaseOrder.status.code == 'TER01'"    type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+        <mat-icon class="mr-2">save</mat-icon>
+        Factura
+    </button>
+
+    <button   (click) = "RegisterGuides()" *ngIf="purchaseOrder.status.code == 'TER01'" type="submit" class="px-6 ml-3" mat-flat-button  [color]="'primary'">
+        <mat-icon class="mr-2">save</mat-icon>
+        Guía
+    </button> 
+
+    <!-- <button   (click) = "RegisterGuides()"  _ngcontent-yuw-c346="" type="button" mat-icon-button="" class="mat-focus-indicator mat-icon-button mat-button-base" title="Registrar Pago">
+        <span><mat-icon style="color: green;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">description</mat-icon></span>
+    </button> -->
+
 </div>

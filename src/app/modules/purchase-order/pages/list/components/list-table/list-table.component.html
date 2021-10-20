@@ -32,15 +32,27 @@
     <ng-container [matColumnDef]="displayedColumns[5]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones </th>
         <td class="th-max" mat-cell *matCellDef="let element">
-            <button (click)="navigateToDetail(element.code)" title="Detalle {{ element.name }}" type="button"
+           <!-- <button (click)="navigateToDetail(element.code)" title="Detalle {{ element.name }}" type="button"
                 mat-icon-button>
                 <mat-icon>arrow_forward_ios</mat-icon>
+            </button>--> 
+
+            <button *ngIf="element.status.code == 'TER01'"  _ngcontent-yuw-c346="" type="button" mat-icon-button="" class="mat-focus-indicator mat-icon-button mat-button-base" title="Factura">
+                <span><mat-icon style="color: green;" role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">description</mat-icon></span>
             </button>
+
+            <button  *ngIf="element.status.code == 'APR02'"   (click)="navigateToDetail(element.code)"  style="border: none;padding: 0;min-width: 0;margin-left: 0.3rem !important;" type="button" mat-stroked-button=""  title="Registrar Ingreso" class="mat-focus-indicator mat-stroked-button mat-button-base mat-primary ml-3 ng-star-inserted" 
+            ng-reflect-ng-class="[object Object]" ng-reflect-color="primary">
+            <mat-icon role="img" class="mat-icon notranslate mr-2 material-icons mat-icon-no-color" aria-hidden="true" data-mat-icon-type="font">login</mat-icon>
+            </button>         
+            
+
+
         </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row   style="cursor: pointer;"   *matRowDef="let row; columns: displayedColumns;" (click)="navigateToDetail(row.code)"  ></tr>
 </table>
 
 <mat-paginator #matPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>

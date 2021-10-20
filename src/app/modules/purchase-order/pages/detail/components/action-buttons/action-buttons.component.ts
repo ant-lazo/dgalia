@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
 import { PurchaseOrderSts } from 'app/core/models/puecharse-order-sts.model';
@@ -11,6 +11,11 @@ import { AppNotificationsService } from 'app/shared/Services/app-notifications.s
 import { Observable } from 'rxjs';
 
 import { AddCommentUpdateModalComponent } from '../add-comment-update-modal/add-comment-update-modal.component';
+
+
+import {RegisterBillsComponent } from '../../../../pages/bills/register-bills/register-bills.component';
+
+import { RegisterGuidesComponent } from 'app/modules/purchase-order/pages/guide/modal/register-guides/register-guides.component';
 
 @Component({
   selector: 'purchase_order-detail-action_buttons',
@@ -25,17 +30,34 @@ export class ActionButtonsComponent implements OnInit {
   public buttons: RowAppButtonModel[] = [];
   public updaterCommnet: string;
 
+  public data: any= null;
+
   constructor(
     private _router: Router,
     private _purchaseOrder: PurchaseOrderService,
     private _toast: AppNotificationsService,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     this.buttons = this.getFinalButtons();
   }
 
+  RegisterBills():void{
+    //console.log("providerDocument: ",this.purchaseOrder.provider.document)
+ 
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "550px";
+    dialogConfig.width = "800px";
+    // se necesita el purchaseOrder.id y purchaseOrder.provider.document
+    dialogConfig.data= this.purchaseOrder;
+
+    //const modalDialog = this._dialog.open(RegisterBillsComponent, dialogConfig);
+    //this._dialog.open(RegisterBillsComponent, dialogConfig);
+    this._dialog.open(RegisterBillsComponent, dialogConfig);
+  }
   private getFinalButtons(): RowAppButtonModel[] {
     let finalbuttons: RowAppButtonModel[] = [];
 
@@ -161,7 +183,16 @@ export class ActionButtonsComponent implements OnInit {
         icon: 'login',
         label: 'Registrar ingreso',
         type: RowButtonType.Stroked
+      }),
+      new RowAppButtonModel({
+        action: 'input',
+        color: 'primary',
+        icon: 'save',
+        label: 'Actualizar',
+        type: RowButtonType.Stroked
       })
+
+      
     ];
   }
 
@@ -171,6 +202,42 @@ export class ActionButtonsComponent implements OnInit {
       subtitle: `Con esta acción darás por completado la orden de compra, lo que quiere decir que los productos llegaron completos según el documento y estos serán ingresados a inventario.
      Si los productos no están completos, mejor ve a inventario/ingresar documento y carga la orden de compra.`
     }
+  }
+
+  RegisterGuides():void{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "550px";
+    dialogConfig.width = "800px";
+    dialogConfig.data= this.purchaseOrder;
+    const modalDialog = this._dialog.open(RegisterGuidesComponent, dialogConfig);
+  }
+
+  SendEmail():void{
+    console.log("codigo purchaseOrder: ", this.purchaseOrder.code);
+    this._purchaseOrder.sendEmailbyCode(this.purchaseOrder.code,this.data).subscribe(
+      (resp:JsonResp)=>{
+        if(resp.success==true){
+          this._toast.sendSuccess(null,null);
+        }else{
+          this._toast.error(null,null);
+        }
+      }
+    )
+  }
+
+  PdfDownload(): void{
+    console.log("codigo purchaseOrder: ", this.purchaseOrder.code);
+    this._purchaseOrder.pdfDownloadPurchaseOrder(this.purchaseOrder.code).subscribe(
+      (resp:JsonResp)=>{
+        if(resp.success==true){
+          this._toast.sendSuccess(null,null);
+        }else{
+          this._toast.error(null,null);
+        }
+      }
+    )
   }
 
 

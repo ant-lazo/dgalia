@@ -21,6 +21,7 @@ export class SupplyRegisterComponent implements OnInit {
   public measuddredUnitList: Observable<MeasuredUnit[]>;
   public productCategoryList: Observable<ProductCategory[]>;
   public supplyCode: string;
+  private readonly supplyTypeDefault = 'I';
 
   constructor(
     private matDialogRef: MatDialogRef<SupplyRegisterComponent>,
@@ -43,6 +44,7 @@ export class SupplyRegisterComponent implements OnInit {
   }
 
   public formValidation(): void {
+    console.log(this.registerForm.value)
     if (this.registerForm.valid) {
       this.registerSupply(this.registerForm.value);
       return;
@@ -70,7 +72,9 @@ export class SupplyRegisterComponent implements OnInit {
       name: [null, Validators.required],
       category_id: [null, Validators.required],
       measured_unit_id: [null, Validators.required],
-      estimated_price: [0]
+      estimated_price: [0],
+      loss_percentage: [0],
+      supply_type: this.supplyTypeDefault
     });
   }
 

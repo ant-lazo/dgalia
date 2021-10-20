@@ -16,6 +16,15 @@ export class ApiRoutes {
         findBySupplyCode: (code: string): string => `${environment.apiUrl}product?supply_code=${code}`,
         delete: (code: string): string => `${environment.apiUrl}product?code=${code}`,
     }
+    public static bills = {
+        getList: `${environment.apiUrl}invoice`,
+        getListStatus:`${environment.apiUrl}invoice-status`,
+        findByCode: (code: string): string => `${environment.apiUrl}product?code=${code}`,
+        findBySupplyCode: (code: string): string => `${environment.apiUrl}product?supply_code=${code}`,
+        delete: (code: string): string => `${environment.apiUrl}product?code=${code}`,
+        post: `${environment.apiUrl}invoice`,
+        put: `${environment.apiUrl}invoice/updatepaid`
+    }
 
     public static outputs = {
         save: `${environment.apiUrl}inventory/output`,
@@ -23,6 +32,9 @@ export class ApiRoutes {
 
     public static recipes = {
         findByName: (name: string): string => `${environment.apiUrl}recipe?name=${name}`,
+    }
+    public static subRecipes = {
+        findByName: (name: string): string => `${environment.apiUrl}sub-recipe?name=${name}`,
     }
 
     public static cookingSchedule = {
@@ -43,8 +55,9 @@ export class ApiRoutes {
     }
 
     public static inventory = {
-        getStock: `${environment.apiUrl}inventory`,
+        getStock: `${environment.apiUrl}inventory/stock`,
         getProdutKardex: (code: string) => `${environment.apiUrl}inventory?product_code=${code}`,
+        postRemoveMerchandise: `${environment.apiUrl}output/cooking_schedule`,
     }
 
     public static purchaseOrder = {
@@ -62,6 +75,8 @@ export class ApiRoutes {
             }
             return url;
         },
+        sendEmail: (code: string): string => `${environment.apiUrl}purchase-order/send-email/pdf/?code=${code}`,
+        pdfDownload: (code: string): string =>`${environment.apiUrl}purchase-order/download/pdf/?code=${code}`
     }
 
     public static demandSheet = {
@@ -70,4 +85,10 @@ export class ApiRoutes {
         findByCode: (code: string): string => `${environment.apiUrl}demand-sheet?code=${code}`,
         deleteByCode: (code: string): string => `${environment.apiUrl}demand-sheet?code=${code}`,
     }
+
+    public static guide={
+        save: `${environment.apiUrl}referralguide`,
+        getAll: `${environment.apiUrl}referralguide`,
+    }
+
 }

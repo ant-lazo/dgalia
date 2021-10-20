@@ -44,7 +44,7 @@ export class UpdateComponent implements OnInit {
   public setForm(form: RegisterProductFormModel, code: string): void {
     const request: Observable<JsonResp> = this._product.update(form, code);
     request.subscribe((resp: JsonResp) => {
-      this._toast.success(`Producto ${code} eliminado correctamente`, 'Perfecto, esto ha salido muy bien!!');
+      this._toast.success(`Producto ${code} actualizado correctamente`, 'Perfecto, esto ha salido muy bien!!');
       this._loaciton.back();
     });
   }

@@ -68,12 +68,6 @@
                             "title": "Listado",
                             "link": "/sedes/listado",
                             "type": "basic"
-                        },
-                        {
-                            "id": "pages.sedes.almacenes",
-                            "title": "Almacenes",
-                            "link": "/almacenes/listado",
-                            "type": "basic"
                         }
                     ]
                 }
@@ -103,6 +97,12 @@
                     "id": "pages.sales.recetas",
                     "title": "Recetas",
                     "link": "/recetas",
+                    "type": "basic"
+                },
+                 {
+                    "id": "pages.sales.sub-recetas",
+                    "title": "Sub recetas",
+                    "link": "/sub-recetas",
                     "type": "basic"
                 },
                 {
@@ -190,15 +190,16 @@
                             "title": "Registro",
                             "link": "orden-de-compra/registro/none",
                             "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.orden_de_compra.listadoFactura",
+                            "title": "Listado Facturas",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
                         }
                     ]
                 },
-                {
-                    "id": "pages.logistica.proveedores",
-                    "title": "Proveedores",
-                    "link": "/proveedores",
-                    "type": "basic"
-                },
+              
                 {
                     "id": "pages.logistica.inventario",
                     "title": "Inventario",
@@ -219,6 +220,7 @@
                         }
                     ]
                 }
+              
                
             ]
         },
@@ -234,30 +236,70 @@
                     "title": "Cursos",
                     "link": "/cursos",
                     "type": "basic"
-                }
-            ]
-        },
-        {
-            "id": "4",
-            "title": "Sedes",
-            "link": "/",
-            "type": "aside",
-            "icon": "home_work",
-            "children": [
+                },
                 {
-                    "id": "pages.sedes.listado",
-                    "title": "Listado",
-                    "link": "/sedes/listado",
+                    "id": "pages.logistica.proveedores",
+                    "title": "Proveedores",
+                    "link": "/proveedores",
                     "type": "basic"
                 },
                 {
-                    "id": "pages.sedes.almacenes",
-                    "title": "Almacenes",
-                    "link": "/almacenes/listado",
-                    "type": "basic"
+                    "id": "pages.administation.sedes",
+                    "title": "Sedes",
+                    "link": "/sedes",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.sedes.listado",
+                            "title": "Listado",
+                            "link": "/sedes/listado",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "pages.logistica.factura",
+                    "title": "Factura",
+                    "link": "/factura",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.factura.listado",
+                            "title": "Listado",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.factura.listado",
+                            "title": "registro",
+                            "link": "orden-de-compra/listado-Factura",
+                            "type": "basic"
+                        }
+                    ]
+                },
+                {
+                    "id": "pages.logistica.guias",
+                    "title": "Guia",
+                    "link": "/guia",
+                    "type": "collapsable",
+                    "children": [
+                        {
+                            "id": "pages.logistica.guia.listado",
+                            "title": "Listado",
+                            "link": "orden-de-compra/listado-Guias",
+                            "type": "basic"
+                        },
+                        {
+                            "id": "pages.logistica.guia.listado",
+                            "title": "registro",
+                            "link": "orden-de-compra/listado-Guias",
+                            "type": "basic"
+                        }
+                    ]
                 }
             ]
         }
+    
     ],
     "futuristic": [
         {

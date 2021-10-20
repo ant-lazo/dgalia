@@ -12,6 +12,7 @@ import { CookingSchedule } from 'app/modules/programation/models/cooking-schedul
 })
 export class ListComponent implements OnChanges {
 
+  //{{dgalliaUrl}}api/v1/cooking-schedule
   @Input() cookingScheduleList: CookingSchedule[];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -25,6 +26,7 @@ export class ListComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.cookingScheduleList) this.setDataSourceList();
+    console.log("lista de la tabla: ",this.cookingScheduleList)
   }
 
   public navigateToDetail(cookingScheduleCode: number): void {
@@ -32,6 +34,7 @@ export class ListComponent implements OnChanges {
   }
 
   public navigateToRegister(cookingScheduleCode: number): void {
+    //code:PG00005
     this._router.navigate(['/hojas-de-demanda/registro', cookingScheduleCode]);
   }
 

@@ -29,4 +29,17 @@ export class AppNotificationsService {
   public deleteSuccess(title?: string, body?: string): void {
     this._toast.success(body || 'Se ha eliminado el registro correctamente', title || 'Sabemos que hiciste lo correcto 👏')
   }
+
+  public sendSuccess(title?: string, body?: string): void {
+    this._toast.success(body || 'Se ha hecho el envío de email de manera exitosa', title || 'Todo salió bien 😉')
+  }
+
+  public downloadSuccess(title?: string, body?: string): void {
+    this._toast.success(body || 'Se ha hecho la descarga de manera exitosa', title || 'Todo salió bien 😉')
+  }
+
+  public removeMerchandiseSuccess(title?: string, body?: string): void {
+    this._toast.success(body ?? 'Retiro exitoso', title ?? '👏 Excelente!')
+  }
+
 }

@@ -22,4 +22,8 @@ export class InventoryService {
   public getKardex(productKardex: string): Observable<ProductKardex> {
     return this._http.get<JsonResp>(ApiRoutes.inventory.getProdutKardex(productKardex)).pipe(map(resp => resp.data));
   }
+
+  public postRemoveMerchandise(data:any){
+    return this._http.post<JsonResp>(ApiRoutes.inventory.postRemoveMerchandise,data)
+  }
 }

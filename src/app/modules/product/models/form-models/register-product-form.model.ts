@@ -9,4 +9,5 @@ export interface RegisterProductFormModel {
     weight: string;
     image: string;
     supply_id: string;
+    minimum_stock: string;
 }
