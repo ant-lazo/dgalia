@@ -5,12 +5,12 @@ export interface RqDemandSheetRegister {
 }
 
 export interface RqDemandSheetItemRegister {
-    /*equivalent_measuredunit: string;
+    equivalent_measuredunit: string;
     equivalent_quantity: number;
     quantity_required: number;
     supply_code: string;
-    unit_price: number;*/
-    supply_id: number;
+    unit_price: number;
+    /*supply_id: number;
     supply_code: string;
     supply_name: string;
     equivalent_quantity: number;
@@ -19,5 +19,5 @@ export interface RqDemandSheetItemRegister {
     supply_category: any;
     equivalent_measuredunit: any;
     unit_price: number;
-    percentage_loss: number
+    percentage_loss: number*/
 }

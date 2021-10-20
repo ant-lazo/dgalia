@@ -39,6 +39,7 @@ export class ApiRoutes {
 
     public static cookingSchedule = {
         save: `${environment.apiUrl}cooking-schedule`,
+        //servicio de la tabla del registro de hoja
         getResume: (code: string): string => `${environment.apiUrl}cooking-schedule/resumen?code=${code}`,
         findByCode: (code: string): string => `${environment.apiUrl}cooking-schedule?code=${code}`,
     }

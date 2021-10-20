@@ -48,15 +48,18 @@ export class RegisterComponent implements OnInit {
 
   public setData(): void {
     this.request = combineLatest([
+      //{{dgalliaUrl}}api/v1/cooking-schedule/resumen?code=PG00009
       this._cookingSchedule.getResume(this.cookingscheduleCode),
       this._measureUnits.getGetList(),
       this._cookingSchedule.getByCode(this.cookingscheduleCode),
       this._demandSheet.validateByCookingScheduleCode(this.cookingscheduleCode)
     ]).pipe(
       map((result: any) => {
+        //datos que vienen
         this.resumenList = new ResumeItemFormMapper().fromResumeList(result[0]);
         //comprobar si viene todo
         console.log("viene todo los datos? ",this.resumenList);
+        //
         this.cookingSchedule = result[2];
         return result;
       }),

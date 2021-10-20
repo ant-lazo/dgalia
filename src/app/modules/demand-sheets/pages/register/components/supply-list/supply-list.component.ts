@@ -23,7 +23,7 @@ export class SupplyListComponent implements OnInit {
   ngOnInit(): void {
     if (this.resumenList) this.setDatatable();
     console.log("resumenList: ",this.resumenList);
-    console.log("measureUnitList: ",this.measureUnitList)
+    //console.log("measureUnitList: ",this.measureUnitList)
   }
 
   public setDatatable() {

@@ -4,6 +4,7 @@ import { ResumeFormList } from "../models/resume-list-request-model";
 
 export class ResumeItemFormMapper {
 
+    //Los datos que vienen
     public fromResumeList(list: CookingScheduleResumen[]): ResumeFormList[] {
         const newList: ResumeFormList[] = [];
         for (const item of list) {
@@ -26,7 +27,9 @@ export class ResumeItemFormMapper {
                 category: item.getCategory(),
                 measuredUnit: item.getMeasuredUnit(),
                 estimatedPrice: item.getEstimatedPrice(),
-                losspercentage: item.getLossPercentage()
+                losspercentage: item.getLossPercentage(),
+                equivalentQuantity: null,
+                enquivalentMeasuredUnitCode: null
                 
             });
         }
