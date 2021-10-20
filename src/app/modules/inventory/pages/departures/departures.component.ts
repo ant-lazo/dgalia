@@ -33,7 +33,8 @@ export class DeparturesComponent implements OnInit {
     const dialogRef = this.dialog.open(RegisterMerchandiseAlertComponent, {
       width: '600px',
       height: '400px',
-      data: { title: `La programación: ${schedule.code}` }
+      /*data: { title: `La programación: ${schedule.code}` }*/
+      data: { cookingScheduleCode: `${schedule.code}`, createdById: `${schedule.createdBy.id}` }
     });
 
     dialogRef.afterClosed().subscribe(result => result ? this.registerMerchandise(schedule.code) : null);

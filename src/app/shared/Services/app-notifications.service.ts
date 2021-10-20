@@ -37,4 +37,9 @@ export class AppNotificationsService {
   public downloadSuccess(title?: string, body?: string): void {
     this._toast.success(body || 'Se ha hecho la descarga de manera exitosa', title || 'Todo salió bien 😉')
   }
+
+  public removeMerchandiseSuccess(title?: string, body?: string): void {
+    this._toast.success(body ?? 'Retiro exitoso', title ?? '👏 Excelente!')
+  }
+
 }
