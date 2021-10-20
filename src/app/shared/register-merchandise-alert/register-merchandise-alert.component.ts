@@ -7,7 +7,7 @@ import { AppNotificationsService } from '../Services/app-notifications.service';
 @Component({
   selector: 'app-registerMerchandise-alert',
   template: `
-    <h2> Esta seguro de retirar  <span class="text-primary"> {{ data?.cookingScheduleCode ?? 'Este elemento' }} </span>? </h2>
+    <h2> Esta seguro de retirar  <span class="text-primary"> {{ data?.cooking_schedule_code ?? 'Este elemento' }} </span>? </h2>
     
     <h4>
         <!-- {{ datashedule?.subtitle ?? 'Tenga en cuenta que se hará la eliminacion de manera permante del registro y no se podrá recuperar la información.' }}-->
@@ -19,7 +19,7 @@ import { AppNotificationsService } from '../Services/app-notifications.service';
             <mat-icon>close</mat-icon>
             Cancelar
         </button>
-        <button (click)="removeMerchandise(data.cookingScheduleCode, data.createdById)" class="px-6 ml-3" mat-flat-button color="primary">
+        <button (click)="removeMerchandise(data.cooking_schedule_code, data.createdById)" class="px-6 ml-3" mat-flat-button color="primary">
             <!--<mat-icon svgIcon="delete" ></mat-icon>-->
             <mat-icon>input</mat-icon>Retirar Mercaderia
         </button>
@@ -34,7 +34,7 @@ export class RegisterMerchandiseAlertComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<RegisterMerchandiseAlertComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { cookingScheduleCode: string, createdById: number },
+    @Inject(MAT_DIALOG_DATA) public data: { cooking_schedule_code: string, createdById: number },
     private _inventory: InventoryService,
     private _appNotifications: AppNotificationsService,
   ) { 
@@ -49,9 +49,9 @@ export class RegisterMerchandiseAlertComponent implements OnInit {
     this.dialogRef.close(false);
   }
 
-  public removeMerchandise(cookingScheduleCode: string, createdById: number): void {
+  public removeMerchandise(cooking_schedule_code: string, createdById: number): void {
     //this.dialogRef.close(true);
-    this.datasend={cookingScheduleCode,createdById};
+    this.datasend={cooking_schedule_code,createdById};
     console.log("datos para enviar", this.datasend)
     this._inventory.postRemoveMerchandise(this.datasend).subscribe(() => {
       this._appNotifications.removeMerchandiseSuccess();
