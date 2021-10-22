@@ -10,8 +10,8 @@ import { CookingSchedule } from 'app/modules/programation/models/cooking-schedul
 
 
 @Component({
-  selector: 'purchase_order-list-table, logistic-cooking-schedules-list',
-  templateUrl: './list-table.component.html',
+  selector: 'purchase_order-list-table',
+  templateUrl: './list-table.component.html'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListTableComponent implements OnChanges {
