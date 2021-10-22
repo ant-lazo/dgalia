@@ -13,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class InventoryComponent implements OnInit {
 
   public static productKardex = '/inventario/kardex'
+  public static inventoryreport = '/inventario/reporte'
 
   constructor() { }
 

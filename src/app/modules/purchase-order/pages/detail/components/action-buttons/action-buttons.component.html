@@ -11,7 +11,7 @@
         Actualizar
     </button>
 
-    <button (click)="PdfDownload()" *ngIf="purchaseOrder.status.code == 'TER01' ||  purchaseOrder.status.code == 'APR02'"    type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
+    <button (click)="openNewTab()" *ngIf="purchaseOrder.status.code == 'TER01' ||  purchaseOrder.status.code == 'APR02'"    type="submit" class="px-6 ml-3" mat-flat-button [color]="'primary'">
         <mat-icon class="mr-2">print</mat-icon>
         Imprimir
     </button>

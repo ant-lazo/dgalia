@@ -100,7 +100,7 @@ export class RegisterComponent implements OnInit {
     let message: string = '';
     for (const item of this.resumenList) {
       if (!item.quantityNeeded || item.quantityNeeded == 0) {
-        message = `Debe ingrsar una cantidad equivalente valida para el insumo ${item.code}`;
+        message = `Debe ingresar una cantidad equivalente valida para el insumo ${item.code}`;
         break;
       }
       /*if (!item.enquivalentMeasuredUnitCode) {

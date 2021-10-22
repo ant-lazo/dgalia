@@ -24,6 +24,7 @@ import { ListOptionsComponent } from './components/list-options/list-options.com
 import { ListComponent } from './components/list/list.component';
 import { ProductListRoutingModule } from './product-list-routing.module';
 import { ProductListComponent } from './product-list.component';
+import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ProductListComponent } from './product-list.component';
     ProductListComponent,
     ListComponent,
     ListOptionsComponent,
-    FilterOptionsComponent
+    FilterOptionsComponent,
+    ActionButtonsComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiRoutes } from 'app/core/api/constants/api.routes';
 import { JsonResp } from 'app/core/interfaces/json-resp.interface';
@@ -43,6 +43,11 @@ export class PurchaseOrderService {
   }
 
   public pdfDownloadPurchaseOrder(code:string): Observable<any> {
-    return this._http.get(ApiRoutes.purchaseOrder.pdfDownload(code))
+    let header = new HttpHeaders({
+      'Content-Type':'application/pdf',
+      'Content-disposition': 'attachment; filename= filename'
+    });
+    return this._http.get(ApiRoutes.purchaseOrder.pdfDownload(code),{ headers: header })
+    //return this._http.get(ApiRoutes.purchaseOrder.pdfDownload(code))
   }
 }

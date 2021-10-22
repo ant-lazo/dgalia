@@ -17,6 +17,8 @@ import {RegisterBillsComponent } from '../../../../pages/bills/register-bills/re
 
 import { RegisterGuidesComponent } from 'app/modules/purchase-order/pages/guide/modal/register-guides/register-guides.component';
 
+import { ApiRoutes } from 'app/core/api/constants/api.routes';
+
 @Component({
   selector: 'purchase_order-detail-action_buttons',
   templateUrl: './action-buttons.component.html',
@@ -239,6 +241,12 @@ export class ActionButtonsComponent implements OnInit {
       }
     )
   }
+
+  public openNewTab(): void {
+    location.href = ApiRoutes.purchaseOrder.pdfDownload(this.purchaseOrder.code);
+    //location.href = "https://api.centrocannahope.com/api/medicalConsultation/getRecipe/consultation/5eda710968799d3dbccae5b9"
+  }
+
 
 
 }

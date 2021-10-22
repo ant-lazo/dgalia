@@ -3,6 +3,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MeasuredUnit } from 'app/modules/measured-units/models/measured-unit.model';
 import { ResumeFormList } from '../../models/resume-list-request-model';
+import { MeasuredUnitService } from 'app/modules/measured-units/services/measured-unit.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'demand_sheets-register-supply_list',
@@ -12,18 +14,26 @@ import { ResumeFormList } from '../../models/resume-list-request-model';
 export class SupplyListComponent implements OnInit {
 
   @Input() resumenList: ResumeFormList[];
-  @Input() measureUnitList: MeasuredUnit[];
+  //@Input() measureUnitList: MeasuredUnit[];
+
+  //data:any;
+
+  public measureUnitList: Observable<MeasuredUnit[]>;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   //public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
   public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
   public dataSource: MatTableDataSource<ResumeFormList> = new MatTableDataSource([]);
-  constructor() { }
+  constructor(
+    private _measureUnits: MeasuredUnitService,
+  ) { }
 
   ngOnInit(): void {
-    if (this.resumenList) this.setDatatable();
+    if (this.resumenList){ this.setDatatable()}
     console.log("resumenList: ",this.resumenList);
+    //this.data = Object.values(this.measureUnitList)
     //console.log("measureUnitList: ",this.measureUnitList)
+    this.measureUnitList=this._measureUnits.getGetList()
   }
 
   public setDatatable() {
