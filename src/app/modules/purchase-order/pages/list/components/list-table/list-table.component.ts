@@ -6,18 +6,15 @@ import { Router } from '@angular/router';
 import { PurchaseOrderSts } from 'app/core/models/puecharse-order-sts.model';
 import { PurchaseOrder } from 'app/modules/purchase-order/models/ purchase-order.model';
 import { PurchaseOrderComponent } from 'app/modules/purchase-order/purchase-order.component';
-import { CookingSchedule } from 'app/modules/programation/models/cooking-schedule.model';
-
 
 @Component({
   selector: 'purchase_order-list-table',
-  templateUrl: './list-table.component.html'
+  templateUrl: './list-table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListTableComponent implements OnChanges {
 
   @Input() list: PurchaseOrder[];
-  @Input() cookingScheduleList: CookingSchedule[];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -46,12 +43,8 @@ export class ListTableComponent implements OnChanges {
 
   public viewDetail(){
       console.log("ad");
-  } 
-
-  public navigateToRegister(cookingScheduleCode: number): void {
-    //code:PG00005
-    this._router.navigate(['/hojas-de-demanda/registro', cookingScheduleCode]);
   }
+  
 
   public getStatusColor(code: string): string {
     let color: string = '';
