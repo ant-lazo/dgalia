@@ -5,7 +5,7 @@
     <div class="main" *ngIf="request | async as list; else loading">
         <div class="content">
             <app-list-table [list]="list" (selectedToDelete)="validationToDeleteProgramation($event)"
-                (selectedToEdit)="editar($event)" (selectedToDetail)="detalle($event)">
+                (selectedToDetail)="detalle($event)">
             </app-list-table>
 
         </div>
