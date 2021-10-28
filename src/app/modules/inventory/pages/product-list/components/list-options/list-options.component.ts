@@ -23,7 +23,7 @@ export class ListOptionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public optionRedirect(option: string): void {
+  /*public optionRedirect(option: string): void {
     this._bottomSheet.dismiss();
     switch (option) {
       case 'kardex':
@@ -36,9 +36,31 @@ export class ListOptionsComponent implements OnInit {
         break;
     }
     this._bottomSheet.dismiss()
+  }*/
+
+  public optionRedirect(option: string): void {
+    this._bottomSheet.dismiss();
+    switch (option) {
+      case 'kardex':
+        this._router.navigate([InventoryComponent.productKardex, this.data.productCode]);
+        break;
+      case 'output':
+        this.registerProductOutput();
+        break;
+      case 'input':
+        this.registerProductInput();
+        break;
+      default:
+        break;
+    }
+    this._bottomSheet.dismiss()
   }
 
   public registerProductOutput(): void {
+    const dialogRef = this._dialog.open(RegisterOutputDialogComponent, {width: '70%', data: {productCode: this.data?.productCode}});
+  }
+
+  public registerProductInput(): void {
     const dialogRef = this._dialog.open(RegisterOutputDialogComponent, {width: '70%', data: {productCode: this.data?.productCode}});
   }
 

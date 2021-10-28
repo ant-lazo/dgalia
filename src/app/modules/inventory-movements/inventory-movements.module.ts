@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { InventoryMovementsRoutingModule } from './inventory-movements-routing.module';
 import { InventoryMovementsComponent } from './inventory-movements.component';
+import { RegisterInputDialogComponent } from './pages/inputs/components/register-input-dialog/register-input-dialog.component';
 
 
 @NgModule({
   declarations: [
-    InventoryMovementsComponent
+    InventoryMovementsComponent,
+    RegisterInputDialogComponent
   ],
   imports: [
     CommonModule,
