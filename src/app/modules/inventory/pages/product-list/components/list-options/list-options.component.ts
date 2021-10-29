@@ -3,6 +3,8 @@ import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bott
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { RegisterOutputDialogComponent } from 'app/modules/inventory-movements/pages/outputs/components/register-output-dialog/register-output-dialog.component';
+import { RegisterInputDialogComponent } from 'app/modules/inventory-movements/pages/inputs/components/register-input-dialog/register-input-dialog.component';
+
 import { InventoryComponent } from 'app/modules/inventory/inventory.component';
 import { ProductStock } from 'app/modules/inventory/models/product-stock.model';
 
@@ -61,7 +63,7 @@ export class ListOptionsComponent implements OnInit {
   }
 
   public registerProductInput(): void {
-    const dialogRef = this._dialog.open(RegisterOutputDialogComponent, {width: '70%', data: {productCode: this.data?.productCode}});
+    const dialogRef = this._dialog.open(RegisterInputDialogComponent, {width: '70%', data: {productCode: this.data?.productCode}});
   }
 
 }

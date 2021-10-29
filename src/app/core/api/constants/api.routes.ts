@@ -91,5 +91,6 @@ export class ApiRoutes {
         save: `${environment.apiUrl}referralguide`,
         getAll: `${environment.apiUrl}referralguide`,
     }
+  static inputs: any;
 
 }
