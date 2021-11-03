@@ -15,7 +15,9 @@ export class InputsService {
   ) {}
 
 
-// public saveProduct(dara: any): Observable<JsonResp> {
+// public saveProduct(data: any): Observable<JsonResp> {
 //   return this._http.post<JsonResp>(ApiRoutes.inputs.save, data);
 // }
 }
+
+

@@ -8,6 +8,7 @@ import { ProductService } from 'app/modules/product/services/product.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { InputsService } from '../../services/inputs.service';
 
 @Component({
   selector: 'app-register-input-dialog',
@@ -15,9 +16,13 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./register-input-dialog.component.scss']
 })
 export class RegisterInputDialogComponent implements OnInit {
+  public requestData: Observable<any[]>;
+  public form: FormGroup;
 
   constructor(
     private _dialogRef: MatDialogRef<RegisterInputDialogComponent>,
+    private _toast: AppNotificationsService,
+    private _inputs: InputsService,
     @Inject(MAT_DIALOG_DATA) public data: { productCode: string }
   ) { }
 
@@ -26,6 +31,13 @@ export class RegisterInputDialogComponent implements OnInit {
 
   public onClose(): void {
     this._dialogRef.close();
+  }
+
+  public onRegister(): void {
+    // this._inputs.saveProduct(this.form.value).subscribe((resp: JsonResp) => {
+    //   this._toast.registerSuccess(null, resp.data);
+    //   this._dialogRef.close(true);
+    // });
   }
 
 }

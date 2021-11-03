@@ -26,6 +26,10 @@ export class ApiRoutes {
         put: `${environment.apiUrl}invoice/updatepaid`
     }
 
+    // public static inputs = {
+    //     save: `${environment.apiUrl}inventory/input`,
+    // }
+
     public static outputs = {
         save: `${environment.apiUrl}inventory/output`,
     }
