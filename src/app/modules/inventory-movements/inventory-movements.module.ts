@@ -4,10 +4,9 @@ import { CommonModule } from '@angular/common';
 import { InventoryMovementsRoutingModule } from './inventory-movements-routing.module';
 import { InventoryMovementsComponent } from './inventory-movements.component';
 
-
 @NgModule({
   declarations: [
-    InventoryMovementsComponent
+    InventoryMovementsComponent,
   ],
   imports: [
     CommonModule,

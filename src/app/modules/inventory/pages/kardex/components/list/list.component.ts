@@ -22,6 +22,7 @@ export class ListComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (this.inventoryList) this.setDataSourceList();
+    console.log("inventoryList : ", this.inventoryList);
   }
 
   private setDataSourceList(): void {

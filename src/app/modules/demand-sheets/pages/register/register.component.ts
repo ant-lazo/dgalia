@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
       resumenList: this.resumenList
     });
 
-    this.register(newDemandSheet);
+    //this.register(newDemandSheet);
   }
 
   private register(newDemandSheet: RqDemandSheetRegister): void {

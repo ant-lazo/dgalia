@@ -10,6 +10,10 @@ const routes: Routes = [
       {
         path: 'salidas',
         loadChildren: () => import('./pages/outputs/outputs.module').then(o => o.OutputsModule)
+      },
+      {
+        path: 'entradas',
+        loadChildren: () => import('./pages/inputs/inputs.module').then(i => i.InputsModule)
       }
     ]
   }

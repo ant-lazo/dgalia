@@ -14,6 +14,9 @@ import { MatTableModule } from '@angular/material/table';
 import {
   RegisterOutputDialogModule,
 } from 'app/modules/inventory-movements/pages/outputs/components/register-output-dialog/register-output-dialog.module';
+import {
+  RegisterInputDialogModule,
+} from 'app/modules/inventory-movements/pages/inputs/components/register-input-dialog/register-input-dialog.module';
 import { HeaderModule } from 'app/shared/header/header.module';
 import { LabelModule } from 'app/shared/label/label.module';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
@@ -44,6 +47,7 @@ import { ActionButtonsComponent } from './components/action-buttons/action-butto
     SearchBoxModule,
     FormsModule,
     RegisterOutputDialogModule,
+    RegisterInputDialogModule,
 
     MatTableModule,
     MatIconModule,

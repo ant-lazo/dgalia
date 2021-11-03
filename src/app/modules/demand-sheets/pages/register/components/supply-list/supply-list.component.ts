@@ -18,7 +18,11 @@ export class SupplyListComponent implements OnInit {
 
   //data:any;
 
+  dato : string ;
+
   public measureUnitList: Observable<MeasuredUnit[]>;
+
+  lista : MeasuredUnit[];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   //public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
@@ -33,11 +37,26 @@ export class SupplyListComponent implements OnInit {
     console.log("resumenList: ",this.resumenList);
     //this.data = Object.values(this.measureUnitList)
     //console.log("measureUnitList: ",this.measureUnitList)
-    this.measureUnitList=this._measureUnits.getGetList()
+    this.measureUnitList=this._measureUnits.getGetList();
+    console.log("measureUnitList: ",this.measureUnitList);
+    this.measureUnitList.subscribe(a=>{this.lista=a,this.iterar()});
+    this.dato = "BOT";
   }
 
   public setDatatable() {
     this.dataSource = new MatTableDataSource(this.resumenList);
-    this.dataSource.sort = this.sort
+    this.dataSource.sort = this.sort;
+    console.log("datasource: ",this.dataSource);
   }
+
+  public iterar(){
+    console.log("List: ",this.lista)
+
+    for (let a of this.lista){
+
+      console.log("lista: ",a.id,a.name,a.code)
+
+    }
+  }
+
 }

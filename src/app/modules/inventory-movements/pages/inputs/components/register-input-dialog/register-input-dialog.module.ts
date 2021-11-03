@@ -10,13 +10,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
-import { RegisterOutputDialogComponent } from './register-output-dialog.component';
-//import { RegisterInputDialogComponent } from '../../../inputs/components/register-input-dialog/register-input-dialog.component';
+
+import { RegisterInputDialogComponent } from './register-input-dialog.component';
 
 @NgModule({
   declarations: [
-    RegisterOutputDialogComponent,
-    //RegisterInputDialogComponent
+    RegisterInputDialogComponent
   ],
   imports: [
     CommonModule,
@@ -34,8 +33,7 @@ import { RegisterOutputDialogComponent } from './register-output-dialog.componen
   ],
   exports: [
     MatDialogModule,
-    RegisterOutputDialogComponent,
-    //RegisterInputDialogComponent
+    RegisterInputDialogComponent
   ]
 })
-export class RegisterOutputDialogModule { }
+export class RegisterInputDialogModule { }

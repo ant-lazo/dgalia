@@ -4,6 +4,7 @@
         <div class="content" *ngIf="request | async as data; else loading">
             <app-title [backButton]="true" subtitle="" title="Kardex de producto {{ data?.productName ?? '' }}">
             </app-title>
+            <app-action-buttons [productCode]="data.productCode"></app-action-buttons>
             <inventory-kardex-values [data]="data"></inventory-kardex-values>
             <inventory-kardex-list [inventoryList]="data.inventory"></inventory-kardex-list>
         </div>
