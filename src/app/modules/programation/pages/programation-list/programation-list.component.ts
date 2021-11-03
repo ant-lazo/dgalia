@@ -72,9 +72,9 @@ export class ProgramationListComponent implements OnInit {
     }
   }
 
-  public editar(event: CookingSchedule): void {
-    this._router.navigate(['programacion/editar/' + event.id]);
-  }
+  // public editar(event: CookingSchedule): void {
+  //   this._router.navigate(['programacion/editar/' + event.id]);
+  // }
 
   public detalle(event: CookingSchedule): void {
     this._router.navigate(['programacion/detalle', event.code]);

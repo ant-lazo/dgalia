@@ -36,6 +36,7 @@ export class RegisterOutputDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data?.productCode) this.setRequestData();
+    console.log("data: ",this.data)
   }
 
   private setRequestData(): void {
@@ -62,10 +63,12 @@ export class RegisterOutputDialogComponent implements OnInit {
   private setForm(product?: Product): void {
     this.form = this._builder.group({
       headquarter_id: [null, Validators.required],
-      igv: [product?.igv, Validators.required],
+      // igv: [product?.igv, Validators.required],
+      igv: [null, Validators.required],
       product_code: [product?.code, Validators.required],
       quantity: [null, Validators.required],
-      unit_price: [product?.priceList, Validators.required],
+      // unit_price: [product?.priceList, Validators.required],
+      unit_price: [null, Validators.required],
       comment: [null, Validators.required],
       output_type: [null, Validators.required],
     })

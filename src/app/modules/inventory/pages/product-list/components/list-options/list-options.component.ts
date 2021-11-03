@@ -28,6 +28,21 @@ export class ListOptionsComponent implements OnInit {
     this.headquarterId = this.data.headquarter.id
   }
 
+  /*public optionRedirect(option: string): void {
+    this._bottomSheet.dismiss();
+    switch (option) {
+      case 'kardex':
+        this._router.navigate([InventoryComponent.productKardex, this.data.productCode]);
+        break;
+      case 'output':
+        this.registerProductOutput();
+        break;
+      default:
+        break;
+    }
+    this._bottomSheet.dismiss()
+  }*/
+
   public optionRedirect(option: string): void {
     this._bottomSheet.dismiss();
     switch (option) {
@@ -39,7 +54,7 @@ export class ListOptionsComponent implements OnInit {
         this.registerProductOutput();
         break;
       case 'input':
-          this.registerProductInput();
+        this.registerProductInput();
           break;
       default:
         break;

@@ -46,6 +46,7 @@
                             "src/@treo/styles/main.scss",
                             "src/styles/styles.scss",
                             "src/styles/tailwind.scss"
+
                         ],
                         "scripts": [],
                         "vendorChunk": true,

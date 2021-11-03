@@ -10,7 +10,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 
-
 import { RegisterInputDialogComponent } from './register-input-dialog.component';
 
 @NgModule({
