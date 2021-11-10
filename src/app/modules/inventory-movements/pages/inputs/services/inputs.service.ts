@@ -8,14 +8,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class InputsService {
-  _http: any;
+  
 
   constructor(
-    private_http: HttpClient
+    private _http: HttpClient
   ) {}
 
 
-// public saveProduct(dara: any): Observable<JsonResp> {
-//   return this._http.post<JsonResp>(ApiRoutes.inputs.save, data);
-// }
+public saveProduct(data: any): Observable<JsonResp> {
+  return this._http.post<JsonResp>(ApiRoutes.inputs.save, data);
 }
+}
+
+

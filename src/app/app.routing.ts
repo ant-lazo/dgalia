@@ -71,7 +71,9 @@ export const appRoutes: Route[] = [
             { path: 'orden-de-compra', loadChildren: () => import('./modules/purchase-order/purchase-order.module').then(p => p.PurchaseOrderModule) },
             { path: 'proveedores', loadChildren: () => import('./modules/provider/provider.module').then(p => p.ProviderModule) },
             { path: 'inventario', loadChildren: () => import('./modules/inventory/inventory.module').then(i => i.InventoryModule) },
-            { path: 'reportes', loadChildren: () => import('./modules/reports/reports.module').then(r => r.ReportsModule) }
+            { path: 'reportes', loadChildren: () => import('./modules/reports/reports.module').then(r => r.ReportsModule) },
+            { path: 'mantenimiento', loadChildren: () => import('./modules/customer/customer.module').then(c => c.CustomerModule) }
+
         ]
     }
 

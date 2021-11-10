@@ -1,11 +1,132 @@
+<!-- ícono de X al inicio del modal  -->
 <div class="flex flex-row justify-end">
-    <button (click)="onClose()" mat-icon-button color="primary">
-        <mat-icon>close</mat-icon>
-    </button>
+  <button (click)="onClose()" mat-icon-button color="primary">
+    <mat-icon>close</mat-icon>
+  </button>
 </div>
 
+<div *ngIf="data?.productCode && requestData | async as data">
+  <h1 class="text-indigo-900">Registrar ingreso {{ data[0].name }}</h1>
+
+  <form [formGroup]="form">
+    <div class="flex">
+      <mat-form-field class="w-full">
+        <textarea
+          formControlName="description"
+          matInput
+          placeholder="Descripción"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <!-- cantidad-precio unitario-IGV -->
+    <div class="grid grid-cols-12 gap-3">
+      <div class="col-span-4">
+        <mat-form-field class="w-full">
+          <input
+            formControlName="quantity"
+            matInput
+            type="number"
+            placeholder="Cantidad"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-span-4">
+        <mat-form-field class="w-full">
+          <input
+            formControlName="unit_price"
+            matInput
+            type="number"
+            placeholder="Precio unitario"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-span-4">
+        <mat-form-field class="w-full">
+          <input
+            formControlName="igv"
+            matInput
+            type="number"
+            placeholder="IGV"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-3">
+      <div class="col-span-4">
+        <mat-form-field class="w-full">
+          <input
+            formControlName="salePrice"
+            matInput
+            type="number"
+            placeholder="Precio venta"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-span-4">
+        <mat-form-field class="w-full">
+          <input
+            formControlName="supplyId"
+            matInput
+            type="number"
+            placeholder="Código del insumo"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-span-4">
+        <mat-form-field class="w-full">
+          <input
+            formControlName="weight"
+            matInput
+            type="number"
+            placeholder="Peso"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-span-4">
+        <mat-form-field class="w-full">
+          <input
+            formControlName="minimumStock"
+            matInput
+            type="number"
+            placeholder="Stock Mínimo"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  
+  </form>
 
 
-<ng-template #loading>
+  <!-- botones de cancelar y registrar -->
+  <div class="flex flex-row justify-end">
+    <!-- boton de cancelar al final del modal -->
+    <div class="flex flex-row justify-end">
+      <button
+        (click)="onClose()"
+        mat-stroked-button
+        color="primary"
+        class="mr-2"
+      >
+        <!-- <mat-icon>close</mat-icon> -->
+        Cancelar
+      </button>
+
+      <!-- botón de Registrat al final del modal -->
+      <button
+        (click)="onRegister()"
+        [disabled]="form.invalid"
+        mat-flat-button
+        color="primary"
+      >
+        <!-- <mat-icon>save</mat-icon> -->
+        Registrar
+      </button>
+    </div>
+  </div>
+</div>
+
+  <ng-template #loading>
     <app-loading-body></app-loading-body>
-</ng-template>
+  </ng-template>
