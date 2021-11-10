@@ -22,10 +22,10 @@
     <ng-container [matColumnDef]="displayedColumns[3]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Opciones </th>
         <td mat-cell *matCellDef="let element">
-            <button (click)="selectedToEdit.emit(element)" title="Editar {{ element.description }}" type="button"
+            <!-- <button (click)="selectedToEdit.emit(element)" title="Editar {{ element.description }}" type="button"
                 color="green" mat-icon-button>
                 <mat-icon [color]="'green'">create</mat-icon>
-            </button>
+            </button> -->
 
             <button (click)="selectedToDetail.emit(element)" title="Detalle de {{ element.description }}" type="button"
                 color="green" mat-icon-button>

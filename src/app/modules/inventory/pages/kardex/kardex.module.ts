@@ -14,13 +14,15 @@ import { ValuesItemComponent } from './components/values-item/values-item.compon
 import { ValuesComponent } from './components/values/values.component';
 import { KardexRoutingModule } from './kardex-routing.module';
 import { KardexComponent } from './kardex.component';
+import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 
 @NgModule({
   declarations: [
     KardexComponent,
     ValuesItemComponent,
     ValuesComponent,
-    ListComponent
+    ListComponent,
+    ActionButtonsComponent
   ],
   imports: [
     CommonModule,

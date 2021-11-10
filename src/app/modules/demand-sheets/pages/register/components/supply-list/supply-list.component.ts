@@ -3,6 +3,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MeasuredUnit } from 'app/modules/measured-units/models/measured-unit.model';
 import { ResumeFormList } from '../../models/resume-list-request-model';
+import { MeasuredUnitService } from 'app/modules/measured-units/services/measured-unit.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'demand_sheets-register-supply_list',
@@ -12,22 +14,49 @@ import { ResumeFormList } from '../../models/resume-list-request-model';
 export class SupplyListComponent implements OnInit {
 
   @Input() resumenList: ResumeFormList[];
-  @Input() measureUnitList: MeasuredUnit[];
+  //@Input() measureUnitList: MeasuredUnit[];
+
+  //data:any;
+
+  dato : string ;
+
+  public measureUnitList: Observable<MeasuredUnit[]>;
+
+  lista : MeasuredUnit[];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   //public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
   public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
   public dataSource: MatTableDataSource<ResumeFormList> = new MatTableDataSource([]);
-  constructor() { }
+  constructor(
+    private _measureUnits: MeasuredUnitService,
+  ) { }
 
   ngOnInit(): void {
-    if (this.resumenList) this.setDatatable();
+    if (this.resumenList){ this.setDatatable()}
     console.log("resumenList: ",this.resumenList);
+    //this.data = Object.values(this.measureUnitList)
     //console.log("measureUnitList: ",this.measureUnitList)
+    this.measureUnitList=this._measureUnits.getGetList();
+    console.log("measureUnitList: ",this.measureUnitList);
+    this.measureUnitList.subscribe(a=>{this.lista=a,this.iterar()});
+    this.dato = "BOT";
   }
 
   public setDatatable() {
     this.dataSource = new MatTableDataSource(this.resumenList);
-    this.dataSource.sort = this.sort
+    this.dataSource.sort = this.sort;
+    console.log("datasource: ",this.dataSource);
   }
+
+  public iterar(){
+    console.log("List: ",this.lista)
+
+    for (let a of this.lista){
+
+      console.log("lista: ",a.id,a.name,a.code)
+
+    }
+  }
+
 }

@@ -1,13 +1,12 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
 
     <app-header title="Productos" module="Inventario"></app-header>
-
     <div class="main">
         <div class="content">
-
+            <!-- reporte de inventario te redige a otra pagina -->
+            <app-action-buttons></app-action-buttons>
             <inventory-products_list-filter_options (paramSelected)="listenFilter($event)">
             </inventory-products_list-filter_options>
-
             <div *ngIf="request | async; else loading ">
                 <inventory-products-list [inventoryList]="filteredlist"></inventory-products-list>
             </div>

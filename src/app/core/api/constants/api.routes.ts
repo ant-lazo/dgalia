@@ -26,6 +26,10 @@ export class ApiRoutes {
         put: `${environment.apiUrl}invoice/updatepaid`
     }
 
+    // public static inputs = {
+    //     save: `${environment.apiUrl}inventory/input`,
+    // }
+
     public static outputs = {
         save: `${environment.apiUrl}inventory/output`,
     }
@@ -39,6 +43,7 @@ export class ApiRoutes {
 
     public static cookingSchedule = {
         save: `${environment.apiUrl}cooking-schedule`,
+        //servicio de la tabla del registro de hoja
         getResume: (code: string): string => `${environment.apiUrl}cooking-schedule/resumen?code=${code}`,
         findByCode: (code: string): string => `${environment.apiUrl}cooking-schedule?code=${code}`,
     }
@@ -57,7 +62,10 @@ export class ApiRoutes {
     public static inventory = {
         getStock: `${environment.apiUrl}inventory/stock`,
         getProdutKardex: (code: string) => `${environment.apiUrl}inventory?product_code=${code}`,
-        postRemoveMerchandise: `${environment.apiUrl}output/cooking_schedule`,
+        getProdutKardexByHeadquarter: (code: string, id: Number) => `${environment.apiUrl}inventory/kardex?code=${code}&headquarter=${id}`,
+        postRemoveMerchandise: `${environment.apiUrl}inventory/output/cooking_schedule`,
+        kardexRerportDownload: (code: string): string =>`${environment.apiUrl}inventory/kardex?code=${code}`,
+        valorationRerportDownload: (code: string): string =>`${environment.apiUrl}inventory/valoration?code=${code}`
     }
 
     public static purchaseOrder = {
@@ -75,8 +83,8 @@ export class ApiRoutes {
             }
             return url;
         },
-        sendEmail: (code: string): string => `${environment.apiUrl}purchase-order/send-email/pdf/?code=${code}`,
-        pdfDownload: (code: string): string =>`${environment.apiUrl}purchase-order/download/pdf/?code=${code}`
+        sendEmail: (code: string): string => `${environment.apiUrl}purchase-order/send-email/pdf?code=${code}`,
+        pdfDownload: (code: string): string =>`${environment.apiUrl}purchase-order-pdf?code=${code}`
     }
 
     public static demandSheet = {
@@ -90,5 +98,6 @@ export class ApiRoutes {
         save: `${environment.apiUrl}referralguide`,
         getAll: `${environment.apiUrl}referralguide`,
     }
+  static inputs: any;
 
 }

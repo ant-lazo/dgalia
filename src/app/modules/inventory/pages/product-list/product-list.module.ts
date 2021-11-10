@@ -14,6 +14,9 @@ import { MatTableModule } from '@angular/material/table';
 import {
   RegisterOutputDialogModule,
 } from 'app/modules/inventory-movements/pages/outputs/components/register-output-dialog/register-output-dialog.module';
+import {
+  RegisterInputDialogModule,
+} from 'app/modules/inventory-movements/pages/inputs/components/register-input-dialog/register-input-dialog.module';
 import { HeaderModule } from 'app/shared/header/header.module';
 import { LabelModule } from 'app/shared/label/label.module';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
@@ -24,6 +27,7 @@ import { ListOptionsComponent } from './components/list-options/list-options.com
 import { ListComponent } from './components/list/list.component';
 import { ProductListRoutingModule } from './product-list-routing.module';
 import { ProductListComponent } from './product-list.component';
+import { ActionButtonsComponent } from './components/action-buttons/action-buttons.component';
 
 
 @NgModule({
@@ -31,7 +35,8 @@ import { ProductListComponent } from './product-list.component';
     ProductListComponent,
     ListComponent,
     ListOptionsComponent,
-    FilterOptionsComponent
+    FilterOptionsComponent,
+    ActionButtonsComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +47,7 @@ import { ProductListComponent } from './product-list.component';
     SearchBoxModule,
     FormsModule,
     RegisterOutputDialogModule,
+    RegisterInputDialogModule,
 
     MatTableModule,
     MatIconModule,

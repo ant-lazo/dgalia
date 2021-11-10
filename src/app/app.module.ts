@@ -22,7 +22,6 @@ import { CommonModule } from '@angular/common';
 import { ScrollDirective } from './shared/directives/scroll.directive';
 
 
-
 registerLocaleData(es);
 
 
@@ -35,7 +34,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
-        ScrollDirective,
+        ScrollDirective
     ],
     imports: [
         BrowserModule,

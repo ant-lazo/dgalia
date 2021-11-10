@@ -190,7 +190,7 @@
                                 }
 
                                 &.fc-date {
-                                    padding-bottom: 12px;
+                                    padding-bottom: 2px;
                                     font-size: 26px;
                                     font-weight: 300;
                                 }
@@ -208,20 +208,21 @@
                     .fc-day-grid {
 
                         .fc-row {
-                            min-height: 0;
+                            min-height: 100;
 
-                            .fc-bg {
+                            // .fc-bg {
 
-                                .fc-axis {
-                                    width: 48px !important;
-                                }
-                            }
+                            //     .fc-axis {
+                            //         width: 48px !important;
+                            //         align-items: start !important;
+                            //     }
+                            // }
 
                             .fc-content-skeleton {
-                                padding-bottom: 0;
+                                padding-bottom: 50;
 
                                 .fc-axis {
-                                    width: 48px !important;
+                                    width: 88px !important;
                                 }
 
                                 .fc-event-container {
@@ -255,7 +256,7 @@
 
                             .fc-axis {
                                 border: none;
-                                width: 48px !important;
+                                width: 8px !important;
 
                                 + .fc-day {
                                     border: none;
@@ -356,7 +357,7 @@
                     .fc-day-grid {
 
                         .fc-row {
-                            min-height: 0;
+                            min-height: 20;
 
                             .fc-bg {
 

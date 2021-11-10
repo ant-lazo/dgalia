@@ -23,6 +23,10 @@ export class InventoryService {
     return this._http.get<JsonResp>(ApiRoutes.inventory.getProdutKardex(productKardex)).pipe(map(resp => resp.data));
   }
 
+  public getKardexByHeadquarter(productKardex: string, headquarterId: Number): Observable<ProductKardex> {
+    return this._http.get<JsonResp>(ApiRoutes.inventory.getProdutKardexByHeadquarter(productKardex, headquarterId)).pipe(map(resp => resp.data));
+  }
+
   public postRemoveMerchandise(data:any){
     return this._http.post<JsonResp>(ApiRoutes.inventory.postRemoveMerchandise,data)
   }

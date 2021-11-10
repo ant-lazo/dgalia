@@ -3,17 +3,20 @@ import { ProductCategory } from "app/modules/product-category/models/product-cat
 
 
 export interface ResumeFormList {
-    /*id: number;
+    id: number;
     code: string;
     name: string;
-    quantity: number;
+    quantityNeeded: number,
+    quantityRecipe: number,
     category: ProductCategory;
     measuredUnit: MeasuredUnit;
     estimatedPrice: number;
     equivalentQuantity: number;
-    enquivalentMeasuredUnitCode: string;*/
+    enquivalentMeasuredUnitCode: string;
+    stock:number;
+    losspercentage:number;
 
-    id: number,
+    /*id: number,
     code: string,
     name: string,
     quantityNeeded: number,
@@ -22,5 +25,5 @@ export interface ResumeFormList {
     category: ProductCategory;
     measuredUnit: MeasuredUnit;
     estimatedPrice: number,
-    losspercentage: number
+    losspercentage: number*/
 }

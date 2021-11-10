@@ -159,12 +159,7 @@
                             "link": "hojas-de-demanda/listado",
                             "type": "basic"
                         },
-                        {
-                            "id": "pages.logistica.hojas_de_demanda.registro",
-                            "title": "Registro",
-                            "link": "hojas-de-demanda/registro/none",
-                            "type": "basic"
-                        },
+
                         {
                             "id": "pages.logistica.hojas_de_demanda.programaciones",
                             "title": "Programaciones",
@@ -224,6 +219,23 @@
                
             ]
         },
+
+        {
+            "id": "4",
+            "title": "Reportes",
+            "link": "/",
+            "type": "aside",
+            "icon": "description",
+            "children": [
+                {
+                    "id": "pages.ranking-report",
+                    "title": "Ranking productos",
+                    "link": "/reportes",
+                    "type": "basic"
+                }
+            ]
+        },
+
         {
             "id": "3",
             "title": "Administración",

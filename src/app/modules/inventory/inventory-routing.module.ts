@@ -13,12 +13,21 @@ const routes: Routes = [
         loadChildren: () => import('./pages/product-list/product-list.module').then(p => p.ProductListModule)
       },
       {
-        path: 'kardex/:productCode',
+        path: 'kardex/:productCode/:headquarterId',
         loadChildren: () => import('./pages/kardex/kardex.module').then(k => k.KardexModule)
       },
+      /*{
+        path: 'kardex/:productCode',
+        loadChildren: () => import('./pages/kardex/kardex.module').then(k => k.KardexModule)
+      },*/
       {
         path: 'salidas',
         loadChildren: () => import('./pages/departures/departures.module').then(d => d.DeparturesModule)
+      },
+      {
+        path: 'reporte',
+        loadChildren: () => import('./pages/report-inventory/report-inventory.module').then(r => r.ReportInventoryModule)
+        //loadChildren: () => import('./pages/departures/departures.module').then(d => d.DeparturesModule)
       },
       {
         path: '', pathMatch: 'full', redirectTo: 'productos'
