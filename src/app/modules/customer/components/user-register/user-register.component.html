@@ -1,0 +1,263 @@
+<h1>Registrar nuevo usuario en sistema</h1>
+
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="formValidation()"
+  class="flex flex-col mt-4 px-8 pt-10 bg-card shadow rounded overflow-hidden"
+>
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="name"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Nombre"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="email"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Nuevo Email"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="rol_Id"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Rol institucional"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="password"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Contraseña"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <h3>Información personal de contacto</h3>
+
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="emailContact"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Email Personal"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="phone"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Teléfono"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="address"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Dirección"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="disctrict"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Distrito"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="province"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Provincia"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="Departament"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Departamento"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="document"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Documento"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="documentTypeId"
+        type="text"
+        autocomplete="off"
+        matInput
+        required
+        placeholder="Tipo de documento"
+      />
+      <mat-icon matPrefix>sticky_note_2</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!-- <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <mat-select
+        (selectionChange)="getSupplyCode($event)"
+        placeholder="Seleccione una categoría"
+        formControlName="category_id"
+        required
+      >
+        <mat-option
+          *ngFor="let pc of productCategoryList | async"
+          [value]="pc.id"
+        >
+          {{ pc.name }}
+        </mat-option>
+      </mat-select>
+      <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+    </mat-form-field>
+  </div> -->
+
+  <!-- <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <mat-select
+        placeholder="Seleccione una unidad de medída"
+        formControlName="measured_unit_id"
+        required
+      >
+        <mat-option
+          *ngFor="let mu of measuddredUnitList | async"
+          [value]="mu.id"
+        >
+          {{ mu.name }}
+        </mat-option>
+      </mat-select>
+      <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="estimated_price"
+        type="number"
+        autocomplete="off"
+        matInput
+        placeholder="Precio estimado"
+      />
+      <mat-icon matPrefix>attach_money</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3">
+      <input
+        formControlName="loss_percentage"
+        type="number"
+        autocomplete="off"
+        matInput
+        placeholder="Porcentaje de merma"
+      />
+      <mat-icon matPrefix>assignment_returned</mat-icon>
+    </mat-form-field>
+  </div> -->
+
+  <div
+    class="
+      flex
+      items-center
+      justify-end
+      border-t
+      -mx-8
+      mt-8
+      px-8
+      py-5
+      light:bg-cool-gray-50
+      dark:bg-cool-gray-700
+    "
+  >
+    <button
+      type="button"
+      (click)="onNoCreate()"
+      color="primary"
+      mat-stroked-button
+    >
+      <mat-icon>close</mat-icon>
+      Cancelar
+    </button>
+    <button
+      [disabled]="registerForm.invalid"
+      type="submit"
+      class="px-6 ml-3"
+      mat-flat-button
+      [color]="'primary'"
+    >
+      <mat-icon>save</mat-icon>
+      Registrar
+    </button>
+  </div>
+</form>
