@@ -28,21 +28,16 @@ export class FormComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.setRequestData();
     this.listenFormChanges();
-    this.headquarterList=this.request[0]
-    console.log("headquerterLIST",this.headquarterList);
     this._headquarters.getCompleteList().subscribe(a=>{
-      console.log("desde el observable",a);
       this.headquarterList=a;
-      console.log("ver: ",this.headquarterList);
     });
-    console.log("headquarter",this.headquarterList);
+    
   }
 
   private setForm(): void {
     this.form = this._formBuilder.group({
-      note: [null, Validators.required],
+      headquarterId: [null, Validators.required],
       start_date: [null, Validators.required],
       end_date: [null, Validators.required],
     })
@@ -54,10 +49,10 @@ export class FormComponent implements OnInit {
     });
   }
 
-  private setRequestData(): void {
+  /*private setRequestData(): void {
     this.request = combineLatest([
       this._headquarters.getCompleteList()
     ]).pipe(map((result: any[]) => result));
-  }
+  }*/
 
 }

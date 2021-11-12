@@ -98,6 +98,11 @@ export class ApiRoutes {
         save: `${environment.apiUrl}referralguide`,
         getAll: `${environment.apiUrl}referralguide`,
     }
-  static inputs: any;
+
+    static inputs: any;
+
+    public static reports={
+        getRanking:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}inventory/ranking?from=${start}&to=${end}&headquarter=${headquarterId}`,
+    }
 
 }

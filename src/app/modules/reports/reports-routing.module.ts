@@ -17,6 +17,10 @@ const routes: Routes = [
             loadChildren: () => import('./pages/kardex/kardex.module').then(k => k.KardexModule)
         },
         {
+            path: 'valoration',
+            loadChildren: () => import('./pages/valoration/valoration.module').then(v => v.ValorationModule)
+        },
+        {
             path: '', pathMatch: 'full', redirectTo: 'ranking'
         }
     ]

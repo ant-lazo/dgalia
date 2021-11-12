@@ -238,7 +238,14 @@
                     "title": "Reporte Kardex",
                     "link": "/reportes/kardex",
                     "type": "basic"
+                },
+                {
+                    "id": "pages.ranking-report",
+                    "title": "Reporte Valoracion",
+                    "link": "/reportes/valoration",
+                    "type": "basic"
                 }
+
             ]
         },
 

@@ -18,6 +18,8 @@ import { SelectionButtonsComponent } from './components/selection-buttons/select
 import { MatButtonModule } from '@angular/material/button';
 import { ListComponent } from './components/list/list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTableModule
+    //DatePipe
+  ],
+  providers:[
+    DatePipe
   ]
 })
 export class RankingProductModule { }

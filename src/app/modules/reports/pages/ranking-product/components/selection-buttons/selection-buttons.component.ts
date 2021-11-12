@@ -7,8 +7,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SelectionButtonsComponent implements OnInit {
 
-  @Output() onCancel: EventEmitter<void> = new EventEmitter();
-  @Output() onRegister: EventEmitter<void> = new EventEmitter();
+  @Output() onDownload: EventEmitter<void> = new EventEmitter();
+  @Output() onShow: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
