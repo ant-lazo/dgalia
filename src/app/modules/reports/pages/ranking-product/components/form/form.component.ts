@@ -2,8 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RankingFormModel } from '../../../../pages/ranking-product/models/register-form';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 
 
@@ -48,11 +47,5 @@ export class FormComponent implements OnInit {
       this.form.valid ? this.formCompleted.emit(form) : this.formCompleted.emit(null);
     });
   }
-
-  /*private setRequestData(): void {
-    this.request = combineLatest([
-      this._headquarters.getCompleteList()
-    ]).pipe(map((result: any[]) => result));
-  }*/
 
 }

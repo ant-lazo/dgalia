@@ -1,5 +1,5 @@
 <!--<div *ngIf="productListRequest | async; else loading">-->
-<div *ngIf="productListRequest">
+
 
     <table mat-table [dataSource]="dataSource" matSort class="w-full">
 
@@ -9,29 +9,39 @@
             <td mat-cell *matCellDef="let element">
                 <span
                     class="text-xs font-semibold inline-block py-1 px-2 rounded text-teal-600 bg-teal-200  last:mr-0 mr-1">
-                    {{ element.code }}
+                    {{ element.productCode }}
                 </span>
             </td>
         </ng-container>
 
+        <ng-container [matColumnDef]="displayedColumns[1]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+        </ng-container>
+
         <ng-container [matColumnDef]="displayedColumns[2]">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Entradas </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
         </ng-container>
 
         <ng-container [matColumnDef]="displayedColumns[3]">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
-            <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> sede </th>
+            <td mat-cell *matCellDef="let element"> {{element.headquarter.name}} </td>
+        </ng-container>
+
+        <ng-container [matColumnDef]="displayedColumns[4]">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Unidad de Medida </th>
+            <td mat-cell *matCellDef="let element"> {{element.measuredUnit.name }} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     
-</div>
+
 
 <mat-paginator #matPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
 
-<!--<ng-template #loading>
+<ng-template #loading>
     <app-loading-body></app-loading-body>
-</ng-template>-->
+</ng-template>

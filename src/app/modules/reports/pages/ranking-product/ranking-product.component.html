@@ -11,12 +11,14 @@
             <app-selection-buttons (onDownload)="onDownloadMethod()"
             (onShow)="onShowMethod()"></app-selection-buttons>
             <!--<app-list [productlist]="data"></app-list>-->
-            <app-list></app-list>
+            <div *ngIf="request | async; else loading">
+                <app-list [productlist]="productsfilter"></app-list>
+            </div>
         </div>
     </div>
 
 </div>
 
-<!--<ng-template #loading>
+<ng-template #loading>
     <app-loading-body></app-loading-body>
-</ng-template>-->
+</ng-template>

@@ -241,6 +241,18 @@
                 },
                 {
                     "id": "pages.ranking-report",
+                    "title": "Pagos pendientes",
+                    "link": "/reportes/pending-payment",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.ranking-report",
+                    "title": "Reporte Receta",
+                    "link": "/reportes/recipe",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.ranking-report",
                     "title": "Reporte Valoracion",
                     "link": "/reportes/valoration",
                     "type": "basic"
