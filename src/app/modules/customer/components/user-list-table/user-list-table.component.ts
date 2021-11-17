@@ -13,7 +13,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { User } from "../../models/user";
 
 @Component({
-  selector: "app-user-list-table",
+  selector: "app-user-table",
   templateUrl: "./user-list-table.component.html",
   styleUrls: ["./user-list-table.component.scss"],
 })

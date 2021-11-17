@@ -6,7 +6,7 @@
 
   <div class="main">
     <!--<div *ngIf="requestItemsList | async; else loading" class="content">-->
-        <div *ngIf="requestItemsList" class="content">
+        <!-- <div *ngIf="requestItemsList" class="content"> -->
         <div class="mb-5">
             <app-row-buttons *ngIf="registerButton" [buttons]="registerButton" [justify]="'justify-end'"
                 (onClick)="register($event)">
@@ -15,13 +15,14 @@
 
         <app-search-box [placeHolder]="'Buscar usuario'" (param)="filterByName($event)"></app-search-box>
 
-        <app-user-list-table *ngIf="itemsList" (selectedToDelete)="validationToDeleteItems($event)"
+        
+        <app-user-table *ngIf="itemsList" (selectedToDelete)="validationToDeleteItems($event)"
             (selectedToEdit)="editar($event)" [list]="itemsFilteredList">
-        </app-user-list-table>
+        </app-user-table>
     </div>
 </div>
-</div>
-
+<!-- </div> -->
+<!-- 
 <ng-template #loading>
     <app-loading-body></app-loading-body>
-</ng-template>
+</ng-template> -->

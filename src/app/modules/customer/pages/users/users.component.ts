@@ -35,6 +35,11 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.setList();
+    this.requestItemsList.subscribe((data) => {
+      this.itemsList = data;
+      console.log(this.itemsList);
+    });
+    console.log("data: ", this.itemsList);
   }
 
   public setList(): void {
