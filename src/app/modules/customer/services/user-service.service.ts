@@ -19,9 +19,8 @@ export class UserServiceService {
 
   public getList(): Observable<User[]> {
     return this._http.get<JsonResp>(this.baseUrl).pipe(
-      map((result) => {
-        return result.data;
-      })
+      map(result => result.data
+      )
     );
   }
 

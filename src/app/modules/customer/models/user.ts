@@ -1,28 +1,40 @@
+
 export interface User {
+  id: number;
   fullname: string;
   email: string;
   password: string;
-  rol_Id: string;
-  contact: string;
-  emailContact: string;
+  enabled: boolean;
+  createdAt: string;
+  updatedAt: string;
+  rol: Rol;
+  contact: Contact;
+}
+
+export interface Rol{
+  id: number;
+  code: string;
+  name: string;
+  description: string;
+}
+
+export interface Contact{
+  id: number;
+  email: string;
   phone: string;
   address: string;
   district: string;
   province: string;
   departament: string;
+  webSite: string;
   document: string;
-  documentTypeId: string;
+  documentType: DocumentType;
 }
 
-// interface MeasuredUnit {
-//   id: number;
-//   code: string;
-//   name: string;
-//   enabled: boolean;
-// }
+export interface DocumentType{
+  id:number;
+  code:string;
+  name: string;
+  description: string;
+}
 
-// interface Category {
-//   id: number;
-//   name: string;
-//   enabled: boolean;
-// }

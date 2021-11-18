@@ -20,10 +20,10 @@ import { UserServiceService } from "../../services/user-service.service";
   styleUrls: ["./users.component.scss"],
 })
 export class UsersComponent implements OnInit {
-  public requestItemsList: Observable<User[]>;
+  public requestUsersList: Observable<User[]>;
   public registerButton: RowAppButtonModel[];
-  public itemsList: User[];
-  public itemsFilteredList: User[];
+  usersList : User[];
+  public usersFilteredList: User[] = [];
 
   constructor(
     private _userService: UserServiceService,
@@ -33,23 +33,18 @@ export class UsersComponent implements OnInit {
     this.buildRegisterButton();
   }
 
+  
   ngOnInit(): void {
     this.setList();
-    this.requestItemsList.subscribe((data) => {
-      this.itemsList = data;
-      console.log(this.itemsList);
-    });
-    console.log("data: ", this.itemsList);
+    console.log("jeje",this.usersList)
   }
 
   public setList(): void {
-    this.requestItemsList = this._userService.getList().pipe(
-      map((list: User[]) => {
-        this.itemsList = list;
-        this.itemsFilteredList = list;
-        return list;
-      })
-    );
+    this.requestUsersList =  this._userService.getList().pipe((map((list: User[]) => {
+      this.usersList = list;
+      this.usersFilteredList = list;
+      return list;
+    })));
   }
 
   public register(event: string) {
@@ -100,26 +95,26 @@ export class UsersComponent implements OnInit {
 
   public filterByName(name: string): void {
     if (name.length > 0) {
-      this.itemsFilteredList = this.itemsList.filter((e) =>
+      this.usersFilteredList = this.usersList.filter((e) =>
         e.fullname.toLowerCase().includes(name.toLowerCase())
       );
     } else {
-      this.itemsFilteredList = this.itemsList;
+      this.usersFilteredList = this.usersList;
     }
   }
 
-  public validationToDeleteItems(items: User): void {
+  public validationToDeleteUser(user : User): void {
     const dialogRef = this.dialog.open(DeleteAlertComponent, {
       width: "600px",
       height: "400px",
-      data: { title: `el suministro ${items.fullname}` },
+      data: { title: `el usuario ${user.fullname}` },
     });
 
-    dialogRef.afterClosed();
-    // .subscribe((result) => (result ? this.deleteItems(items.fullname) : null));
+    dialogRef.afterClosed().subscribe((result) => (result ? this.deleteUser(user.id) : null));
   }
+  
 
-  private deleteItems(id: number): void {
+  private deleteUser(id: number): void {
     this._userService.delete(id).subscribe((resp) => {
       this._appNotifications.deleteSuccess(null, resp.message);
       this.setList();
