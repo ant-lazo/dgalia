@@ -103,8 +103,7 @@ export class ApiRoutes {
 
     public static reports={
         getRanking:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}inventory/ranking?from=${start}&to=${end}&headquarter=${headquarterId}`,
-        getRankingDownlad:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}inventory/download/ranking?from=${start}&to=${end}&headquarter=${headquarterId}`,
-        
+        getRankingDownlad:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}product-ranking-download?from=${start}&to=${end}&headquarter=${headquarterId}`,
     }
 
 }

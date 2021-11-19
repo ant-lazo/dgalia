@@ -6,19 +6,29 @@ import { environment } from "environments/environment";
 import { map } from "rxjs/operators";
 import { JsonResp } from "../../../core/interfaces/json-resp.interface";
 import { User } from "../models/user";
+import { DocumentType } from "../models/documentType";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserServiceService {
   private baseUrl: string;
+  private documentTyp: string;
 
   constructor(private _http: HttpClient) {
     this.baseUrl = environment.apiUrl + apiRoutes.user.default;
+    this.documentTyp = environment.apiUrl + apiRoutes.document.default;
   }
 
   public getList(): Observable<User[]> {
     return this._http.get<JsonResp>(this.baseUrl).pipe(
+      map(result => result.data
+      )
+    );
+  }
+
+  public getListDocumentType(): Observable<DocumentType[]> {
+    return this._http.get<JsonResp>(this.documentTyp).pipe(
       map(result => result.data
       )
     );

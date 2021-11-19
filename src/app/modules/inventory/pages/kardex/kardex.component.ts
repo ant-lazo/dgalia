@@ -35,8 +35,8 @@ export class KardexComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.request = this._inventory.getKardex(this.productCode);
-    //this.request = this._inventory.getKardexByHeadquarter(this.productCode,this.headquarterId);
+    //this.request = this._inventory.getKardex(this.productCode);
+    this.request = this._inventory.getKardexByHeadquarter(this.productCode,this.headquarterId);
     console.log("productCode", this.productCode);
     console.log("headquarterId: ",this.headquarterId);
 

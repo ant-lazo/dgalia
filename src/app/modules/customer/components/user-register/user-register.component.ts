@@ -5,10 +5,11 @@ import { MatSelectChange } from "@angular/material/select";
 import { MeasuredUnit } from "app/modules/measured-units/models/measured-unit.model";
 import { MeasuredUnitService } from "app/modules/measured-units/services/measured-unit.service";
 import { ProductCategory } from "app/modules/product-category/models/product-category.interface";
-import { ProductCategoriesService } from "app/modules/product-category/services/product-categories.service";
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { Observable } from "rxjs";
 import { UserServiceService } from "../../services/user-service.service";
+import { DocumentType } from "../../models/user";
+import { User } from "../../models/user-register";
 
 @Component({
   selector: "app-user-register",
@@ -18,15 +19,16 @@ import { UserServiceService } from "../../services/user-service.service";
 export class UserRegisterComponent implements OnInit {
   public registerForm: FormGroup;
   public measuddredUnitList: Observable<MeasuredUnit[]>;
-  public productCategoryList: Observable<ProductCategory[]>;
+  public requestDocumentTypeList: Observable<DocumentType[]>;
+  public documentTypeList: DocumentType[]
   public supplyCode: string;
-  private readonly userTypeDefault = "I";
+  private readonly userIdDefault = 2;
+  public user : User
 
   constructor(
     private matDialogRef: MatDialogRef<UserRegisterComponent>,
     private _appNotifications: AppNotificationsService,
     private formBuilder: FormBuilder,
-    public _productCategory: ProductCategoriesService,
     public _measuredUnit: MeasuredUnitService,
     private _user: UserServiceService
   ) {
@@ -34,8 +36,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.measuddredUnitList = this._measuredUnit.getGetList();
-    this.productCategoryList = this._productCategory.getList();
+    this.requestDocumentTypeList = this._user.getListDocumentType();
   }
 
   public onNoCreate() {
@@ -69,15 +70,17 @@ export class UserRegisterComponent implements OnInit {
       fullname: [null, Validators.required],
       email: [null, Validators.required],
       password: [null, Validators.required],
-      rol_Id: [null, Validators.required],
-      emailContact: [null, Validators.required],
-      phone: [null, Validators.required],
-      address: [null, Validators.required],
-      district: [null, Validators.required],
-      province: [null, Validators.required],
-      departament: [null, Validators.required],
-      document: [null, Validators.required],
-      documentTypeId: [null, Validators.required],
+      rolId: this.userIdDefault,
+      contact : this.formBuilder.group({
+        email: [null, Validators.required],
+        phone: [null, Validators.required],
+        address: [null, Validators.required],
+        district: [null, Validators.required],
+        province: [null, Validators.required],
+        departament: [null, Validators.required],
+        document: [null, Validators.required],
+        documentTypeId: [null, Validators.required],
+      }),
     });
   }
 }
