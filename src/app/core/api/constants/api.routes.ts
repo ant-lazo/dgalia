@@ -98,6 +98,17 @@ export class ApiRoutes {
         save: `${environment.apiUrl}referralguide`,
         getAll: `${environment.apiUrl}referralguide`,
     }
-  static inputs: any;
+
+    static inputs: any;
+
+    public static reports={
+        getRanking:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}inventory/ranking?from=${start}&to=${end}&headquarter=${headquarterId}`,
+        getRankingDownlad:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}product-ranking-download?from=${start}&to=${end}&headquarter=${headquarterId}`,
+        getRecipe:(headquarterId: number): string =>  `${environment.apiUrl}recipe?headquarter=${headquarterId}`,
+        getRecipeDownload:(headquarterId: number): string => `${environment.apiUrl}recipe-headquarter-download?headquarter=${headquarterId}`,
+        getPendingPayment:(headquarterId: number): string =>  `${environment.apiUrl}invoice?headquarter${headquarterId}`,
+        getPendingPaymentDownload:(headquarterId: number): string => `${environment.apiUrl}invoice-download?headquarter=${headquarterId}`,
+    
+    }
 
 }

@@ -223,16 +223,41 @@
         {
             "id": "4",
             "title": "Reportes",
-            "link": "/",
+            "link": "/reportes",
             "type": "aside",
             "icon": "description",
             "children": [
                 {
                     "id": "pages.ranking-report",
                     "title": "Ranking productos",
-                    "link": "/reportes",
+                    "link": "/reportes/ranking",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.ranking-report",
+                    "title": "Reporte Kardex",
+                    "link": "/reportes/kardex",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.ranking-report",
+                    "title": "Pagos pendientes",
+                    "link": "/reportes/pending-payment",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.ranking-report",
+                    "title": "Reporte Receta",
+                    "link": "/reportes/recipe",
+                    "type": "basic"
+                },
+                {
+                    "id": "pages.ranking-report",
+                    "title": "Reporte Valoracion",
+                    "link": "/reportes/valoration",
                     "type": "basic"
                 }
+
             ]
         },
 

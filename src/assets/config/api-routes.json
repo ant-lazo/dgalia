@@ -9,6 +9,12 @@
     "default": "supply",
     "generateCode": "/generate-code"
   },
+
+  "item": {
+    "default": "item",
+    "generateCode": "/generate-code"
+  },
+
   "product_category": {
     "default": "product-category"
   },
@@ -34,5 +40,8 @@
   },
   "class": {
     "default": "class"
+  },
+  "user":{
+    "default": "user"
   }
 }

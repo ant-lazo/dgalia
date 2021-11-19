@@ -1,10 +1,19 @@
+<!--<div class="content-layout fullwidth-standard-normal-scroll"
+*ngIf="products | async as data; else loading"
+>-->
+
 <div class="content-layout fullwidth-standard-normal-scroll">
 
     <app-header title="Ranking de Productos" module=""></app-header>
     <div class="main">
         <div class="content">
-            <programation-register-form></programation-register-form>
-            <app-selection-buttons></app-selection-buttons>
+            <programation-register-form (formCompleted)="listenFormChanges($event)"></programation-register-form>
+            <app-selection-buttons (onDownload)="onDownloadMethod()"
+            (onShow)="onShowMethod()"></app-selection-buttons>
+            <!--<app-list [productlist]="data"></app-list>-->
+            <div *ngIf="request | async; else loading">
+                <app-list [productlist]="productsfilter"></app-list>
+            </div>
         </div>
     </div>
 

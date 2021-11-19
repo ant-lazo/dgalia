@@ -10,7 +10,7 @@ export class OpenUsersService {
         public openUsers: Subject<boolean> = new Subject();
     
         constructor() { }
-    
+
         public open(): void {
             this.openUsers.next(true);
         }

@@ -1,17 +1,9 @@
 <form [formGroup]="form" class="flex flex-col mt-4 px-8 pt-10 pb-10 bg-card shadow rounded overflow-hidden">
     <div class="grid grid-cols-7 gap-4 w-full">
-        <!--<div class="col-span-5">
-            <mat-form-field class="w-full">
-                <input formControlName="idHeadquarter" type="text" autocomplete="off" matInput required
-                    placeholder="Nota, referencia o nombre">
-                <mat-icon matPrefix>sticky_note_2</mat-icon>
-            </mat-form-field>
-        </div>-->
         <div class="col-span-5">
             <mat-form-field class="w-full">
-                <mat-select placeholder="Seleccione una sede" formControlName="headquarter_id" required>
+                <mat-select placeholder="Seleccione una sede" formControlName="headquarterId" required>
                     <mat-option *ngFor="let s of headquarterList" [value]="s.id">
-
                         {{s.name}}
                     </mat-option>
                 </mat-select>

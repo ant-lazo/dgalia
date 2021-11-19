@@ -21,7 +21,7 @@ export class ActionButtonsComponent implements OnInit {
 
   public downloadReportKardex(): void {
     console.log("codigo de producto: ",this.productCode);
-    //location.href = ApiRoutes.inventory.kardexRerportDownload(this.prodcode);
+    location.href = ApiRoutes.inventory.kardexRerportDownload(this.productCode);
     //location.href = "https://api.centrocannahope.com/api/medicalConsultation/getRecipe/consultation/5eda710968799d3dbccae5b9"
   }
 

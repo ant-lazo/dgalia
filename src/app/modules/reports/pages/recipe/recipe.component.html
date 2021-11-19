@@ -1,0 +1,20 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header title="Listado de Receta" module=""></app-header>
+    <div class="main">
+        <div class="content">
+            <programation-register-form (formCompleted)="listenFormChanges($event)"></programation-register-form>
+            <app-selection-buttons (onDownload)="onDownloadMethod()"
+            (onShow)="onShowMethod()"></app-selection-buttons>
+            
+            <div *ngIf="request | async; else loading">
+                <app-list [recipelist]="recipefilter"></app-list>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>
