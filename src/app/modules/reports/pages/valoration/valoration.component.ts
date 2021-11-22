@@ -7,13 +7,12 @@ import { InventoryService } from 'app/modules/inventory/services/inventory.servi
 
 
 @Component({
-  selector: 'app-valoration',
-  templateUrl: './valoration.component.html',
-  styleUrls: []
+  selector: "app-valoration",
+  templateUrl: "./valoration.component.html",
+  styleUrls: [],
 })
 export class ValorationComponent implements OnInit {
-
-  public request: Observable<ProductStock[]>
+  public request: Observable<ProductStock[]>;
   public items: ProductStock[] = [];
   public filteredlist: ProductStock[] = [];
 
@@ -31,23 +30,23 @@ export class ValorationComponent implements OnInit {
   }
 
   public listenFilter(action: string): void {
-
-    const type = action.split(':')[0];
-    const param = action.split(':')[1];
+    const type = action.split(":")[0];
+    const param = action.split(":")[1];
 
     this.filteredlist = [];
     let list: ProductStock[] = [];
 
-    if (type === 'headquarter') {
-      list = this.items.filter(e => e.headquarter.name === param);
+    if (type === "headquarter") {
+      list = this.items.filter((e) => e.headquarter.name === param);
       this.filteredlist = new Array(...list);
     }
 
-    if (type === 'name') {
-      list = this.items.filter(e => e.productName.toUpperCase().includes(param.toUpperCase()));
+    if (type === "name") {
+      list = this.items.filter((e) =>
+        e.productName.toUpperCase().includes(param.toUpperCase())
+      );
       this.filteredlist = list;
       return;
     }
   }
-
 }

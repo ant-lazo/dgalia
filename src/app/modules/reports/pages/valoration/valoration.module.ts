@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ValorationComponent } from './valoration.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ValorationComponent } from "./valoration.component";
 
 import { ValorationRoutingModule } from './valoration-routing.module';
 import { FormComponent } from './components/form/form.component';
@@ -39,4 +39,4 @@ import { LabelModule } from 'app/shared/label/label.module';
     LabelModule
   ]
 })
-export class ValorationModule { }
+export class ValorationModule {}
