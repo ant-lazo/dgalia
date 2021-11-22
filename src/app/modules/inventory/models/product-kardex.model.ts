@@ -9,6 +9,8 @@ export interface ProductKardex {
     outputs: number;
     productName: string;
     productCode: string;
+    headquarterId: number;
+    headquarterName: string;
     inventory: ProductInventory[];
     measuredUnit: MeasuredUnit;
 }

@@ -64,7 +64,7 @@ export class ApiRoutes {
         getProdutKardex: (code: string) => `${environment.apiUrl}inventory?product_code=${code}`,
         getProdutKardexByHeadquarter: (code: string, id: Number) => `${environment.apiUrl}inventory/kardex?code=${code}&headquarter=${id}`,
         postRemoveMerchandise: `${environment.apiUrl}inventory/output/cooking_schedule`,
-        kardexRerportDownload: (code: string): string =>`${environment.apiUrl}inventory/kardex?code=${code}`,
+        kardexRerportDownload: (code: string, headquearterId: number): string =>`${environment.apiUrl}inventory-kardex-download?code=${code}&headquarter=${headquearterId}`,
         valorationRerportDownload: (code: string): string =>`${environment.apiUrl}inventory/valoration?code=${code}`
     }
 
@@ -102,6 +102,7 @@ export class ApiRoutes {
     static inputs: any;
 
     public static reports={
+        getValorationDownload:(code: string, headquarterId: number): string=> `${environment.apiUrl}inventory-valoration-download?headquarter=${headquarterId}&code=${code}`,
         getRanking:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}inventory/ranking?from=${start}&to=${end}&headquarter=${headquarterId}`,
         getRankingDownlad:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}product-ranking-download?from=${start}&to=${end}&headquarter=${headquarterId}`,
     }

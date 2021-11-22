@@ -1,1 +1,17 @@
-<p>valoration works!</p>
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <app-header title="Reporte Valoracion" module="Reportes"></app-header>
+    <div class="main">
+        <div class="content">
+            <app-form (paramSelected)="listenFilter($event)"></app-form>
+            <div *ngIf="request | async; else loading ">
+                <app-list [inventoryList]="filteredlist"></app-list>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #loading>
+    <app-loading-body></app-loading-body>
+</ng-template>

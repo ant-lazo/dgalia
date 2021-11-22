@@ -11,6 +11,7 @@ import { ProductInventory } from 'app/modules/inventory/models/product-inventory
 export class ActionButtonsComponent implements OnInit {
 
   @Input() productCode: string;
+  @Input() headquarterId: number;
   //@Input() datain: ProductInventory[];
 
   constructor() { }
@@ -21,7 +22,7 @@ export class ActionButtonsComponent implements OnInit {
 
   public downloadReportKardex(): void {
     console.log("codigo de producto: ",this.productCode);
-    location.href = ApiRoutes.inventory.kardexRerportDownload(this.productCode);
+    location.href = ApiRoutes.inventory.kardexRerportDownload(this.productCode, this.headquarterId);
     //location.href = "https://api.centrocannahope.com/api/medicalConsultation/getRecipe/consultation/5eda710968799d3dbccae5b9"
   }
 
