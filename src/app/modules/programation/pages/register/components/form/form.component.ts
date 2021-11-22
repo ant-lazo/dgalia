@@ -52,7 +52,6 @@ export class FormComponent implements OnInit {
   private setForm(): void {
     this.form = this._formBuilder.group({
       note: [null, Validators.required],
-      description: [null, Validators.required],
       start_date: [null, Validators.required],
       end_date: [null, Validators.required],
       term_id: [null, Validators.required],
