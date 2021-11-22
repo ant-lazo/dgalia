@@ -40,12 +40,12 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Descarga</th>
     <td class="th-max" mat-cell *matCellDef="let element">
       <button
-        (click)="download(element)"
+        (click)="redirect(element)"
         title="Descargar"
         type="button"
         mat-icon-button
       >
-        <mat-icon>cloud_download</mat-icon>
+        <mat-icon>arrow_forward</mat-icon>
       </button>
     </td>
   </ng-container>

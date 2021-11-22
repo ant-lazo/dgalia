@@ -5,6 +5,7 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { ApiRoutes } from "app/core/api/constants/api.routes";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-list",
@@ -28,7 +29,7 @@ export class ListComponent implements OnInit {
   public dataSource: MatTableDataSource<ProductStock> =
     new MatTableDataSource();
 
-  constructor() {}
+  constructor(private _router: Router) {}
 
   ngOnInit(): void {}
 
@@ -42,10 +43,9 @@ export class ListComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  public download(item: ProductStock): void {
-    location.href = ApiRoutes.reports.getValorationDownload(
-      item.productCode,
-      item.headquarter.id
-    );
+  public redirect(item: ProductStock): void {
+    this._router.navigate([
+      "inventario/kardex/" + item.productCode + "/" + item.headquarter.id,
+    ]);
   }
 }
