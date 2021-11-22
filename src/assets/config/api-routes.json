@@ -43,5 +43,8 @@
   },
   "user":{
     "default": "user"
+  },
+  "document":{
+    "default": "document-type"
   }
 }

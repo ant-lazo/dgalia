@@ -17,7 +17,7 @@ export class UserListTableComponent implements OnChanges {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  public displayedColumns: string[] = ["fullname", "email", "cratedAt", "enabled","actions"];
+  public displayedColumns: string[] = ["fullname", "email", "cratedAt","actions"];
   public dataSource: MatTableDataSource<User> = new MatTableDataSource([]);
 
   constructor() {}

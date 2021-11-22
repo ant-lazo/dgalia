@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { user } from 'app/data/mock/common/user/data';
 import { Observable } from 'rxjs';
-import { Items } from '../../models/user';
+import { User } from '../../models/user';
 import { UserServiceService } from '../../services/user-service.service';
 
 
@@ -13,9 +13,9 @@ import { UserServiceService } from '../../services/user-service.service';
 })
 export class SelectUserComponent {
 
-  @Output() userSelected: EventEmitter<Items> = new EventEmitter();
+  @Output() userSelected: EventEmitter<User> = new EventEmitter();
 
-  public list: Items[] = [];
+  public list: User[] = [];
 
 
   constructor(
@@ -24,15 +24,15 @@ export class SelectUserComponent {
   ) { }
 
   public listenSearchBoxParam(param: string): void {
-    const request: Observable<Items[]> = this._user.findByName(param);
+    const request: Observable<User[]> = this._user.findByName(param);
     if (param != '') {
-      request.subscribe((resp: Items[]) => {
+      request.subscribe((resp: User[]) => {
         this.list = resp;
       });
     }
   }
 
-  public onClose(_items?: Items): void {
+  public onClose(_items?: User): void {
     this._matDialogRef.close(user);
   }
 

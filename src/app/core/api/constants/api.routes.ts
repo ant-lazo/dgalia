@@ -1,4 +1,4 @@
-import { environment } from "environments/environment"
+import { environment } from "environments/environment";
 
 export class ApiRoutes {
 
@@ -64,7 +64,7 @@ export class ApiRoutes {
         getProdutKardex: (code: string) => `${environment.apiUrl}inventory?product_code=${code}`,
         getProdutKardexByHeadquarter: (code: string, id: Number) => `${environment.apiUrl}inventory/kardex?code=${code}&headquarter=${id}`,
         postRemoveMerchandise: `${environment.apiUrl}inventory/output/cooking_schedule`,
-        kardexRerportDownload: (code: string): string =>`${environment.apiUrl}inventory/kardex?code=${code}`,
+        kardexRerportDownload: (code: string, headquearterId: number): string =>`${environment.apiUrl}inventory-kardex-download?code=${code}&headquarter=${headquearterId}`,
         valorationRerportDownload: (code: string): string =>`${environment.apiUrl}inventory/valoration?code=${code}`
     }
 
@@ -102,13 +102,13 @@ export class ApiRoutes {
     static inputs: any;
 
     public static reports={
+        getValorationDownload:(code: string, headquarterId: number): string=> `${environment.apiUrl}inventory-valoration-download?headquarter=${headquarterId}&code=${code}`,
         getRanking:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}inventory/ranking?from=${start}&to=${end}&headquarter=${headquarterId}`,
         getRankingDownlad:(start: string, end: string, headquarterId: number): string => `${environment.apiUrl}product-ranking-download?from=${start}&to=${end}&headquarter=${headquarterId}`,
         getRecipe:(headquarterId: number): string =>  `${environment.apiUrl}recipe?headquarter=${headquarterId}`,
         getRecipeDownload:(headquarterId: number): string => `${environment.apiUrl}recipe-headquarter-download?headquarter=${headquarterId}`,
         getPendingPayment:(headquarterId: number): string =>  `${environment.apiUrl}invoice?headquarter${headquarterId}`,
         getPendingPaymentDownload:(headquarterId: number): string => `${environment.apiUrl}invoice-download?headquarter=${headquarterId}`,
-    
     }
 
 }
