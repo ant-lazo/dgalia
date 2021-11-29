@@ -15,8 +15,7 @@ export class FormComponent implements OnInit {
   public request: Observable<any>;
   headquarterList: Headquarter[];
 
-  public rqheadquarter: Observable<Headquarter[]>;
-  @Output() paramSelected: EventEmitter<string> = new EventEmitter();
+  // @Output() paramSelected: EventEmitter<string> = new EventEmitter();
 
   @Output() formCompleted: EventEmitter<InvoiceFormModel> = new EventEmitter();
 
@@ -24,33 +23,27 @@ export class FormComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _headquarters: HeadquartesService
   ) {
-    // this.setForm();
+    this.setForm();
   }
 
   ngOnInit(): void {
-    this.rqheadquarter = this._headquarters.getCompleteList();
-
-    // this.listenFormChanges();
-    // this._headquarters.getCompleteList().subscribe(a=>{
-    //   this.headquarterList=a;
-    // });
+  
+    this.listenFormChanges();
+    this._headquarters.getCompleteList().subscribe(a=>{
+      this.headquarterList=a;
+    });
   }
 
-  public headquarterChange(event: any) {
-    this.paramSelected.emit(`headquarter:${event}`);
+  private setForm(): void {
+    this.form = this._formBuilder.group({
+      headquarterId: [null, Validators.required],
+    })
   }
 
-  // private setForm(): void {
-  //   this.form = this._formBuilder.group({
-  //     headquarterId: [null, Validators.required],
-  //   });
-  // }
 
-  // private listenFormChanges(): void {
-  //   this.form.valueChanges.subscribe((form: InvoiceFormModel) => {
-  //     this.form.valid
-  //       ? this.formCompleted.emit(form)
-  //       : this.formCompleted.emit(null);
-  //   });
-  // }
+  private listenFormChanges(): void {
+    this.form.valueChanges.subscribe((form: InvoiceFormModel) => {
+      this.form.valid ? this.formCompleted.emit(form) : this.formCompleted.emit(null);
+    });
+  }
 }

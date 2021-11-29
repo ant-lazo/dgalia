@@ -56,11 +56,10 @@ export class FormComponent implements OnInit {
       note: [null, Validators.required],
       start_date: [null, Validators.required],
       end_date: [null, Validators.required],
-      description:[null],
+      description: [null],
       term_id: [null, Validators.required],
       headquarter_id: [null, Validators.required],
       recipes: [null],
-      description: [null, Validators.required],
     });
   }
 }

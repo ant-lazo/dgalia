@@ -8,7 +8,9 @@ import { ProductCategoriesService } from "app/modules/product-category/services/
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { Observable } from "rxjs";
 import { User } from "../../models/user";
+import { UserUpdate } from "../../models/user-update";
 import { UserServiceService } from "../../services/user-service.service";
+import { DocumentType } from "../../models/user";
 
 @Component({
   selector: "app-user-edit",
@@ -18,9 +20,11 @@ import { UserServiceService } from "../../services/user-service.service";
 export class UserEditComponent implements OnInit {
   public editForm: FormGroup;
   private fullname: string;
+  public requestDocumentTypeList: Observable<DocumentType[]>;
   public measuddredUnitList: Observable<MeasuredUnit[]>;
   public productCategoryList: Observable<ProductCategory[]>;
   private readonly itemTypeDefault = "I";
+  private readonly userIdDefault = 2;
 
   constructor(
     private matDialogRef: MatDialogRef<UserEditComponent>,
@@ -35,8 +39,8 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.measuddredUnitList = this._measuredUnit.getGetList();
-    this.productCategoryList = this._productCategory.getList();
+    this.requestDocumentTypeList = this._user.getListDocumentType();
+    console.log("usuario par aeditar: ", this.data);
   }
 
   public onNoCreate() {
@@ -60,19 +64,21 @@ export class UserEditComponent implements OnInit {
 
   private setForm(data: User) {
     this.editForm = this.formBuilder.group({
-      fullname: [null, Validators.required],
-      email: [null, Validators.required],
+      id: [data.id, Validators.required],
+      fullname: [data.fullname, Validators.required],
+      email: [data.email, Validators.required],
       password: [null, Validators.required],
-      rol_Id: [null, Validators.required],
-      emailContact: [null, Validators.required],
-      phone: [null, Validators.required],
-      address: [null, Validators.required],
-      district: [null, Validators.required],
-      province: [null, Validators.required],
-      departament: [null, Validators.required],
-      document: [null, Validators.required],
-      documentTypeId: [null, Validators.required],
+      rolId: this.userIdDefault,
+      contact: this.formBuilder.group({
+        email: [data.contact.email, Validators.required],
+        phone: [data.contact.phone, Validators.required],
+        address: [data.contact.address, Validators.required],
+        district: [data.contact.district, Validators.required],
+        province: [data.contact.province, Validators.required],
+        departament: [data.contact.departament, Validators.required],
+        document: [data.contact.document, Validators.required],
+        documentTypeId: [data.contact.documentType.id, Validators.required],
+      }),
     });
-    this.fullname = data.fullname;
   }
 }

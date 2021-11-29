@@ -1,4 +1,3 @@
-
 <h1>Editar <span class="text-primary"> usuario </span> en sistema</h1>
 
 <form
@@ -7,31 +6,20 @@
   class="flex flex-col mt-4 px-8 pt-10 bg-card shadow rounded overflow-hidden"
 >
   <div class="flex flex-col gt-xs:flex-row">
-    <!-- <mat-form-field class="flex-auto gt-xs:pr-3">
-      <input
-        readonly
-        formControlName="code"
-        type="text"
-        autocomplete="off"
-        matInput
-        required
-        placeholder="Código"
-      />
-      <mat-icon matPrefix>integration_instructions</mat-icon>
-    </mat-form-field> -->
-
     <mat-form-field class="flex-auto gt-xs:pr-3">
       <input
-        formControlName="name"
+        formControlName="fullname"
         type="text"
         autocomplete="off"
         matInput
         required
         placeholder="Nombre"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>account_box</mat-icon>
     </mat-form-field>
+  </div>
 
+  <div class="flex">
     <mat-form-field class="flex-auto gt-xs:pr-3">
       <input
         formControlName="email"
@@ -41,52 +29,42 @@
         required
         placeholder="Nuevo Email"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>alternate_email</mat-icon>
     </mat-form-field>
   </div>
 
   <div class="flex">
     <mat-form-field class="flex-auto gt-xs:pr-3">
       <input
-        formControlName="rol_Id"
-        type="text"
-        autocomplete="off"
-        matInput
-        required
-        placeholder="Rol institucional"
-      />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field class="flex-auto gt-xs:pr-3">
-      <input
         formControlName="password"
-        type="text"
+        type="password"
         autocomplete="off"
         matInput
         required
         placeholder="Contraseña"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>lock</mat-icon>
     </mat-form-field>
   </div>
 
-  <h3>Información personal de contacto</h3>
+  <h2>Datos de contacto</h2>
 
   <div class="flex">
-    <mat-form-field class="flex-auto gt-xs:pr-3">
+    <mat-form-field class="flex-auto gt-xs:pr-3" formGroupName="contact">
       <input
-        formControlName="emailContact"
+        formControlName="email"
         type="text"
         autocomplete="off"
         matInput
         required
         placeholder="Email Personal"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>email</mat-icon>
     </mat-form-field>
+  </div>
 
-    <mat-form-field class="flex-auto gt-xs:pr-3">
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3" formGroupName="contact">
       <input
         formControlName="phone"
         type="text"
@@ -95,12 +73,12 @@
         required
         placeholder="Teléfono"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>call</mat-icon>
     </mat-form-field>
   </div>
 
   <div class="flex">
-    <mat-form-field class="flex-auto gt-xs:pr-3">
+    <mat-form-field class="flex-auto gt-xs:pr-3" formGroupName="contact">
       <input
         formControlName="address"
         type="text"
@@ -109,24 +87,26 @@
         required
         placeholder="Dirección"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>home</mat-icon>
     </mat-form-field>
+  </div>
 
-    <mat-form-field class="flex-auto gt-xs:pr-3">
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3" formGroupName="contact">
       <input
-        formControlName="disctrict"
+        formControlName="district"
         type="text"
         autocomplete="off"
         matInput
         required
         placeholder="Distrito"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>room</mat-icon>
     </mat-form-field>
   </div>
 
   <div class="flex">
-    <mat-form-field class="flex-auto gt-xs:pr-3">
+    <mat-form-field class="flex-auto gt-xs:pr-3" formGroupName="contact">
       <input
         formControlName="province"
         type="text"
@@ -137,22 +117,42 @@
       />
       <mat-icon matPrefix>sticky_note_2</mat-icon>
     </mat-form-field>
+  </div>
 
-    <mat-form-field class="flex-auto gt-xs:pr-3">
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3" formGroupName="contact">
       <input
-        formControlName="Departament"
+        formControlName="departament"
         type="text"
         autocomplete="off"
         matInput
         required
         placeholder="Departamento"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>map</mat-icon>
     </mat-form-field>
   </div>
 
   <div class="flex">
-    <mat-form-field class="flex-auto gt-xs:pr-3">
+    <mat-form-field class="flex-auto gt-xs:pr-3" formGroupName="contact">
+      <mat-select
+        placeholder="Seleccione un tipo de documento"
+        formControlName="documentTypeId"
+        required
+      >
+        <mat-option
+          *ngFor="let dt of requestDocumentTypeList | async"
+          [value]="dt.id"
+        >
+          {{ dt.name }}
+        </mat-option>
+      </mat-select>
+      <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="flex">
+    <mat-form-field class="flex-auto gt-xs:pr-3" formGroupName="contact">
       <input
         formControlName="document"
         type="text"
@@ -161,83 +161,9 @@
         required
         placeholder="Documento"
       />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field class="flex-auto gt-xs:pr-3">
-      <input
-        formControlName="documentTypeId"
-        type="text"
-        autocomplete="off"
-        matInput
-        required
-        placeholder="Tipo de documento"
-      />
-      <mat-icon matPrefix>sticky_note_2</mat-icon>
+      <mat-icon matPrefix>contacts</mat-icon>
     </mat-form-field>
   </div>
-
-  <!-- <div class="flex">
-    <mat-form-field class="flex-auto gt-xs:pr-3">
-      <mat-select
-        placeholder="Seleccione una unidad de medída"
-        formControlName="measured_unit_id"
-        required
-      >
-        <mat-option
-          *ngFor="let mu of measuddredUnitList | async"
-          [value]="mu.id"
-        >
-          {{ mu.name }}
-        </mat-option>
-      </mat-select>
-      <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
-    </mat-form-field>
-  </div>
-
-  <div class="flex">
-    <mat-form-field class="flex-auto gt-xs:pr-3">
-      <mat-select
-        placeholder="Seleccione una categoría"
-        formControlName="category_id"
-        required
-      >
-        <mat-option
-          *ngFor="let pc of productCategoryList | async"
-          [value]="pc.id"
-        >
-          {{ pc.name }}
-        </mat-option>
-      </mat-select>
-      <mat-icon matPrefix svgIcon="clear_all"></mat-icon>
-    </mat-form-field>
-  </div>
-
-  <div class="flex">
-    <mat-form-field class="flex-auto gt-xs:pr-3">
-      <input
-        formControlName="estimated_price"
-        type="number"
-        autocomplete="off"
-        matInput
-        placeholder="Precio estimado"
-      />
-      <mat-icon matPrefix>attach_money</mat-icon>
-    </mat-form-field>
-  </div>
-
-  <div class="flex">
-    <mat-form-field class="flex-auto gt-xs:pr-3">
-      <input
-        formControlName="loss_percentage"
-        type="number"
-        autocomplete="off"
-        matInput
-        placeholder="Porcentaje de merma"
-      />
-      <mat-icon matPrefix>assignment_returned</mat-icon>
-    </mat-form-field>
-  </div> -->
 
   <div
     class="
@@ -270,7 +196,7 @@
       [color]="'primary'"
     >
       <mat-icon class="mr-2">save</mat-icon>
-      Actualizar
+      actualizar
     </button>
   </div>
 </form>

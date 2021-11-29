@@ -20,10 +20,10 @@ export class UserRegisterComponent implements OnInit {
   public registerForm: FormGroup;
   public measuddredUnitList: Observable<MeasuredUnit[]>;
   public requestDocumentTypeList: Observable<DocumentType[]>;
-  public documentTypeList: DocumentType[]
+  public documentTypeList: DocumentType[];
   public supplyCode: string;
   private readonly userIdDefault = 2;
-  public user : User
+  public user: User;
 
   constructor(
     private matDialogRef: MatDialogRef<UserRegisterComponent>,
@@ -71,7 +71,7 @@ export class UserRegisterComponent implements OnInit {
       email: [null, Validators.required],
       password: [null, Validators.required],
       rolId: this.userIdDefault,
-      contact : this.formBuilder.group({
+      contact: this.formBuilder.group({
         email: [null, Validators.required],
         phone: [null, Validators.required],
         address: [null, Validators.required],

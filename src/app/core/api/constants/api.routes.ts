@@ -78,7 +78,7 @@ export class ApiRoutes {
       `${environment.apiUrl}inventory/kardex?code=${code}&headquarter=${id}`,
     postRemoveMerchandise: `${environment.apiUrl}inventory/output/cooking_schedule`,
     kardexRerportDownload: (code: string, headquearterId: number): string =>
-      `${environment.apiUrl}inventory-kardex-download?code=${code}&=${headquearterId}`,
+      `${environment.apiUrl}inventory-kardex-download?code=${code}&headquarter=${headquearterId}`,
     valorationRerportDownload: (code: string): string =>
       `${environment.apiUrl}inventory/valoration?code=${code}`,
   };
@@ -138,7 +138,7 @@ export class ApiRoutes {
     getRecipeDownload: (headquarterId: number): string =>
       `${environment.apiUrl}recipe-headquarter-download?headquarter=${headquarterId}`,
     getPendingPayment: (headquarterId: number): string =>
-      `${environment.apiUrl}invoice?headquarter${headquarterId}`,
+      `${environment.apiUrl}invoice?headquarter=${headquarterId}`,
     getPendingPaymentDownload: (headquarterId: number): string =>
       `${environment.apiUrl}invoice-download?headquarter=${headquarterId}`,
   };
