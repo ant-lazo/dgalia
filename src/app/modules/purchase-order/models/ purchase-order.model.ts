@@ -14,13 +14,14 @@ export interface PurchaseOrder {
     createdAt: Date;
     updatedAt: Date;
     createdBy: UserInfo;
+    updatedBy: UserInfo;
     products: PurchaseOrderProduct[];
     comments: string;
     enabled: boolean;
     subTotal: number;
     igv: number;
     total: number;
-    updatedBy: UserInfo;
+    
 }
 
 export interface PurchaseOrderStatus {

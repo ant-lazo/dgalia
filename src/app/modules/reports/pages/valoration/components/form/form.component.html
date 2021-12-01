@@ -6,8 +6,8 @@
 
     <div class="col-span-3">
         <mat-form-field class="w-full">
-            <mat-select (valueChange)="headquarterChange($event)" placeholder="Selecciona una sede">
-                <mat-option *ngFor="let hq of rqheadquarter| async" [value]="hq.name">
+            <mat-select (valueChange)="headquarterIdChange($event)" placeholder="Selecciona una sede">
+                <mat-option *ngFor="let hq of rqheadquarter| async" [value]="hq.id">
                     {{ hq.name}}
                 </mat-option>
             </mat-select>

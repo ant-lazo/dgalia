@@ -4,6 +4,7 @@ import { ProductCategory } from 'app/modules/product-category/models/product-cat
 import { UserInfo } from 'app/modules/user/models/user-info.model';
 
 export interface Provider {
+    id: number;
     code: string;
     legalName: string;
     commercialName: string;
@@ -19,7 +20,6 @@ export interface Provider {
     updatedAt: Date;
     createdBy: UserInfo;
     updatedBy: UserInfo;
-    id: number;
     headquarter: Headquarter;
     productCategory: ProductCategory;
 }

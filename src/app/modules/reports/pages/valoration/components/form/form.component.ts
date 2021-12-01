@@ -25,8 +25,8 @@ export class FormComponent implements OnInit {
     this.paramSelected.emit(`name:${param}`)
   }
 
-  public headquarterChange(event: any) {
-    this.paramSelected.emit(`headquarter:${event}`)
+  public headquarterIdChange(event: any) {
+    this.paramSelected.emit(`headquarterId:${event}`)
   }
 
 }

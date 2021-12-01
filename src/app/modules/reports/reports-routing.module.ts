@@ -29,6 +29,10 @@ const routes: Routes = [
             loadChildren: () => import('./pages/valoration/valoration.module').then(v => v.ValorationModule)
         },
         {
+            path: 'programation',
+            loadChildren: () => import('./pages/programation/programation.module').then(p => p.ProgramationModule)
+        },
+        {
             path: '', pathMatch: 'full', redirectTo: 'ranking'
         }
     ]

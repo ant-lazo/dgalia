@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 
 import { ProductKardex } from '../models/product-kardex.model';
 import { ProductStock } from '../models/product-stock.model';
+import { ProductStockValoration } from 'app/modules/reports/pages/valoration/models/product-stock-valoration';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class InventoryService {
 
   public getSotck(): Observable<ProductStock[]> {
     return this._http.get<JsonResp>(ApiRoutes.inventory.getStock).pipe(map(resp => resp.data));
+  }
+
+  public getSotckValoration(headquarterId: number): Observable<ProductStockValoration[]> {
+    return this._http.get<JsonResp>(ApiRoutes.inventory.getStockValoration(headquarterId)).pipe(map(resp => resp.data));
   }
 
   public getKardex(productKardex: string): Observable<ProductKardex> {

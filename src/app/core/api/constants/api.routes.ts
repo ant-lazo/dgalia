@@ -81,6 +81,8 @@ export class ApiRoutes {
       `${environment.apiUrl}inventory-kardex-download?code=${code}&headquarter=${headquearterId}`,
     valorationRerportDownload: (code: string): string =>
       `${environment.apiUrl}inventory/valoration?code=${code}`,
+    getStockValoration: (headquarterId: number): string =>
+      `${environment.apiUrl}inventory/stock/valoration?headquarter=${headquarterId}`,
   };
 
   public static purchaseOrder = {
@@ -141,5 +143,6 @@ export class ApiRoutes {
       `${environment.apiUrl}invoice?headquarter=${headquarterId}`,
     getPendingPaymentDownload: (headquarterId: number): string =>
       `${environment.apiUrl}invoice-download?headquarter=${headquarterId}`,
+    getAllPendingPayment: `${environment.apiUrl}invoice/pendingpayment`
   };
 }

@@ -18,5 +18,10 @@ export class PendingPaymentService {
   public show(headquarterId: number): Observable<FilterInvoice[]> {
     return this._http.get<JsonResp>(ApiRoutes.reports.getPendingPayment(headquarterId)).pipe(map(result => result.data));
 }
+
+ public allPendingPayment(): Observable<FilterInvoice[]>{
+   return this._http.get<JsonResp>(ApiRoutes.reports.getAllPendingPayment).pipe(map(result => result.data));
+ }
+
 }
 

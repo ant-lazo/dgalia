@@ -22,9 +22,14 @@ export class ListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void{  
+  }
+
+  ngOnChanges(): void {
     if (this.invoicelist) this.setDataSourceList();
   }
+
+
 
   private setDataSourceList(): void {
     this.dataSource = new MatTableDataSource(this.invoicelist);

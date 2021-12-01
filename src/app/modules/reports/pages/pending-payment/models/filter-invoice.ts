@@ -37,4 +37,5 @@ export interface Headquarter {
 interface CreatedBy {
     id: number;
     fullname: string;
+    email: string;
 }

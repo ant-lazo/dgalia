@@ -21,7 +21,7 @@ export class PendingPaymentComponent implements OnInit {
 
   ngOnInit(): void {
     //this.setDefaultData();
-    this.request = this._invoice.show(3).pipe(
+    this.request = this._invoice.allPendingPayment().pipe(
       map((e) => {
         this.items = e;
         this.filteredlist = e;
@@ -31,9 +31,9 @@ export class PendingPaymentComponent implements OnInit {
     );
   }
 
-  public listenFormChanges(form: InvoiceFormModel): void {
+  /*public listenFormChanges(form: InvoiceFormModel): void {
     this.form = form;
-  }
+  }*/
 
   /*public onShowMethod(): void {
     this.setRecipe();
@@ -59,4 +59,28 @@ export class PendingPaymentComponent implements OnInit {
       this.invoicefilter = p;
     });
   }*/
+
+  public listenFormChanges(action: string): void {
+    console.log("aver: ",action);
+    const type = action.split(":")[0];
+    const param = action.split(":")[1];
+
+    this.filteredlist = [];
+    let list: FilterInvoice[] = [];
+
+    if (type === "headquarter") {
+      list = this.items.filter((e) => e.purchaseOrder.headquarter.name === param);
+      
+      this.filteredlist = new Array(...list);
+    }
+
+    /*if (type === "name") {
+      list = this.items.filter((e) =>
+        e.purchaseOrder.headquarter.name.toUpperCase().includes(param.toUpperCase())
+      );
+      this.filteredlist = list;
+      return;
+    }*/
+  }
+
 }

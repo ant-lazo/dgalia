@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { ProductStock } from 'app/modules/inventory/models/product-stock.model'
+import { ProductStockValoration } from '../valoration/models/product-stock-valoration'
 import { InventoryService } from 'app/modules/inventory/services/inventory.service';
 
 
@@ -12,16 +12,17 @@ import { InventoryService } from 'app/modules/inventory/services/inventory.servi
   styleUrls: [],
 })
 export class ValorationComponent implements OnInit {
-  public request: Observable<ProductStock[]>;
-  public items: ProductStock[] = [];
-  public filteredlist: ProductStock[] = [];
+  public request: Observable<ProductStockValoration[]>;
+  public items: ProductStockValoration[] = [];
+  public filteredlist: ProductStockValoration[] = [];
+  public headquarterId:any =0;
 
   constructor(
     private _inventory: InventoryService
   ) { }
 
   ngOnInit(): void {
-    this.request = this._inventory.getSotck().pipe(map(e => {
+    this.request = this._inventory.getSotckValoration(this.headquarterId).pipe(map(e => {
       this.items = e;
       this.filteredlist = e;
       console.log("que viene:", this.filteredlist);
@@ -29,17 +30,21 @@ export class ValorationComponent implements OnInit {
     }));
   }
 
+
   public listenFilter(action: string): void {
     const type = action.split(":")[0];
     const param = action.split(":")[1];
 
     this.filteredlist = [];
-    let list: ProductStock[] = [];
+    let list: ProductStockValoration[] = [];
 
-    if (type === "headquarter") {
-      list = this.items.filter((e) => e.headquarter.name === param);
-      this.filteredlist = new Array(...list);
+    if (type === "headquarterId") {
+      /*list = this.items.filter((e) => e.headquarter.name === param);
+      this.filteredlist = new Array(...list);*/
+      this.headquarterId = param;
+      
     }
+    console.log("afuera",this.headquarterId);
 
     if (type === "name") {
       list = this.items.filter((e) =>

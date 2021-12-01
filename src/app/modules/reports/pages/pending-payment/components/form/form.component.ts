@@ -15,7 +15,7 @@ export class FormComponent implements OnInit {
   public request: Observable<any>;
   headquarterList: Headquarter[];
 
-  // @Output() paramSelected: EventEmitter<string> = new EventEmitter();
+  @Output() paramSelected: EventEmitter<string> = new EventEmitter();
 
   @Output() formCompleted: EventEmitter<InvoiceFormModel> = new EventEmitter();
 
@@ -46,4 +46,9 @@ export class FormComponent implements OnInit {
       this.form.valid ? this.formCompleted.emit(form) : this.formCompleted.emit(null);
     });
   }
+
+  public headquarterChange(event: any) {
+    this.paramSelected.emit(`headquarter:${event}`);
+  }
+
 }
