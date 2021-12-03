@@ -229,7 +229,7 @@
             "children": [
                 {
                     "id": "pages.ranking-report",
-                    "title": "Ranking productos",
+                    "title": "Ranking Productos",
                     "link": "/reportes/ranking",
                     "type": "basic"
                 },
@@ -241,7 +241,7 @@
                 },
                 {
                     "id": "pages.ranking-report",
-                    "title": "Pagos pendientes",
+                    "title": "Pagos Pendientes",
                     "link": "/reportes/pending-payment",
                     "type": "basic"
                 },
