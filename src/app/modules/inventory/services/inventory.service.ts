@@ -35,4 +35,8 @@ export class InventoryService {
   public postRemoveMerchandise(data:any){
     return this._http.post<JsonResp>(ApiRoutes.inventory.postRemoveMerchandise,data)
   }
+
+  public getValorationByHeadquarter(headquarterId: number): Observable<ProductStockValoration[]> {
+    return this._http.get<JsonResp>(ApiRoutes.inventory.getStockValoration(headquarterId)).pipe(map(resp => resp.data));
+  }
 }

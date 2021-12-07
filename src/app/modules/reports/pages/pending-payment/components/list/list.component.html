@@ -25,7 +25,12 @@
 
         <ng-container [matColumnDef]="displayedColumns[3]">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Orden de Compra </th>
-            <td mat-cell *matCellDef="let element"> {{element.purchaseOrder.id}} </td>
+            <td mat-cell *matCellDef="let element"> 
+                <span
+                    class="text-xs font-semibold inline-block py-1 px-2 rounded text-teal-600 bg-teal-200  last:mr-0 mr-1">
+                    {{ element.purchaseOrder.code }}
+                </span>
+            </td>
         </ng-container>
 
         <ng-container [matColumnDef]="displayedColumns[4]">

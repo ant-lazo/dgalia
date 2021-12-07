@@ -82,8 +82,8 @@ export class ApiRoutes {
     valorationRerportDownload: (code: string): string =>
       `${environment.apiUrl}inventory/valoration?code=${code}`,
     getStockValoration: (headquarterId: number): string =>
-      `${environment.apiUrl}inventory/stock/valoration?headquarter=${headquarterId}`,
-  };
+      `${environment.apiUrl}inventory/stock/valoration?headquarter=${headquarterId}`
+    };
 
   public static purchaseOrder = {
     save: `${environment.apiUrl}purchase-order`,

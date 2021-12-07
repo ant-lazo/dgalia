@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 import { RecipeFormModel } from '../../models/register-form';
 
-
 @Component({
   selector: 'programation-register-form',
   templateUrl: './form.component.html',

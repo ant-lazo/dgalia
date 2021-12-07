@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Headquarter } from 'app/modules/headquarter/models/headquarter.model';
 import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
 import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValorationFormModel } from '../../models/register-form';
 
 @Component({
   selector: 'app-form',
@@ -10,23 +12,37 @@ import { Observable } from 'rxjs';
 })
 export class FormComponent implements OnInit {
 
-  public rqheadquarter: Observable<Headquarter[]>;
-  @Output() paramSelected: EventEmitter<string> = new EventEmitter();
+  public form: FormGroup;
+  public request: Observable<any>;
+  headquarterList: Headquarter[];
+  
+  @Output() formCompleted: EventEmitter<ValorationFormModel> = new EventEmitter();
 
   constructor(
+    private _formBuilder: FormBuilder,
     private _headquarters: HeadquartesService
-  ) { }
+  ) { 
+    this.setForm();
+  }
 
   ngOnInit(): void {
-    this.rqheadquarter = this._headquarters.getCompleteList();
+    this.listenFormChanges();
+    this._headquarters.getCompleteList().subscribe(a=>{
+      this.headquarterList=a;
+    });
+    
   }
 
-  public listenSearchBox(param: string): void {
-    this.paramSelected.emit(`name:${param}`)
+  private setForm(): void {
+    this.form = this._formBuilder.group({
+      headquarterId: [null, Validators.required]
+    })
   }
 
-  public headquarterIdChange(event: any) {
-    this.paramSelected.emit(`headquarterId:${event}`)
+  private listenFormChanges(): void {
+    this.form.valueChanges.subscribe((form: ValorationFormModel ) => {
+      this.form.valid ? this.formCompleted.emit(form) : this.formCompleted.emit(null);
+    });
   }
 
 }

@@ -7,6 +7,9 @@ import { FilterProduct } from './models/filter-products';
 import { combineLatest, Observable } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ApiRoutes } from 'app/core/api/constants/api.routes';
+import { ShowFormHelper } from './helpers/show-form-validations.helper';
+import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
+
 
 @Component({
   selector: 'app-ranking-product',
@@ -26,7 +29,9 @@ export class RankingProductComponent implements OnInit {
    t30before: string;
 
   constructor(
-    private _ranking: RankingService
+    private _ranking: RankingService,
+    private _helper: ShowFormHelper,
+    private _notifications: AppNotificationsService
     ) { }
 
   ngOnInit(): void {
@@ -42,6 +47,14 @@ export class RankingProductComponent implements OnInit {
   }
 
   public onShowMethod(): void {
+
+    const error: string = this._helper.validateFormData(this.form);
+    if (error != '') {
+      this._notifications.error(null, error);
+      return;
+    }
+
+
     this.start=moment(this.form.start_date).format("yyyy-MM-DD");
     //console.log("start: ",this.start);
     this.end=moment(this.form.end_date).format("yyyy-MM-DD");
@@ -51,6 +64,13 @@ export class RankingProductComponent implements OnInit {
   }
 
   public onDownloadMethod(): void {
+
+    const error: string = this._helper.validateFormData(this.form);
+    if (error != '') {
+      this._notifications.error(null, error);
+      return;
+    }
+
     location.href = ApiRoutes.reports.getRankingDownlad(this.start,this.end,this.form.headquarterId);
   }
 

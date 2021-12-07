@@ -14,18 +14,12 @@ import { Observable } from 'rxjs';
 export class SupplyListComponent implements OnInit {
 
   @Input() resumenList: ResumeFormList[];
-  //@Input() measureUnitList: MeasuredUnit[];
-
-  //data:any;
-
-  dato : string ;
 
   public measureUnitList: Observable<MeasuredUnit[]>;
 
   lista : MeasuredUnit[];
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  //public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
   public displayedColumns: string[] = ['code', 'category', 'name', 'quantity', 'mu', 'eqcuantity', 'eqmu', 'price', 'total'];
   public dataSource: MatTableDataSource<ResumeFormList> = new MatTableDataSource([]);
   constructor(
@@ -39,24 +33,13 @@ export class SupplyListComponent implements OnInit {
     //console.log("measureUnitList: ",this.measureUnitList)
     this.measureUnitList=this._measureUnits.getGetList();
     console.log("measureUnitList: ",this.measureUnitList);
-    this.measureUnitList.subscribe(a=>{this.lista=a,this.iterar()});
-    this.dato = "BOT";
+    this.measureUnitList.subscribe(a=>{this.lista=a});
   }
 
   public setDatatable() {
     this.dataSource = new MatTableDataSource(this.resumenList);
     this.dataSource.sort = this.sort;
     console.log("datasource: ",this.dataSource);
-  }
-
-  public iterar(){
-    console.log("List: ",this.lista)
-
-    for (let a of this.lista){
-
-      console.log("lista: ",a.id,a.name,a.code)
-
-    }
   }
 
 }

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-
 @Component({
   selector: 'app-selection-buttons',
   templateUrl: './selection-buttons.component.html',
@@ -8,16 +7,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SelectionButtonsComponent implements OnInit {
 
-  @Output() onDownload: EventEmitter<void> = new EventEmitter();
   @Output() onShow: EventEmitter<void> = new EventEmitter();
-  
-  
-  constructor( 
-  ) { }
+
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-
 
 }

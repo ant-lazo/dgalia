@@ -5,9 +5,11 @@ import { ValorationComponent } from "./valoration.component";
 import { ValorationRoutingModule } from './valoration-routing.module';
 import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
+import { SelectionButtonsComponent } from "./components/selection-buttons/selection-buttons.component";
 
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBoxModule } from 'app/shared/search-box/search-box.module';
 import { MatSelectModule } from '@angular/material/select';
 import { HeaderModule } from 'app/shared/header/header.module';
@@ -16,13 +18,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { LabelModule } from 'app/shared/label/label.module';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
     ValorationComponent,
     FormComponent,
-    ListComponent
+    ListComponent,
+    SelectionButtonsComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,10 @@ import { LabelModule } from 'app/shared/label/label.module';
     MatPaginatorModule,
     MatTableModule,
     MatIconModule,
-    LabelModule
+    LabelModule,
+    MatButtonModule, 
+    FormsModule, 
+    ReactiveFormsModule
   ]
 })
 export class ValorationModule {}

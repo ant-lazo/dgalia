@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
       headquarter_id: this.cookingSchedule.headquarter.id,
       resumenList: this.resumenList
     });
-
+    console.log("avershh: ",newDemandSheet)
     //this.register(newDemandSheet);
   }
 

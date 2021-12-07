@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  public displayedColumns: string[] = ['code', 'name', 'headquarter', 'quantity', 'measuredUnit', 'update', 'download'];
+  public displayedColumns: string[] = ['code', 'name', 'headquarter', 'stock', 'valoration', 'update', 'download'];
   public dataSource: MatTableDataSource<ProductStock> = new MatTableDataSource();
 
 

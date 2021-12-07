@@ -20,6 +20,7 @@ import { ListComponent } from './components/list/list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { DatePipe } from '@angular/common';
+import { ShowFormHelper } from './helpers/show-form-validations.helper';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { DatePipe } from '@angular/common';
     //DatePipe
   ],
   providers:[
-    DatePipe
+    DatePipe,
+    ShowFormHelper
   ]
 })
 export class RankingProductModule { }

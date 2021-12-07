@@ -3,7 +3,8 @@
     <app-header title="Reporte Valoracion" module="Reportes"></app-header>
     <div class="main">
         <div class="content">
-            <app-form (paramSelected)="listenFilter($event)"></app-form>
+            <app-form  (formCompleted)="listenFormChanges($event)"></app-form>
+            <app-selection-buttons (onShow)="onShowMethod()"></app-selection-buttons>
             <div *ngIf="request | async; else loading ">
                 <app-list [inventoryList]="filteredlist"></app-list>
             </div>

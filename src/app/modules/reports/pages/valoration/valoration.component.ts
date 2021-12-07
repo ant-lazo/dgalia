@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 
 import { ProductStockValoration } from '../valoration/models/product-stock-valoration'
 import { InventoryService } from 'app/modules/inventory/services/inventory.service';
-
+import { ValorationFormModel } from './models/register-form';
 
 @Component({
   selector: "app-valoration",
@@ -15,23 +15,41 @@ export class ValorationComponent implements OnInit {
   public request: Observable<ProductStockValoration[]>;
   public items: ProductStockValoration[] = [];
   public filteredlist: ProductStockValoration[] = [];
-  public headquarterId:any =0;
+  public form: ValorationFormModel;
 
   constructor(
     private _inventory: InventoryService
   ) { }
 
   ngOnInit(): void {
-    this.request = this._inventory.getSotckValoration(this.headquarterId).pipe(map(e => {
-      this.items = e;
-      this.filteredlist = e;
-      console.log("que viene:", this.filteredlist);
-      return e;
-    }));
+    this.setDefaultData();
+  }
+
+  public onShowMethod(): void {
+    this.setValoration();
+    /*console.log("FilterRecipe", this.recipefilter)*/
+  }
+
+  public listenFormChanges(form: ValorationFormModel): void {
+    this.form = form;
+  }
+
+  public setValoration(): void{
+    this.request = this._inventory.getSotckValoration(this.form.headquarterId);
+    this.request.subscribe(k => {
+      this.filteredlist = k;
+    });
+  }
+
+  private setDefaultData(): void {
+    this.request = this._inventory.getSotckValoration(0);
+    this.request.subscribe(k => {
+      this.filteredlist = k;
+    });
   }
 
 
-  public listenFilter(action: string): void {
+  /*public listenFilter(action: string): void {
     const type = action.split(":")[0];
     const param = action.split(":")[1];
 
@@ -39,8 +57,8 @@ export class ValorationComponent implements OnInit {
     let list: ProductStockValoration[] = [];
 
     if (type === "headquarterId") {
-      /*list = this.items.filter((e) => e.headquarter.name === param);
-      this.filteredlist = new Array(...list);*/
+      list = this.items.filter((e) => e.headquarter.name === param);
+      this.filteredlist = new Array(...list);
       this.headquarterId = param;
       
     }
@@ -53,5 +71,5 @@ export class ValorationComponent implements OnInit {
       this.filteredlist = list;
       return;
     }
-  }
+  }*/
 }
