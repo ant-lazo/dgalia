@@ -95,9 +95,7 @@
         </mat-form-field>
       </div>
     </div>
-  
   </form>
-
 
   <!-- botones de cancelar y registrar -->
   <div class="flex flex-row justify-end">
@@ -113,7 +111,7 @@
         Cancelar
       </button>
 
-      <!-- botón de Registrat al final del modal -->
+      <!-- botón de Registrar al final del modal -->
       <button
         (click)="onRegister()"
         [disabled]="form.invalid"
@@ -127,6 +125,6 @@
   </div>
 </div>
 
-  <ng-template #loading>
-    <app-loading-body></app-loading-body>
-  </ng-template>
+<ng-template #loading>
+  <app-loading-body></app-loading-body>
+</ng-template>
