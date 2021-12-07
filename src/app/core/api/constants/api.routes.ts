@@ -143,6 +143,12 @@ export class ApiRoutes {
       `${environment.apiUrl}invoice?headquarter=${headquarterId}`,
     getPendingPaymentDownload: (headquarterId: number): string =>
       `${environment.apiUrl}invoice-download?headquarter=${headquarterId}`,
-    getAllPendingPayment: `${environment.apiUrl}invoice/pendingpayment`
+    getAllPendingPayment: `${environment.apiUrl}invoice/pendingpayment`,
+
+    getProgramation: (headquarterId: number): string =>
+      `${environment.apiUrl}invoice?headquarter=${headquarterId}`,
+    getProgramationDownload: (headquarterId: number): string =>
+      `${environment.apiUrl}invoice-download?headquarter=${headquarterId}`,
+    getAllProgramation: `${environment.apiUrl}invoice/pendingpayment`,
   };
 }

@@ -15,12 +15,12 @@
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[2]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> inicio </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Inicio </th>
         <td mat-cell *matCellDef="let element"> {{element.startDate | date : 'shortDate'}} </td>
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[3]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> fin </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fin </th>
         <td mat-cell *matCellDef="let element"> {{element.endDate | date : 'shortDate'}} </td>
     </ng-container>
 
@@ -30,7 +30,7 @@
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[5]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> acciones </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
         <td mat-cell *matCellDef="let element">
             <button (click)="navigateToDetailPage(element.code)" title="Ver detalle {{ element.name }}" type="button"
                 mat-icon-button>
