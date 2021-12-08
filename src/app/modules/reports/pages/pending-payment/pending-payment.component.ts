@@ -17,7 +17,8 @@ export class PendingPaymentComponent implements OnInit {
   public items: FilterInvoice[] = [];
   public filteredlist: FilterInvoice[] = [];
 
-  constructor(private _invoice: PendingPaymentService) {}
+  constructor(
+    private _invoice: PendingPaymentService) {}
 
   ngOnInit(): void {
     //this.setDefaultData();

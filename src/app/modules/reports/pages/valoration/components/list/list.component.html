@@ -1,39 +1,44 @@
 <table mat-table [dataSource]="dataSource" matSort class="w-full">
 
     <ng-container [matColumnDef]="displayedColumns[0]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> código </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
         <td mat-cell *matCellDef="let element">
             <app-label [text]="element.productCode"></app-label>
         </td>
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[1]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> nombre </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
         <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[2]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> sede </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sede </th>
         <td mat-cell *matCellDef="let element"> {{element.headquarter.name}} </td>
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[3]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> stock </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
         <td mat-cell *matCellDef="let element"> {{element.stock }} </td>
     </ng-container>
 
     <ng-container [matColumnDef]="displayedColumns[4]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> valoración </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Valoración </th>
         <td mat-cell *matCellDef="let element"> {{element.valoration }} </td>
     </ng-container>
 
-
     <ng-container [matColumnDef]="displayedColumns[5]">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> actualización </th>
-        <td mat-cell *matCellDef="let element">
-            <app-label color="teal" [text]="element.updateDate | date: 'MMM d, y, h:mm:ss a'"></app-label>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualización </th>
+        <td mat-cell *matCellDef="let element"> 
+            <span
+              class="text-xs font-semibold inline-block py-1 px-2 rounded 
+              text-teal-600 bg-teal-200  last:mr-0 mr-1">
+              {{element.update | date:"MMM d, y, h:mm:ss a" }}
+          </span>
         </td>
     </ng-container>
+
+    
 
     <ng-container [matColumnDef]="displayedColumns[6]">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Descarga </th>

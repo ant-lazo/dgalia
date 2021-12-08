@@ -3,6 +3,7 @@
   <div class="main">
     <div class="content">
       <programation-register-form (paramSelected)="listenFormChanges($event)"></programation-register-form>
+      <app-selection-buttons (onDownload)="onDownloadMethod()"></app-selection-buttons>
       <div *ngIf="request | async; else loading">
         <app-list [invoicelist]="filteredlist"></app-list>
       </div>

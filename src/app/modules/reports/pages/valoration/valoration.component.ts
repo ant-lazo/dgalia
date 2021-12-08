@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { ProductStockValoration } from '../valoration/models/product-stock-valoration'
 import { InventoryService } from 'app/modules/inventory/services/inventory.service';
 import { ValorationFormModel } from './models/register-form';
+import { ShowFormHelper } from './helpers/show-form-validations.helper';
+import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 
 @Component({
   selector: "app-valoration",
@@ -18,7 +20,9 @@ export class ValorationComponent implements OnInit {
   public form: ValorationFormModel;
 
   constructor(
-    private _inventory: InventoryService
+    private _inventory: InventoryService,
+    private _helper: ShowFormHelper,
+    private _notifications: AppNotificationsService
   ) { }
 
   ngOnInit(): void {
@@ -26,8 +30,12 @@ export class ValorationComponent implements OnInit {
   }
 
   public onShowMethod(): void {
+    const error: string = this._helper.validateFormData(this.form);
+    if (error != '') {
+      this._notifications.error(null, error);
+      return;
+    }
     this.setValoration();
-    /*console.log("FilterRecipe", this.recipefilter)*/
   }
 
   public listenFormChanges(form: ValorationFormModel): void {

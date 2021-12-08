@@ -11,5 +11,6 @@ export interface ProductStockValoration {
     measuredUnit: MeasuredUnit;
     stock: number;
     unitePrice: string;
+    update: Date;
     valoration: number;
 }

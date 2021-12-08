@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { LabelModule } from 'app/shared/label/label.module';
 import { MatButtonModule } from '@angular/material/button';
+import { ShowFormHelper } from "./helpers/show-form-validations.helper";
 
 
 @NgModule({
@@ -44,6 +45,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule, 
     FormsModule, 
     ReactiveFormsModule
+  ],
+  providers:[
+    ShowFormHelper
   ]
 })
 export class ValorationModule {}

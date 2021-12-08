@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiRoutes } from 'app/core/api/constants/api.routes';
+import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import moment from 'moment';
 import { Observable } from 'rxjs';
+import { ShowFormHelper } from './helpers/show-form-validations.helper';
 import { FilterRecipe } from './models/filter-recipe';
 import { RecipeFormModel } from './models/register-form';
 import { RecipeService } from './services/recipe.service';
@@ -18,8 +20,10 @@ export class RecipeComponent implements OnInit {
   recipefilter : FilterRecipe[] = [];
 
   constructor(
-    private _recipe: RecipeService)
-    { }
+    private _recipe: RecipeService,
+    private _helper: ShowFormHelper,
+    private _notifications: AppNotificationsService
+    ){ }
 
   ngOnInit(): void {
     this.setDefaultData();
@@ -30,11 +34,21 @@ export class RecipeComponent implements OnInit {
   }
 
   public onShowMethod(): void {
+    const error: string = this._helper.validateFormData(this.form);
+    if (error != '') {
+      this._notifications.error(null, error);
+      return;
+    }
     this.setRecipe();
     console.log("FilterRecipe", this.recipefilter)
   }
 
   public onDownloadMethod(): void {
+    const error: string = this._helper.validateFormData(this.form);
+    if (error != '') {
+      this._notifications.error(null, error);
+      return;
+    }
     location.href = ApiRoutes.reports.getRecipeDownload(this.form.headquarterId);
   }
 
