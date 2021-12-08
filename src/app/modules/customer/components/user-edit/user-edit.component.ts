@@ -48,14 +48,14 @@ export class UserEditComponent implements OnInit {
   }
 
   public formValidation(): void {
+    console.log("datos para editar", this.editForm.value);
     if (this.editForm.valid) {
-      this.editSupply(this.editForm.value);
+      this.editUser(this.editForm.value);
       return;
     }
   }
 
-  private editSupply(data: any): void {
-    data.id = this.fullname;
+  private editUser(data: any): void {
     this._user.editUser(data).subscribe(() => {
       this._appNotifications.editSuccess();
       this.matDialogRef.close(true);
