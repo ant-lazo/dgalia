@@ -42,7 +42,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy{
   public eventEditMode: CalendarEventEditMode;
   public eventForm: FormGroup;
   public eventTimeFormat: any;
-  public events: CalendarEvent[];
+  //public events: CalendarEvent[];
+  public events: any[];
   public panelMode: CalendarEventPanelMode;
   public settings: CalendarSettings;
   public view: 'dayGridMonth' | 'timeGridWeek' | 'timeGridDay' | 'listYear';
@@ -590,10 +591,26 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy{
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(list => {
         const events = this.helper.getEnventsFromCookingSchedule(list);
-        this.events = cloneDeep(events);
+        //this.events = cloneDeep(events);
         this._changeDetectorRef.markForCheck();
         this.setCalendars(list);
       });
+
+      //this._cookingSchedule.getAll()
+
+      this.events=[
+        {
+          title:"Evento1",
+          start: new Date(),
+          end: new Date( new Date().getTime() + 86400000),
+          description:"Evento1"
+        },
+        {
+          title:"Evento2",
+          start: new Date( new Date().getTime() + (86400000*2)),
+          description:"Evento2"
+        }
+      ]
   }
 
 
