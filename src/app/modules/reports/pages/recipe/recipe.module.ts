@@ -18,6 +18,7 @@ import { HeaderModule } from 'app/shared/header/header.module';
 import { LoadingBodyModule } from 'app/shared/loading-body/loading-body.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { ShowFormHelper } from './helpers/show-form-validations.helper';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-mat
     MatTableModule
   ],
   providers:[
-    DatePipe
+    DatePipe,
+    ShowFormHelper
   ]
 })
 export class RecipeModule { }
