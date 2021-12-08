@@ -253,13 +253,13 @@
                 },
                 {
                     "id": "pages.ranking-report",
-                    "title": "Reporte Valoracion",
+                    "title": "Reporte Valoración",
                     "link": "/reportes/valoration",
                     "type": "basic"
                 },
                 {
                     "id": "pages.programation",
-                    "title": "Reporte Programacion",
+                    "title": "Reporte Programación",
                     "link": "/reportes/programation",
                     "type": "basic"
                 }

@@ -10,7 +10,7 @@ import { AppNotificationsService } from '../Services/app-notifications.service';
     <h2> Esta seguro de retirar  <span class="text-primary"> {{ data?.cooking_schedule_code ?? 'Este elemento' }} </span>? </h2>
     
     <h4>
-        <!-- {{ datashedule?.subtitle ?? 'Tenga en cuenta que se hará la eliminacion de manera permante del registro y no se podrá recuperar la información.' }}-->
+        <!-- {{ datashedule?.subtitle ?? 'Tenga en cuenta que se hará la eliminación de manera permante del registro y no se podrá recuperar la información.' }}-->
         {{ 'Tenga en cuenta que al realizar el retiro de la programación, se eliminará de manera permante del registro y no se podrá recuperar la información.' }}
       </h4>
     
