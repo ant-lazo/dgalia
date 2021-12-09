@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, IterableDiffers, OnDestroy, OnInit, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
@@ -25,6 +25,9 @@ import esLocale from '@fullcalendar/core/locales/es';
 import { CookingScheduleService } from '../../services/cooking-schedule.service';
 import ProgramationCalendarComponentHelper from '../../helpers/programation-calendar-component.helper';
 import { CookingSchedule } from '../../models/cooking-schedule.model';
+import { CalendarShow } from '../../models/calendar-show.model';
+import { title } from 'process';
+
 @Component({
   selector: 'cooking-schedule-calendar',
   templateUrl: './calendar.component.html',
@@ -66,7 +69,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy{
 
   @ViewChild('drawer')
   private _drawer: MatDrawer;
+  
+  public schelude: CookingSchedule[]
 
+  public calendarShow: CalendarShow[]
 
   constructor(
     private _calendarService: CalendarService,
@@ -251,6 +257,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy{
         listDayAltFormat: false
       }
     };
+
+    //this.obtenerData();
+
   }
 
   /**
@@ -584,21 +593,63 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy{
     calendarEvent.el.style.display = calendar.visible ? 'flex' : 'none';
   }
 
+  /*private obtenerData(){
+  this._cookingSchedule.getAll().subscribe( a =>{
+    this.schelude =a,
+    this.iterar();
+  })
+  }*/
 
   private setCalendarEvents() {
     const params = this.helper.getCurrentMonth();
-    this._cookingSchedule.getByMonth(params.month, params.year)
+    /*this._cookingSchedule.getByMonth(params.month, params.year)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(list => {
         const events = this.helper.getEnventsFromCookingSchedule(list);
-        //this.events = cloneDeep(events);
+        this.events = cloneDeep(events);
+        this._changeDetectorRef.markForCheck();
+        this.setCalendars(list);
+      });*/
+
+    this._cookingSchedule.getAll()
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(list => {
+        const events = this.helper.getEnventsFromCookingSchedule(list);
+        this.events = cloneDeep(events);
         this._changeDetectorRef.markForCheck();
         this.setCalendars(list);
       });
 
-      //this._cookingSchedule.getAll()
+    
+      
+      //this.obtenerData();
 
-      this.events=[
+      /*for(const s of this.schelude){
+      console.log("descripcion: ",s.description),
+      console.log("startDate: ",s.startDate),
+        this.events.push({
+          title:"holaa",
+          start: new Date (),
+          end: new Date (),
+          description: "holaaaaa"
+        })
+      }*/
+
+       /*this.events.push( {
+          title:"Evento1",
+          start: new Date(),
+          end: new Date( new Date().getTime() + 86400000),
+          description:"Evento1"
+        })
+
+        this.events.push( {
+          title:"Evento2",
+          start: new Date( new Date().getTime() + 86400000),
+          end: new Date( new Date().getTime() + (86400000 * 2)),
+          description:"Evento2"
+        })*/
+
+      /*this.events=[
         {
           title:"Evento1",
           start: new Date(),
@@ -610,9 +661,28 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy{
           start: new Date( new Date().getTime() + (86400000*2)),
           description:"Evento2"
         }
-      ]
+      ]*/
   }
 
+  /*iterar():void{
+    for(const s of this.schelude){
+      console.log("descripcion: ",s.description),
+      console.log("startDate: ",s.startDate),
+      this.events.push({
+          title:"holaa",
+          start: new Date (),
+          end: new Date (),
+          description: "holaaaaa"
+        })
+    }
+  }
+
+  obtenerData(){
+    this._cookingSchedule.getAll().subscribe( a =>{
+      this.schelude =a
+      //this.iterar();
+    })
+  }*/
 
   private setCalendars(list: CookingSchedule[]) {
     this.calendars = this.helper.getCalendarsFromCookingSchedule(list);

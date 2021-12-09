@@ -14,8 +14,10 @@ export interface CalendarEvent {
   isFirstInstance: boolean;
   title: string;
   description: string;
-  start: string | null;
-  end: string | null;
+  //start: string | null;
+  //end: string | null;
+  start: Date | null;
+  end: Date | null;
   allDay: boolean;
   recurrence: string;
   classes: any[];
