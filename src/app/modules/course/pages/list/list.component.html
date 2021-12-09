@@ -3,13 +3,14 @@
 
   <div class="main">
     <div class="content">
-      <app-row-buttons
-        *ngIf="registerButton"
-        [buttons]="registerButton"
-        [justify]="'justify-end'"
-        (onClick)="register()"
-      >
-      </app-row-buttons>
+      <!-- (onClick)="register()" -->
+
+      <div class="flex flex-row w-full justify-end mb-5 mt-0">
+        <button (click)="register()" mat-stroked-button color="primary">
+          <mat-icon>save</mat-icon>
+          Registrar
+        </button>
+      </div>
 
       <app-list-table
         [model]="tableModel"

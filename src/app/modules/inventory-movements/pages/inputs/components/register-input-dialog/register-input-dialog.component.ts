@@ -1,19 +1,19 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { JsonResp } from 'app/core/interfaces/json-resp.interface';
+import { Component, Inject, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { JsonResp } from "app/core/interfaces/json-resp.interface";
 // import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
-import { Product } from 'app/modules/product/models/product.model';
-import { ProductService } from 'app/modules/product/services/product.service';
-import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { InputsService } from '../../services/inputs.service';
+import { Product } from "app/modules/product/models/product.model";
+import { ProductService } from "app/modules/product/services/product.service";
+import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
+import { combineLatest, Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { InputsService } from "../../services/inputs.service";
 
 @Component({
-  selector: 'app-register-input-dialog',
-  templateUrl: './register-input-dialog.component.html',
-  styleUrls: ['./register-input-dialog.component.scss']
+  selector: "app-register-input-dialog",
+  templateUrl: "./register-input-dialog.component.html",
+  styleUrls: ["./register-input-dialog.component.scss"],
 })
 export class RegisterInputDialogComponent implements OnInit {
   public requestData: Observable<any[]>;
@@ -24,9 +24,10 @@ export class RegisterInputDialogComponent implements OnInit {
     private _toast: AppNotificationsService,
     private _product: ProductService,
     private _inputs: InputsService,
+
     private _builder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: { productCode: string }
-  ) { 
+  ) {
     this.setForm();
   }
 
@@ -70,5 +71,4 @@ export class RegisterInputDialogComponent implements OnInit {
       output_type: [null, Validators.required],
     });
   }
-
 }

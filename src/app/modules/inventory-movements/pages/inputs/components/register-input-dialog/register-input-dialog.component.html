@@ -6,7 +6,7 @@
 </div>
 
 <div *ngIf="data?.productCode && requestData | async as data">
-  <h1 class="text-indigo-900">Registrar ingreso {{ data[0].name }}</h1>
+  <h1 class="text-indigo-900">Registrar ingreso {{ data[1].name }}</h1>
 
   <form [formGroup]="form">
     <div class="flex">
