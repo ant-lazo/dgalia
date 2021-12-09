@@ -319,13 +319,7 @@
                             "title": "Listado",
                             "link": "orden-de-compra/listado-Guias",
                             "type": "basic"
-                        },
-                        {
-                            "id": "pages.logistica.guia.listado",
-                            "title": "registro",
-                            "link": "orden-de-compra/listado-Guias",
-                            "type": "basic"
-                        }
+                        }             
                     ]
                 }
             ]
