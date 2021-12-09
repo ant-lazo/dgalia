@@ -11,11 +11,10 @@ import { HeadquartesService } from "app/modules/headquarter/services/headquartes
   styleUrls: ["./form.component.scss"],
 })
 export class FormComponent implements OnInit {
+  
   public form: FormGroup;
   public request: Observable<any>;
   headquarterList: Headquarter[];
-
-  @Output() paramSelected: EventEmitter<string> = new EventEmitter();
 
   @Output() formCompleted: EventEmitter<InvoiceFormModel> = new EventEmitter();
 
@@ -47,8 +46,8 @@ export class FormComponent implements OnInit {
     });
   }
 
-  public headquarterChange(event: any) {
+  /*public headquarterChange(event: any) {
     this.paramSelected.emit(`headquarter:${event}`);
-  }
+  }*/
 
 }

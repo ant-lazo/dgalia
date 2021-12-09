@@ -2,8 +2,8 @@
   <app-header title="Pagos Pendientes" module=""></app-header>
   <div class="main">
     <div class="content">
-      <programation-register-form (paramSelected)="listenFormChanges($event)"></programation-register-form>
-      <app-selection-buttons (onDownload)="onDownloadMethod()"></app-selection-buttons>
+      <programation-register-form (formCompleted)="listenFormChanges($event)"></programation-register-form>
+      <app-selection-buttons (onDownload)="onDownloadMethod()" (onShow)="onShowMethod()"></app-selection-buttons>
       <div *ngIf="request | async; else loading">
         <app-list [invoicelist]="filteredlist"></app-list>
       </div>

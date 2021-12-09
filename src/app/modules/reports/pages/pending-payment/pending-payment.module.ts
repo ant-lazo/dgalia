@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { ShowFormHelper } from "./helpers/show-form-pending-payment.helpers";
+
 
 @NgModule({
   declarations: [
@@ -39,6 +41,9 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     MatPaginatorModule,
     MatTableModule
+  ],
+  providers:[
+    ShowFormHelper
   ]
 })
 export class PendingPaymentModule { }

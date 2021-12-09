@@ -1,7 +1,4 @@
-<!--<div *ngIf="productListRequest | async; else loading">-->
-
-
-    <table mat-table [dataSource]="dataSource" matSort class="w-full">
+<table mat-table [dataSource]="dataSource" matSort class="w-full">
 
         <ng-container [matColumnDef]="displayedColumns[0]">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
