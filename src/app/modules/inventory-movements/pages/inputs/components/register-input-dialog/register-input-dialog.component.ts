@@ -8,6 +8,7 @@ import { ProductService } from 'app/modules/product/services/product.service';
 import { AppNotificationsService } from 'app/shared/Services/app-notifications.service';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { InputsService } from '../../services/inputs.service';
 
 @Component({

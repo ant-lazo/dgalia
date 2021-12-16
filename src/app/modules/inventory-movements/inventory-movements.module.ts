@@ -8,10 +8,6 @@ import { InventoryMovementsComponent } from './inventory-movements.component';
 @NgModule({
   declarations: [
     InventoryMovementsComponent,
-<<<<<<< HEAD
-=======
-    //RegisterInputDialogComponent
->>>>>>> 3962020d66bb84e336bde99f07f1ce67e68c513d
   ],
   imports: [
     CommonModule,
