@@ -47,7 +47,7 @@ export class RecipesComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result: Recipe) => {
       if (result) {
-        const founded: RegisterPrgRecipeSelectedModel = this.list.find(e => e.id != result.id);
+        const founded: RegisterPrgRecipeSelectedModel = this.list.find(e => e.id == result.id && e.id != result.id);
         if (!founded) this.setNewRecipeSelected(result);
       }
     });
