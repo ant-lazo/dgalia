@@ -256,12 +256,6 @@
                     "title": "Reporte Valoración",
                     "link": "/reportes/valoration",
                     "type": "basic"
-                },
-                {
-                    "id": "pages.programation",
-                    "title": "Reporte Programación",
-                    "link": "/reportes/programation",
-                    "type": "basic"
                 }
 
             ]
@@ -311,12 +305,6 @@
                             "title": "Listado",
                             "link": "orden-de-compra/listado-Factura",
                             "type": "basic"
-                        },
-                        {
-                            "id": "pages.logistica.factura.listado",
-                            "title": "registro",
-                            "link": "orden-de-compra/listado-Factura",
-                            "type": "basic"
                         }
                     ]
                 },
@@ -331,13 +319,7 @@
                             "title": "Listado",
                             "link": "orden-de-compra/listado-Guias",
                             "type": "basic"
-                        },
-                        {
-                            "id": "pages.logistica.guia.listado",
-                            "title": "registro",
-                            "link": "orden-de-compra/listado-Guias",
-                            "type": "basic"
-                        }
+                        }             
                     ]
                 }
             ]

@@ -1,7 +1,4 @@
-
-
 export class RqRegisterOutput {
-
     quantity: number;
     headquarter_id: number;
     unit_price: number;

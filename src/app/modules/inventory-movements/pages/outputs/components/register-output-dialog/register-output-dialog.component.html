@@ -5,7 +5,9 @@
 </div>
 
 <div *ngIf="data?.productCode && requestData | async as data">
-  <h1 class="text-indigo-900">Registrar salida para {{ data[1].name }}</h1>
+  <h1 class="text-indigo-900">
+    Registrar salida para <span class="text-primary">{{ data[1].name }}</span>
+  </h1>
 
   <form [formGroup]="form">
     <div class="grid grid-cols-12 gap-3">
