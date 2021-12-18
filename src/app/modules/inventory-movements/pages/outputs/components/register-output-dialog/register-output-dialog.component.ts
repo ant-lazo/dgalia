@@ -8,7 +8,6 @@ import { ProductService } from "app/modules/product/services/product.service";
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { combineLatest, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-
 import { OutputsService } from "../../services/outputs.service";
 
 @Component({
@@ -21,13 +20,13 @@ export class RegisterOutputDialogComponent implements OnInit {
   public form: FormGroup;
 
   constructor(
-    private _headquarters: HeadquartesService,
-    private _product: ProductService,
     private _dialogRef: MatDialogRef<RegisterOutputDialogComponent>,
     private _toast: AppNotificationsService,
+    private _product: ProductService,
     private _outputs: OutputsService,
+    private _headquarters: HeadquartesService,
     private _builder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: { productCode: string }
+    @Inject(MAT_DIALOG_DATA) public data: { productCode: string, headquarterId: number}
   ) {
     this.setForm();
   }
@@ -62,13 +61,14 @@ export class RegisterOutputDialogComponent implements OnInit {
 
   private setForm(product?: Product): void {
     this.form = this._builder.group({
-      headquarter_id: [null, Validators.required],
+      //headquarter_id: [product?., Validators.required],
+      headquarter_id: [this.data.headquarterId, Validators.required],
       // igv: [product?.igv, Validators.required],
       igv: [null, Validators.required],
       product_code: [product?.code, Validators.required],
       quantity: [null, Validators.required],
-      // unit_price: [product?.priceList, Validators.required],
-      unit_price: [null, Validators.required],
+      unit_price: [product?.priceList, Validators.required],
+      //unit_price: [null, Validators.required],
       comment: [null, Validators.required],
       output_type: [null, Validators.required],
     });

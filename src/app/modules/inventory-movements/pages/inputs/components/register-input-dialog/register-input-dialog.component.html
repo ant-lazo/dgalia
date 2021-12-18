@@ -5,19 +5,34 @@
 </div>
 
 <div *ngIf="data?.productCode && requestData | async as data">
-  <h1 class="text-indigo-900">Registrar ingreso {{ data[1].name }}</h1>
+
+  <h1 class="text-indigo-900">Registrar ingreso <span class="text-primary">{{ data[0].name }}</span></h1>
 
   <form [formGroup]="form">
-    <div class="flex">
-      <mat-form-field class="w-full">
-        <textarea
-          formControlName="description"
-          matInput
-          placeholder="Descripción"
-        ></textarea>
-      </mat-form-field>
+    <div class="grid grid-cols-12 gap-3">
+      <div class="col-span-6">
+        <mat-form-field class="w-full">
+          <mat-select
+            formControlName="headquarter_id"
+            placeholder="Seleccione una sede"
+          >
+            <mat-option *ngFor="let hq of data[1]" [value]="hq.id">
+              {{ hq.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-span-6">
+        <mat-form-field class="w-full">
+          <mat-select
+            formControlName="input_type"
+            placeholder="Seleccione tipo de entrada"
+          >
+            <mat-option value="ENT01"> Entrada </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-
     <!-- cantidad-precio unitario-IGV -->
     <div class="grid grid-cols-12 gap-3">
       <div class="col-span-4">
@@ -51,48 +66,14 @@
         </mat-form-field>
       </div>
     </div>
-
-    <div class="grid grid-cols-12 gap-3">
-      <div class="col-span-4">
-        <mat-form-field class="w-full">
-          <input
-            formControlName="salePrice"
-            matInput
-            type="number"
-            placeholder="Precio venta"
-          />
-        </mat-form-field>
-      </div>
-      <div class="col-span-4">
-        <mat-form-field class="w-full">
-          <input
-            formControlName="supplyId"
-            matInput
-            type="number"
-            placeholder="Código del insumo"
-          />
-        </mat-form-field>
-      </div>
-      <div class="col-span-4">
-        <mat-form-field class="w-full">
-          <input
-            formControlName="weight"
-            matInput
-            type="number"
-            placeholder="Peso"
-          />
-        </mat-form-field>
-      </div>
-      <div class="col-span-4">
-        <mat-form-field class="w-full">
-          <input
-            formControlName="minimumStock"
-            matInput
-            type="number"
-            placeholder="Stock Mínimo"
-          />
-        </mat-form-field>
-      </div>
+    <div class="flex">
+      <mat-form-field class="w-full">
+        <textarea
+          formControlName="comment"
+          matInput
+          placeholder="Deje su comentario"
+        ></textarea>
+      </mat-form-field>
     </div>
   </form>
 

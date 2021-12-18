@@ -6,6 +6,7 @@ import { BillsStatus } from '../../../models/bills-status.model'
 import { BillsService } from '../../../services/bills.service';
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
 import { Observable } from 'rxjs';
+import { PurchaseOrderService } from 'app/modules/purchase-order/services/purchase-order.service'
 
 
 @Component({
@@ -18,6 +19,7 @@ export class RegisterBillsComponent implements OnInit {
   public billsStatus: Observable<BillsStatus[]>;
   public formRegisterBill: FormGroup;
   public purchaseOrderId: number;
+  public purchaseOrderCode: string;
   public providerDocument: string;
 
   constructor(
@@ -25,15 +27,18 @@ export class RegisterBillsComponent implements OnInit {
     public dialogRef: MatDialogRef<RegisterBillsComponent>,
     private _appNotifications: AppNotificationsService,
     private _bill: BillsService,
+    private _purchaseOrder : PurchaseOrderService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: PurchaseOrder
     //@Inject(MAT_DIALOG_DATA) public data: PurchaseOrder
   ) {
     this.setForm();
     this.purchaseOrderId= data.id;
+    this.purchaseOrderCode=data.code;
     this.providerDocument= data.provider.document;
    }
 
   ngOnInit(): void {
+    console.log("purchaseOrderCode: ",this.purchaseOrderCode);
     this.formRegisterBill.patchValue({
       purchaseOrderId: this.purchaseOrderId,
       providerDocument: this.providerDocument
@@ -60,6 +65,7 @@ export class RegisterBillsComponent implements OnInit {
     console.log("data: ", data);
     this._bill.registerNewBill(data).subscribe(() => {
       this._appNotifications.registerSuccess();
+      this._purchaseOrder.updateStatus(this.purchaseOrderCode,"BRR03","facturada");
       this.dialogRef.close(true);
     });
 

@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { JsonResp } from "app/core/interfaces/json-resp.interface";
-// import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
+import { HeadquartesService } from 'app/modules/headquarter/services/headquartes.service';
 import { Product } from "app/modules/product/models/product.model";
 import { ProductService } from "app/modules/product/services/product.service";
 import { AppNotificationsService } from "app/shared/Services/app-notifications.service";
@@ -24,9 +24,9 @@ export class RegisterInputDialogComponent implements OnInit {
     private _toast: AppNotificationsService,
     private _product: ProductService,
     private _inputs: InputsService,
-
+    private _headquarters: HeadquartesService,
     private _builder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: { productCode: string }
+    @Inject(MAT_DIALOG_DATA) public data: { productCode: string, headquarterId: number}
   ) {
     this.setForm();
   }
@@ -39,6 +39,7 @@ export class RegisterInputDialogComponent implements OnInit {
   private setRequestData(): void {
     this.requestData = combineLatest([
       this._product.findByCode(this.data?.productCode),
+      this._headquarters.getCompleteList()
     ]).pipe(
       map((resp) => {
         this.setForm(resp[0]);
@@ -60,15 +61,15 @@ export class RegisterInputDialogComponent implements OnInit {
 
   private setForm(product?: Product): void {
     this.form = this._builder.group({
-      headquarter_id: [null, Validators.required],
-      // igv: [product?.igv, Validators.required],
-      igv: [null, Validators.required],
       product_code: [product?.code, Validators.required],
+      headquarter_id: [this.data.headquarterId, Validators.required],
+      //igv: [product?.igv, Validators.required],
+      input_type: [null, Validators.required],
+      igv: [null, Validators.required],
       quantity: [null, Validators.required],
-      // unit_price: [product?.priceList, Validators.required],
-      unit_price: [null, Validators.required],
+      unit_price: [product?.priceList, Validators.required],
+      //unit_price: [null, Validators.required],
       comment: [null, Validators.required],
-      output_type: [null, Validators.required],
     });
   }
 }

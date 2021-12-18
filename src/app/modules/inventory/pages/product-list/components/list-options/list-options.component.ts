@@ -63,11 +63,11 @@ export class ListOptionsComponent implements OnInit {
   }
 
   public registerProductOutput(): void {
-    const dialogRef = this._dialog.open(RegisterOutputDialogComponent, {width: '70%', data: {productCode: this.data?.productCode}});
+    const dialogRef = this._dialog.open(RegisterOutputDialogComponent, {width: '70%', data: {productCode: this.data?.productCode, headquarterId : this.headquarterId}});
   }
 
   public registerProductInput(): void {
-    const dialogRef = this._dialog.open(RegisterInputDialogComponent, {width: '70%', data: {productCode: this.data?.productCode}});
+    const dialogRef = this._dialog.open(RegisterInputDialogComponent, {width: '70%', data: {productCode: this.data?.productCode, headquarterId : this.headquarterId}});
   }
 
 }

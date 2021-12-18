@@ -32,9 +32,9 @@ export class ApiRoutes {
     put: `${environment.apiUrl}invoice/updatepaid`,
   };
 
-  // public static inputs = {
-  //     save: `${environment.apiUrl}inventory/input`,
-  // }
+   public static inputs = {
+       save: `${environment.apiUrl}inventory/input`,
+  }
 
   public static outputs = {
     save: `${environment.apiUrl}inventory/output`,
@@ -122,7 +122,7 @@ export class ApiRoutes {
     getAll: `${environment.apiUrl}referralguide`,
   };
 
-  static inputs: any;
+  //static inputs: any;
 
   public static reports = {
     getValorationDownload: (code: string, headquarterId: number): string =>
